@@ -265,6 +265,24 @@ export default function MainTemplate({
               </ul>
             </div>
           </div>
+
+          {/* 비주얼 그래프 영역 (히스토그램) */}
+          <div className={styles.graphContainer}>
+            <div className={styles.histogram}>
+              <div className={styles.bar} style={{ height: '35%' }}>
+                <span className={styles.barLabel}>저가형</span>
+              </div>
+              <div className={`${styles.bar} ${styles.highlight}`} style={{ height: '65%' }}>
+                <span className={styles.barLabel}>{BRAND_NAME}</span>
+              </div>
+              <div className={styles.bar} style={{ height: '100%' }}>
+                <span className={styles.barLabel}>고가형</span>
+              </div>
+            </div>
+            <div className={styles.graphLabel}>
+              <span>현장 맞춤형 적정가격</span>
+            </div>
+          </div>
         </div>
       </section>
 
