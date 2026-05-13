@@ -17,6 +17,7 @@ export async function GET(request: Request, { params }: Props) {
   if (fileName === 'sitemap-main') {
     // 메인 페이지 + 구 단위 지역+작업명 36개
     urls.push({ url: DOMAIN, priority: 1, changeFrequency: 'daily' });
+    urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly' });
     
     regions.filter(r => r.subDistrictSlug === 'all').forEach(region => {
       services.filter(s => s.indexStatus === 'index').forEach(service => {

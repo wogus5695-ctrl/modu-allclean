@@ -158,6 +158,16 @@ export function getKeywordHubMetadata(cityDistrict: string): Metadata {
   });
 }
 
+// 6. 마스터 사이트맵 (서울 전 지역 키워드 맵)
+export function getSitemapMetadata(): Metadata {
+  return getBaseMetadata({
+    title: `서울 전 지역 종합청소 서비스 키워드 맵 | ${BRAND_NAME}`,
+    description: `서울 강남, 서초, 송파, 강동 등 전 지역의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
+    indexStatus: 'index',
+    path: `/sitemap-seoul`,
+  });
+}
+
 // --- JSON-LD LocalBusiness 스키마 생성기 ---
 export function getJsonLd() {
   return {

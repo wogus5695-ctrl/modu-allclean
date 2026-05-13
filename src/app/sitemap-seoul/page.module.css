@@ -1,0 +1,115 @@
+.wrapper {
+  padding-bottom: 100px;
+}
+
+.header {
+  background-color: #f8fafc;
+  padding: 80px 0;
+  text-align: center;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 20px;
+}
+
+.subtitle {
+  font-size: 18px;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.content {
+  padding-top: 60px;
+}
+
+.districtSection {
+  margin-bottom: 60px;
+}
+
+.districtTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 2px solid #3b82f6;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.districtTitle span {
+  font-size: 16px;
+  font-weight: 500;
+  color: #3b82f6;
+  background-color: #eff6ff;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.dongGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+}
+
+.dongCard {
+  background-color: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+.dongCard:hover {
+  border-color: #3b82f6;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.1);
+}
+
+.dongName {
+  font-size: 18px;
+  font-weight: 700;
+  color: #334155;
+  margin-bottom: 15px;
+  display: block;
+}
+
+.serviceLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.serviceLink {
+  font-size: 13px;
+  color: #64748b;
+  background-color: #f1f5f9;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.serviceLink:hover {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 28px;
+  }
+  .dongGrid {
+    grid-template-columns: 1fr;
+  }
+}
