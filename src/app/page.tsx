@@ -1,0 +1,298 @@
+import Link from 'next/link';
+import { services } from '@/data/services';
+import { portfolioItems } from '@/data/portfolio';
+import { BRAND_NAME, CONTACT_PHONE, CONTACT_KAKAO } from '@/lib/seo';
+import SectionCTA from '@/components/SectionCTA';
+import FloatingContact from '@/components/FloatingContact';
+import styles from './page.module.css';
+
+interface Props {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}
+
+export default async function Home({ searchParams }: Props) {
+  const params = await searchParams;
+  const region = (params.region as string) || '서울·경기';
+  const service = (params.service as string) || '종합청소';
+
+  return (
+    <div className={styles.container}>
+      {/* 1. Hero Section */}
+      <section className={styles.hero}>
+        <div className={styles.heroOverlay}></div>
+        <div className={styles.inner}>
+          <div className="animate-fade-up">
+            <span className={styles.badge}>{region} No.1 청소 전문 업체</span>
+            <h1 className={styles.heroTitle}>
+              {region} <span className={styles.highlight}>{service}</span> 전문<br />
+              압도적인 청결 솔루션
+            </h1>
+            <p className={styles.heroDesc}>
+              {region} 고객님이 신뢰하는 브랜드, {BRAND_NAME}입니다.<br />
+              합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
+            </p>
+            <div className={styles.heroCta}>
+              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>무료 방문 견적 신청</a>
+              <a href={CONTACT_KAKAO} className={`${styles.ctaBtn} ${styles.outline}`}>카톡 상담하기</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 2. Solution Section (Why Choose Us) */}
+      <section className={styles.solution}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.subTitle}>Why {BRAND_NAME}?</span>
+            <h2 className={styles.sectionTitle}>
+              서울 경기 종합청소,<br />
+              왜 <span className={styles.highlight}>모두종합환경</span> 이어야 할까요?
+            </h2>
+          </div>
+          <div className={styles.featureGrid}>
+            <div className={styles.featureItem}>
+              <div className={styles.featureImage}>
+                <img src="/images/why/pricing.jpg" alt="적정한 견적 제안" />
+              </div>
+              <div className={styles.featureContent}>
+                <div className={styles.featureIcon}>💰</div>
+                <h3>적정한 견적 제안</h3>
+                <p>거품 없는 합리적인 비용으로 현장 상황에 맞는 가장 정직한 견적을 제안합니다.</p>
+              </div>
+            </div>
+            <div className={styles.featureItem}>
+              <div className={styles.featureImage}>
+                <img src="/images/why/equipment.jpg" alt="현장 맞춤형 장비" />
+              </div>
+              <div className={styles.featureContent}>
+                <div className={styles.featureIcon}>✨</div>
+                <h3>현장 맞춤형 장비</h3>
+                <p>{service}의 특성에 최적화된 최첨단 장비와 친환경 세제를 사용합니다.</p>
+              </div>
+            </div>
+            <div className={styles.featureItem}>
+              <div className={styles.featureImage}>
+                <img src="/images/why/team.jpg" alt="100% 직영 팀 운영" />
+              </div>
+              <div className={styles.featureContent}>
+                <div className={styles.featureIcon}>👤</div>
+                <h3>100% 직영 팀 운영</h3>
+                <p>하청이 아닌 본사 직영 팀이 직접 방문하여 일관된 퀄리티를 유지합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. Detailed Services Section */}
+      <section id="services" className={styles.services}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>모두종합환경</span>의 청소 서비스 안내</h2>
+            <p className={styles.sectionDesc}>모두종합환경은 {region} 전 지역 모든 현장에 대응합니다.</p>
+          </div>
+          <div className={styles.serviceCards}>
+            {services.map((item) => (
+              <div key={item.id} className={styles.serviceItem}>
+                <div className={styles.serviceInfo}>
+                  <h3>{item.serviceNameKo}</h3>
+                  <p>{item.shortDescription}</p>
+                  <ul className={styles.serviceList}>
+                    <li>✔ 정밀 진단 및 견적</li>
+                    <li>✔ 전문 인력 투입</li>
+                    <li>✔ 사후 관리(A/S) 보장</li>
+                  </ul>
+                </div>
+                {item.imageUrl && (
+                  <div className={styles.serviceImage}>
+                    <img src={item.imageUrl} alt={item.serviceNameKo} />
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Portfolio Section (Before/After) */}
+      <section className={styles.portfolio}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>{region} 실제 작업 현장</h2>
+            <p className={styles.sectionDesc}>거짓 없는 작업 전후 사진으로 증명합니다.</p>
+          </div>
+          <div className={styles.sliderContainer}>
+            <div className={styles.sliderTrack}>
+              {[...portfolioItems, ...portfolioItems].map((item, idx) => (
+                <div key={`${item.id}-${idx}`} className={styles.portfolioCard}>
+                  <div className={styles.portfolioCategory}>{item.category}</div>
+                  <div className={styles.comparisonGrid}>
+                    <div className={styles.imageBox}>
+                      <img src={item.beforeImg} alt={`${item.category} 전`} />
+                      <span className={styles.tagBefore}>BEFORE</span>
+                    </div>
+                    <div className={styles.imageBox}>
+                      <img src={item.afterImg} alt={`${item.category} 후`} />
+                      <span className={styles.tagAfter}>AFTER</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Trust Section (Stats) */}
+      <section className={styles.trust}>
+        <div className={styles.inner}>
+          <div className={styles.statsGrid}>
+            <div className={styles.statItem}>
+              <span className={styles.statNum}>1,200+</span>
+              <p>{region} {service} 수행</p>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNum}>98%</span>
+              <p>고객 만족도</p>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNum}>24h</span>
+              <p>상시 견적 응대</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Pricing Strategy Section */}
+      <section className={styles.pricing}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.subTitle}>Reasonable Price</span>
+            <h2 className={styles.sectionTitle}>
+              {region} <span className={styles.highlight}>{service}</span>,<br />
+              합리적인 견적의 기준을 제시합니다
+            </h2>
+            <p className={styles.sectionDesc}>
+              무조건 싼 가격은 부실한 서비스로 이어지고, 너무 비싼 가격은 고객님께 부담이 됩니다.<br />
+              모두종합환경은 정직한 공정으로 최적화된 맞춤 견적을 약속드립니다.
+            </p>
+          </div>
+
+          <div className={styles.pricingComparison}>
+            {/* 저가형 */}
+            <div className={styles.pricingCard}>
+              <div className={styles.cardHeader}>
+                <span className={styles.statusBadge}>주의</span>
+                <h3>저가형 업체</h3>
+              </div>
+              <ul className={styles.priceList}>
+                <li className={styles.bad}>✖ 비숙련 인력/하청 위주</li>
+                <li className={styles.bad}>✖ 구형 장비 및 독성 세제</li>
+                <li className={styles.bad}>✖ 현장 추가 비용 요구</li>
+                <li className={styles.bad}>✖ 부실한 사후 관리(A/S)</li>
+              </ul>
+              <div className={styles.priceRisk}>"낮은 퀄리티 및 재작업 위험"</div>
+            </div>
+
+            {/* 모두종합환경 */}
+            <div className={`${styles.pricingCard} ${styles.recommend}`}>
+              <div className={styles.bestBadge}>BEST CHOICE</div>
+              <div className={styles.cardHeader}>
+                <span className={styles.statusBadgeOk}>최적</span>
+                <h3>{BRAND_NAME}</h3>
+              </div>
+              <ul className={styles.priceList}>
+                <li className={styles.good}>✔ 100% 본사 직영 팀 운영</li>
+                <li className={styles.good}>✔ 현장 맞춤형 전문 장비</li>
+                <li className={styles.good}>✔ 친환경 공인 세제 사용</li>
+                <li className={styles.good}>✔ 투명한 견적 및 A/S 보장</li>
+              </ul>
+              <div className={styles.priceTarget}>"최상의 퀄리티와 합리적 비용"</div>
+            </div>
+
+            {/* 고가형 */}
+            <div className={styles.pricingCard}>
+              <div className={styles.cardHeader}>
+                <span className={styles.statusBadge}>부담</span>
+                <h3>고가 프리미엄</h3>
+              </div>
+              <ul className={styles.priceList}>
+                <li className={styles.bad}>✖ 과도한 광고/마케팅비</li>
+                <li className={styles.bad}>✖ 불필요한 공정 추가</li>
+                <li className={styles.bad}>✖ 높은 본사 수수료</li>
+                <li className={styles.bad}>✖ 과도한 고객 비용 부담</li>
+              </ul>
+              <div className={styles.priceRisk}>"비효율적인 과잉 청구"</div>
+            </div>
+          </div>
+
+          {/* 비주얼 그래프 영역 (히스토그램) */}
+          <div className={styles.graphContainer}>
+            <div className={styles.histogram}>
+              <div className={styles.bar} style={{ height: '35%' }}>
+                <span className={styles.barLabel}>저가형</span>
+              </div>
+              <div className={`${styles.bar} ${styles.highlight}`} style={{ height: '65%' }}>
+                <span className={styles.barLabel}>{BRAND_NAME}</span>
+              </div>
+              <div className={styles.bar} style={{ height: '100%' }}>
+                <span className={styles.barLabel}>고가형</span>
+              </div>
+            </div>
+            <div className={styles.graphLabel}>
+              <span>현장 맞춤형 적정가격</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 7. FAQ Section */}
+      <section className={styles.faq}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>자주 묻는 질문</h2>
+          </div>
+          <div className={styles.faqList}>
+            <div className={styles.faqItem}>
+              <h4>Q. {region} 지역 견적 비용은 어떻게 되나요?</h4>
+              <p>A. 현장의 면적, 오염도, 작업 방식에 따라 상이하므로 무료 방문 견적을 통해 정확한 금액을 산출해 드립니다.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h4>Q. {service} 작업 시간은 얼마나 걸리나요?</h4>
+              <p>A. 현장 규모에 따라 다르지만 보통 반나절에서 하루 정도 소요됩니다. 고객님의 일정에 맞춰 야간이나 주말 작업도 가능합니다.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h4>Q. 세금계산서 발행이 가능한가요?</h4>
+              <p>A. 네, 가능합니다. 모두종합환경은 정식 등록 업체로 법인 및 개인 사업자분들을 위해 전자 세금계산서 및 현금영수증 발행을 원칙으로 하고 있습니다.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h4>Q. 작업현장에 의뢰인이 없어도 괜찮은가요?</h4>
+              <p>A. 네, 바쁘신 고객님들을 위해 비대면 청소 서비스도 진행합니다. 작업 전후 사진을 실시간으로 전송해 드리며, 종료 후 사진 검수를 통해 꼼꼼하게 확인하실 수 있도록 도와드립니다.</p>
+            </div>
+            <div className={styles.faqItem}>
+              <h4>Q. 예약은 언제쯤 하는 것이 가장 좋은가요?</h4>
+              <p>A. 원하시는 날짜에 차질 없는 진행을 위해 최소 1~2주일 전에 예약해 주시는 것을 권장해 드립니다. 급한 현장도 최대한 일정 조율을 도와드립니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 8. Contact Section (Form Placeholder) */}
+      <section className={styles.contact}>
+        <div className={styles.inner}>
+          <div className={styles.contactCard}>
+            <h2>지금 바로 {region} 전문가와 상담하세요</h2>
+            <p>24시간 친절 상담 | 무료 방문 견적 | 사후 관리 보장</p>
+            <div className={styles.contactInfo}>
+              <a href={`tel:${CONTACT_PHONE}`} className={styles.mainPhone}>{CONTACT_PHONE}</a>
+              <p className={styles.subInfo}>* 부재 시 문자 남겨주시면 바로 연락드립니다.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <FloatingContact />
+    </div>
+  );
+}
+
