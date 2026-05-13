@@ -65,13 +65,16 @@ export default async function LandingPage({ params }: Props) {
     `${regionName} 지역에서 믿고 맡길 수 있는 ${service.serviceNameKo} 업체를 찾고 계신가요? ${BRAND_NAME}은 이 지역의 지리적 특성과 현장 환경을 완벽히 이해하고 있습니다.`,
     `${regionName} 고객님의 소중한 공간을 더욱 쾌적하게 만드는 ${service.serviceNameKo} 솔루션, 이제 전문가에게 맡기세요. ${BRAND_NAME}은 ${parentRegion.buildingCharacteristics}에 최적화된 시공 노하우를 보유하고 있습니다.`,
     `${regionName}의 비즈니스와 일상에 청결함을 더하는 ${service.serviceNameKo} 전문팀 ${BRAND_NAME}입니다. ${parentRegion.localDescription}`,
+    `합리적인 비용으로 최상의 결과를 약속드리는 ${regionName} ${service.serviceNameKo} 전문 ${BRAND_NAME}입니다. 저희는 ${isDongPage ? region.subDistrict : region.district} 인근 현장에서 축적된 수많은 시공 사례를 보유하고 있습니다.`,
+    `${regionName} 지역의 복잡한 오염 문제, 더 이상 고민하지 마세요. ${BRAND_NAME}은 ${service.serviceNameKo} 전문 장비와 친환경 세제를 사용하여 완벽한 결과를 보장합니다.`,
+    `${regionName}에서 정직하고 꼼꼼한 ${service.serviceNameKo} 서비스를 찾으신다면 ${BRAND_NAME}이 정답입니다. 현장 방문 견적부터 사후 관리까지 책임지고 시공합니다.`,
   ];
   // 지역Slug와 서비스Id의 조합으로 고유한 패턴 선택 (중복 방지)
-  const patternIndex = (region.districtSlug.length + service.id.length) % introPatterns.length;
+  const patternIndex = (region.districtSlug.length + service.id.length + (isDongPage ? region.subDistrictSlug.length : 0)) % introPatterns.length;
   const selectedIntro = introPatterns[patternIndex];
 
   // 2. 서비스별 문제 원인 (데이터 기반 확장)
-  const problemAdjectives = ['치명적인', '고착된', '불쾌한', '심각한', '장기적인', '반복되는'];
+  const problemAdjectives = ['치명적인', '고착된', '불쾌한', '심각한', '장기적인', '반복되는', '방치된', '까다로운', '고질적인'];
   const personalizedProblems = service.commonProblems.map((p, i) => {
     const adj = problemAdjectives[(patternIndex + i) % problemAdjectives.length];
     return `${adj} ${p}`;
@@ -185,6 +188,18 @@ export default async function LandingPage({ params }: Props) {
                   {services.filter(s => s.id !== service.id).slice(0, 6).map(s => (
                     <Link key={s.id} href={`/${city}/${districtSlug}/${s.serviceSlug}`} className={styles.tagLink}>
                       {region.district} {s.serviceNameKo} 전문상담
+                    </Link>
+                  ))}
+                </div>
+              </div>
+
+              {/* Nearby Service Areas */}
+              <div className={styles.sideCard}>
+                <h3>인근 서비스 지역</h3>
+                <div className={styles.tagGrid}>
+                  {dongs.filter(d => d.subDistrictSlug !== subDistrictSlug).slice(0, 8).map(d => (
+                    <Link key={d.subDistrictSlug} href={`/${city}/${districtSlug}/${d.subDistrictSlug}/${service.serviceSlug}`} className={styles.tagLink}>
+                      {d.subDistrict} {service.serviceNameKo}
                     </Link>
                   ))}
                 </div>

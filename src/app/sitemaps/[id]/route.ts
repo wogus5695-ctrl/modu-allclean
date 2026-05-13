@@ -22,8 +22,8 @@ export async function GET(request: Request, { params }: Props) {
       services.filter(s => s.indexStatus === 'index').forEach(service => {
         urls.push({
           url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
-          priority: 0.6,
-          changeFrequency: 'monthly'
+          priority: 0.7,
+          changeFrequency: 'weekly'
         });
       });
     });
@@ -34,7 +34,7 @@ export async function GET(request: Request, { params }: Props) {
     services.filter(s => s.indexStatus === 'index').forEach(service => {
       urls.push({
         url: `${DOMAIN}/service/${service.serviceSlug}`,
-        priority: 0.8,
+        priority: 0.9,
         changeFrequency: 'weekly'
       });
     });
@@ -45,7 +45,7 @@ export async function GET(request: Request, { params }: Props) {
     regions.filter(r => r.subDistrictSlug === 'all' && r.indexStatus === 'index').forEach(region => {
       urls.push({
         url: `${DOMAIN}/area/${region.regionSlug}/${region.districtSlug}`,
-        priority: 0.7,
+        priority: 0.8,
         changeFrequency: 'weekly'
       });
     });
@@ -60,8 +60,8 @@ export async function GET(request: Request, { params }: Props) {
       // 1. 키워드 허브 추가
       urls.push({
         url: `${DOMAIN}/keyword-hub/${districtRegion.regionSlug}-${districtSlug}`,
-        priority: 0.5,
-        changeFrequency: 'monthly'
+        priority: 0.6,
+        changeFrequency: 'weekly'
       });
 
       // 2. 인덱스된 동 단위 조합 추가
@@ -72,7 +72,7 @@ export async function GET(request: Request, { params }: Props) {
             urls.push({
               url: `${DOMAIN}/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
               priority: 0.5,
-              changeFrequency: 'monthly'
+              changeFrequency: 'weekly'
             });
           }
         });
