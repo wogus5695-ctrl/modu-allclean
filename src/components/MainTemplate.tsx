@@ -91,24 +91,68 @@ export default function MainTemplate({
             <p className={styles.sectionDesc}>{BRAND_NAME}은 {region} 전 지역 모든 현장에 대응합니다.</p>
           </div>
           <div className={styles.serviceCards}>
-            {services.map((item) => (
-              <div key={item.id} className={styles.serviceItem}>
-                <div className={styles.serviceInfo}>
-                  <h3>{item.serviceNameKo}</h3>
-                  <p>{item.shortDescription}</p>
-                  <ul className={styles.serviceList}>
-                    <li>✔ {region} 정밀 진단 및 견적</li>
-                    <li>✔ 전문 인력 투입</li>
-                    <li>✔ 사후 관리(A/S) 보장</li>
-                  </ul>
-                </div>
-                {item.imageUrl && (
-                  <div className={styles.serviceImage}>
-                    <img src={item.imageUrl} alt={item.serviceNameKo} />
+            {(() => {
+              // 메인 페이지용 대그룹화 로직
+              const displayServices = [];
+              const processedIds = new Set();
+
+              services.forEach(s => {
+                if (processedIds.has(s.id)) return;
+
+                if (s.id === 'awning' || s.id === 'signboard') {
+                  if (!processedIds.has('awning-sign-group')) {
+                    displayServices.push({
+                      id: 'awning-sign-group',
+                      name: '어닝/간판 청소',
+                      desc: '매장의 얼굴인 어닝의 곰팡이와 간판의 오염을 동시에 해결',
+                      image: '/images/services/awning-sign.jpg'
+                    });
+                    processedIds.add('awning-sign-group');
+                  }
+                  processedIds.add('awning');
+                  processedIds.add('signboard');
+                } else if (s.id === 'interior-post' || s.id === 'completion') {
+                  if (!processedIds.has('interior-completion-group')) {
+                    displayServices.push({
+                      id: 'interior-completion-group',
+                      name: '인테리어 후/준공 청소',
+                      desc: '공사 분진과 시멘트 가루를 완벽 제거하여 즉시 입주 가능하도록 마감',
+                      image: '/images/services/interior-completion.jpg'
+                    });
+                    processedIds.add('interior-completion-group');
+                  }
+                  processedIds.add('interior-post');
+                  processedIds.add('completion');
+                } else {
+                  displayServices.push({
+                    id: s.id,
+                    name: s.serviceNameKo,
+                    desc: s.shortDescription,
+                    image: s.imageUrl
+                  });
+                  processedIds.add(s.id);
+                }
+              });
+
+              return displayServices.map(item => (
+                <div key={item.id} className={styles.serviceItem}>
+                  <div className={styles.serviceInfo}>
+                    <h3>{item.name}</h3>
+                    <p>{item.desc}</p>
+                    <ul className={styles.serviceList}>
+                      <li>✔ {region} 정밀 진단 및 견적</li>
+                      <li>✔ 전문 인력 투입</li>
+                      <li>✔ 사후 관리(A/S) 보장</li>
+                    </ul>
                   </div>
-                )}
-              </div>
-            ))}
+                  {item.image && (
+                    <div className={styles.serviceImage}>
+                      <img src={item.image} alt={item.name} />
+                    </div>
+                  )}
+                </div>
+              ));
+            })()}
           </div>
         </div>
       </section>
