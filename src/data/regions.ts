@@ -286,33 +286,189 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'noindex'
   },
 
-  // --- 구 단위 전지역 요약 (강남 4구) ---
+  // --- 양천구 ---
   {
-    city: '서울', district: '강남구', subDistrict: '전지역',
-    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'all',
-    localDescription: '테헤란로와 도산대로를 중심으로 대형 오피스, 고급 상권, 학원가가 밀집한 대한민국 비즈니스의 심장부입니다.',
-    buildingCharacteristics: '초고층 빌딩, 메디컬 타워, 대형 학원가, 브랜드 로드숍',
+    city: '서울', district: '양천구', subDistrict: '목동',
+    regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'mok-dong',
+    localDescription: '대한민국 대표 교육 특구이자 방송국과 대단지 아파트가 밀집해 있습니다.',
+    buildingCharacteristics: '학원 빌딩, 방송사 타워, 백화점, 대단지 아파트',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '양천구', subDistrict: '신정동',
+    regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'sinjeong-dong',
+    localDescription: '목동과 인접하며 주택가와 법조 시설이 발달한 안정적인 주거 지역입니다.',
+    buildingCharacteristics: '관공서 빌딩, 아파트 상가, 주택가 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '양천구', subDistrict: '신월동',
+    regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'sinwol-dong',
+    localDescription: '김포공항과 인접하며 대규모 주택 단지와 공원이 조성된 거주 구역입니다.',
+    buildingCharacteristics: '다세대 주택 상가, 소규모 빌딩, 근린 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 강서구 ---
+  {
+    city: '서울', district: '강서구', subDistrict: '마곡동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'magok-dong',
+    localDescription: '첨단 R&D 센터와 신축 오피스가 밀집한 서울의 새로운 산업 거점입니다.',
+    buildingCharacteristics: '대형 R&D 센터, 신축 지식산업센터, 오피스 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '화곡동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'hwagok-dong',
+    localDescription: '전통적인 대규모 주거 단지로 상권과 생활 편의시설이 밀집해 있습니다.',
+    buildingCharacteristics: '빌라촌 상가, 전통 시장, 중형 생활 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '등촌동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'deungchon-dong',
+    localDescription: '오피스텔과 지식산업센터, 대단지 아파트가 공존하는 활기찬 지역입니다.',
+    buildingCharacteristics: '지식산업센터, 오피스텔 상가, 아파트 단지',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '가양동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'gayang-dong',
+    localDescription: '한강변을 따라 지식산업센터와 아파트 단지가 형성된 주거·업무지입니다.',
+    buildingCharacteristics: '지식산업센터, 아파트 상가, 유통 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '발산동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'balsan-dong',
+    localDescription: '마곡지구와 인접하여 병원 빌딩과 외식 상권이 고도로 발달했습니다.',
+    buildingCharacteristics: '메디컬 타워, 외식 상가 빌딩, 오피스',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '염창동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'yeomchang-dong',
+    localDescription: '한강 조망권과 우수한 교통망을 갖춘 직주근접형 주거 중심지입니다.',
+    buildingCharacteristics: '아파트 상가, 소형 오피스, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '방화동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'banghwa-dong',
+    localDescription: '공항과 인접하며 자연 환경과 주거 편의성이 뛰어난 평온한 구역입니다.',
+    buildingCharacteristics: '아파트 상가, 근린 생활 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강서구', subDistrict: '공항동',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'gonghang-dong',
+    localDescription: '김포공항 배후 지역으로 항공 관련 시설과 주거지가 형성되어 있습니다.',
+    buildingCharacteristics: '항공 업무 시설, 저층 상가, 빌라 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 구로구 ---
+  {
+    city: '서울', district: '구로구', subDistrict: '구로동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'guro-dong',
+    localDescription: 'G밸리 IT 기업과 벤처 빌딩이 밀집한 국내 최대의 디지털 산업지입니다.',
+    buildingCharacteristics: '대형 IT 타워, 지식산업센터, 업무용 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '구로구', subDistrict: '신도림동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'sindorim-dong',
+    localDescription: '디큐브시티 등 복합 상업 시설과 오피스가 밀집한 교통/상업의 요충지입니다.',
+    buildingCharacteristics: '복합 쇼핑몰, 고층 오피스텔 상가, 오피스',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '구로구', subDistrict: '개봉동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'gaebong-dong',
+    localDescription: '광명과 인접한 대규모 주거 단지로 생활 밀착형 상권이 발달했습니다.',
+    buildingCharacteristics: '아파트 상가, 주택가 상권 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '구로구', subDistrict: '고척동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'gocheok-dong',
+    localDescription: '고척스카이돔과 함께 대단지 아파트가 들어선 활력 있는 거주지입니다.',
+    buildingCharacteristics: '체육 시설 주변 상가, 아파트 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '구로구', subDistrict: '오류동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'oryu-dong',
+    localDescription: '전통적인 상권과 현대적인 오피스텔이 어우러진 역세권 지역입니다.',
+    buildingCharacteristics: '오피스텔 상가, 전통 시장, 생활 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '구로구', subDistrict: '가리봉동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'garibong-dong',
+    localDescription: '디지털단지 배후 주거지이자 독특한 외국인 거리 문화가 형성된 곳입니다.',
+    buildingCharacteristics: '이색 상가, 다세대 주택, 근린 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '구로구', subDistrict: '항동',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'hang-dong',
+    localDescription: '푸른 수목원과 신축 단지가 어우러진 쾌적하고 조용한 신규 주거지입니다.',
+    buildingCharacteristics: '신축 아파트 상가, 저층 근린 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 금천구 ---
+  {
+    city: '서울', district: '금천구', subDistrict: '가산동',
+    regionSlug: 'seoul', districtSlug: 'geumcheon', subDistrictSlug: 'gasan-dong',
+    localDescription: '대규모 아울렛 상권과 지식산업센터가 밀집한 서남권 비즈니스 거점입니다.',
+    buildingCharacteristics: '아울렛 빌딩, 지식산업센터, 공장형 사무실',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '금천구', subDistrict: '독산동',
+    regionSlug: 'seoul', districtSlug: 'geumcheon', subDistrictSlug: 'doksan-dong',
+    localDescription: '재개발을 통해 현대적인 주상복합 단지로 탈바꿈 중인 역동적인 지역입니다.',
+    buildingCharacteristics: '신축 주상복합 상가, 오피스텔, 중형 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '금천구', subDistrict: '시흥동',
+    regionSlug: 'seoul', districtSlug: 'geumcheon', subDistrictSlug: 'siheung-dong',
+    localDescription: '대규모 주택 밀집 지역으로 친근한 생활 인프라가 잘 구축되어 있습니다.',
+    buildingCharacteristics: '주택가 상가, 전통 시장 시설, 근린 생활 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 구 단위 전지역 요약 (서남권 4구) ---
+  {
+    city: '서울', district: '양천구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'all',
+    localDescription: '목동 학원가와 방송국, 대단지 아파트가 밀집하여 쾌적한 환경 관리가 중요한 지역입니다.',
+    buildingCharacteristics: '학원 빌딩, 방송 타워, 대단지 아파트 단지 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '서울', district: '서초구', subDistrict: '전지역',
-    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'all',
-    localDescription: '법조타운, 프리미엄 주거단지, 비즈니스 인프라가 어우러진 전문성 높은 지역입니다.',
-    buildingCharacteristics: '법조 빌딩, 수입차 전시장, 하이엔드 주거 상가',
+    city: '서울', district: '강서구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'all',
+    localDescription: '마곡 첨단 산업 단지와 화곡의 대규모 거주지가 공존하는 거대한 비즈니스·주거 벨트입니다.',
+    buildingCharacteristics: 'R&D 센터, 지식산업센터, 대규모 주거 밀집 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '서울', district: '송파구', subDistrict: '전지역',
-    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'all',
-    localDescription: '잠실 관광 특구부터 문정 지식산업센터까지 폭넓은 스펙트럼을 보유한 활발한 비즈니스 거점입니다.',
-    buildingCharacteristics: '롯데타워, 지식산업센터, 대규모 쇼핑몰',
+    city: '서울', district: '구로구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'all',
+    localDescription: 'G밸리의 IT 타워들과 신도림의 복합 쇼핑몰 등 최첨단 업무 시설이 집중된 구역입니다.',
+    buildingCharacteristics: 'IT 벤처 타워, 지식산업센터, 대형 쇼핑몰 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '서울', district: '강동구', subDistrict: '전지역',
-    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'all',
-    localDescription: '전통적인 상업 거점인 천호와 신흥 비즈니스 밸리인 고덕이 만나 동부권 성장을 주도하는 지역입니다.',
-    buildingCharacteristics: '백화점 상권, 첨단 업무 단지, 대단지 재건축 상가',
+    city: '서울', district: '금천구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'geumcheon', subDistrictSlug: 'all',
+    localDescription: '가산디지털단지의 방대한 오피스 수요와 대형 아울렛 상권이 결합된 산업 요충지입니다.',
+    buildingCharacteristics: '방대한 오피스 타워, 지식산업센터, 대형 아울렛 빌딩',
     priority: 1, indexStatus: 'index'
   },
 ];
+
