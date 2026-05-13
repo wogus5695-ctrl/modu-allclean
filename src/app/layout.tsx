@@ -3,6 +3,8 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
+import FooterDescription from "@/components/FooterDescription";
+import { Suspense } from "react";
 import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE } from "@/lib/seo";
 
 const scDream = localFont({
@@ -42,11 +44,15 @@ export default function RootLayout({
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '40px' }}>
               <div>
                 <h3 style={{ fontSize: '20px', marginBottom: '20px', color: '#003366' }}>{BRAND_NAME}</h3>
-                <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-                  외벽, 유리창, 준공, 화재 복구 등<br />
-                  현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
-                  서울·경기 전 지역 신속 방문 견적 가능합니다.
-                </p>
+                <Suspense fallback={
+                  <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
+                    외벽, 유리창, 준공, 화재 복구 등<br />
+                    현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
+                    서울·경기 전 지역 신속 방문 견적 가능합니다.
+                  </p>
+                }>
+                  <FooterDescription />
+                </Suspense>
               </div>
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>상담 안내</h4>
