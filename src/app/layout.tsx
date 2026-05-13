@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
-import { getMainMetadata, getJsonLd, BRAND_NAME, CONTACT_PHONE, CONTACT_KAKAO } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE, CONTACT_KAKAO } from "@/lib/seo";
 
 const scDream = localFont({
   src: [
@@ -70,6 +70,7 @@ export default function RootLayout({
               </div>
             </div>
             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid #ddd', textAlign: 'center', fontSize: '13px', color: '#999' }}>
+              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME} | 사업자등록번호: {BUSINESS_NUMBER}</p>
               <p>&copy; 2026 {BRAND_NAME}. All rights reserved.</p>
             </div>
           </div>

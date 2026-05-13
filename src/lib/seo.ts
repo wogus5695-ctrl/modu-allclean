@@ -20,12 +20,13 @@ export const INDEXED_DONG_COMBINATIONS = [
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
 export const BRAND_NAME = '모두종합환경';
+export const BUSINESS_NAME = '올케어서비스';
 export const DOMAIN = 'https://modu-cleaning.co.kr';
 export const CONTACT_PHONE = '010-0000-0000'; // 전화번호
 export const CONTACT_SMS = 'sms:010-0000-0000'; // 문자 상담 링크
 export const CONTACT_KAKAO = 'https://pf.kakao.com/_xxxx'; // 카카오톡 주소
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
-export const BUSINESS_NUMBER = '000-00-00000'; // 사업자 등록 번호
+export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/og-image.jpg`;
 
 // --- SEO 기본 메타데이터 생성기 ---
@@ -163,6 +164,7 @@ export function getJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'CleaningService',
     'name': BRAND_NAME,
+    'legalName': BUSINESS_NAME,
     'alternateName': '모두종합환경 청소전문',
     'description': '서울·경기 전 지역 종합청소 전문업체. 외벽청소, 유리창청소, 화재복구, 바닥왁스코팅, 어닝청소, 간판청소, 준공청소, 인테리어청소, 후드청소 등 전문 시공.',
     'url': DOMAIN,
