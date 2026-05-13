@@ -177,7 +177,6 @@ export default async function LandingPage({ params }: Props) {
                 </p>
                 <div className={styles.sideCtaGroup}>
                   <a href={`tel:${CONTACT_PHONE}`} className={styles.sideBtn}>전화 바로 연결</a>
-                  <a href="https://pf.kakao.com/_xxxx" className={styles.sideBtnWhite}>카톡 실시간 상담</a>
                 </div>
               </div>
 

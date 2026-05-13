@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
-import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE, CONTACT_KAKAO } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE } from "@/lib/seo";
 
 const scDream = localFont({
   src: [
@@ -52,14 +52,7 @@ export default function RootLayout({
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>상담 안내</h4>
                 <p style={{ fontSize: '15px', fontWeight: '700', marginBottom: '5px' }}>대표번호: {CONTACT_PHONE}</p>
                 <p style={{ fontSize: '14px' }}>연중무휴 24시간 상담 가능</p>
-                <a 
-                  href={CONTACT_KAKAO} 
-                  target="_blank" 
-                  rel="noreferrer"
-                  style={{ display: 'inline-block', marginTop: '10px', color: '#00AEEF', fontWeight: '600', textDecoration: 'none' }}
-                >
-                  카카오톡 1:1 상담 →
-                </a>
+
               </div>
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>

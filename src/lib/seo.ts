@@ -24,7 +24,6 @@ export const BUSINESS_NAME = '올케어서비스';
 export const DOMAIN = 'https://modu-cleaning.co.kr';
 export const CONTACT_PHONE = '010-4861-3226'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4861-3226'; // 문자 상담 링크
-export const CONTACT_KAKAO = 'https://pf.kakao.com/_xxxx'; // 카카오톡 주소
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
 export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/og-main.jpg`;
