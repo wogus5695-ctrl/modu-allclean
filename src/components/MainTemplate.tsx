@@ -295,7 +295,11 @@ export default function MainTemplate({
       <section className={styles.contact}>
         <div className={styles.inner}>
           <div className={styles.contactCard}>
-            <h2>지금 바로 {region} 전문가와 상담하세요</h2>
+            <h2>
+              지금 바로<br />
+              {region} {service} 전문가와<br />
+              상담하세요!
+            </h2>
             <p>24시간 친절 상담 | 무료 방문 견적 | 사후 관리 보장</p>
             <div className={styles.contactInfo}>
               <a href={`tel:${CONTACT_PHONE}`} className={styles.mainPhone}>{CONTACT_PHONE}</a>
