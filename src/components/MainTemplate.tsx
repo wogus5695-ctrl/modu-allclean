@@ -146,7 +146,7 @@ export default function MainTemplate({
                   <h3>{item.name}</h3>
                   <p>{item.desc}</p>
                   <ul className={styles.serviceList}>
-                    <li>✔ {region} 정밀 진단 및 견적</li>
+                    <li>✔ 현장 정밀 진단 및 견적</li>
                     <li>✔ 전문 인력 투입</li>
                     <li>✔ 사후 관리(A/S) 보장</li>
                   </ul>
