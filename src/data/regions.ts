@@ -441,33 +441,186 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'noindex'
   },
 
-  // --- 구 단위 전지역 요약 (서남권 4구) ---
+  // --- 영등포구 ---
+  {
+    city: '서울', district: '영등포구', subDistrict: '여의도동',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'yeouido-dong',
+    localDescription: '국회와 금융가가 밀집한 섬 지역으로 서울의 대표적인 비즈니스 타운입니다.',
+    buildingCharacteristics: '금융가 고층 오피스, IFC몰, 국회 관련 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '영등포구', subDistrict: '당산동',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'dangsan-dong',
+    localDescription: '교통 요지이자 지식산업센터와 주거 시설이 공존하는 복합 지역입니다.',
+    buildingCharacteristics: '지식산업센터, 오피스텔 상가, 역세권 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '영등포구', subDistrict: '문래동',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'mullae-dong',
+    localDescription: '철공소 예술촌과 현대적 지식산업센터가 어우러진 독특한 분위기의 구역입니다.',
+    buildingCharacteristics: '리모델링 상가, 지식산업센터, 중형 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '영등포구', subDistrict: '영등포동',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'yeongdeungpo-dong',
+    localDescription: '타임스퀘어와 전통 시장이 공존하는 서울 서남권의 상업 중심지입니다.',
+    buildingCharacteristics: '복합 쇼핑몰, 백화점, 전통 시장 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '영등포구', subDistrict: '신길동',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'singil-dong',
+    localDescription: '뉴타운 개발로 대규모 신축 아파트 단지가 형성된 주거 중심지입니다.',
+    buildingCharacteristics: '신축 아파트 상가, 주거용 근린 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '영등포구', subDistrict: '대림동',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'daerim-dong',
+    localDescription: '활발한 시장 상권과 독특한 문화가 공존하는 거대한 주거 타운입니다.',
+    buildingCharacteristics: '시장 상가, 다세대 주택, 저층 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 동작구 ---
+  {
+    city: '서울', district: '동작구', subDistrict: '상도동',
+    regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'sangdo-dong',
+    localDescription: '숭실대, 중앙대가 위치하며 대단지 아파트가 밀집한 교육·주거 지역입니다.',
+    buildingCharacteristics: '아파트 상가, 대학가 상권 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동작구', subDistrict: '노량진동',
+    regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'noryangjin-dong',
+    localDescription: '수산시장과 고시 학원가가 위치한 활기차고 유동인구가 많은 구역입니다.',
+    buildingCharacteristics: '수산시장 시설, 학원 빌딩, 오피스텔 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동작구', subDistrict: '사당동',
+    regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'sadang-dong',
+    localDescription: '교통의 허브이자 대규모 상권과 주거지가 조화를 이루는 곳입니다.',
+    buildingCharacteristics: '광역 버스 거점 빌딩, 먹자골목 상권 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동작구', subDistrict: '흑석동',
+    regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'heukseok-dong',
+    localDescription: '중앙대병원과 신축 아파트 단지가 위치한 쾌적한 한강변 주거지입니다.',
+    buildingCharacteristics: '병원 주변 상가, 아파트 대단지 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동작구', subDistrict: '대방동',
+    regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'daebang-dong',
+    localDescription: '안정적인 아파트 단지와 학교들이 밀집한 조용한 거주 구역입니다.',
+    buildingCharacteristics: '아파트 단지 상가, 교육 시설 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 관악구 ---
+  {
+    city: '서울', district: '관악구', subDistrict: '신림동',
+    regionSlug: 'seoul', districtSlug: 'gwanak', subDistrictSlug: 'sillim-dong',
+    localDescription: '1인 가구 밀집도가 높고 서울대 주변 상권이 발달한 활기찬 지역입니다.',
+    buildingCharacteristics: '원룸 빌딩, 대학가 상가, 소형 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '관악구', subDistrict: '봉천동',
+    regionSlug: 'seoul', districtSlug: 'gwanak', subDistrictSlug: 'bongcheon-dong',
+    localDescription: '샤로수길을 중심으로 트렌디한 상권이 형성된 신흥 거점입니다.',
+    buildingCharacteristics: '트렌디 매장 상가, 주택가 근린 생활 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '관악구', subDistrict: '남현동',
+    regionSlug: 'seoul', districtSlug: 'gwanak', subDistrictSlug: 'namhyeon-dong',
+    localDescription: '사당역세권에 위치하여 등산객과 유동인구가 많은 상권 구역입니다.',
+    buildingCharacteristics: '역세권 상가 빌딩, 소규모 오피스',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 구 단위 전지역 요약 (전체) ---
+  {
+    city: '서울', district: '강남구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'all',
+    localDescription: '대한민국 비즈니스의 중심지인 강남구 전역의 대형 빌딩과 상업 시설을 전문적으로 관리합니다.',
+    buildingCharacteristics: '대형 오피스 빌딩, 메디컬 타워, 학원가 시설',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'all',
+    localDescription: '법조타운과 문화 시설이 밀집한 서초구의 격조 높은 공간 관리를 약속합니다.',
+    buildingCharacteristics: '법조 빌딩, 문화 시설, 하이엔드 주거 상가',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'all',
+    localDescription: '잠실과 문정을 아우르는 송파구의 다양한 대형 건축물에 최적화된 청소 솔루션을 제공합니다.',
+    buildingCharacteristics: '롯데타워 주변 시설, 지식산업센터, 대형 쇼핑몰',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'all',
+    localDescription: '강동구 전역의 재건축 단지와 상업 지구를 위한 정밀한 현장 진단을 실시합니다.',
+    buildingCharacteristics: '신축 대단지 상가, 로데오 상권 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
   {
     city: '서울', district: '양천구', subDistrict: '전지역',
     regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'all',
-    localDescription: '목동 학원가와 방송국, 대단지 아파트가 밀집하여 쾌적한 환경 관리가 중요한 지역입니다.',
-    buildingCharacteristics: '학원 빌딩, 방송 타워, 대단지 아파트 단지 상가',
+    localDescription: '목동 학원가와 방송국 등 양천구의 특수 시설에 맞춘 쾌적한 실내 환경을 유지합니다.',
+    buildingCharacteristics: '방송사 타워, 대규모 학원 빌딩, 오피스',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '서울', district: '강서구', subDistrict: '전지역',
     regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'all',
-    localDescription: '마곡 첨단 산업 단지와 화곡의 대규모 거주지가 공존하는 거대한 비즈니스·주거 벨트입니다.',
-    buildingCharacteristics: 'R&D 센터, 지식산업센터, 대규모 주거 밀집 상가',
+    localDescription: '마곡 지구와 화곡동 등 강서구의 비즈니스·주거 벨트를 위한 전문 솔루션을 제안합니다.',
+    buildingCharacteristics: 'R&D 센터, 지식산업센터, 주거 밀집 상가',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '서울', district: '구로구', subDistrict: '전지역',
     regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'all',
-    localDescription: 'G밸리의 IT 타워들과 신도림의 복합 쇼핑몰 등 최첨단 업무 시설이 집중된 구역입니다.',
-    buildingCharacteristics: 'IT 벤처 타워, 지식산업센터, 대형 쇼핑몰 상가',
+    localDescription: '구로디지털단지와 신도림 상권 등 구로구의 첨단 인프라 관리에 특화되어 있습니다.',
+    buildingCharacteristics: 'IT 타워, 지식산업센터, 대형 쇼핑몰',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '서울', district: '금천구', subDistrict: '전지역',
     regionSlug: 'seoul', districtSlug: 'geumcheon', subDistrictSlug: 'all',
-    localDescription: '가산디지털단지의 방대한 오피스 수요와 대형 아울렛 상권이 결합된 산업 요충지입니다.',
-    buildingCharacteristics: '방대한 오피스 타워, 지식산업센터, 대형 아울렛 빌딩',
+    localDescription: '가산디지털단지 오피스와 아울렛 등 금천구 산업 시설의 청결을 책임집니다.',
+    buildingCharacteristics: '오피스 타워, 지식산업센터, 대형 아울렛',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '영등포구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'all',
+    localDescription: '여의도 금융가부터 문정 지산까지 영등포구 전역의 전문적인 빌딩 관리를 수행합니다.',
+    buildingCharacteristics: '고층 오피스 빌딩, 복합 쇼핑몰, 지식산업센터',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동작구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'all',
+    localDescription: '노량진 상권과 상도/사당의 주거 단지를 위한 동작구 맞춤형 청소 서비스를 제공합니다.',
+    buildingCharacteristics: '상가 빌딩, 교육 시설, 아파트 대단지 상가',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '관악구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gwanak', subDistrictSlug: 'all',
+    localDescription: '1인 가구 주거 시설과 서울대 상권 등 관악구의 다양한 현장에 대응합니다.',
+    buildingCharacteristics: '소형 오피스텔 빌딩, 대학가 상가, 근린 시설',
     priority: 1, indexStatus: 'index'
   },
 ];
