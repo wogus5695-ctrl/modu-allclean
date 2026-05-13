@@ -1,3 +1,4 @@
+import React from 'react';
 import { Metadata } from 'next';
 import { regions } from '@/data/regions';
 import { services } from '@/data/services';
@@ -36,6 +37,34 @@ export default function SitemapSeoulPage() {
                 <h2 className={styles.districtTitle}>
                   {districtRegion.district} <span>{dongs.length}개 지역 관리 중</span>
                 </h2>
+
+                {/* 구 단위 통합 키워드 섹션 (구/시 포함 및 제외 버전) */}
+                <div className={styles.districtKeywords}>
+                  <div className={styles.dongCard}>
+                    <span className={styles.dongName}>{districtRegion.district} 통합 키워드</span>
+                    <div className={styles.serviceLinks}>
+                      {services.map(service => {
+                        const shortDistrict = districtRegion.district.replace(/(구|시)$/, '');
+                        return (
+                          <React.Fragment key={service.id}>
+                            <Link 
+                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}`}
+                              className={styles.serviceLink}
+                            >
+                              {districtRegion.district} {service.serviceNameKo}
+                            </Link>
+                            <Link 
+                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}`}
+                              className={styles.serviceLink}
+                            >
+                              {shortDistrict} {service.serviceNameKo}
+                            </Link>
+                          </React.Fragment>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
                 
                 <div className={styles.dongGrid}>
                   {dongs.map(dong => (
@@ -53,7 +82,7 @@ export default function SitemapSeoulPage() {
                             href={`/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`}
                             className={styles.serviceLink}
                           >
-                            {service.serviceNameKo}
+                            {dong.subDistrict} {service.serviceNameKo}
                           </Link>
                         ))}
                       </div>
