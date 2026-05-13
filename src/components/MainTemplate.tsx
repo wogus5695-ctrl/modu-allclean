@@ -70,13 +70,13 @@ export default function MainTemplate({
         <div className={styles.heroOverlay}></div>
         <div className={styles.inner}>
           <div className="animate-fade-up">
-            <span className={styles.badge}>{region} No.1 청소 전문 업체</span>
+            <span className={styles.badge}>서울·경기 No.1 청소 전문 업체</span>
             <h1 className={styles.heroTitle}>
               {region} <span className={styles.highlight}>{service}</span> 전문<br />
               압도적인 청결 솔루션
             </h1>
             <p className={styles.heroDesc}>
-              {region} 고객님이 신뢰하는 브랜드, {BRAND_NAME}입니다.<br />
+              서울·경기 고객님이 신뢰하는 브랜드, {BRAND_NAME}입니다.<br />
               합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
             </p>
             <div className={styles.heroCta}>
@@ -105,7 +105,7 @@ export default function MainTemplate({
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>💰</div>
                 <h3>적정한 견적 제안</h3>
-                <p>거품 없는 합리적인 비용으로 {region} 현장 상황에 맞는 정직한 견적을 제안합니다.</p>
+                <p>거품 없는 합리적인 비용으로 현장 상황에 맞는 정직한 견적을 제안합니다.</p>
               </div>
             </div>
             <div className={styles.featureItem}>
@@ -137,7 +137,7 @@ export default function MainTemplate({
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>{BRAND_NAME}</span>의 청소 서비스 안내</h2>
-            <p className={styles.sectionDesc}>{BRAND_NAME}은 {region} 전 지역 모든 현장에 대응합니다.</p>
+            <p className={styles.sectionDesc}>{BRAND_NAME}은 서울·경기 전 지역 모든 현장에 대응합니다.</p>
           </div>
           <div className={styles.serviceCards}>
             {displayServices.map((item) => (
@@ -222,7 +222,7 @@ export default function MainTemplate({
             </h2>
             <p className={styles.sectionDesc}>
               무조건 싼 가격은 부실한 서비스로 이어지고, 너무 비싼 가격은 고객님께 부담이 됩니다.<br />
-              {BRAND_NAME}은 정직한 공정으로 {region} 고객님께 최적화된 맞춤 견적을 약속드립니다.
+              {BRAND_NAME}은 정직한 공정으로 최적화된 맞춤 견적을 약속드립니다.
             </p>
           </div>
 
