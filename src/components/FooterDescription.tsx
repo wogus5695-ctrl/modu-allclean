@@ -49,7 +49,7 @@ export default function FooterDescription() {
 
   return (
     <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-      <strong style={{ color: '#00aaff' }}>{displayRegion} {displayService}</strong> 전문 <strong>{BRAND_NAME}</strong>은<br />
+      {displayRegion} {displayService} 전문 {BRAND_NAME}은<br />
       외벽, 유리창, 준공, 화재 복구 등<br />
       현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
       서울·경기 전 지역 신속 방문 견적 가능합니다.
