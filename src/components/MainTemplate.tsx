@@ -166,7 +166,7 @@ export default function MainTemplate({
       <section className={styles.portfolio}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>{region} 실제 작업 현장</h2>
+            <h2 className={styles.sectionTitle}>서울·경기 실제 작업 현장</h2>
             <p className={styles.sectionDesc}>거짓 없는 작업 전후 사진으로 증명합니다.</p>
           </div>
           <div className={styles.sliderContainer}>
@@ -197,7 +197,7 @@ export default function MainTemplate({
           <div className={styles.statsGrid}>
             <div className={styles.statItem}>
               <span className={styles.statNum}>1,200+</span>
-              <p>{region} {service} 수행</p>
+              <p>서울·경기 종합청소 수행</p>
             </div>
             <div className={styles.statItem}>
               <span className={styles.statNum}>98%</span>
@@ -276,7 +276,7 @@ export default function MainTemplate({
           </div>
           <div className={styles.faqList}>
             <div className={styles.faqItem}>
-              <h4>Q. {region} 지역 견적 비용은 어떻게 되나요?</h4>
+              <h4>Q. 서울·경기 지역 견적 비용은 어떻게 되나요?</h4>
               <p>A. 현장의 면적, 오염도, 작업 방식에 따라 상이하므로 무료 방문 견적을 통해 정확한 금액을 산출해 드립니다.</p>
             </div>
             <div className={styles.faqItem}>
