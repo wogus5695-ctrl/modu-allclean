@@ -14,6 +14,55 @@ export default function MainTemplate({
   region = '서울·경기', 
   service = '종합청소' 
 }: MainTemplateProps) {
+  
+  // 메인 페이지용 서비스 그룹화 로직 (Sitemap-Seoul에는 영향을 주지 않음)
+  const getDisplayServices = () => {
+    const items = [];
+    let hasAddedAwningGroup = false;
+    let hasAddedInteriorGroup = false;
+
+    for (const s of services) {
+      // 어닝 또는 간판 서비스인 경우
+      if (s.id === 'awning' || s.id === 'signboard') {
+        if (!hasAddedAwningGroup) {
+          items.push({
+            id: 'group-awning-sign',
+            name: '어닝/간판 청소',
+            desc: '매장의 얼굴인 어닝의 곰팡이와 간판의 오염을 동시에 해결하여 가독성을 높입니다.',
+            image: '/images/services/awning-sign.jpg'
+          });
+          hasAddedAwningGroup = true;
+        }
+        continue; // 개별 항목은 건너뜀
+      }
+
+      // 인테리어 후 또는 준공 청소인 경우
+      if (s.id === 'interior-post' || s.id === 'completion') {
+        if (!hasAddedInteriorGroup) {
+          items.push({
+            id: 'group-interior-completion',
+            name: '인테리어 후/준공 청소',
+            desc: '공사 분진과 시멘트 가루를 완벽 제거하여 즉시 입주 가능한 쾌적한 상태를 만듭니다.',
+            image: '/images/services/interior-completion.jpg'
+          });
+          hasAddedInteriorGroup = true;
+        }
+        continue; // 개별 항목은 건너뜀
+      }
+
+      // 그 외 일반 서비스
+      items.push({
+        id: s.id,
+        name: s.serviceNameKo,
+        desc: s.shortDescription,
+        image: s.imageUrl
+      });
+    }
+    return items;
+  };
+
+  const displayServices = getDisplayServices();
+
   return (
     <div className={styles.container}>
       {/* 1. Hero Section */}
@@ -38,7 +87,7 @@ export default function MainTemplate({
         </div>
       </section>
 
-      {/* 2. Solution Section (Why Choose Us) */}
+      {/* 2. Solution Section */}
       <section className={styles.solution}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
@@ -91,73 +140,29 @@ export default function MainTemplate({
             <p className={styles.sectionDesc}>{BRAND_NAME}은 {region} 전 지역 모든 현장에 대응합니다.</p>
           </div>
           <div className={styles.serviceCards}>
-            {(() => {
-              // 메인 페이지용 대그룹화 로직
-              const displayServices = [];
-              const processedIds = new Set();
-
-              services.forEach(s => {
-                if (processedIds.has(s.id)) return;
-
-                if (s.id === 'awning' || s.id === 'signboard') {
-                  if (!processedIds.has('awning-sign-group')) {
-                    displayServices.push({
-                      id: 'awning-sign-group',
-                      name: '어닝/간판 청소',
-                      desc: '매장의 얼굴인 어닝의 곰팡이와 간판의 오염을 동시에 해결',
-                      image: '/images/services/awning-sign.jpg'
-                    });
-                    processedIds.add('awning-sign-group');
-                  }
-                  processedIds.add('awning');
-                  processedIds.add('signboard');
-                } else if (s.id === 'interior-post' || s.id === 'completion') {
-                  if (!processedIds.has('interior-completion-group')) {
-                    displayServices.push({
-                      id: 'interior-completion-group',
-                      name: '인테리어 후/준공 청소',
-                      desc: '공사 분진과 시멘트 가루를 완벽 제거하여 즉시 입주 가능하도록 마감',
-                      image: '/images/services/interior-completion.jpg'
-                    });
-                    processedIds.add('interior-completion-group');
-                  }
-                  processedIds.add('interior-post');
-                  processedIds.add('completion');
-                } else {
-                  displayServices.push({
-                    id: s.id,
-                    name: s.serviceNameKo,
-                    desc: s.shortDescription,
-                    image: s.imageUrl
-                  });
-                  processedIds.add(s.id);
-                }
-              });
-
-              return displayServices.map(item => (
-                <div key={item.id} className={styles.serviceItem}>
-                  <div className={styles.serviceInfo}>
-                    <h3>{item.name}</h3>
-                    <p>{item.desc}</p>
-                    <ul className={styles.serviceList}>
-                      <li>✔ {region} 정밀 진단 및 견적</li>
-                      <li>✔ 전문 인력 투입</li>
-                      <li>✔ 사후 관리(A/S) 보장</li>
-                    </ul>
-                  </div>
-                  {item.image && (
-                    <div className={styles.serviceImage}>
-                      <img src={item.image} alt={item.name} />
-                    </div>
-                  )}
+            {displayServices.map((item) => (
+              <div key={item.id} className={styles.serviceItem}>
+                <div className={styles.serviceInfo}>
+                  <h3>{item.name}</h3>
+                  <p>{item.desc}</p>
+                  <ul className={styles.serviceList}>
+                    <li>✔ {region} 정밀 진단 및 견적</li>
+                    <li>✔ 전문 인력 투입</li>
+                    <li>✔ 사후 관리(A/S) 보장</li>
+                  </ul>
                 </div>
-              ));
-            })()}
+                {item.image && (
+                  <div className={styles.serviceImage}>
+                    <img src={item.image} alt={item.name} />
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* 4. Portfolio Section (Before/After) */}
+      {/* 4. Portfolio Section */}
       <section className={styles.portfolio}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
@@ -186,7 +191,7 @@ export default function MainTemplate({
         </div>
       </section>
 
-      {/* 5. Trust Section (Stats) */}
+      {/* 5. Trust Section */}
       <section className={styles.trust}>
         <div className={styles.inner}>
           <div className={styles.statsGrid}>
@@ -222,7 +227,6 @@ export default function MainTemplate({
           </div>
 
           <div className={styles.pricingComparison}>
-            {/* 저가형 */}
             <div className={styles.pricingCard}>
               <div className={styles.cardHeader}>
                 <span className={styles.statusBadge}>주의</span>
@@ -234,10 +238,7 @@ export default function MainTemplate({
                 <li className={styles.bad}>✖ 현장 추가 비용 요구</li>
                 <li className={styles.bad}>✖ 부실한 사후 관리(A/S)</li>
               </ul>
-              <div className={styles.priceRisk}>"낮은 퀄리티 및 재작업 위험"</div>
             </div>
-
-            {/* 모두종합환경 */}
             <div className={`${styles.pricingCard} ${styles.recommend}`}>
               <div className={styles.bestBadge}>BEST CHOICE</div>
               <div className={styles.cardHeader}>
@@ -250,10 +251,7 @@ export default function MainTemplate({
                 <li className={styles.good}>✔ 친환경 공인 세제 사용</li>
                 <li className={styles.good}>✔ 투명한 견적 및 A/S 보장</li>
               </ul>
-              <div className={styles.priceTarget}>"최상의 퀄리티와 합리적 비용"</div>
             </div>
-
-            {/* 고가형 */}
             <div className={styles.pricingCard}>
               <div className={styles.cardHeader}>
                 <span className={styles.statusBadge}>부담</span>
@@ -265,25 +263,6 @@ export default function MainTemplate({
                 <li className={styles.bad}>✖ 높은 본사 수수료</li>
                 <li className={styles.bad}>✖ 과도한 고객 비용 부담</li>
               </ul>
-              <div className={styles.priceRisk}>"비효율적인 과잉 청구"</div>
-            </div>
-          </div>
-
-          {/* 비주얼 그래프 영역 (히스토그램) */}
-          <div className={styles.graphContainer}>
-            <div className={styles.histogram}>
-              <div className={styles.bar} style={{ height: '35%' }}>
-                <span className={styles.barLabel}>저가형</span>
-              </div>
-              <div className={`${styles.bar} ${styles.highlight}`} style={{ height: '65%' }}>
-                <span className={styles.barLabel}>{BRAND_NAME}</span>
-              </div>
-              <div className={styles.bar} style={{ height: '100%' }}>
-                <span className={styles.barLabel}>고가형</span>
-              </div>
-            </div>
-            <div className={styles.graphLabel}>
-              <span>현장 맞춤형 적정가격</span>
             </div>
           </div>
         </div>
@@ -308,19 +287,11 @@ export default function MainTemplate({
               <h4>Q. 세금계산서 발행이 가능한가요?</h4>
               <p>A. 네, 가능합니다. {BRAND_NAME}은 정식 등록 업체로 법인 및 개인 사업자분들을 위해 전자 세금계산서 및 현금영수증 발행을 원칙으로 하고 있습니다.</p>
             </div>
-            <div className={styles.faqItem}>
-              <h4>Q. 작업현장에 의뢰인이 없어도 괜찮은가요?</h4>
-              <p>A. 네, 바쁘신 고객님들을 위해 비대면 청소 서비스도 진행합니다. 작업 전후 사진을 실시간으로 전송해 드리며, 종료 후 사진 검수를 통해 꼼꼼하게 확인하실 수 있도록 도와드립니다.</p>
-            </div>
-            <div className={styles.faqItem}>
-              <h4>Q. 예약은 언제쯤 하는 것이 가장 좋은가요?</h4>
-              <p>A. 원하시는 날짜에 차질 없는 진행을 위해 최소 1~2주일 전에 예약해 주시는 것을 권장해 드립니다. 급한 현장도 최대한 일정 조율을 도와드립니다.</p>
-            </div>
           </div>
         </div>
       </section>
 
-      {/* 8. Contact Section (Form Placeholder) */}
+      {/* 8. Contact Section */}
       <section className={styles.contact}>
         <div className={styles.inner}>
           <div className={styles.contactCard}>
@@ -328,7 +299,6 @@ export default function MainTemplate({
             <p>24시간 친절 상담 | 무료 방문 견적 | 사후 관리 보장</p>
             <div className={styles.contactInfo}>
               <a href={`tel:${CONTACT_PHONE}`} className={styles.mainPhone}>{CONTACT_PHONE}</a>
-              <p className={styles.subInfo}>* 부재 시 문자 남겨주시면 바로 연락드립니다.</p>
             </div>
           </div>
         </div>
