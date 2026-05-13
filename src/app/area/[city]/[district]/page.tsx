@@ -13,7 +13,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { city, district } = await params;
-  return getRegionMetadata(district, 'all');
+  return getRegionMetadata(district);
 }
 
 export default async function AreaPage({ params }: Props) {

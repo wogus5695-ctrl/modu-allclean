@@ -79,8 +79,8 @@ export default async function LandingPage({ params }: Props) {
 
   // 3. 지역 밀착 FAQ 생성 (고정 FAQ + 지역 FAQ 조합)
   const localFaqs = [
-    { q: `${regionName} 지역 작업 일정도 주말에 가능한가요?`, a: `네, ${BRAND_NAME}은 ${regionName} 전 지역 연중무휴 서비스를 제공하고 있어 주말 및 야간 작업도 얼마든지 가능합니다.` },
-    { q: `${regionName} 인근의 현장 방문 견적 비용은 얼마인가요?`, a: `${BRAND_NAME}은 고객님의 부담을 덜어드리기 위해 ${regionName} 전 지역 무료 방문 견적 서비스를 원칙으로 하고 있습니다.` },
+    { question: `${regionName} 지역 작업 일정도 주말에 가능한가요?`, answer: `네, ${BRAND_NAME}은 ${regionName} 전 지역 연중무휴 서비스를 제공하고 있어 주말 및 야간 작업도 얼마든지 가능합니다.` },
+    { question: `${regionName} 인근의 현장 방문 견적 비용은 얼마인가요?`, answer: `${BRAND_NAME}은 고객님의 부담을 덜어드리기 위해 ${regionName} 전 지역 무료 방문 견적 서비스를 원칙으로 하고 있습니다.` },
   ];
   const combinedFaqs = [...service.faq.slice(0, 3), ...localFaqs];
 
@@ -157,8 +157,8 @@ export default async function LandingPage({ params }: Props) {
                 <div className={styles.faqList}>
                   {combinedFaqs.map((faq, i) => (
                     <div key={i} className={styles.faqItem}>
-                      <div className={styles.faqQ}>Q. {faq.q}</div>
-                      <div className={styles.faqA}>A. {faq.a}</div>
+                      <div className={styles.faqQ}>Q. {faq.question}</div>
+                      <div className={styles.faqA}>A. {faq.answer}</div>
                     </div>
                   ))}
                 </div>
