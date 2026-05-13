@@ -28,7 +28,7 @@ export default async function LandingPage({ params }: Props) {
 
   if (!region || !service) notFound();
 
-  const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
+  const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
 
   return <MainTemplate region={regionName} service={service.serviceNameKo} />;
 }
