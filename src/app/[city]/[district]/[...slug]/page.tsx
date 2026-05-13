@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { regions, Region } from '@/data/regions';
 import { services, CleaningService } from '@/data/services';
-import { getLandingMetadata, BRAND_NAME } from '@/lib/seo';
+import { getLandingMetadata, BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
 import SectionCTA from '@/components/SectionCTA';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -97,7 +97,7 @@ export default async function LandingPage({ params }: Props) {
             {regionName}의 쾌적한 환경을 위한 최적의 파트너가 되어 드립니다.
           </p>
           <div className={styles.ctaBox}>
-            <a href="tel:010-0000-0000" className={styles.primaryBtn}>{regionName} 견적 상담하기</a>
+            <a href={`tel:${CONTACT_PHONE}`} className={styles.primaryBtn}>{regionName} 견적 상담하기</a>
           </div>
         </div>
       </section>
@@ -173,7 +173,7 @@ export default async function LandingPage({ params }: Props) {
                   <strong>지역, 건물 유형, 작업명, 사진</strong>을 알려주시면 가장 정확한 {regionName} {service.serviceNameKo} 견적을 안내해 드립니다.
                 </p>
                 <div className={styles.sideCtaGroup}>
-                  <a href="tel:010-0000-0000" className={styles.sideBtn}>전화 바로 연결</a>
+                  <a href={`tel:${CONTACT_PHONE}`} className={styles.sideBtn}>전화 바로 연결</a>
                   <a href="https://pf.kakao.com/_xxxx" className={styles.sideBtnWhite}>카톡 실시간 상담</a>
                 </div>
               </div>

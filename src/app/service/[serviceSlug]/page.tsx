@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
-import { getServiceMetadata, BRAND_NAME } from '@/lib/seo';
+import { getServiceMetadata, BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
 import Link from 'next/link';
 import styles from './page.module.css';
 import SectionCTA from '@/components/SectionCTA';
@@ -36,7 +36,7 @@ export default async function ServicePage({ params }: Props) {
           <h1 className={styles.title}>{service.serviceNameKo} 전문 {BRAND_NAME}</h1>
           <p className={styles.subtitle}>{service.shortDescription}</p>
           <div className={styles.headerCta}>
-            <a href="tel:010-0000-0000" className={styles.primaryBtn}>무료 견적 상담</a>
+            <a href={`tel:${CONTACT_PHONE}`} className={styles.primaryBtn}>무료 견적 상담</a>
           </div>
         </div>
       </header>
@@ -124,7 +124,7 @@ export default async function ServicePage({ params }: Props) {
               <div className={`${styles.sideCard} ${styles.contactCard}`}>
                 <h3>빠른 상담 신청</h3>
                 <p>24시간 연중무휴</p>
-                <a href="tel:010-0000-0000" className={styles.sideCta}>전화 연결</a>
+                <a href={`tel:${CONTACT_PHONE}`} className={styles.sideCta}>전화 연결</a>
               </div>
             </div>
           </div>

@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import styles from './InteractiveMap.module.css';
+import { CONTACT_PHONE } from '@/lib/seo';
 
 const GYEONGGI_CITIES = [
   { name: '고양/일산', href: '/' },
@@ -67,7 +68,7 @@ export default function InteractiveMap() {
 
         <div className={styles.bottomCta}>
           <p>찾으시는 지역이 없으신가요? <strong>전국 어디든 상담 가능합니다.</strong></p>
-          <a href="tel:010-0000-0000" className={styles.callBtn}>실시간 견적 문의하기</a>
+          <a href={`tel:${CONTACT_PHONE}`} className={styles.callBtn}>실시간 견적 문의하기</a>
         </div>
       </div>
     </section>

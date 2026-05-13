@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { regions } from '@/data/regions';
 import { services } from '@/data/services';
-import { getRegionMetadata, BRAND_NAME } from '@/lib/seo';
+import { getRegionMetadata, BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
 import SectionCTA from '@/components/SectionCTA';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -44,7 +44,7 @@ export default async function AreaPage({ params }: Props) {
           <h1 className={styles.title}>{region.district} 종합청소 전문 {BRAND_NAME}</h1>
           <p className={styles.subtitle}>{region.localDescription}</p>
           <div className={styles.headerCta}>
-            <a href="tel:010-0000-0000" className={styles.primaryBtn}>{region.district} 상담 바로가기</a>
+            <a href={`tel:${CONTACT_PHONE}`} className={styles.primaryBtn}>{region.district} 상담 바로가기</a>
           </div>
         </div>
       </header>
@@ -124,7 +124,7 @@ export default async function AreaPage({ params }: Props) {
               <div className={`${styles.sideCard} ${styles.blueCard}`}>
                 <h3>{region.district} 전담팀 연결</h3>
                 <p>무료 현장 방문 견적 가능</p>
-                <a href="tel:010-0000-0000" className={styles.sideBtn}>전화 상담 신청</a>
+                <a href={`tel:${CONTACT_PHONE}`} className={styles.sideBtn}>전화 상담 신청</a>
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { regions } from '@/data/regions';
 import { services } from '@/data/services';
-import { getKeywordHubMetadata, BRAND_NAME, DOMAIN } from '@/lib/seo';
+import { getKeywordHubMetadata, BRAND_NAME, DOMAIN, CONTACT_PHONE } from '@/lib/seo';
 import SectionCTA from '@/components/SectionCTA';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -110,7 +110,7 @@ export default async function KeywordHubPage({ params }: Props) {
               <p>{region.localDescription}</p>
               <p style={{ marginTop: '15px' }}><strong>주요 작업 대상:</strong> {region.buildingCharacteristics}</p>
               <div className={styles.ctaBox}>
-                <a href="tel:010-0000-0000" className={styles.primaryBtn}>{region.district} 실시간 상담</a>
+                <a href={`tel:${CONTACT_PHONE}`} className={styles.primaryBtn}>{region.district} 실시간 상담</a>
               </div>
             </div>
           </div>
