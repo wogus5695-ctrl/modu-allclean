@@ -48,13 +48,13 @@ export default function SitemapSeoulPage() {
                         return (
                           <React.Fragment key={service.id}>
                             <Link 
-                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}`}
+                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}?kw=${districtRegion.district}`}
                               className={styles.serviceLink}
                             >
                               {districtRegion.district} {service.serviceNameKo}
                             </Link>
                             <Link 
-                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}`}
+                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}?kw=${shortDistrict}`}
                               className={styles.serviceLink}
                             >
                               {shortDistrict} {service.serviceNameKo}

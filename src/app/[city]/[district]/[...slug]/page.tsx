@@ -7,6 +7,7 @@ import MainTemplate from '@/components/MainTemplate';
 
 type Props = {
   params: Promise<{ city: string; district: string; slug: string[] }>;
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -18,8 +19,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return getLandingMetadata(district, subDistrictSlug, service?.id || '');
 }
 
-export default async function LandingPage({ params }: Props) {
+export default async function LandingPage({ params, searchParams }: Props) {
   const { district, slug } = await params;
+  const sParams = await searchParams;
   const subDistrictSlug = slug.length > 1 ? slug[0] : 'all';
   const serviceSlug = slug[slug.length - 1];
 
@@ -28,7 +30,9 @@ export default async function LandingPage({ params }: Props) {
 
   if (!region || !service) notFound();
 
-  const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
+  // URL 파라미터로 전달된 키워드(kw)가 있으면 그것을 최우선으로 사용
+  const kw = sParams.kw as string;
+  const regionName = kw || (region.subDistrict === '전지역' ? region.district : region.subDistrict);
 
   return <MainTemplate region={regionName} service={service.serviceNameKo} />;
 }
