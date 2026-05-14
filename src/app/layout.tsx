@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
 import FooterDescription from "@/components/FooterDescription";
 import { Suspense } from "react";
-import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE, NAVER_VERIFICATION } from "@/lib/seo";
 
 const scDream = localFont({
   src: [
@@ -30,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
+        <meta name="naver-site-verification" content={NAVER_VERIFICATION} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
