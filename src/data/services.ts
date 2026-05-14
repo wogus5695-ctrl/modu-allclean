@@ -55,6 +55,7 @@ export const services: CleaningService[] = [
     priority: 1,
     indexStatus: 'index',
     imageUrl: '/images/services/outer-wall.jpg',
+    showOnMain: true,
   },
   {
     id: 'window',
@@ -88,6 +89,7 @@ export const services: CleaningService[] = [
     priority: 2,
     indexStatus: 'index',
     imageUrl: '/images/services/window.jpg',
+    showOnMain: true,
   },
   {
     id: 'fire',
@@ -121,6 +123,7 @@ export const services: CleaningService[] = [
     priority: 3,
     indexStatus: 'index',
     imageUrl: '/images/services/fire.jpg',
+    showOnMain: true,
   },
   {
     id: 'floor-wax',
@@ -154,6 +157,7 @@ export const services: CleaningService[] = [
     priority: 4,
     indexStatus: 'index',
     imageUrl: '/images/services/floor-wax.jpg',
+    showOnMain: true,
   },
   {
     id: 'awning',
@@ -184,6 +188,7 @@ export const services: CleaningService[] = [
     priority: 5,
     indexStatus: 'index',
     imageUrl: '/images/services/awning.jpg',
+    showOnMain: true,
   },
   {
     id: 'signboard',
@@ -214,6 +219,7 @@ export const services: CleaningService[] = [
     priority: 5,
     indexStatus: 'index',
     imageUrl: '/images/services/signboard.jpg',
+    showOnMain: true,
   },
   {
     id: 'interior-post',
@@ -244,6 +250,7 @@ export const services: CleaningService[] = [
     priority: 6,
     indexStatus: 'index',
     imageUrl: '/images/services/interior-post.jpg',
+    showOnMain: true,
   },
   {
     id: 'completion',
@@ -274,6 +281,7 @@ export const services: CleaningService[] = [
     priority: 6,
     indexStatus: 'index',
     imageUrl: '/images/services/completion.jpg',
+    showOnMain: true,
   },
   {
     id: 'hood',

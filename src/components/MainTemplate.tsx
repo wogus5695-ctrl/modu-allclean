@@ -22,8 +22,8 @@ export default function MainTemplate({
     let hasAddedInteriorGroup = false;
 
     for (const s of services) {
-      // [긴급 수정] 메인 페이지 서비스 안내 섹션에서 '쓰레기집청소' 절대 노출 금지
-      if (s.id === 'trash-house' || s.serviceSlug === 'trash-house' || s.serviceNameKo.includes('쓰레기집')) {
+      // showOnMain 속성이 false인 서비스는 메인 페이지에서 제외
+      if (!s.showOnMain) {
         continue;
       }
 
