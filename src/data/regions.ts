@@ -1393,6 +1393,285 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'noindex'
   },
 
+  // --- 종로구 ---
+  {
+    city: '서울', district: '종로구', subDistrict: '청운효자동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'cheongunhyoja-dong',
+    localDescription: '서촌마을의 정겨운 한옥들과 행정 시설이 공존하는 품격 있는 지역입니다.',
+    buildingCharacteristics: '서촌 카페 빌딩, 한옥 상가, 행정 관공서 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '사직동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'sajik-dong',
+    localDescription: '역사적인 사직단과 함께 정부청사 등 국가 행정의 중심을 이루는 곳입니다.',
+    buildingCharacteristics: '정부청사 인근 오피스, 역사 시설 주변 빌딩, 아파트 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '삼청동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'samcheong-dong',
+    localDescription: '전통 한옥과 현대적인 갤러리, 카페가 조화를 이루는 문화 예술의 거리입니다.',
+    buildingCharacteristics: '북촌 한옥 상가, 갤러리 빌딩, 특색 있는 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '부암동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'buam-dong',
+    localDescription: '북악산 자락의 수려한 자연 경관과 예술적 감성이 흐르는 숲세권 동네입니다.',
+    buildingCharacteristics: '자연 친화적 카페 빌딩, 예술가 작업실, 저층 주택 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '평창동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'pyeongchang-dong',
+    localDescription: '서울의 대표적인 부촌이자 쾌적한 자연과 고요한 주거 환경을 제공하는 지역입니다.',
+    buildingCharacteristics: '고급 단독 주택, 미술관 빌딩, 프라이빗 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '무악동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'muak-dong',
+    localDescription: '인왕산 아래 대단지 아파트가 조성되어 쾌적하고 조용한 거주 분위기를 자랑합니다.',
+    buildingCharacteristics: '대단지 아파트 상가, 산책로 주변 시설, 주택가 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '교남동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'gyonam-dong',
+    localDescription: '돈의문뉴타운 개발로 현대적인 주거 타운이 형성된 도심 속 신흥 주거지입니다.',
+    buildingCharacteristics: '신축 아파트 상가, 도심형 업무 빌딩, 근린 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '가회동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'gaho-dong',
+    localDescription: '북촌 한옥마을의 중심지로 가장 한국적인 아름다움을 간직한 유서 깊은 곳입니다.',
+    buildingCharacteristics: '전통 한옥 체험 시설, 한옥형 상가, 관광 지구 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '종로',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'jongno-central',
+    localDescription: '서울의 심장부이자 거대한 상업 지구와 역사적 유적지가 공존하는 핵심 구역입니다.',
+    buildingCharacteristics: '대형 오피스 빌딩, 귀금속 상가 타워, 전통 시장 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '이화동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'ihwa-dong',
+    localDescription: '낙산공원과 벽화마을의 예술적 분위기가 흐르는 문화 중심 주거지입니다.',
+    buildingCharacteristics: '벽화마을 상가, 대학로 인근 빌딩, 공원 주변 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '혜화동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'hyehwa-dong',
+    localDescription: '대학로 공연 문화의 메카이자 젊음과 예술의 활기가 넘치는 지역입니다.',
+    buildingCharacteristics: '소극장 빌딩, 대학가 대형 상가, 학술 기관 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '창신동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'changsin-dong',
+    localDescription: '동대문 패션 타운 배후의 의류 제조 거점이자 생활력이 강한 역동적인 동네입니다.',
+    buildingCharacteristics: '의류 제조 시설 빌딩, 완구 거리 상가, 아파트 단지',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '숭인동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'sungin-dong',
+    localDescription: '동묘 벼룩시장과 함께 현대적인 아파트 단지가 어우러진 활기찬 주거·상업지입니다.',
+    buildingCharacteristics: '유통 시설 상가, 아파트 상가, 오피스텔 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '인사동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'insadong',
+    localDescription: '전통 문화와 현대적 감각이 만나는 서울의 대표적인 문화 예술 관광 명소입니다.',
+    buildingCharacteristics: '전통 공예 상가, 갤러리 빌딩, 복합 문화 공간',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '익선동',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'ikseondong',
+    localDescription: '좁은 골목길 사이 한옥을 개조한 감각적인 매장들이 가득한 핫플레이스입니다.',
+    buildingCharacteristics: '리모델링 한옥 상가, 트렌디 카페 빌딩, 소규모 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 중구 ---
+  {
+    city: '서울', district: '중구', subDistrict: '소공동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'sogong-dong',
+    localDescription: '서울 시청과 주요 금융 기관, 백화점이 밀집한 경제와 행정의 중심입니다.',
+    buildingCharacteristics: '정부/금융 빌딩, 백화점 타워, 특급 호텔 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '회현동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'hoehyeon-dong',
+    localDescription: '남대문 시장과 함께 거대 오피스 타운이 형성된 비즈니스 핵심 거점입니다.',
+    buildingCharacteristics: '전통 시장 시설, 대형 오피스 빌딩, 교통 허브 주변 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '명동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'myeong-dong',
+    localDescription: '대한민국 쇼핑의 메카이자 글로벌 관광객이 가장 많이 찾는 대표 상권입니다.',
+    buildingCharacteristics: '대규모 쇼핑몰, 금융가 빌딩, 로드숍 밀집 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '필동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'pil-dong',
+    localDescription: '남산골 한옥마을과 대학가가 인접하여 전통과 학술 분위기가 공존합니다.',
+    buildingCharacteristics: '대학교 주변 상가, 인쇄 거점 빌딩, 주택가 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '장충동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'jangchung-dong',
+    localDescription: '전통 있는 맛집들과 체육 시설, 호텔들이 위치한 중구의 유서 깊은 지역입니다.',
+    buildingCharacteristics: '대형 호텔 시설, 체육관 인근 빌딩, 역사적 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '광희동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'gwanghui-dong',
+    localDescription: '동대문 패션 타운의 중심지이자 다국적 문화가 어우러진 글로벌 상권입니다.',
+    buildingCharacteristics: '패션 쇼핑몰 타워, 다국적 상가 빌딩, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '을지로동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'euljiro-dong',
+    localDescription: '오래된 공업 단지와 트렌디한 카페가 만나는 독특한 감성의 핵심 업무지구입니다.',
+    buildingCharacteristics: '대형 오피스 빌딩, 인쇄/정밀 산업 시설, 뉴트로 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '신당동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'sindang-dong',
+    localDescription: '특화된 먹거리 타운과 함께 대규모 아파트 단지가 조성된 주거 중심지입니다.',
+    buildingCharacteristics: '아파트 대단지 상가, 전통 시장 시설, 주거 밀착 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '다산동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'dasan-dong',
+    localDescription: '남산 성곽길 주변의 쾌적한 주거 환경과 차분한 카페 거리가 매력적인 곳입니다.',
+    buildingCharacteristics: '성곽길 주변 빌딩, 아파트 상가, 주택가 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '황학동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'hwanghak-dong',
+    localDescription: '대규모 주방 가구 거리와 풍물 시장 등 개성 있는 유통 상권이 발달했습니다.',
+    buildingCharacteristics: '주방 가구 특화 빌딩, 주상복합 상가, 전통 시장',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '중림동',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'jungrim-dong',
+    localDescription: '서울역 배후의 편리한 교통과 역사적 주거 가치가 조화를 이루는 지역입니다.',
+    buildingCharacteristics: '오피스 타워, 역사적 주거 단지 상가, 근린 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 용산구 ---
+  {
+    city: '서울', district: '용산구', subDistrict: '후암동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'huam-dong',
+    localDescription: '남산 아래 아늑한 주택가와 이국적인 감성의 루프탑 상권이 공존합니다.',
+    buildingCharacteristics: '남산뷰 카페 빌딩, 저층 주거 상가, 교육 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '용산동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'yongsan-dong',
+    localDescription: '용산가족공원과 주요 국가 기관이 위치한 서울의 중심 녹지 및 행정 구역입니다.',
+    buildingCharacteristics: '공원 인근 시설, 군사/국가 기관 빌딩, 주택가 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '남영동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'namyeong-dong',
+    localDescription: '숙대 상권과 스테이크 거리 등 특색 있는 문화가 살아있는 역동적인 지역입니다.',
+    buildingCharacteristics: '대학가 상가 빌딩, 오피스텔 상권, 음식 문화 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '청파동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'cheongpa-dong',
+    localDescription: '조용한 주거 환경과 대학가 배후 상권이 잘 갖춰진 교육 중심 주거지입니다.',
+    buildingCharacteristics: '대학 인접 빌딩, 주택가 근린 상가, 학생 주거 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '원효로',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'wonhyoro',
+    localDescription: '한강변과 용산 국제업무지구 예정지에 인접한 비즈니스 및 주거 요충지입니다.',
+    buildingCharacteristics: '오피스 타워, 아파트 상가, 상업용 건축물',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '효창동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'hyochang-dong',
+    localDescription: '효창공원 주변의 쾌적한 숲세권과 역사적 의미가 깊은 평온한 주거 단지입니다.',
+    buildingCharacteristics: '공원 인접 상가 빌딩, 아파트 단지 상권, 교육 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '용문동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'yongmun-dong',
+    localDescription: '용문전통시장을 중심으로 정겨운 생활 밀착형 상권이 잘 형성된 구역입니다.',
+    buildingCharacteristics: '전통 시장 시설, 주택가 상가 빌딩, 근린 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '한강로동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'hangangro-dong',
+    localDescription: '용산역 주변의 비약적인 개발로 초고층 주상복합과 IT 기업 사옥이 즐비한 곳입니다.',
+    buildingCharacteristics: '초고층 주상복합 상가, 기업 본사 사옥, 역세권 상업 타워',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '이촌동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'ichon-dong',
+    localDescription: '한강공원을 품은 고품격 주거 단지와 조용한 생활 여건을 갖춘 대표 주거지입니다.',
+    buildingCharacteristics: '브랜드 아파트 상가, 한강변 주상복합, 교육 중심 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '이태원동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'itaewon-dong',
+    localDescription: '이국적인 문화와 개성 넘치는 상권이 조화를 이루는 서울의 글로벌 명소입니다.',
+    buildingCharacteristics: '트렌디 매장 상가, 대사관 주변 빌딩, 관광 지구 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '한남동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'hannam-dong',
+    localDescription: '한강과 남산 사이의 최고급 주거지와 예술적 갤러리가 밀집한 프리미엄 구역입니다.',
+    buildingCharacteristics: '고급 주상복합 상가, 갤러리 빌딩, 하이엔드 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '서빙고동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'seobinggo-dong',
+    localDescription: '반포대교 북단의 우수한 교통 입지와 한강변의 여유로운 주거 환경이 특징입니다.',
+    buildingCharacteristics: '한강변 아파트 상가, 교통 거점 주변 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '보광동',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'bogwang-dong',
+    localDescription: '한남뉴타운 개발의 중심지이자 이태원과 인접하여 잠재력이 높은 주거 지역입니다.',
+    buildingCharacteristics: '주택가 상가 빌딩, 재개발 구역 상권, 근린 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
   // --- 구 단위 전지역 요약 (전체) ---
   {
     city: '서울', district: '강남구', subDistrict: '전지역',
@@ -1546,6 +1825,27 @@ export const regions: Region[] = [
     regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'all',
     localDescription: '중계동 학원가와 상계동 대규모 아파트 단지 등 노원구 전역에 최적화된 청소 서비스를 제공합니다.',
     buildingCharacteristics: '학원 빌딩, 대단지 아파트 상가, 노원역 핵심 상권 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '종로구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'all',
+    localDescription: '광화문 비즈니스 타워부터 인사동, 평창동 주거지까지 종로구 전역의 맞춤형 관리를 지원합니다.',
+    buildingCharacteristics: '대형 오피스 빌딩, 문화 시설, 한옥 상가, 고급 주택',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'all',
+    localDescription: '명동과 을지로의 상업 요충지부터 남산 주변 주거지까지 중구의 전문 청결을 책임집니다.',
+    buildingCharacteristics: '금융/상업용 빌딩, 호텔 시설, 쇼핑몰 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '용산구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'all',
+    localDescription: '용산역세권 오피스부터 한남동, 이태원 상권까지 용산구의 다양한 공간을 완벽하게 관리합니다.',
+    buildingCharacteristics: '초고층 주상복합, 기업 사옥, 글로벌 상가 빌딩',
     priority: 1, indexStatus: 'index'
   },
 ];
