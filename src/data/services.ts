@@ -308,6 +308,38 @@ export const services: CleaningService[] = [
     imageUrl: '/images/services/hood.jpg',
   },
   {
+    id: 'trash-house',
+    serviceNameKo: '쓰레기집청소',
+    serviceSlug: 'hoarder-house-cleaning',
+    shortDescription: '방치된 대량의 쓰레기와 악취를 완벽하게 해결하는 특수 클리닝',
+    mainDescription: '장기간 방치되어 대량의 쓰레기와 오염물로 가득 찬 실내를 체계적으로 정리하고, 정밀 세척 및 강력 탈취를 통해 쾌적한 주거 공간으로 복원합니다.',
+    neededSituations: [
+      '쓰레기가 무릎 높이 이상 쌓여 자력으로 정리가 불가능한 경우',
+      '쓰레기 방치로 인해 해충이 발생하고 악취가 심한 경우',
+      '거주지 이동 전이나 임대차 계약 종료 후 원상복구가 필요할 때',
+      '주변 이웃으로부터 민원이 제기되어 긴급한 정리가 필요할 때'
+    ],
+    workingMethod: '폐기물을 종류별로 신속하게 분류하여 배출한 후, 강력 세정제와 고온 스팀 장비를 사용하여 찌든 오염을 제거합니다. 마지막으로 오존 살균과 특수 탈취 공정을 통해 잔류 냄새를 완벽히 차단합니다.',
+    preCheckItems: [
+      '대형 폐기물 및 잡동사니 전체 폐기 여부',
+      '귀중품 및 중요 서류 별도 보관 여부',
+      '수도 및 전기 사용 가능 상태 확인',
+      '작업 중 외부 노출 최소화 요청 여부'
+    ],
+    targetBuildings: ['원룸/오피스텔', '아파트/빌라', '단독 주택', '고시원'],
+    commonProblems: ['대량 폐기물 적체', '해충/세균 번식', '악취 고착', '바닥/벽지 변색'],
+    process: ['비공개 상담 및 예약', '현장 진단 및 분류', '폐기물 수거 및 반출', '정밀 클리닝 및 세척', '살균 및 강력 탈취', '마감 검수'],
+    faq: [
+      { question: '이웃 모르게 작업이 가능한가요?', answer: '네, 소음과 외부 노출을 최소화하며, 일반 이삿짐이나 단순 정리처럼 보이도록 보안 시공을 진행합니다.' },
+      { question: '폐기물 비용은 별도인가요?', answer: '폐기물의 종류와 양에 따라 처리 비용이 산출되며, 상담 시 정확한 안내를 도와드립니다.' },
+      { question: '정리 정돈도 같이 해주나요?', answer: '청소와 소독이 주 목적이며, 기본적인 수납장 정리 등은 포함되나 전문 정리 수납과는 차이가 있습니다.' },
+      { question: '작업 시간은 얼마나 걸리나요?', answer: '쓰레기 양에 따라 다르지만 보통 1~2일 내에 집중적으로 완료합니다.' }
+    ],
+    priority: 9,
+    indexStatus: 'index',
+    imageUrl: '/images/services/trash-house.jpg',
+  },
+  {
     id: 'special-cleaning',
     serviceNameKo: '특수청소',
     serviceSlug: 'special-cleaning',
