@@ -36,7 +36,7 @@ export const CONTACT_SMS = 'sms:010-4861-3226'; // 문자 상담 링크
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
 export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/og-main.jpg`;
-export const NAVER_VERIFICATION = ''; // 네이버 서치어드바이저 연동 코드 (필요 시 입력)
+export const NAVER_VERIFICATION = '43f9e9e2c0022b1961730e583c46aef2bc51b2fa'; // 네이버 서치어드바이저 연동 코드
 
 // --- SEO 기본 메타데이터 생성기 ---
 interface SeoOptions {
