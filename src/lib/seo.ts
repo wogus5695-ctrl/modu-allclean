@@ -30,7 +30,7 @@ export const INDEXED_DONG_COMBINATIONS = [
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
 export const BRAND_NAME = '모두종합환경';
 export const BUSINESS_NAME = '올케어서비스';
-export const DOMAIN = 'https://modu-cleaning.co.kr';
+export const DOMAIN = 'https://www.moduclean.co.kr';
 export const CONTACT_PHONE = '010-4861-3226'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4861-3226'; // 문자 상담 링크
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
@@ -66,7 +66,7 @@ export function getBaseMetadata({
     robots: robots,
     verification: {
       other: {
-        'naver-site-verification': [NAVER_VERIFICATION],
+        'naver-site-verification': NAVER_VERIFICATION,
       },
     },
     openGraph: {
