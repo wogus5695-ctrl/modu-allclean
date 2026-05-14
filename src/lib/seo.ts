@@ -64,11 +64,6 @@ export function getBaseMetadata({
       canonical: url,
     },
     robots: robots,
-    verification: {
-      other: {
-        'naver-site-verification': NAVER_VERIFICATION,
-      },
-    },
     openGraph: {
       title: title,
       description: description,
