@@ -15,7 +15,16 @@ export const INDEXED_DONG_COMBINATIONS = [
   'seocho-seocho-dong-completion',
   'seocho-banpo-dong-window',
   'songpa-jamsil-dong-window',
-  'songpa-munjeong-dong-interior',
+  'songpa-munjeong-dong-interior-post',
+  // 추가된 주요 동 키워드
+  'jongno-insadong-special-cleaning',
+  'jongno-ikseondong-trash-house',
+  'yongsan-hannam-dong-window',
+  'yongsan-itaewon-dong-special-cleaning',
+  'mapo-seogyo-dong-awning',
+  'mapo-yeonnam-dong-signboard',
+  'seongdong-seongsu-dong-floor-wax',
+  'gwangjin-hwayang-dong-trash-house',
 ];
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
@@ -27,6 +36,7 @@ export const CONTACT_SMS = 'sms:010-4861-3226'; // 문자 상담 링크
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
 export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/og-main.jpg`;
+export const NAVER_VERIFICATION = ''; // 네이버 서치어드바이저 연동 코드 (필요 시 입력)
 
 // --- SEO 기본 메타데이터 생성기 ---
 interface SeoOptions {
@@ -54,12 +64,17 @@ export function getBaseMetadata({
       canonical: url,
     },
     robots: robots,
+    verification: {
+      other: {
+        'naver-site-verification': [NAVER_VERIFICATION],
+      },
+    },
     openGraph: {
       title: title,
       description: description,
       url: url,
       type: ogType,
-      images: [{ url: DEFAULT_OG_IMAGE }],
+      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: title }],
       siteName: BRAND_NAME,
     },
     twitter: {
@@ -135,7 +150,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   return getBaseMetadata({
     title: `${regionName} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,
-    description: `${regionName} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.shortDescription} 상가, 빌딩, 사무실 등 현장 맞춤형 정밀 청소를 진행합니다.`,
+    description: `${regionName} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`,
     indexStatus: indexStatus,
     path: path,
   });

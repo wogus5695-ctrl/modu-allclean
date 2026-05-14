@@ -34,7 +34,29 @@ export default async function LandingPage({ params, searchParams }: Props) {
   const kw = sParams.kw as string;
   const regionName = kw || (region.subDistrict === '전지역' ? region.district : region.subDistrict);
 
-  return <MainTemplate region={regionName} service={service.serviceNameKo} />;
+  // Naver SEO를 위한 FAQ 스키마 생성
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': service.faq.map(item => ({
+      '@type': 'Question',
+      'name': item.question.replace('{service}', service.serviceNameKo).replace('{region}', regionName),
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': item.answer.replace('{service}', service.serviceNameKo).replace('{region}', regionName)
+      }
+    }))
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <MainTemplate region={regionName} service={service.serviceNameKo} />
+    </>
+  );
 }
 
 export async function generateStaticParams() {
