@@ -380,6 +380,6 @@ export const services: CleaningService[] = [
     priority: 10,
     indexStatus: 'index',
     imageUrl: '/images/services/special-cleaning.jpg',
-    showOnMain: false,
+    showOnMain: true,
   },
 ];
