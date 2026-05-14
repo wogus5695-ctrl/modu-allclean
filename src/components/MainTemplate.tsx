@@ -22,6 +22,11 @@ export default function MainTemplate({
     let hasAddedInteriorGroup = false;
 
     for (const s of services) {
+      // 메인 페이지에서는 쓰레기집청소와 특수청소 노출 제외 (사용자 요청)
+      if (s.id === 'trash-house' || s.id === 'special-cleaning') {
+        continue;
+      }
+
       // 어닝 또는 간판 서비스인 경우
       if (s.id === 'awning' || s.id === 'signboard') {
         if (!hasAddedAwningGroup) {
