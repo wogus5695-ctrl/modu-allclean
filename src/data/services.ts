@@ -19,6 +19,7 @@ export interface CleaningService {
   priority: number;
   indexStatus: 'index' | 'noindex';
   imageUrl?: string;
+  showOnMain: boolean;
 }
 
 export const services: CleaningService[] = [
@@ -306,7 +307,9 @@ export const services: CleaningService[] = [
     priority: 9,
     indexStatus: 'index',
     imageUrl: '/images/services/hood.jpg',
+    showOnMain: true,
   },
+/*
   {
     id: 'trash-house',
     serviceNameKo: '쓰레기집청소',
@@ -316,7 +319,7 @@ export const services: CleaningService[] = [
     neededSituations: [
       '쓰레기가 무릎 높이 이상 쌓여 자력으로 정리가 불가능한 경우',
       '쓰레기 방치로 인해 해충이 발생하고 악취가 심한 경우',
-      '거주지 이동 전이나 임대차 계약 종료 후 원상복구가 필요할 때',
+      '거거주지 이동 전이나 임대차 계약 종료 후 원상복구가 필요할 때',
       '주변 이웃으로부터 민원이 제기되어 긴급한 정리가 필요할 때'
     ],
     workingMethod: '폐기물을 종류별로 신속하게 분류하여 배출한 후, 강력 세정제와 고온 스팀 장비를 사용하여 찌든 오염을 제거합니다. 마지막으로 오존 살균과 특수 탈취 공정을 통해 잔류 냄새를 완벽히 차단합니다.',
@@ -338,7 +341,9 @@ export const services: CleaningService[] = [
     priority: 9,
     indexStatus: 'index',
     imageUrl: '/images/services/trash-house.jpg',
+    showOnMain: false,
   },
+*/
   {
     id: 'special-cleaning',
     serviceNameKo: '특수청소',
@@ -369,5 +374,6 @@ export const services: CleaningService[] = [
     priority: 10,
     indexStatus: 'index',
     imageUrl: '/images/services/special-cleaning.jpg',
+    showOnMain: false,
   },
 ];
