@@ -1029,6 +1029,273 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'noindex'
   },
 
+  // --- 광진구 ---
+  {
+    city: '서울', district: '광진구', subDistrict: '광장동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'gwangjang-dong',
+    localDescription: '한강 조망과 우수한 교육 환경을 갖춘 고품격 주거 요충지입니다.',
+    buildingCharacteristics: '고급 아파트 상가, 교육 시설 빌딩, 한강변 근린 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '구의동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'guui-dong',
+    localDescription: '동서울터미널 인근의 교통 요지이자 행정·주거 복합 구역입니다.',
+    buildingCharacteristics: '터미널 주변 상가, 행정 빌딩, 아파트 단지 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '군자동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'gunja-dong',
+    localDescription: '세종대학교 인근의 활기찬 대학가와 주거 상권이 발달했습니다.',
+    buildingCharacteristics: '대학가 상가, 소형 오피스, 다세대 주택 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '능동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'neung-dong',
+    localDescription: '어린이대공원 주변의 쾌적한 자연 환경과 주택가가 형성된 지역입니다.',
+    buildingCharacteristics: '공원 인근 상가 빌딩, 주거 밀착형 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '자양동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'jayang-dong',
+    localDescription: '한강변 대단지 아파트와 건대입구 핵심 상권이 어우러진 중심지입니다.',
+    buildingCharacteristics: '고층 주상복합 상가, 건대입구 로데오 빌딩, 아파트 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '중곡동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'junggok-dong',
+    localDescription: '아차산 아래 조용하고 쾌적한 대규모 주거 밀집 지역입니다.',
+    buildingCharacteristics: '대규모 빌라 단지 상권, 의료 기관 빌딩, 주택가 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '화양동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'hwayang-dong',
+    localDescription: '건국대학교 중심의 젊은 층 유동인구가 많은 광진구 대표 상권입니다.',
+    buildingCharacteristics: '트렌디한 상가 빌딩, 오피스텔 상권, 먹거리 골목 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 동대문구 ---
+  {
+    city: '서울', district: '동대문구', subDistrict: '답십리동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'dapsimni-dong',
+    localDescription: '대규모 뉴타운 개발로 현대화된 아파트 단지 및 상가 구역이 조성되었습니다.',
+    buildingCharacteristics: '뉴타운 아파트 상가, 고미술 상가, 신축 주거 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '신설동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'sinseol-dong',
+    localDescription: '종로와 인접한 교통 거점이자 업무와 주거가 혼재된 핵심 지역입니다.',
+    buildingCharacteristics: '업무용 빌딩, 역세권 상가, 학원 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '용두동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'yongdu-dong',
+    localDescription: '동대문구청 소재지이자 청량리역 인근의 상업 및 행정 중심지입니다.',
+    buildingCharacteristics: '관공서 빌딩, 상업용 건축물, 아파트 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '이문동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'imun-dong',
+    localDescription: '경희대, 외대 등 대학가 상권과 주거지가 발달한 교육 중심지입니다.',
+    buildingCharacteristics: '대학가 상가 빌딩, 학생 주거 시설, 재개발 신축 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '장안동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'jangan-dong',
+    localDescription: '대형 아파트 단지와 자동차 관련 상업 시설이 잘 갖춰진 생활권입니다.',
+    buildingCharacteristics: '대단지 아파트 상가, 자동차 매매 시설, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '전농동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'jeonnong-dong',
+    localDescription: '청량리역 배후의 대규모 주거 타운 및 우수한 교육 환경을 갖춘 곳입니다.',
+    buildingCharacteristics: '브랜드 아파트 상가, 학교 주변 빌딩, 근린 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '제기동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'jegi-dong',
+    localDescription: '약령시장과 경동시장 등 전통적인 대규모 유통 상권의 중심입니다.',
+    buildingCharacteristics: '전통 시장 시설, 약재 관련 상가 빌딩, 주택 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '청량리동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'cheongryangri-dong',
+    localDescription: '서울 동북권 교통의 핵심이자 대대적인 역세권 개발이 진행 중인 지역입니다.',
+    buildingCharacteristics: '초고층 복합 빌딩, 역세권 상가 타워, 전통 시장',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '회기동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'hoegi-dong',
+    localDescription: '경희대학교 주변의 활발한 대학가 및 대형 의료 서비스 구역입니다.',
+    buildingCharacteristics: '대학 병원 주변 빌딩, 대학가 먹거리 상가, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '휘경동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'hwigyeong-dong',
+    localDescription: '중랑천 주변의 쾌적한 주거지와 주요 교육 기관이 밀집해 있습니다.',
+    buildingCharacteristics: '아파트 단지 상가, 교육 시설 주변 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 중랑구 ---
+  {
+    city: '서울', district: '중랑구', subDistrict: '망우동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'mangwu-dong',
+    localDescription: '망우역세권 개발과 함께 성장하는 서울 동북권의 주요 주거 중심지입니다.',
+    buildingCharacteristics: '역세권 상업 빌딩, 아파트 단지 상가, 복합 쇼핑 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '면목동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'myeonmok-dong',
+    localDescription: '인구 밀집 지역으로 생활 밀착형 상권과 주거 환경이 발달한 곳입니다.',
+    buildingCharacteristics: '주택가 근린 생활 빌딩, 전통 시장 상가, 소규모 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '묵동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'muk-dong',
+    localDescription: '먹골역 인근의 안정적인 주거 여건과 생활 편의 시설이 잘 갖춰져 있습니다.',
+    buildingCharacteristics: '아파트 단지 상가, 역세권 중소형 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '상봉동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'sangbong-dong',
+    localDescription: '대형 마트와 복합 쇼핑몰이 밀집한 중랑구의 핵심 상업 거점입니다.',
+    buildingCharacteristics: '대형 마트 빌딩, 복합몰 상가 타워, 고층 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '신내동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'sinnae-dong',
+    localDescription: '봉화산 주변의 쾌적한 공원과 대단지 아파트가 조성된 계획 주거지입니다.',
+    buildingCharacteristics: '대단지 아파트 상가, 지식산업센터, 공원 인근 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '중화동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'junghwa-dong',
+    localDescription: '중랑천을 끼고 있는 평화로운 주거 구역 및 역세권 소규모 상권이 발달했습니다.',
+    buildingCharacteristics: '아파트 상가, 주택가 소규모 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 성북구 ---
+  {
+    city: '서울', district: '성북구', subDistrict: '길음동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'gireum-dong',
+    localDescription: '길음뉴타운의 대규모 브랜드 아파트 단지가 형성된 대표 주거지입니다.',
+    buildingCharacteristics: '뉴타운 대단지 아파트 상가, 교육 시설 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '돈암동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'donam-dong',
+    localDescription: '성신여대역 주변의 활발한 쇼핑 및 교육 인프라가 잘 갖춰진 구역입니다.',
+    buildingCharacteristics: '역세권 상가 빌딩, 아파트 단지 상권, 교육 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '동선동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'dongseon-dong',
+    localDescription: '성신여대 인근의 트렌디한 매장과 대학가 주거지가 공존하는 활기찬 지역입니다.',
+    buildingCharacteristics: '트렌디 매장 상가, 소형 빌딩, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '동소문동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'dongsomun-dong',
+    localDescription: '혜화동과 인접하여 조용하고 품격 있는 주택가와 상권이 형성되어 있습니다.',
+    buildingCharacteristics: '저층 고급 주택 상권, 근린 생활 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '보문동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'bomun-dong',
+    localDescription: '보문천 주변의 쾌적한 환경과 도심 접근성이 뛰어난 안정적 주거지입니다.',
+    buildingCharacteristics: '아파트 상가, 천변 인접 빌딩, 소규모 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '삼선동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'samseon-dong',
+    localDescription: '한성대학교 주변의 역사적 흔적과 현대적 주거가 조화를 이루는 곳입니다.',
+    buildingCharacteristics: '대학가 주택 상권, 행정 빌딩, 아파트 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '상월곡동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'sangwolgok-dong',
+    localDescription: '월곡역 주변의 차분한 분위기와 교육 인프라가 잘 갖춰진 주거 구역입니다.',
+    buildingCharacteristics: '역세권 상가, 학교 주변 빌딩, 아파트 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '석관동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'seokgwan-dong',
+    localDescription: '한국예술종합학교와 의릉이 위치한 문화 및 교육 테마의 지역입니다.',
+    buildingCharacteristics: '교육 시설 주변 빌딩, 전통 시장 상가, 주택가 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '성북동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'seongbuk-dong',
+    localDescription: '전통적인 부촌이자 대사관로 주변의 고요하고 격조 높은 주거 중심지입니다.',
+    buildingCharacteristics: '고급 주택, 갤러리 빌딩, 특색 있는 카페 상가',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '안암동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'anam-dong',
+    localDescription: '고려대학교를 중심으로 대학 상권과 연구 단지가 고도로 발달한 곳입니다.',
+    buildingCharacteristics: '대학가 대형 상가 빌딩, 연구 시설, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '장위동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'jangwi-dong',
+    localDescription: '대규모 뉴타운 개발로 서울 동북권의 신흥 핵심 주거지로 급부상 중입니다.',
+    buildingCharacteristics: '신축 브랜드 아파트 상가, 재개발 구역 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '정릉동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'jeongneung-dong',
+    localDescription: '정릉과 북한산 자락의 자연 친화적인 주거 환경을 자랑하는 지역입니다.',
+    buildingCharacteristics: '아파트 상가, 자연 주변 빌라 상권, 소형 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '종암동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'jongam-dong',
+    localDescription: '고려대 인근의 안정적인 주거 여건과 교육 중심의 생활 인프라가 강점입니다.',
+    buildingCharacteristics: '아파트 단지 상가, 교육 관련 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '하월곡동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'hawolgok-dong',
+    localDescription: '미아사거리역 인근의 대규모 상권 및 고층 주상복합이 밀집한 요충지입니다.',
+    buildingCharacteristics: '고층 주상복합 상가, 백화점 주변 빌딩, 오피스텔',
+    priority: 1, indexStatus: 'noindex'
+  },
+
   // --- 구 단위 전지역 요약 (전체) ---
   {
     city: '서울', district: '강남구', subDistrict: '전지역',
@@ -1133,6 +1400,34 @@ export const regions: Region[] = [
     regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'all',
     localDescription: '성수동의 지식산업센터와 왕십리 교통 거점 등 성동구 전역의 전문 클리닝을 수행합니다.',
     buildingCharacteristics: '지식산업센터, 갤러리 빌딩, 한강변 프리미엄 상가',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'all',
+    localDescription: '건대 상권과 자양동 주거 단지를 아우르는 광진구 전역의 쾌적한 환경을 약속합니다.',
+    buildingCharacteristics: '복합 상업 빌딩, 고층 주상복합, 대학가 시설',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'all',
+    localDescription: '청량리 교통 허브와 주요 대학가를 포함한 동대문구의 전문적인 관리를 지원합니다.',
+    buildingCharacteristics: '역세권 복합몰, 교육 시설 빌딩, 전통 시장 상권',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'all',
+    localDescription: '상봉동 업무지구와 신내동 주거 단지 등 중랑구 전역의 청결 시스템을 제공합니다.',
+    buildingCharacteristics: '상업용 빌딩, 아파트 상가, 지식산업센터',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'all',
+    localDescription: '길음뉴타운과 성북동 고급 주택가 등 성북구의 다양한 현장에 최적화된 솔루션을 제안합니다.',
+    buildingCharacteristics: '뉴타운 상가 빌딩, 하이엔드 주거 시설, 대학가 빌딩',
     priority: 1, indexStatus: 'index'
   },
 ];
