@@ -5,7 +5,7 @@ import { services } from '@/data/services';
 
 export async function GET() {
   const districts = regions.filter(r => r.subDistrictSlug === 'all');
-  const items = [];
+  const items: string[] = [];
 
   // 구 단위 서비스 페이지들을 RSS 아이템으로 구성
   districts.forEach(d => {
