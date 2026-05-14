@@ -1296,6 +1296,103 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'noindex'
   },
 
+  // --- 강북구 ---
+  {
+    city: '서울', district: '강북구', subDistrict: '미아동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'mia-dong',
+    localDescription: '미아뉴타운과 미아사거리역 중심의 대규모 상권 및 주거 환경을 갖춘 곳입니다.',
+    buildingCharacteristics: '백화점 주변 상가, 뉴타운 아파트 상권, 메디컬 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '번동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'beon-dong',
+    localDescription: '북서울꿈의숲 인근의 쾌적한 자연 환경과 안정적인 아파트 단지가 형성되어 있습니다.',
+    buildingCharacteristics: '공원 인근 상가, 아파트 단지 상권, 근린 생활 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '수유동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'suyu-dong',
+    localDescription: '강북구의 행정 중심지이자 수유역 주변의 활발한 유동인구와 상권이 밀집해 있습니다.',
+    buildingCharacteristics: '역세권 상가 빌딩, 오피스텔 상권, 관공서 주변 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '우이동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'ui-dong',
+    localDescription: '북한산 국립공원 입구의 숲세권 주거지 및 자연 친화적인 휴양 상권이 특징입니다.',
+    buildingCharacteristics: '자연 인접 카페 상가, 저층 주거 빌딩, 전원형 상업 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 도봉구 ---
+  {
+    city: '서울', district: '도봉구', subDistrict: '도봉동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'dobong-dong',
+    localDescription: '도봉산역 주변의 등산객 유동인구와 법조 타운이 형성된 행정·주거 복합지입니다.',
+    buildingCharacteristics: '법조 빌딩, 등산객 대상 상가, 아파트 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '방학동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'banghak-dong',
+    localDescription: '조용하고 쾌적한 주거 환경과 대형 마트 등 생활 편의 시설이 잘 갖춰진 지역입니다.',
+    buildingCharacteristics: '대형 마트 주변 상권, 아파트 단지 상가, 근린 생활 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '쌍문동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'ssangmun-dong',
+    localDescription: '대규모 아파트 단지와 정겨운 골목 상권이 조화를 이루는 안정적인 주거지입니다.',
+    buildingCharacteristics: '아파트 상가, 주택가 골목 상업 시설, 학교 주변 빌딩',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '창동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'chang-dong',
+    localDescription: '창동역 민자역사 개발과 복합 문화 시설 조성이 기대되는 동북권 거점 지역입니다.',
+    buildingCharacteristics: '역세권 상가 타워, 문화 시설 주변 빌딩, 아파트 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+
+  // --- 노원구 ---
+  {
+    city: '서울', district: '노원구', subDistrict: '공릉동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'gongneung-dong',
+    localDescription: '경춘선 숲길과 대학교 주변의 활기찬 대학가 및 쾌적한 주거 환경을 제공합니다.',
+    buildingCharacteristics: '대학가 상가 빌딩, 숲길 인접 카페, 아파트 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '상계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'sanggye-dong',
+    localDescription: '서울 동북권 최대의 아파트 밀집 지역이자 노원역 핵심 상권이 위치한 곳입니다.',
+    buildingCharacteristics: '노원역 대형 상가 빌딩, 아파트 대단지 상가, 백화점 주변 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '중계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'junggye-dong',
+    localDescription: '서울의 대표적인 교육 특구인 은행사거리 학원가와 안정적인 주거 단지를 갖췄습니다.',
+    buildingCharacteristics: '은행사거리 학원 빌딩, 대규모 아파트 상가, 교육 시설',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '하계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'hagye-dong',
+    localDescription: '대형 의료 기관과 공원이 인접하여 쾌적하고 편리한 생활 환경을 자랑하는 지역입니다.',
+    buildingCharacteristics: '대학 병원 주변 빌딩, 아파트 상가, 공원 인근 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '월계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'wolgye-dong',
+    localDescription: '광운대역세권 개발과 북서울꿈의숲 주변의 새롭게 도약하는 주거 타운입니다.',
+    buildingCharacteristics: '역세권 개발지 빌딩, 아파트 상가, 교육 시설 주변 상권',
+    priority: 1, indexStatus: 'noindex'
+  },
+
   // --- 구 단위 전지역 요약 (전체) ---
   {
     city: '서울', district: '강남구', subDistrict: '전지역',
@@ -1428,6 +1525,27 @@ export const regions: Region[] = [
     regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'all',
     localDescription: '길음뉴타운과 성북동 고급 주택가 등 성북구의 다양한 현장에 최적화된 솔루션을 제안합니다.',
     buildingCharacteristics: '뉴타운 상가 빌딩, 하이엔드 주거 시설, 대학가 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'all',
+    localDescription: '미아사거리 상권부터 수유동 행정타운까지 강북구 전역의 쾌적한 환경을 책임집니다.',
+    buildingCharacteristics: '백화점 주변 상가, 관공서 빌딩, 아파트 대단지 상권',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'all',
+    localDescription: '창동역세권 개발 지구와 도봉산 입구 상권 등 도봉구 전역의 전문 관리를 수행합니다.',
+    buildingCharacteristics: '역세권 상업 타워, 법조 빌딩, 주거 밀착형 상가',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'all',
+    localDescription: '중계동 학원가와 상계동 대규모 아파트 단지 등 노원구 전역에 최적화된 청소 서비스를 제공합니다.',
+    buildingCharacteristics: '학원 빌딩, 대단지 아파트 상가, 노원역 핵심 상권 빌딩',
     priority: 1, indexStatus: 'index'
   },
 ];
