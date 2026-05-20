@@ -65,6 +65,10 @@ export function getBaseMetadata({
       canonical: url,
     },
     robots: robots,
+    icons: {
+      icon: '/favicon.ico',
+      shortcut: '/favicon.ico',
+    },
     openGraph: {
       title: title,
       description: description,
