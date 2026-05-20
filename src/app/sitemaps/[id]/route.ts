@@ -22,7 +22,7 @@ export async function GET(request: Request, { params }: Props) {
     regions.filter(r => r.subDistrictSlug === 'all').forEach(region => {
       services.filter(s => s.indexStatus === 'index').forEach(service => {
         urls.push({
-          url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+          url: `${DOMAIN}/?k=${region.regionSlug}-${region.districtSlug}-${service.serviceSlug}`,
           priority: 0.7,
           changeFrequency: 'weekly'
         });
@@ -71,7 +71,7 @@ export async function GET(request: Request, { params }: Props) {
           const comboKey = `${districtSlug}-${dong.subDistrictSlug}-${service.id}`;
           if (INDEXED_DONG_COMBINATIONS.includes(comboKey)) {
             urls.push({
-              url: `${DOMAIN}/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
+              url: `${DOMAIN}/?k=${dong.regionSlug}-${dong.districtSlug}-${dong.subDistrictSlug}-${service.serviceSlug}`,
               priority: 0.5,
               changeFrequency: 'weekly'
             });

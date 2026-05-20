@@ -144,9 +144,11 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     }
   }
 
-  let path = subDistrictSlug === 'all' 
-    ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
-    : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
+  const k = subDistrictSlug === 'all' 
+    ? `${region.regionSlug}-${region.districtSlug}-${service.serviceSlug}`
+    : `${region.regionSlug}-${region.districtSlug}-${region.subDistrictSlug}-${service.serviceSlug}`;
+
+  const path = `/?k=${k}`;
 
   return getBaseMetadata({
     title: `${regionName} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,

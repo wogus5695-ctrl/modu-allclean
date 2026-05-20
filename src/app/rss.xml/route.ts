@@ -10,7 +10,7 @@ export async function GET() {
   // 구 단위 서비스 페이지들을 RSS 아이템으로 구성
   districts.forEach(d => {
     services.filter(s => s.indexStatus === 'index').forEach(s => {
-      const url = `${DOMAIN}/${d.regionSlug}/${d.districtSlug}/${s.serviceSlug}`;
+      const url = `${DOMAIN}/?k=${d.regionSlug}-${d.districtSlug}-${s.serviceSlug}`;
       items.push(`
     <item>
       <title><![CDATA[${d.district} ${s.serviceNameKo} 전문 업체 | ${BRAND_NAME}]]></title>

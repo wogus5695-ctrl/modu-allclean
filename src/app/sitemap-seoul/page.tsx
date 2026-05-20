@@ -48,13 +48,13 @@ export default function SitemapSeoulPage() {
                         return (
                           <React.Fragment key={service.id}>
                             <Link 
-                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}?kw=${districtRegion.district}`}
+                              href={`/?k=${districtRegion.regionSlug}-${districtRegion.districtSlug}-${service.serviceSlug}`}
                               className={styles.serviceLink}
                             >
                               {districtRegion.district} {service.serviceNameKo}
                             </Link>
                             <Link 
-                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}?kw=${shortDistrict}`}
+                              href={`/?k=${districtRegion.regionSlug}-${districtRegion.districtSlug}-${service.serviceSlug}`}
                               className={styles.serviceLink}
                             >
                               {shortDistrict} {service.serviceNameKo}
@@ -79,7 +79,7 @@ export default function SitemapSeoulPage() {
                         {services.map(service => (
                           <Link 
                             key={service.id} 
-                            href={`/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`}
+                            href={`/?k=${dong.regionSlug}-${dong.districtSlug}-${dong.subDistrictSlug}-${service.serviceSlug}`}
                             className={styles.serviceLink}
                           >
                             {dong.subDistrict} {service.serviceNameKo}
