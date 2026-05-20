@@ -155,7 +155,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 // 5. 키워드 허브 페이지
 export function getKeywordHubMetadata(cityDistrict: string): Metadata {
   const parts = cityDistrict.split('-');
-  const districtSlug = parts[1];
+  const districtSlug = parts.slice(1).join('-');
   const region = regions.find(r => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
   
   if (!region) return { title: BRAND_NAME };

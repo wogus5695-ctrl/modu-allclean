@@ -22,7 +22,7 @@ export default async function KeywordHubPage({ params }: Props) {
   if (parts.length < 2) notFound();
 
   const citySlug = parts[0];
-  const districtSlug = parts[1];
+  const districtSlug = parts.slice(1).join('-');
 
   const region = regions.find(r => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
   const dongs = regions.filter(r => r.districtSlug === districtSlug && r.subDistrictSlug !== 'all');
