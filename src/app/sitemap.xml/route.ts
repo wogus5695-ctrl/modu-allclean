@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
+import { DOMAIN } from '@/lib/seo';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
@@ -48,18 +48,20 @@ export async function GET() {
     });
   });
 
-  // 5. 인덱싱 지정된 동 단위 한글 조합 추가 (예: ?k=서빙고동-쓰레기집청소)
+  // 5. 모든 동 단위 한글 조합 추가 (예: ?k=서빙고동-쓰레기집청소)
   regions.filter(r => r.subDistrictSlug !== 'all').forEach(dong => {
-    services.forEach(service => {
-      const comboKey = `${dong.districtSlug}-${dong.subDistrictSlug}-${service.id}`;
-      if (INDEXED_DONG_COMBINATIONS.includes(comboKey)) {
+    const parentRegion = regions.find((r) => r.districtSlug === dong.districtSlug && r.subDistrictSlug === 'all');
+    const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
+
+    if (isParentIndexed) {
+      services.filter(s => s.indexStatus === 'index').forEach(service => {
         urls.push({
           url: `${DOMAIN}/?k=${dong.subDistrict}-${service.serviceNameKo}`,
           priority: 0.5,
           changeFrequency: 'weekly'
         });
-      }
-    });
+      });
+    }
   });
 
   // 단일 XML 사이트맵 생성

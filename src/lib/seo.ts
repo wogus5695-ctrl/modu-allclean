@@ -133,15 +133,14 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
   
-  // 인덱싱 로직 (Gu는 index, Dong은 특정 리스트만 index)
+  // 인덱싱 로직 (Gu는 index, Dong도 구/서비스 인덱스 여부에 따라 전체 index로 확장)
   let indexStatus: 'index' | 'noindex' = 'noindex';
   if (subDistrictSlug === 'all') {
     indexStatus = (region.indexStatus === 'index' && service.indexStatus === 'index') ? 'index' : 'noindex';
   } else {
-    const comboKey = `${districtSlug}-${subDistrictSlug}-${serviceId}`;
-    if (INDEXED_DONG_COMBINATIONS.includes(comboKey)) {
-      indexStatus = 'index';
-    }
+    const parentRegion = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
+    const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
+    indexStatus = (isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
   }
 
   const k = subDistrictSlug === 'all' 
