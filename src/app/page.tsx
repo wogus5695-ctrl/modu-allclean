@@ -1,5 +1,7 @@
 import { Metadata } from 'next';
 import MainTemplate from '@/components/MainTemplate';
+
+export const dynamic = 'force-dynamic';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
 import { getLandingMetadata, getMainMetadata } from '@/lib/seo';
