@@ -8,32 +8,173 @@ interface Props {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
-// k 파라미터(슬러그)를 해석하여 적절한 region과 service를 추출하는 함수
-function parseK(k: string) {
-  // services 목록에서 k의 끝부분과 매칭되는 service를 찾음
-  const service = services.find(s => k.endsWith(s.serviceSlug));
-  if (!service) return null;
+// 유연한 한글 서비스명 매핑 사전
+const SERVICE_NAME_MAP: { [key: string]: string } = {
+  '외벽': 'outer-wall',
+  '외벽청소': 'outer-wall',
+  '유리창': 'window',
+  '유리창청소': 'window',
+  '화재': 'fire',
+  '화재청소': 'fire',
+  '바닥': 'floor-wax',
+  '바닥청소': 'floor-wax',
+  '바닥왁스': 'floor-wax',
+  '바닥왁스코팅': 'floor-wax',
+  '왁스코팅': 'floor-wax',
+  '어닝': 'awning',
+  '어닝청소': 'awning',
+  '간판': 'signboard',
+  '간판청소': 'signboard',
+  '인테리어': 'interior-post',
+  '인테리어청소': 'interior-post',
+  '인테리어후청소': 'interior-post',
+  '인테리어 후 청소': 'interior-post',
+  '입주': 'interior-post',
+  '입주청소': 'interior-post',
+  '이사': 'interior-post',
+  '이사청소': 'interior-post',
+  '준공': 'completion',
+  '준공청소': 'completion',
+  '후드': 'hood',
+  '후드청소': 'hood',
+  '주방후드': 'hood',
+  '주방후드청소': 'hood',
+  '기름때': 'hood',
+  '쓰레기': 'trash-house',
+  '쓰레기청소': 'trash-house',
+  '쓰레기집': 'trash-house',
+  '쓰레기집청소': 'trash-house',
+  '특수': 'special-cleaning',
+  '특수청소': 'special-cleaning',
+};
 
-  // k에서 serviceSlug 부분을 잘라냄 (예: "seoul-gangnam-yeoksam-dong")
-  const regionPart = k.slice(0, -(service.serviceSlug.length + 1));
+// 두 문자열의 레벤슈타인 거리(편집 거리)를 계산하여 오타를 보정함
+function getLevenshteinDistance(a: string, b: string): number {
+  const tmp = [];
+  for (let i = 0; i <= a.length; i++) {
+    tmp[i] = [i];
+  }
+  for (let j = 0; j <= b.length; j++) {
+    tmp[0][j] = j;
+  }
+  for (let i = 1; i <= a.length; i++) {
+    for (let j = 1; j <= b.length; j++) {
+      tmp[i][j] = Math.min(
+        tmp[i - 1][j] + 1, // 삭제
+        tmp[i][j - 1] + 1, // 삽입
+        tmp[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1) // 대체
+      );
+    }
+  }
+  return tmp[a.length][b.length];
+}
+
+// 한글 텍스트에서 가장 유사한 동(subDistrict)을 매칭하는 함수
+function findClosestSubDistrict(inputRegion: string) {
+  // '동'이나 '구' 접미사가 생략되었거나 붙어있는 경우 모두 유연하게 매칭하기 위해 정제
+  const cleanInput = inputRegion.trim().replace(/(동|구)$/, '');
   
-  const parts = regionPart.split('-');
-  if (parts.length < 2) return null;
+  let bestRegion = null;
+  let minDistance = Infinity;
 
-  const citySlug = parts[0];
-  const districtSlug = parts[1];
-  const subDistrictSlug = parts.slice(2).join('-');
+  for (const r of regions) {
+    if (r.subDistrict === '전지역') continue;
+    
+    const cleanSub = r.subDistrict.replace(/동$/, '');
+    
+    // 1차: 완전히 일치하는 경우
+    if (cleanSub === cleanInput) {
+      return r;
+    }
 
-  // regions 목록에서 해당하는 지역 정보 매칭
-  const region = regions.find(r => 
-    r.regionSlug === citySlug && 
-    r.districtSlug === districtSlug && 
-    (subDistrictSlug ? r.subDistrictSlug === subDistrictSlug : r.subDistrictSlug === 'all')
-  );
+    // 2차: 편집 거리 계산
+    const distance = getLevenshteinDistance(cleanInput, cleanSub);
+    if (distance < minDistance) {
+      minDistance = distance;
+      bestRegion = r;
+    }
+  }
 
-  if (!region) return null;
+  // 편집 거리 허용치 설정 (글자 수가 3글자 내외이므로 거리가 1 이하인 경우만 오타 보정)
+  if (minDistance <= 1 && bestRegion) {
+    return bestRegion;
+  }
 
-  return { region, service };
+  return null;
+}
+
+// k 파라미터(슬러그 또는 한글 키워드)를 해석하여 적절한 region과 service를 추출하는 함수
+function parseK(k: string) {
+  if (!k) return null;
+
+  // URL 인코딩된 문자열을 한글 및 일반 특수기호 형태로 디코딩
+  let decodedK = '';
+  try {
+    decodedK = decodeURIComponent(k).trim();
+  } catch (e) {
+    decodedK = k.trim();
+  }
+
+  // 1. 기존 영어 슬러그 기반 파싱 시도 (하위 호환성 100% 보장)
+  const englishService = services.find(s => decodedK.endsWith(s.serviceSlug));
+  if (englishService) {
+    const regionPart = decodedK.slice(0, -(englishService.serviceSlug.length + 1));
+    const parts = regionPart.split('-');
+    if (parts.length >= 2) {
+      const citySlug = parts[0];
+      const districtSlug = parts[1];
+      const subDistrictSlug = parts.slice(2).join('-');
+
+      const region = regions.find(r => 
+        r.regionSlug === citySlug && 
+        r.districtSlug === districtSlug && 
+        (subDistrictSlug ? r.subDistrictSlug === subDistrictSlug : r.subDistrictSlug === 'all')
+      );
+      if (region) {
+        return { region, service: englishService };
+      }
+    }
+  }
+
+  // 2. 한글 기반 파싱 시도 (예: "서빙고동-쓰레기집청소", "세빙고동-쓰레기청소", "용산구-외벽청소")
+  const parts = decodedK.split('-');
+  if (parts.length >= 1) {
+    // 2-1. 서비스 매칭 (가장 마지막 조각)
+    const inputServiceStr = parts[parts.length - 1].trim();
+    const serviceId = SERVICE_NAME_MAP[inputServiceStr];
+    const service = services.find(s => s.id === serviceId);
+
+    if (service) {
+      // 2-2. 지역 매칭 (서비스 조각을 제외한 앞부분 조각들)
+      const regionParts = parts.slice(0, parts.length - 1);
+      
+      // 만약 지역 정보가 아예 안 들어오고 서비스만 들어온 경우 ("?k=쓰레기집청소")
+      if (regionParts.length === 0) {
+        return null;
+      }
+
+      // 가장 마지막에 나타난 지역명(예: "용산구-세빙고동" 중 "세빙고동")을 우선적으로 탐색
+      const inputRegionStr = regionParts[regionParts.length - 1].trim();
+
+      // 구 단위 매칭 시도 (예: "용산구", "강남구")
+      const inputDistrictClean = inputRegionStr.replace(/구$/, '');
+      const districtRegion = regions.find(r => 
+        r.district.replace(/구$/, '') === inputDistrictClean && 
+        r.subDistrictSlug === 'all'
+      );
+      if (districtRegion && regionParts.length === 1) {
+        return { region: districtRegion, service };
+      }
+
+      // 동 단위 매칭 시도 (예: "서빙고동", "세빙고동")
+      const closestRegion = findClosestSubDistrict(inputRegionStr);
+      if (closestRegion) {
+        return { region: closestRegion, service };
+      }
+    }
+  }
+
+  return null;
 }
 
 // 쿼리 파라미터 k가 존재할 시 타겟화된 키워드 메타데이터 생성
