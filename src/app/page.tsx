@@ -136,28 +136,34 @@ function parseK(k: string) {
     }
   }
 
-  // 2. 한글 기반 파싱 시도 (예: "서빙고동-쓰레기집청소", "세빙고동-쓰레기청소", "용산구-외벽청소")
+  // 2. 한글 기반 파싱 시도 (예: "서빙고동-인테리어-후-청소", "용산구-외벽청소")
+  // 하이픈으로 쪼갠 후, 서비스명을 만족하는 가장 긴 뒷부분을 찾고 나머지를 지역명으로 해석하는 백트래킹(Backtracking) 기법 적용
   const parts = decodedK.split('-');
-  if (parts.length >= 1) {
-    // 2-1. 서비스 매칭 (가장 마지막 조각)
-    const inputServiceStr = parts[parts.length - 1].trim();
-    const serviceId = SERVICE_NAME_MAP[inputServiceStr];
+  for (let i = 1; i < parts.length; i++) {
+    const inputRegionStr = parts.slice(0, i).join('-').trim(); // 앞부분 전체를 지역명으로 가정
+    const inputServiceStr = parts.slice(i).join('-').trim();    // 뒷부분 전체를 서비스명으로 가정
+
+    const cleanServiceStr = inputServiceStr.replace(/[\s-]/g, '');
+    let serviceId = SERVICE_NAME_MAP[inputServiceStr] || SERVICE_NAME_MAP[cleanServiceStr];
+
+    if (!serviceId) {
+      const matchedService = services.find(s => s.serviceNameKo.replace(/[\s-]/g, '') === cleanServiceStr);
+      if (matchedService) {
+        serviceId = matchedService.id;
+      }
+    }
+
     const service = services.find(s => s.id === serviceId);
 
     if (service) {
-      // 2-2. 지역 매칭 (서비스 조각을 제외한 앞부분 조각들)
-      const regionParts = parts.slice(0, parts.length - 1);
+      // 2-2. 지역 매칭 시도
       
-      // 만약 지역 정보가 아예 안 들어오고 서비스만 들어온 경우 ("?k=쓰레기집청소")
-      if (regionParts.length === 0) {
-        return null;
-      }
+      // 용산구-세빙고동 같이 지역 조각이 여러 개인 경우 가장 마지막에 나타난 지역명을 탐색
+      const regionParts = inputRegionStr.split('-');
+      const targetRegionStr = regionParts[regionParts.length - 1].trim();
 
-      // 가장 마지막에 나타난 지역명(예: "용산구-세빙고동" 중 "세빙고동")을 우선적으로 탐색
-      const inputRegionStr = regionParts[regionParts.length - 1].trim();
-
-      // 구 단위 매칭 시도 (예: "용산구", "강남구")
-      const inputDistrictClean = inputRegionStr.replace(/구$/, '');
+      // 구 단위 매칭 시도
+      const inputDistrictClean = targetRegionStr.replace(/구$/, '');
       const districtRegion = regions.find(r => 
         r.district.replace(/구$/, '') === inputDistrictClean && 
         r.subDistrictSlug === 'all'
@@ -166,8 +172,8 @@ function parseK(k: string) {
         return { region: districtRegion, service };
       }
 
-      // 동 단위 매칭 시도 (예: "서빙고동", "세빙고동")
-      const closestRegion = findClosestSubDistrict(inputRegionStr);
+      // 동 단위 매칭 시도
+      const closestRegion = findClosestSubDistrict(targetRegionStr);
       if (closestRegion) {
         return { region: closestRegion, service };
       }
