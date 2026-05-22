@@ -1,6 +1,8 @@
 import { services } from '@/data/services';
 import { portfolioItems } from '@/data/portfolio';
 import { BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
+import { regions, Region } from '@/data/regions';
+import Link from 'next/link';
 import SectionCTA from '@/components/SectionCTA';
 import FloatingContact from '@/components/FloatingContact';
 import styles from '@/app/page.module.css';
@@ -8,11 +10,13 @@ import styles from '@/app/page.module.css';
 interface MainTemplateProps {
   region?: string;
   service?: string;
+  regionObj?: Region;
 }
 
 export default function MainTemplate({ 
   region = '서울·경기', 
-  service = '종합청소' 
+  service = '종합청소',
+  regionObj
 }: MainTemplateProps) {
   
   // 메인 페이지용 서비스 그룹화 로직 (Sitemap-Seoul에는 영향을 주지 않음)
@@ -335,6 +339,35 @@ export default function MainTemplate({
             <div className={styles.contactInfo}>
               <a href={`tel:${CONTACT_PHONE}`} className={styles.mainPhone}>{CONTACT_PHONE}</a>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 9. SEO & Internal Links (하단 배치, 자연스러운 디자인) */}
+      <section style={{ padding: '40px 20px', backgroundColor: '#f9f9f9', borderTop: '1px solid #eaeaea', textAlign: 'center' }}>
+        <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <h3 style={{ fontSize: '15px', color: '#555', marginBottom: '15px', fontWeight: 'bold' }}>
+            {region} {service} 및 주변 지역 서비스 안내
+          </h3>
+          <p style={{ fontSize: '13px', color: '#777', lineHeight: '1.8', marginBottom: '20px', wordBreak: 'keep-all' }}>
+            {BRAND_NAME}은 {region} 지역의 {service}뿐만 아니라 입주청소, 이사청소, 준공청소, 상가청소, 외벽청소 등 
+            현장에 필요한 모든 종합청소 솔루션을 완벽하게 제공합니다. 
+            주변 지역의 청소 서비스가 필요하시다면 아래 링크를 통해 상세 정보를 확인해 보세요.
+          </p>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
+            {regionObj && regions.filter(r => r.districtSlug === regionObj.districtSlug && r.subDistrictSlug !== 'all' && r.subDistrictSlug !== regionObj.subDistrictSlug).slice(0, 20).map(r => {
+              const serviceSlug = services.find(s => s.serviceNameKo === service)?.serviceSlug || 'interior-post';
+              const k = `${r.regionSlug}-${r.districtSlug}-${r.subDistrictSlug}-${serviceSlug}`;
+              return (
+                <Link 
+                  key={r.subDistrictSlug} 
+                  href={`/?k=${k}`} 
+                  style={{ fontSize: '12px', padding: '6px 12px', backgroundColor: '#fff', border: '1px solid #ddd', borderRadius: '20px', color: '#666', textDecoration: 'none' }}
+                >
+                  {r.district} {r.subDistrict} {service}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>

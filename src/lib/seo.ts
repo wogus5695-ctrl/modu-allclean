@@ -46,6 +46,8 @@ interface SeoOptions {
   path: string;
   indexStatus?: 'index' | 'noindex';
   ogType?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
 }
 
 export function getBaseMetadata({ 
@@ -53,7 +55,9 @@ export function getBaseMetadata({
   description, 
   path, 
   indexStatus = 'index', 
-  ogType = 'website' 
+  ogType = 'website',
+  publishedTime,
+  modifiedTime
 }: SeoOptions): Metadata {
   const url = `${DOMAIN}${path}`;
   const robots = indexStatus === 'index' ? 'index, follow' : 'noindex, follow';
@@ -76,7 +80,9 @@ export function getBaseMetadata({
       type: ogType,
       images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: title }],
       siteName: BRAND_NAME,
-    },
+      publishedTime: publishedTime,
+      modifiedTime: modifiedTime,
+    } as any,
     twitter: {
       card: 'summary_large_image',
       title: title,
@@ -154,6 +160,9 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     description: `${regionName} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`,
     indexStatus: indexStatus,
     path: path,
+    ogType: 'article',
+    publishedTime: new Date().toISOString(),
+    modifiedTime: new Date().toISOString(),
   });
 }
 
@@ -235,5 +244,63 @@ export function getJsonLd() {
         'position': index + 1
       }))
     }
+  };
+}
+
+// 7. 문서(Article) 스키마 생성기
+export function getArticleJsonLd(title: string, description: string, url: string) {
+  const now = new Date().toISOString();
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    'headline': title,
+    'description': description,
+    'author': {
+      '@type': 'Organization',
+      'name': BRAND_NAME
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': BRAND_NAME,
+      'logo': {
+        '@type': 'ImageObject',
+        'url': `${DOMAIN}/logo.png`
+      }
+    },
+    'datePublished': now,
+    'dateModified': now,
+    'mainEntityOfPage': {
+      '@type': 'WebPage',
+      '@id': url
+    },
+    'image': DEFAULT_OG_IMAGE
+  };
+}
+
+// 8. 이동경로(Breadcrumb) 스키마 생성기
+export function getBreadcrumbJsonLd(regionName: string, serviceName: string, url: string) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': '홈',
+        'item': DOMAIN
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': regionName,
+        'item': `${DOMAIN}/sitemap-seoul`
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': serviceName,
+        'item': url
+      }
+    ]
   };
 }

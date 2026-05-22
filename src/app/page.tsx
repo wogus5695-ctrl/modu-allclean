@@ -4,7 +4,7 @@ import MainTemplate from '@/components/MainTemplate';
 export const dynamic = 'force-dynamic';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
-import { getLandingMetadata, getMainMetadata } from '@/lib/seo';
+import { getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME } from '@/lib/seo';
 
 interface Props {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -225,13 +225,29 @@ export default async function Home({ searchParams }: Props) {
         }))
       };
 
+      // SEO 최적화 메타데이터 생성 (동일 로직 재사용)
+      const title = `${regionName} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
+      const description = `${regionName} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`;
+      const url = `${DOMAIN}/?k=${k}`;
+      
+      const articleJsonLd = getArticleJsonLd(title, description, url);
+      const breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
+
       return (
         <>
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
           />
-          <MainTemplate region={regionName} service={service.serviceNameKo} />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+          />
+          <MainTemplate region={regionName} service={service.serviceNameKo} regionObj={region} />
         </>
       );
     }

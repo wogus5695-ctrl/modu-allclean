@@ -38,17 +38,17 @@ export async function GET() {
       changeFrequency: 'weekly'
     });
 
-    // 구 단위 한글 조합 (예: ?k=용산구-외벽청소)
+    // 구 단위 영문 슬러그 조합 (canonical 태그 일치)
     services.filter(s => s.indexStatus === 'index').forEach(service => {
       urls.push({
-        url: `${DOMAIN}/?k=${region.district}-${service.serviceNameKo}`,
+        url: `${DOMAIN}/?k=${region.regionSlug}-${region.districtSlug}-${service.serviceSlug}`,
         priority: 0.7,
         changeFrequency: 'weekly'
       });
     });
   });
 
-  // 5. 모든 동 단위 한글 조합 추가 (예: ?k=서빙고동-쓰레기집청소)
+  // 5. 모든 동 단위 영문 슬러그 조합 (canonical 태그 일치)
   regions.filter(r => r.subDistrictSlug !== 'all').forEach(dong => {
     const parentRegion = regions.find((r) => r.districtSlug === dong.districtSlug && r.subDistrictSlug === 'all');
     const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
@@ -56,7 +56,7 @@ export async function GET() {
     if (isParentIndexed) {
       services.filter(s => s.indexStatus === 'index').forEach(service => {
         urls.push({
-          url: `${DOMAIN}/?k=${dong.subDistrict}-${service.serviceNameKo}`,
+          url: `${DOMAIN}/?k=${dong.regionSlug}-${dong.districtSlug}-${dong.subDistrictSlug}-${service.serviceSlug}`,
           priority: 0.5,
           changeFrequency: 'weekly'
         });
