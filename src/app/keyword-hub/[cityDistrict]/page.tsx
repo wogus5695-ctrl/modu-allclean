@@ -65,7 +65,7 @@ export default async function KeywordHubPage({ params }: Props) {
             <h2>{region.district} 주요 작업 바로가기</h2>
             <div className={styles.guLinkGrid}>
               {services.map(service => (
-                <Link key={service.id} href={`/?k=${region.regionSlug}-${region.districtSlug}-${service.serviceSlug}`} className={styles.guLink}>
+                <Link key={service.id} href={`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`} className={styles.guLink}>
                   {region.district} {service.serviceNameKo}
                 </Link>
               ))}
@@ -82,7 +82,7 @@ export default async function KeywordHubPage({ params }: Props) {
                   <h3>{dong.subDistrict}</h3>
                   <div className={styles.dongSubLinks}>
                     {services.slice(0, 5).map(service => (
-                      <Link key={service.id} href={`/?k=${dong.regionSlug}-${dong.districtSlug}-${dong.subDistrictSlug}-${service.serviceSlug}`}>
+                      <Link key={service.id} href={`/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`}>
                         {service.serviceNameKo}
                       </Link>
                     ))}

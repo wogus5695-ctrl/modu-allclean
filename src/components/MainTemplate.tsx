@@ -357,11 +357,10 @@ export default function MainTemplate({
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
             {regionObj && regions.filter(r => r.districtSlug === regionObj.districtSlug && r.subDistrictSlug !== 'all' && r.subDistrictSlug !== regionObj.subDistrictSlug).slice(0, 20).map(r => {
               const serviceSlug = services.find(s => s.serviceNameKo === service)?.serviceSlug || 'interior-post';
-              const k = `${r.regionSlug}-${r.districtSlug}-${r.subDistrictSlug}-${serviceSlug}`;
               return (
                 <Link 
                   key={r.subDistrictSlug} 
-                  href={`/?k=${k}`} 
+                  href={`/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}/${serviceSlug}`} 
                   style={{ fontSize: '12px', padding: '6px 12px', backgroundColor: '#fff', border: '1px solid #ddd', borderRadius: '20px', color: '#666', textDecoration: 'none' }}
                 >
                   {r.district} {r.subDistrict} {service}

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { DOMAIN } from '@/lib/seo';
+import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
@@ -38,29 +38,38 @@ export async function GET() {
       changeFrequency: 'weekly'
     });
 
-    // 구 단위 영문 슬러그 조합 (canonical 태그 일치)
+    // 구 단위 영문 슬러그 조합 (Clean URL 형태)
     services.filter(s => s.indexStatus === 'index').forEach(service => {
       urls.push({
-        url: `${DOMAIN}/?k=${region.regionSlug}-${region.districtSlug}-${service.serviceSlug}`,
+        url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
         priority: 0.7,
         changeFrequency: 'weekly'
       });
     });
   });
 
-  // 5. 모든 동 단위 영문 슬러그 조합 (canonical 태그 일치)
-  regions.filter(r => r.subDistrictSlug !== 'all').forEach(dong => {
-    const parentRegion = regions.find((r) => r.districtSlug === dong.districtSlug && r.subDistrictSlug === 'all');
-    const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
+  // 5. 핵심 동 단위 영문 슬러그 조합 (Clean URL 형태)
+  INDEXED_DONG_COMBINATIONS.forEach(combo => {
+    const service = services.find(s => combo.endsWith(s.id));
+    if (service && service.indexStatus === 'index') {
+      const regionPart = combo.slice(0, -(service.id.length + 1));
+      const regionParts = regionPart.split('-');
+      if (regionParts.length >= 2) {
+        const districtSlug = regionParts[0];
+        const subDistrictSlug = regionParts.slice(1).join('-');
 
-    if (isParentIndexed) {
-      services.filter(s => s.indexStatus === 'index').forEach(service => {
-        urls.push({
-          url: `${DOMAIN}/?k=${dong.regionSlug}-${dong.districtSlug}-${dong.subDistrictSlug}-${service.serviceSlug}`,
-          priority: 0.5,
-          changeFrequency: 'weekly'
-        });
-      });
+        const region = regions.find(r => 
+          r.districtSlug === districtSlug && 
+          r.subDistrictSlug === subDistrictSlug
+        );
+        if (region) {
+          urls.push({
+            url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`,
+            priority: 0.5,
+            changeFrequency: 'weekly'
+          });
+        }
+      }
     }
   });
 
