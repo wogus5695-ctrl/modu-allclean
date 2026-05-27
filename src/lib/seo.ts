@@ -149,9 +149,14 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
 
+  const isDistrictLevel = subDistrictSlug === 'all' || region.subDistrict === '전지역';
+  const shortDistrict = region.district.replace(/(구|시)$/, '');
+  const titleRegion = isDistrictLevel ? `${region.district} ${shortDistrict}` : `${region.district} ${region.subDistrict}`;
+  const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : `${region.district} ${region.subDistrict}`;
+
   return getBaseMetadata({
-    title: `${regionName} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,
-    description: `${regionName} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`,
+    title: `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,
+    description: `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`,
     indexStatus: indexStatus,
     path: path,
     ogType: 'article',
