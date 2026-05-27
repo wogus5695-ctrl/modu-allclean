@@ -39,6 +39,26 @@ export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/services/outer-wall.jpg`;
 export const NAVER_VERIFICATION = '43f9e9e2c0022b1961730e583c46aef2bc51b2fa'; // 네이버 서치어드바이저 연동 코드
 export const GOOGLE_VERIFICATION = 'Ii7CJaIsKz33EVUVJhJfnbT6cv7MN_4Nda52eMQOv7s'; // 구글 서치 콘솔 연동 코드
 
+// 실제 public 폴더 내에 존재하는 유효한 썸네일 이미지 화이트리스트
+export const VALID_OG_IMAGES = [
+  '/images/services/outer-wall.jpg',
+  '/images/services/window.jpg',
+  '/images/services/fire.jpg',
+  '/images/services/floor-wax.jpg',
+  '/images/services/awning.jpg',
+  '/images/services/signboard.jpg',
+  '/images/services/interior-post.jpg',
+  '/images/services/completion.jpg',
+  '/images/services/hood.jpg',
+  '/images/services/trash-house.jpg',
+  '/images/services/special-cleaning.jpg',
+  '/images/services/awning-sign.jpg',
+  '/images/services/interior-completion.jpg',
+  '/images/og-main.jpg',
+  '/images/og-image.jpg',
+  '/images/hero-bg.jpg',
+];
+
 // --- SEO 기본 메타데이터 생성기 ---
 interface SeoOptions {
   title: string;
@@ -63,7 +83,24 @@ export function getBaseMetadata({
 }: SeoOptions): Metadata {
   const url = `${DOMAIN}${path}`;
   const robots = indexStatus === 'index' ? 'index, follow' : 'noindex, follow';
-  const finalOgImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${DOMAIN}${ogImage}`) : DEFAULT_OG_IMAGE;
+  
+  let finalOgImage = DEFAULT_OG_IMAGE;
+  if (ogImage) {
+    if (ogImage.startsWith('http')) {
+      finalOgImage = ogImage;
+    } else {
+      // 화이트리스트에 정확히 존재하는 이미지인지 검증하여 안정성 100% 보장
+      const isValid = VALID_OG_IMAGES.some(validPath => 
+        ogImage === validPath || ogImage.replace(/\/+/, '/') === validPath
+      );
+      if (isValid) {
+        finalOgImage = `${DOMAIN}${ogImage}`;
+      } else {
+        // 비정상 경로이거나 파일이 존재하지 않는 경우 자동으로 외벽청소(기본) 이미지로 폴백
+        finalOgImage = DEFAULT_OG_IMAGE;
+      }
+    }
+  }
 
   return {
     title: title,
