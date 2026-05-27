@@ -35,7 +35,7 @@ export const CONTACT_PHONE = '010-4667-5568'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4667-5568'; // 문자 상담 링크
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
 export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
-export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/og-main.jpg`;
+export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/services/outer-wall.jpg`;
 export const NAVER_VERIFICATION = '43f9e9e2c0022b1961730e583c46aef2bc51b2fa'; // 네이버 서치어드바이저 연동 코드
 export const GOOGLE_VERIFICATION = 'Ii7CJaIsKz33EVUVJhJfnbT6cv7MN_4Nda52eMQOv7s'; // 구글 서치 콘솔 연동 코드
 
@@ -48,6 +48,7 @@ interface SeoOptions {
   ogType?: 'website' | 'article';
   publishedTime?: string;
   modifiedTime?: string;
+  ogImage?: string;
 }
 
 export function getBaseMetadata({ 
@@ -57,10 +58,12 @@ export function getBaseMetadata({
   indexStatus = 'index', 
   ogType = 'website',
   publishedTime,
-  modifiedTime
+  modifiedTime,
+  ogImage
 }: SeoOptions): Metadata {
   const url = `${DOMAIN}${path}`;
   const robots = indexStatus === 'index' ? 'index, follow' : 'noindex, follow';
+  const finalOgImage = ogImage ? (ogImage.startsWith('http') ? ogImage : `${DOMAIN}${ogImage}`) : DEFAULT_OG_IMAGE;
 
   return {
     title: title,
@@ -78,7 +81,7 @@ export function getBaseMetadata({
       description: description,
       url: url,
       type: ogType,
-      images: [{ url: DEFAULT_OG_IMAGE, width: 1200, height: 630, alt: title }],
+      images: [{ url: finalOgImage, width: 1200, height: 630, alt: title }],
       siteName: BRAND_NAME,
       publishedTime: publishedTime,
       modifiedTime: modifiedTime,
@@ -87,7 +90,7 @@ export function getBaseMetadata({
       card: 'summary_large_image',
       title: title,
       description: description,
-      images: [DEFAULT_OG_IMAGE],
+      images: [finalOgImage],
     },
   };
 }
@@ -114,6 +117,7 @@ export function getServiceMetadata(serviceId: string): Metadata {
     description: `${service.serviceNameKo} 전문 ${BRAND_NAME}입니다. ${service.shortDescription} 상가, 빌딩, 관공서 등 모든 현장 맞춤형 시공을 약속합니다.`,
     indexStatus: service.indexStatus,
     path: `/service/${service.serviceSlug}`,
+    ogImage: service.imageUrl,
   });
 }
 
@@ -162,6 +166,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     ogType: 'article',
     publishedTime: new Date().toISOString(),
     modifiedTime: new Date().toISOString(),
+    ogImage: service.imageUrl,
   });
 }
 
