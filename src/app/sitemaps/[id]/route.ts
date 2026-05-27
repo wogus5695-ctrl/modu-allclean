@@ -65,17 +65,14 @@ export async function GET(request: Request, { params }: Props) {
         changeFrequency: 'weekly'
       });
 
-      // 2. 인덱스된 동 단위 조합 추가
+      // 2. 모든 동 단위 조합 추가
       regions.filter(r => r.districtSlug === districtSlug && r.subDistrictSlug !== 'all').forEach(dong => {
-        services.forEach(service => {
-          const comboKey = `${districtSlug}-${dong.subDistrictSlug}-${service.id}`;
-          if (INDEXED_DONG_COMBINATIONS.includes(comboKey)) {
-            urls.push({
-              url: `${DOMAIN}/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
-              priority: 0.5,
-              changeFrequency: 'weekly'
-            });
-          }
+        services.filter(s => s.indexStatus === 'index').forEach(service => {
+          urls.push({
+            url: `${DOMAIN}/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
+            priority: 0.5,
+            changeFrequency: 'weekly'
+          });
         });
       });
     }

@@ -197,11 +197,11 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
       return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id);
     } else {
       // k 파라미터가 존재하지만 파싱에 실패한 경우 (오타, 잘못된 유입 등)
-      // 검색 엔진이 중복 페이지로 수집하지 않도록 noindex를 주입합니다.
-      const mainMetadata = getMainMetadata();
+      // 검색 엔진이 중복 페이지로 수집하지 않도록 noindex를 주입하고 고유한 제목을 부여합니다.
       return {
-        ...mainMetadata,
-        robots: 'noindex, follow',
+        title: `페이지를 찾을 수 없습니다 | ${BRAND_NAME}`,
+        description: '요청하신 페이지를 찾을 수 없거나 변경되었습니다. 주소를 다시 확인해 주세요.',
+        robots: 'noindex, nofollow',
       };
     }
   }

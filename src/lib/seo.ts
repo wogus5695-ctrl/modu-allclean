@@ -139,20 +139,10 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
   
-  // 인덱싱 로직 (Gu는 index, Dong은 INDEXED_DONG_COMBINATIONS에 포함된 조합만 index)
-  let indexStatus: 'index' | 'noindex' = 'noindex';
-  if (subDistrictSlug === 'all') {
-    indexStatus = (region.indexStatus === 'index' && service.indexStatus === 'index') ? 'index' : 'noindex';
-  } else {
-    const comboKey = `${districtSlug}-${subDistrictSlug}-${serviceId}`;
-    if (INDEXED_DONG_COMBINATIONS.includes(comboKey)) {
-      const parentRegion = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
-      const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
-      indexStatus = (isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
-    } else {
-      indexStatus = 'noindex';
-    }
-  }
+  // 인덱싱 로직 (구 및 동 단위 모든 유효 페이지는 index 상태로 지정)
+  const parentRegion = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
+  const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
+  const indexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
 
   // clean URL 기반 path 지정
   const path = subDistrictSlug === 'all'
