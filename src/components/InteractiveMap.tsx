@@ -46,7 +46,7 @@ export default function InteractiveMap() {
               <h3>서울특별시</h3>
               <p>전 지역 집중 관리 서비스 제공</p>
               <div className={styles.seoulBox}>
-                <Link href="/area/seoul/gangnam" className={styles.seoulBtn}>
+                <Link href="/area/seoul/mapo" className={styles.seoulBtn}>
                   서울 전 지역 서비스 거점 확인하기 →
                 </Link>
               </div>

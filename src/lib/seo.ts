@@ -4,27 +4,12 @@ import { regions } from '@/data/regions';
 
 // 초기 인덱싱 권장 동 단위 조합 (구Slug-동Slug-서비스Id)
 export const INDEXED_DONG_COMBINATIONS = [
-  'gangnam-yeoksam-dong-outer-wall',
-  'gangnam-yeoksam-dong-window',
-  'gangnam-nonhyeon-dong-outer-wall',
-  'gangnam-nonhyeon-dong-signboard',
-  'gangnam-samseong-dong-window',
-  'gangnam-samseong-dong-completion',
-  'gangnam-cheongdam-dong-awning',
-  'gangnam-cheongdam-dong-signboard',
-  'seocho-seocho-dong-completion',
-  'seocho-banpo-dong-window',
-  'songpa-jamsil-dong-window',
-  'songpa-munjeong-dong-interior-post',
-  // 추가된 주요 동 키워드
   'jongno-insadong-special-cleaning',
   'jongno-ikseondong-trash-house',
   'yongsan-hannam-dong-window',
   'yongsan-itaewon-dong-special-cleaning',
   'mapo-seogyo-dong-awning',
   'mapo-yeonnam-dong-signboard',
-  'seongdong-seongsu-dong-floor-wax',
-  'gwangjin-hwayang-dong-trash-house',
 ];
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
@@ -227,7 +212,7 @@ export function getKeywordHubMetadata(cityDistrict: string): Metadata {
 export function getSitemapMetadata(): Metadata {
   return getBaseMetadata({
     title: `서울 전 지역 종합청소 서비스 키워드 맵 | ${BRAND_NAME}`,
-    description: `서울 강남, 서초, 송파, 강동 등 전 지역의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
+    description: `서울 마포, 은평, 영등포, 용산 등 전 지역의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
     indexStatus: 'index',
     path: `/sitemap-seoul`,
   });
