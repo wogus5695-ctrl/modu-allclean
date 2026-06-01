@@ -10,7 +10,7 @@ export const metadata: Metadata = getSitemapMetadata();
 
 export default function SitemapSeoulPage() {
   // 구 단위 리스트 추출
-  const districts = Array.from(new Set(regions.map(r => r.districtSlug)));
+  const districts = Array.from(new Set(regions.filter(r => r.regionSlug === 'seoul').map(r => r.districtSlug)));
 
   return (
     <div className={styles.wrapper}>

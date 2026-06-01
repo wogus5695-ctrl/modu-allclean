@@ -175,10 +175,15 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
 
+  const isIncheon = region.regionSlug === 'incheon';
   const isDistrictLevel = subDistrictSlug === 'all' || region.subDistrict === '전지역';
-  const shortDistrict = region.district.replace(/(구|시)$/, '');
-  const titleRegion = isDistrictLevel ? `${region.district} ${shortDistrict}` : `${region.district} ${region.subDistrict}`;
-  const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : `${region.district} ${region.subDistrict}`;
+  const shortDistrict = isIncheon ? region.district : region.district.replace(/(구|시)$/, '');
+  const titleRegion = isDistrictLevel 
+    ? (isIncheon ? region.district : `${region.district} ${shortDistrict}`) 
+    : `${region.district} ${region.subDistrict}`;
+  const descRegion = isDistrictLevel 
+    ? (isIncheon ? region.district : `${region.district}(${shortDistrict})`) 
+    : `${region.district} ${region.subDistrict}`;
 
   return getBaseMetadata({
     title: `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,

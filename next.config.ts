@@ -24,6 +24,20 @@ const nextConfig: NextConfig = {
         destination: '/seoul/:district/:service',
         permanent: true,
       },
+      {
+        // 3. 인천 -gu 접미사가 붙은 구명을 표준 슬러그로 변환하여 리디렉션
+        // 예: /floor-wax-coating/yeonsu-gu -> /incheon/yeonsu/floor-wax-coating
+        source: '/:service(exterior-cleaning|window-cleaning|fire-cleaning|floor-wax-coating|awning-cleaning|signboard-cleaning|interior-post-cleaning|construction-completion-cleaning|hood-cleaning|hoarder-house-cleaning|special-cleaning)/:district(jung-gu-incheon|dong-gu-incheon|michuhol|yeonsu|namdong|bupyeong|gyeyang|seo-gu-incheon)-gu',
+        destination: '/incheon/:district/:service',
+        permanent: true,
+      },
+      {
+        // 4. 인천 표준 구명 패턴 리디렉션
+        // 예: /floor-wax-coating/yeonsu -> /incheon/yeonsu/floor-wax-coating
+        source: '/:service(exterior-cleaning|window-cleaning|fire-cleaning|floor-wax-coating|awning-cleaning|signboard-cleaning|interior-post-cleaning|construction-completion-cleaning|hood-cleaning|hoarder-house-cleaning|special-cleaning)/:district(jung-gu-incheon|dong-gu-incheon|michuhol|yeonsu|namdong|bupyeong|gyeyang|seo-gu-incheon)',
+        destination: '/incheon/:district/:service',
+        permanent: true,
+      },
     ];
   },
 };
