@@ -10,15 +10,15 @@ export const metadata: Metadata = getSitemapMetadata();
 
 export default function SitemapSeoulPage() {
   // 구 단위 리스트 추출
-  const districts = Array.from(new Set(regions.filter(r => r.regionSlug === 'seoul').map(r => r.districtSlug)));
+  const districts = Array.from(new Set(regions.map(r => r.districtSlug)));
 
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <div className={styles.container}>
-          <h1 className={styles.title}>서울 전 지역 종합청소 서비스 키워드 맵</h1>
+          <h1 className={styles.title}>서울·인천 전 지역 종합청소 서비스 키워드 맵</h1>
           <p className={styles.subtitle}>
-            {BRAND_NAME}이 제공하는 서울 전역의 지역별 맞춤 청소 솔루션을 한눈에 확인하실 수 있습니다.<br />
+            {BRAND_NAME}이 제공하는 서울 및 인천 전역의 지역별 맞춤 청소 솔루션을 한눈에 확인하실 수 있습니다.<br />
             원하시는 지역과 서비스를 선택하여 상세 정보를 확인하세요.
           </p>
         </div>
@@ -44,6 +44,7 @@ export default function SitemapSeoulPage() {
                     <span className={styles.dongName}>{districtRegion.district} 통합 키워드</span>
                     <div className={styles.serviceLinks}>
                       {services.map(service => {
+                        const isIncheon = districtRegion.regionSlug === 'incheon';
                         const shortDistrict = districtRegion.district.replace(/(구|시)$/, '');
                         return (
                           <React.Fragment key={service.id}>
@@ -53,12 +54,14 @@ export default function SitemapSeoulPage() {
                             >
                               {districtRegion.district} {service.serviceNameKo}
                             </Link>
-                            <Link 
-                              href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}`}
-                              className={styles.serviceLink}
-                            >
-                              {shortDistrict} {service.serviceNameKo}
-                            </Link>
+                            {!isIncheon && (
+                              <Link 
+                                href={`/${districtRegion.regionSlug}/${districtRegion.districtSlug}/${service.serviceSlug}`}
+                                className={styles.serviceLink}
+                              >
+                                {shortDistrict} {service.serviceNameKo}
+                              </Link>
+                            )}
                           </React.Fragment>
                         );
                       })}
