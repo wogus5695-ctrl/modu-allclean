@@ -12,7 +12,6 @@ export interface Region {
 }
 
 export const regions: Region[] = [
-  // --- 양천구 ---
   {
   city: '서울', district: '양천구', subDistrict: '목동',
   regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'mok-dong',
@@ -34,8 +33,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '다세대 주택 상가, 소규모 빌딩, 근린 시설',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 강서구 ---
   {
   city: '서울', district: '강서구', subDistrict: '마곡동',
   regionSlug: 'seoul', districtSlug: 'gangseo', subDistrictSlug: 'magok-dong',
@@ -92,8 +89,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '항공 업무 시설, 저층 상가, 빌라 상권',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 구로구 ---
   {
   city: '서울', district: '구로구', subDistrict: '구로동',
   regionSlug: 'seoul', districtSlug: 'guro', subDistrictSlug: 'guro-dong',
@@ -143,8 +138,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '신축 아파트 상가, 저층 근린 상가',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 금천구 ---
   {
   city: '서울', district: '금천구', subDistrict: '가산동',
   regionSlug: 'seoul', districtSlug: 'geumcheon', subDistrictSlug: 'gasan-dong',
@@ -166,8 +159,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '주택가 상가, 전통 시장 시설, 근린 생활 시설',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 영등포구 ---
   {
   city: '서울', district: '영등포구', subDistrict: '여의도동',
   regionSlug: 'seoul', districtSlug: 'yeongdeungpo', subDistrictSlug: 'yeouido-dong',
@@ -210,8 +201,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '시장 상가, 다세대 주택, 저층 빌딩',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 동작구 ---
   {
   city: '서울', district: '동작구', subDistrict: '상도동',
   regionSlug: 'seoul', districtSlug: 'dongjak', subDistrictSlug: 'sangdo-dong',
@@ -247,8 +236,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '아파트 단지 상가, 교육 시설 빌딩',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 관악구 ---
   {
   city: '서울', district: '관악구', subDistrict: '신림동',
   regionSlug: 'seoul', districtSlug: 'gwanak', subDistrictSlug: 'sillim-dong',
@@ -270,8 +257,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '역세권 상가 빌딩, 소규모 오피스',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 은평구 ---
   {
   city: '서울', district: '은평구', subDistrict: '녹번동',
   regionSlug: 'seoul', districtSlug: 'eunpyeong', subDistrictSlug: 'nokbeon-dong',
@@ -349,8 +334,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '신축 브랜드 아파트 상가, 주거용 빌딩',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 서대문구 ---
   {
   city: '서울', district: '서대문구', subDistrict: '남가좌동',
   regionSlug: 'seoul', districtSlug: 'seodaemun', subDistrictSlug: 'namgajwa-dong',
@@ -484,8 +467,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '역사 공원 시설, 인접 아파트 상가',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 마포구 ---
   {
   city: '서울', district: '마포구', subDistrict: '공덕동',
   regionSlug: 'seoul', districtSlug: 'mapo', subDistrictSlug: 'gongdeok-dong',
@@ -668,8 +649,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '트렌디 매장 상가, 소형 오피스텔',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 종로구 ---
   {
   city: '서울', district: '종로구', subDistrict: '청운효자동',
   regionSlug: 'seoul', districtSlug: 'jongno', subDistrictSlug: 'cheongunhyoja-dong',
@@ -775,8 +754,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '리모델링 한옥 상가, 트렌디 카페 빌딩, 소규모 상업 시설',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 중구 ---
   {
   city: '서울', district: '중구', subDistrict: '소공동',
   regionSlug: 'seoul', districtSlug: 'jung-gu', subDistrictSlug: 'sogong-dong',
@@ -854,8 +831,6 @@ export const regions: Region[] = [
   buildingCharacteristics: '오피스 타워, 역사적 주거 단지 상가, 근린 시설',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 용산구 ---
   {
   city: '서울', district: '용산구', subDistrict: '후암동',
   regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'huam-dong',
@@ -947,67 +922,65 @@ export const regions: Region[] = [
   buildingCharacteristics: '주택가 상가 빌딩, 재개발 구역 상권, 근린 시설',
   priority: 1, indexStatus: 'index'
   },
-
-  // --- 인천광역시 --- 
   {
-    city: '인천', district: '중구', subDistrict: '영종동',
-    regionSlug: 'incheon', districtSlug: 'jung-gu-incheon', subDistrictSlug: 'yeongjong-dong',
+    city: '인천', district: '인천중구', subDistrict: '영종동',
+    regionSlug: 'incheon', districtSlug: 'incheon-jung-gu', subDistrictSlug: 'yeongjong-dong',
     localDescription: '인천국제공항 인근의 영종도 주거 및 항공·관광 산업의 핵심 배후지입니다.',
     buildingCharacteristics: '신축 복합 오피스텔, 호텔 주변 상가, 관광레저 타워',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '중구', subDistrict: '운서동',
-    regionSlug: 'incheon', districtSlug: 'jung-gu-incheon', subDistrictSlug: 'unseo-dong',
+    city: '인천', district: '인천중구', subDistrict: '운서동',
+    regionSlug: 'incheon', districtSlug: 'incheon-jung-gu', subDistrictSlug: 'unseo-dong',
     localDescription: '공항 신도시가 위치하여 대규모 주거 단지와 공항 근로자 지원 시설이 밀집해 있습니다.',
     buildingCharacteristics: '원룸 타운 상가, 중대형 아파트 상가, 숙박 오피스텔',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '중구', subDistrict: '신흥동',
-    regionSlug: 'incheon', districtSlug: 'jung-gu-incheon', subDistrictSlug: 'shinheung-dong',
+    city: '인천', district: '인천중구', subDistrict: '신흥동',
+    regionSlug: 'incheon', districtSlug: 'incheon-jung-gu', subDistrictSlug: 'shinheung-dong',
     localDescription: '인천항 주변 물류 지구와 대규모 연안 아파트 단지가 공존하는 구역입니다.',
     buildingCharacteristics: '물류 사무실 빌딩, 노후 및 신축 주거 아파트 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '중구', subDistrict: '도원동',
-    regionSlug: 'incheon', districtSlug: 'jung-gu-incheon', subDistrictSlug: 'dowon-dong',
+    city: '인천', district: '인천중구', subDistrict: '도원동',
+    regionSlug: 'incheon', districtSlug: 'incheon-jung-gu', subDistrictSlug: 'dowon-dong',
     localDescription: '전통적인 원도심 주택가와 스포츠 체육 경기장 인근 상권이 위치해 있습니다.',
     buildingCharacteristics: '주거 밀착형 상가, 저층 오피스텔, 상가 연립 주택',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '중구', subDistrict: '연안동',
-    regionSlug: 'incheon', districtSlug: 'jung-gu-incheon', subDistrictSlug: 'yeonan-dong',
+    city: '인천', district: '인천중구', subDistrict: '연안동',
+    regionSlug: 'incheon', districtSlug: 'incheon-jung-gu', subDistrictSlug: 'yeonan-dong',
     localDescription: '인천 종합어시장과 여객 터미널이 위치하여 상권 유동인구가 매우 많습니다.',
     buildingCharacteristics: '대형 유통 수산시장 빌딩, 요식 상가 타워, 사무용 빌딩',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '동구', subDistrict: '송림동',
-    regionSlug: 'incheon', districtSlug: 'dong-gu-incheon', subDistrictSlug: 'songlim-dong',
+    city: '인천', district: '인천동구', subDistrict: '송림동',
+    regionSlug: 'incheon', districtSlug: 'incheon-dong-gu', subDistrictSlug: 'songlim-dong',
     localDescription: '중소형 공장 지대와 전통 주거 단지, 재개발 단지가 어우러진 복합 구역입니다.',
     buildingCharacteristics: '소형 공장 및 지식산업센터, 재건축 상가 빌딩, 소매 빌딩',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '동구', subDistrict: '송현동',
-    regionSlug: 'incheon', districtSlug: 'dong-gu-incheon', subDistrictSlug: 'songhyeon-dong',
+    city: '인천', district: '인천동구', subDistrict: '송현동',
+    regionSlug: 'incheon', districtSlug: 'incheon-dong-gu', subDistrictSlug: 'songhyeon-dong',
     localDescription: '동인천역 북광장 상권과 역사 깊은 전통 주거 타운이 형성된 지역입니다.',
     buildingCharacteristics: '전철역 주변 상가, 전통 시장 현대화 빌딩, 저층 빌라 상권',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '동구', subDistrict: '만석동',
-    regionSlug: 'incheon', districtSlug: 'dong-gu-incheon', subDistrictSlug: 'manseok-dong',
+    city: '인천', district: '인천동구', subDistrict: '만석동',
+    regionSlug: 'incheon', districtSlug: 'incheon-dong-gu', subDistrictSlug: 'manseok-dong',
     localDescription: '항만 물류 및 공장 지대 배후 주거 지역으로 준공 및 대청소 수요가 활발합니다.',
     buildingCharacteristics: '산업체 부속 사무실, 다세대 공동 주택 상가, 소형 상업 시설',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '동구', subDistrict: '화수동',
-    regionSlug: 'incheon', districtSlug: 'dong-gu-incheon', subDistrictSlug: 'hwasu-dong',
+    city: '인천', district: '인천동구', subDistrict: '화수동',
+    regionSlug: 'incheon', districtSlug: 'incheon-dong-gu', subDistrictSlug: 'hwasu-dong',
     localDescription: '항구 자락의 조용한 정취와 노후 빌딩 리모델링 사업이 조화를 이루는 동네입니다.',
     buildingCharacteristics: '근린 생활 건물, 소형 오피스텔, 요식업 상가',
     priority: 1, indexStatus: 'index'
@@ -1216,77 +1189,75 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '청라동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'cheongra-dong',
+    city: '인천', district: '인천서구', subDistrict: '청라동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'cheongra-dong',
     localDescription: '청라국제도시 중심 금융, 의료 복합 인프라 및 커낼웨이 수변 복합 타운이 위치합니다.',
     buildingCharacteristics: '수변 복합 오피스 타워, 초고층 랜드마크 아파트, 통유리 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '검암동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'geomam-dong',
+    city: '인천', district: '인천서구', subDistrict: '검암동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'geomam-dong',
     localDescription: '공항철도 및 인천 2호선 환승 거점으로 수도권 직장 배후 주거지가 조밀하게 형성되어 있습니다.',
     buildingCharacteristics: '역세권 오피스텔 상가, 소형 병의원 빌딩, 프랜차이즈 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '경서동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'gyeongseo-dong',
+    city: '인천', district: '인천서구', subDistrict: '경서동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'gyeongseo-dong',
     localDescription: '생태 공원 녹지와 산업 인프라가 공존하며 환경 클리닝 및 박리 작업 수요가 많습니다.',
     buildingCharacteristics: '산업 공장 사무동, 물류 센터, 신축 빌라 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '연희동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'yeonhui-dong-incheon',
+    city: '인천', district: '인천서구', subDistrict: '연희동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'yeonhui-dong-incheon',
     localDescription: '인천 아시아드 경기장을 품은 쾌적한 레저 주거 배후 타운입니다.',
     buildingCharacteristics: '종합 스포츠 인근 빌딩, 아파트 상가 타운, 생활 편의 빌딩',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '가정동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'gajeong-dong',
+    city: '인천', district: '인천서구', subDistrict: '가정동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'gajeong-dong',
     localDescription: '루원시티 개발 사업 완수로 대단지 고층 주상복합 빌딩 군락이 장관을 이루는 중심가입니다.',
     buildingCharacteristics: '루원시티 신축 주상복합 타워, 메가박스 주변 대형 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '석남동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'seognam-dong',
+    city: '인천', district: '인천서구', subDistrict: '석남동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'seognam-dong',
     localDescription: '인천 2호선 및 7호선 환승 구역으로 노후 빌딩 리빌딩과 상업 지구가 결합해 있습니다.',
     buildingCharacteristics: '지하철 연계 상가, 중형 오피스 빌딩, 저층 다세대 빌딩',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '가좌동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'gajwa-dong',
+    city: '인천', district: '인천서구', subDistrict: '가좌동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'gajwa-dong',
     localDescription: '전통적인 제조 공업 지대 배후 주택가 및 최근 감성 카페 문화 거리가 들어선 복합지입니다.',
     buildingCharacteristics: '소형 제조 공장 건물, 리모델링 문화 빌딩, 연립 상가',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '검단동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'geomdan-dong',
+    city: '인천', district: '인천서구', subDistrict: '검단동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'geomdan-dong',
     localDescription: '검단 신도시 중심 생활권으로 신축 아파트와 중심 상업 지구 형성이 활발한 거점입니다.',
     buildingCharacteristics: '신축 중심상업지구 메인 빌딩, 복합 영화관 입점 타워',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '당하동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'dangha-dong',
+    city: '인천', district: '인천서구', subDistrict: '당하동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'dangha-dong',
     localDescription: '대규모 브랜드 단지와 학교들이 조밀하게 밀집한 안전한 교육 중심지 주거 타운입니다.',
     buildingCharacteristics: '브랜드 아파트 단지 상가, 교육 종합 학원가 타워',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '원당동',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'wondang-dong',
+    city: '인천', district: '인천서구', subDistrict: '원당동',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'wondang-dong',
     localDescription: '검단지구 배후의 조용하고 안정적이며 자연 친화적인 단독 주택 및 아파트 지역입니다.',
     buildingCharacteristics: '아파트 대규모 상가, 친근한 생활 근린 매장 빌딩',
     priority: 1, indexStatus: 'index'
   },
-
-  // --- 구 단위 전지역 요약 (전체) ---
   {
   city: '서울', district: '양천구', subDistrict: '전지역',
   regionSlug: 'seoul', districtSlug: 'yangcheon', subDistrictSlug: 'all',
@@ -1379,15 +1350,15 @@ export const regions: Region[] = [
   priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '중구', subDistrict: '전지역',
-    regionSlug: 'incheon', districtSlug: 'jung-gu-incheon', subDistrictSlug: 'all',
+    city: '인천', district: '인천중구', subDistrict: '전지역',
+    regionSlug: 'incheon', districtSlug: 'incheon-jung-gu', subDistrictSlug: 'all',
     localDescription: '인천국제공항과 영종 신도시, 인천 연안 수산유통 시설까지 중구 전역을 정밀하게 커버합니다.',
     buildingCharacteristics: '공항 복합 쇼핑몰, 숙박 타워, 항만 물류 오피스',
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '동구', subDistrict: '전지역',
-    regionSlug: 'incheon', districtSlug: 'dong-gu-incheon', subDistrictSlug: 'all',
+    city: '인천', district: '인천동구', subDistrict: '전지역',
+    regionSlug: 'incheon', districtSlug: 'incheon-dong-gu', subDistrictSlug: 'all',
     localDescription: '송현동 전통 상권과 공업 지대를 위한 맞춤형 산업 환경 위생 클리닝 서비스를 제공합니다.',
     buildingCharacteristics: '전통 현대 시장 빌딩, 중소 공장동 사무실, 저층 근린 시설',
     priority: 1, indexStatus: 'index'
@@ -1428,10 +1399,10 @@ export const regions: Region[] = [
     priority: 1, indexStatus: 'index'
   },
   {
-    city: '인천', district: '서구', subDistrict: '전지역',
-    regionSlug: 'incheon', districtSlug: 'seo-gu-incheon', subDistrictSlug: 'all',
+    city: '인천', district: '인천서구', subDistrict: '전지역',
+    regionSlug: 'incheon', districtSlug: 'incheon-seo-gu', subDistrictSlug: 'all',
     localDescription: '청라 국제도시 수변 오피스들과 루원시티, 검단 신도시의 신축 대규모 빌딩들을 안전하게 복원합니다.',
     buildingCharacteristics: '신축 복합 상가 빌딩, 수변 오피스 타워, 초고층 주상복합 단지',
     priority: 1, indexStatus: 'index'
-  },
+  }
 ];
