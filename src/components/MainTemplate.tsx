@@ -136,6 +136,39 @@ export default function MainTemplate({
   const relatedServices = displayServices.filter(s => relatedIds.includes(s.id));
   const otherServices = displayServices.filter(s => s.id !== highlightedServiceId && !relatedIds.includes(s.id));
 
+  const getHeroDesc = () => {
+    if (highlightedServiceId === 'window') {
+      return (
+        <>
+          투명하고 깨끗한 시야를 선사하는 프리미엄 유리 케어, {BRAND_NAME}입니다.<br />
+          합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
+        </>
+      );
+    }
+    if (highlightedServiceId === 'special-cleaning') {
+      return (
+        <>
+          고독사 현장, 유품 정리, 쓰레기집 등 고난도 특수 케어 전문, {BRAND_NAME}입니다.<br />
+          정밀 탈취와 강력한 살균 소독으로 쾌적한 환경을 선사합니다.
+        </>
+      );
+    }
+    if (highlightedServiceId === 'group-interior-completion') {
+      return (
+        <>
+          리모델링 및 완공 후 발생하는 대량의 미세 분진과 오염 제거 전문, {BRAND_NAME}입니다.<br />
+          즉시 입주 가능한 쾌적하고 청결한 공간을 약속드립니다.
+        </>
+      );
+    }
+    return (
+      <>
+        서울·경기 고객님이 신뢰하는 브랜드, {BRAND_NAME}입니다.<br />
+        합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
+      </>
+    );
+  };
+
   return (
     <div className={styles.container}>
       {/* 1. Hero Section */}
@@ -149,8 +182,7 @@ export default function MainTemplate({
               압도적인 청결 솔루션
             </h1>
             <p className={styles.heroDesc}>
-              서울·경기 고객님이 신뢰하는 브랜드, {BRAND_NAME}입니다.<br />
-              합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
+              {getHeroDesc()}
             </p>
             <div className={styles.heroCta}>
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>무료 방문 견적 신청</a>
