@@ -632,7 +632,9 @@
   color: var(--gray-300);
 }
 
-.mobileServiceContainer {
+.mobileServiceContainer,
+.mobileOnly,
+.mobilePricingContainer {
   display: none;
 }
 
@@ -822,17 +824,123 @@
   }
 
   /* 3. Pricing Section Mobile */
-  .pricingComparison {
-    grid-template-columns: 1fr;
-    gap: 20px;
+  .mobileOnly {
+    display: block !important;
+  }
+  .mobilePricingContainer {
+    display: flex !important;
+    flex-direction: column;
+    gap: 24px;
     margin-bottom: 40px;
+    text-align: left;
   }
-  .pricingCard {
-    padding: 30px 20px;
+  .mobilePricingCardRecommend {
+    background: white;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius);
+    padding: 28px 24px 24px;
+    position: relative;
+    box-shadow: 
+      0 10px 30px rgba(14, 165, 233, 0.15),
+      0 0 0 8px rgba(14, 165, 233, 0.02);
   }
-  .pricingCard.recommend {
-    transform: none;
-    margin: 10px 0;
+  .mobilePricingCardBadge {
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background: var(--accent);
+    color: white;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 900;
+    box-shadow: 0 4px 8px rgba(14, 165, 233, 0.3);
+    letter-spacing: 0.5px;
+  }
+  .mobilePricingCardTitle {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--primary);
+    margin: 4px 0 16px;
+    text-align: left;
+  }
+  .mobilePriceListGood {
+    list-style: none;
+    margin-bottom: 24px;
+  }
+  .mobilePriceListGood li {
+    font-size: 14px;
+    color: var(--primary);
+    font-weight: 700;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-align: left;
+  }
+  .mobilePricingCta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 48px;
+    background: var(--accent);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(14, 165, 233, 0.3);
+  }
+  .mobilePricingCta:active {
+    background: var(--accent-dark);
+    transform: scale(0.98);
+  }
+  .mobilePricingWarningContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mobilePricingCardWarning {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 18px 20px;
+  }
+  .mobilePricingCardHeader {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .mobilePricingCardHeader h4 {
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--gray-800);
+    margin: 0;
+  }
+  .mobileStatusBadgeWarning {
+    padding: 3px 8px;
+    background: #e11d48; /* soft red badge */
+    color: white;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 800;
+  }
+  .mobilePriceListBad {
+    list-style: none;
+  }
+  .mobilePriceListBad li {
+    font-size: 13px;
+    color: var(--gray-600);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    text-align: left;
+  }
+  
+  .pricingComparison {
+    display: none !important;
   }
 
   /* 4. Histogram Graph Mobile */

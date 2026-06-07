@@ -377,7 +377,8 @@ export default function MainTemplate({
       {/* 6. Pricing Strategy Section */}
       <section className={styles.pricing}>
         <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
+          {/* Desktop Section Header */}
+          <div className={`${styles.sectionHeader} ${styles.desktopOnly}`}>
             <span className={styles.subTitle}>Reasonable Price</span>
             <h2 className={styles.sectionTitle}>
               {region} <span className={styles.highlight}>{service}</span>,<br />
@@ -389,7 +390,21 @@ export default function MainTemplate({
             </p>
           </div>
 
-          <div className={styles.pricingComparison}>
+          {/* Mobile Section Header */}
+          <div className={`${styles.sectionHeader} ${styles.mobileOnly}`}>
+            <span className={styles.subTitle}>Reasonable Price</span>
+            <h2 className={styles.sectionTitle} style={{ wordBreak: 'keep-all', fontSize: 'clamp(22px, 6vw, 32px)', lineHeight: '1.3' }}>
+              {region} <span className={styles.highlight}>{service}</span>,<br />
+              합리적인 견적의 기준을 제시합니다
+            </h2>
+            <p className={styles.sectionDesc} style={{ wordBreak: 'keep-all', fontSize: '15px', lineHeight: '1.6', margin: '12px auto 0', maxWidth: '480px' }}>
+              무조건 싼 견적보다 중요한 것은 현장 상태에 맞는 작업 범위입니다.<br />
+              {BRAND_NAME}은 오염도, 작업 난이도, 장비 필요 여부를 기준으로 맞춤 견적을 안내드립니다.
+            </p>
+          </div>
+
+          {/* Desktop Pricing Comparison (hidden on mobile) */}
+          <div className={`${styles.pricingComparison} ${styles.desktopOnly}`}>
             <div className={styles.pricingCard}>
               <div className={styles.cardHeader}>
                 <span className={styles.statusBadge}>주의</span>
@@ -426,6 +441,54 @@ export default function MainTemplate({
                 <li className={styles.bad}>✖ 높은 본사 수수료</li>
                 <li className={styles.bad}>✖ 과도한 고객 비용 부담</li>
               </ul>
+            </div>
+          </div>
+
+          {/* Mobile Pricing Comparison (hidden on desktop) */}
+          <div className={styles.mobilePricingContainer}>
+            {/* Highlighted BRAND Card */}
+            <div className={styles.mobilePricingCardRecommend}>
+              <div className={styles.mobilePricingCardBadge}>BEST CHOICE</div>
+              <h3 className={styles.mobilePricingCardTitle}>{BRAND_NAME}의 견적 기준</h3>
+              <ul className={styles.mobilePriceListGood}>
+                <li>✔ 100% 본사 직영 운영</li>
+                <li>✔ 현장 맞춤형 전문 장비</li>
+                <li>✔ 친환경 공인 세제 사용</li>
+                <li>✔ 투명한 견적 안내</li>
+                <li>✔ 작업 범위 사전 설명</li>
+              </ul>
+              <a href={`tel:${CONTACT_PHONE}`} className={styles.mobilePricingCta}>
+                📞 무료 견적 문의하기
+              </a>
+            </div>
+
+            {/* Warning Cards Container */}
+            <div className={styles.mobilePricingWarningContainer}>
+              <div className={styles.mobilePricingCardWarning}>
+                <div className={styles.mobilePricingCardHeader}>
+                  <span className={styles.mobileStatusBadgeWarning}>주의</span>
+                  <h4>저가형 업체 주의</h4>
+                </div>
+                <ul className={styles.mobilePriceListBad}>
+                  <li>✖ 미숙련 인력 중심 작업</li>
+                  <li>✖ 구형 장비 또는 독성 세제 사용 가능성</li>
+                  <li>✖ 현장 추가 비용 요구 가능성</li>
+                  <li>✖ 부실한 사후관리</li>
+                </ul>
+              </div>
+
+              <div className={styles.mobilePricingCardWarning}>
+                <div className={styles.mobilePricingCardHeader}>
+                  <span className={styles.mobileStatusBadgeWarning}>주의</span>
+                  <h4>과도한 고가 견적 주의</h4>
+                </div>
+                <ul className={styles.mobilePriceListBad}>
+                  <li>✖ 불필요한 광고비·마케팅비 반영</li>
+                  <li>✖ 과도한 본사 수수료</li>
+                  <li>✖ 필요 이상의 옵션 추가</li>
+                  <li>✖ 고객 비용 부담 증가</li>
+                </ul>
+              </div>
             </div>
           </div>
 
