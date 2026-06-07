@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from 'react';
 import { services } from '@/data/services';
 import { portfolioItems } from '@/data/portfolio';
 import { BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
@@ -6,6 +9,7 @@ import Link from 'next/link';
 import SectionCTA from '@/components/SectionCTA';
 import FloatingContact from '@/components/FloatingContact';
 import styles from '@/app/page.module.css';
+
 
 interface MainTemplateProps {
   region?: string;
@@ -71,6 +75,66 @@ export default function MainTemplate({
   };
 
   const displayServices = getDisplayServices();
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  // 1. Find matching service from the service prop
+  const getHighlightedServiceId = (serviceName: string) => {
+    if (!serviceName) return null;
+    const name = serviceName.trim();
+    if (name === '유리창청소' || name === '유리창') return 'window';
+    if (name === '특수청소') return 'special-cleaning';
+    if (name === '인테리어 후 청소' || name === '준공청소' || name === '인테리어 후/준공 청소') return 'group-interior-completion';
+    if (name === '외벽청소') return 'outer-wall';
+    if (name === '화재청소') return 'fire';
+    if (name === '바닥왁스코팅') return 'floor-wax';
+    if (name === '어닝청소' || name === '간판청소' || name === '어닝/간판 청소') return 'group-awning-sign';
+    if (name === '후드청소') return 'hood';
+    return null;
+  };
+
+  const highlightedServiceId = getHighlightedServiceId(service);
+
+  // 2. Related services mapping
+  const relatedServiceMap: Record<string, string[]> = {
+    'outer-wall': ['window', 'group-awning-sign', 'group-interior-completion'],
+    'window': ['outer-wall', 'group-awning-sign', 'group-interior-completion'],
+    'fire': ['special-cleaning', 'floor-wax', 'outer-wall'],
+    'floor-wax': ['group-interior-completion', 'window', 'outer-wall'],
+    'group-awning-sign': ['window', 'outer-wall', 'group-interior-completion'],
+    'group-interior-completion': ['window', 'floor-wax', 'outer-wall'],
+    'hood': ['group-awning-sign', 'floor-wax', 'special-cleaning'],
+    'special-cleaning': ['fire', 'floor-wax', 'outer-wall']
+  };
+
+  // 3. Descriptions for highlighted card
+  const highlightDescMap: Record<string, string> = {
+    'window': '외부 유리, 상가 유리, 건물 유리창, 고소 유리창 등 현장 상태에 맞춰 장비와 작업 방식을 안내드립니다.',
+    'special-cleaning': '악취, 오염, 폐기물, 일반 청소로 어려운 현장은 현장 상태에 맞는 장비와 인력 배치가 필요합니다.',
+    'group-interior-completion': '공사 후 남은 분진, 창틀 먼지, 바닥 오염, 접착 자국 등을 입주 전 사용할 수 있는 상태로 정리합니다.',
+    'outer-wall': '고층 빌딩, 아파트, 상가 건물의 외부 벽면 오염물과 그을음, 이끼를 전문 로프 장비 및 고압 세척으로 제거합니다.',
+    'fire': '그을음 제거, 유독성 분진 청소, 탄 냄새 제거 탈취 공정 등 화재 피해 현장의 신속하고 완벽한 복구를 지원합니다.',
+    'floor-wax': '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 프리미엄 코팅으로 광택을 회복하고 바닥을 보호합니다.',
+    'group-awning-sign': '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 특수 약품으로 깨끗하게 지워냅니다.',
+    'hood': '식당 주방 후드와 덕트 내부에 고착된 치명적인 기름때를 고온 스팀과 특수 세제로 정밀 제거하여 화재를 예방합니다.'
+  };
+
+  // 4. CTA Text Map
+  const highlightCtaTextMap: Record<string, string> = {
+    'window': '유리창청소 견적 문의',
+    'special-cleaning': '특수청소 상담하기',
+    'group-interior-completion': '인테리어 후 청소 견적 문의',
+    'outer-wall': '외벽청소 견적 문의',
+    'fire': '화재청소 상담하기',
+    'floor-wax': '바닥코팅 견적 문의',
+    'group-awning-sign': '어닝/간판청소 견적 문의',
+    'hood': '후드청소 견적 문의'
+  };
+
+  const highlightedService = highlightedServiceId ? displayServices.find(s => s.id === highlightedServiceId) : null;
+  const relatedIds = highlightedServiceId ? (relatedServiceMap[highlightedServiceId] || []) : [];
+  const relatedServices = displayServices.filter(s => relatedIds.includes(s.id));
+  const otherServices = displayServices.filter(s => s.id !== highlightedServiceId && !relatedIds.includes(s.id));
 
   return (
     <div className={styles.container}>
@@ -148,7 +212,9 @@ export default function MainTemplate({
             <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>{BRAND_NAME}</span>의 청소 서비스 안내</h2>
             <p className={styles.sectionDesc}>{BRAND_NAME}은 서울·경기 전 지역 모든 현장에 대응합니다.</p>
           </div>
-          <div className={styles.serviceCards}>
+
+          {/* Desktop view (only visible on desktop via page.module.css) */}
+          <div className={`${styles.serviceCards} ${styles.desktopOnly}`}>
             {displayServices.map((item) => (
               <div key={item.id} className={styles.serviceItem}>
                 <div className={styles.serviceInfo}>
@@ -167,6 +233,94 @@ export default function MainTemplate({
                 )}
               </div>
             ))}
+          </div>
+
+          {/* Mobile view (only visible on mobile via page.module.css) */}
+          <div className={styles.mobileServiceContainer}>
+            {highlightedService ? (
+              // 1. When a specific service is highlighted (e.g. from keyword landing page)
+              <>
+                {/* Highlighted Card */}
+                <div className={styles.highlightedCard}>
+                  <div className={styles.highlightedBadge}>현재 추천 작업</div>
+                  <h3 className={styles.highlightedTitle}>
+                    {region} <span className={styles.textAccent}>{highlightedService.name}</span> 작업 안내
+                  </h3>
+                  <p className={styles.highlightedDesc}>
+                    {highlightDescMap[highlightedService.id] || highlightedService.desc}
+                  </p>
+                  <a href={`tel:${CONTACT_PHONE}`} className={styles.highlightedCta}>
+                    💬 {highlightCtaTextMap[highlightedService.id] || `${highlightedService.name} 견적 문의`}
+                  </a>
+                </div>
+
+                {/* Related Services Title */}
+                <h4 className={styles.mobileSubTitle}>추천 연관 서비스</h4>
+                <div className={styles.mobileServiceCards}>
+                  {relatedServices.map((item) => (
+                    <div key={item.id} className={styles.serviceItem}>
+                      <div className={styles.serviceInfo}>
+                        <h3>{item.name}</h3>
+                        <p>{item.desc}</p>
+                      </div>
+                      {item.image && (
+                        <div className={styles.serviceImage}>
+                          <img src={item.image} alt={item.name} />
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Collapsible Others Section */}
+                {otherServices.length > 0 && (
+                  <>
+                    <div className={`${styles.mobileCollapsible} ${isExpanded ? styles.expanded : ''}`}>
+                      <h4 className={styles.mobileSubTitle} style={{ marginTop: '24px', marginBottom: '16px' }}>전체 서비스 목록</h4>
+                      <div className={styles.mobileServiceCards}>
+                        {otherServices.map((item) => (
+                          <div key={item.id} className={styles.serviceItem}>
+                            <div className={styles.serviceInfo}>
+                              <h3>{item.name}</h3>
+                              <p>{item.desc}</p>
+                            </div>
+                            {item.image && (
+                              <div className={styles.serviceImage}>
+                                <img src={item.image} alt={item.name} />
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                    <button 
+                      onClick={() => setIsExpanded(!isExpanded)} 
+                      className={styles.expandBtn}
+                      aria-expanded={isExpanded}
+                    >
+                      {isExpanded ? '청소 서비스 목록 접기 ▲' : '다른 청소 서비스 보기 ▼'}
+                    </button>
+                  </>
+                )}
+              </>
+            ) : (
+              // 2. Fallback for main page (no highlighted service) - show all services directly
+              <div className={styles.mobileServiceCards}>
+                {displayServices.map((item) => (
+                  <div key={item.id} className={styles.serviceItem}>
+                    <div className={styles.serviceInfo}>
+                      <h3>{item.name}</h3>
+                      <p>{item.desc}</p>
+                    </div>
+                    {item.image && (
+                      <div className={styles.serviceImage}>
+                        <img src={item.image} alt={item.name} />
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </section>
