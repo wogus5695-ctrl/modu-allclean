@@ -48,9 +48,8 @@ export default function RootLayout({
                 <h3 style={{ fontSize: '20px', marginBottom: '20px', color: '#003366' }}>{BRAND_NAME}</h3>
                 <Suspense fallback={
                   <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-                    외벽, 유리창, 준공, 화재 복구 등<br />
-                    현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
-                    서울·경기 전 지역 신속 방문 견적 가능합니다.
+                    모두종합환경은 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
+                    다양한 공간의 청소 상담을 안내합니다.<br />
                   </p>
                 }>
                   <FooterDescription />
@@ -65,13 +64,13 @@ export default function RootLayout({
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>
                 <p style={{ fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
-                  서울 및 경기권 전 지역<br />
-                  수도권 전역 신속 방문 상담 가능
+                  서울 주요 지역 상담 가능<br />
+                  지역별 작업 가능 여부는 상담 시 확인해 드립니다.
                 </p>
               </div>
             </div>
             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid #ddd', textAlign: 'center', fontSize: '13px', color: '#999' }}>
-              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME} | 사업자등록번호: {BUSINESS_NUMBER}</p>
+              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME}</p>
               <p>&copy; 2026 {BRAND_NAME}. All rights reserved.</p>
             </div>
           </div>

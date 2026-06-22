@@ -1324,7 +1324,7 @@ export const regions: Region[] = [
   {
   city: '서울', district: '마포구', subDistrict: '전지역',
   regionSlug: 'seoul', districtSlug: 'mapo', subDistrictSlug: 'all',
-  localDescription: '상암DMC부터 공덕 업무지구까지 마포구의 비즈니스 인프라를 완벽하게 관리합니다.',
+  localDescription: '상암DMC부터 공덕 업무지구까지 마포구의 비즈니스 인프라를 꼼꼼하게 관리합니다.',
   buildingCharacteristics: '미디어 센터, IT 오피스 타워, 홍대/연남 카페 빌딩',
   priority: 1, indexStatus: 'index'
   },
@@ -1345,7 +1345,7 @@ export const regions: Region[] = [
   {
   city: '서울', district: '용산구', subDistrict: '전지역',
   regionSlug: 'seoul', districtSlug: 'yongsan', subDistrictSlug: 'all',
-  localDescription: '용산역세권 오피스부터 한남동, 이태원 상권까지 용산구의 다양한 공간을 완벽하게 관리합니다.',
+  localDescription: '용산역세권 오피스부터 한남동, 이태원 상권까지 용산구의 다양한 공간을 꼼꼼하게 관리합니다.',
   buildingCharacteristics: '초고층 주상복합, 기업 사옥, 글로벌 상가 빌딩',
   priority: 1, indexStatus: 'index'
   },
@@ -1387,7 +1387,7 @@ export const regions: Region[] = [
   {
     city: '인천', district: '부평구', subDistrict: '전지역',
     regionSlug: 'incheon', districtSlug: 'bupyeong', subDistrictSlug: 'all',
-    localDescription: '부평역 메인 역세권 빌딩들과 청천동 테크노밸리 산업 시설의 완벽한 청결을 책임집니다.',
+    localDescription: '부평역 메인 역세권 빌딩들과 청천동 테크노밸리 산업 시설의 현장 맞춤 청결을 책임집니다.',
     buildingCharacteristics: '대형 복합 쇼핑 상가, 지식산업센터 타워, 삼산가 주변 빌딩',
     priority: 1, indexStatus: 'index'
   },

@@ -978,6 +978,111 @@
   .comparisonGrid { gap: 10px; }
   .portfolioCategory { font-size: 18px; }
 }
+}
 
+/* Landing Page Specific UI */
+.timelineContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  margin-top: 40px;
+}
+.timelineContainer::before {
+  content: '';
+  position: absolute;
+  top: 24px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #e2e8f0;
+  z-index: 1;
+}
+.timelineItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  flex: 1;
+  text-align: center;
+}
+.timelineDot {
+  width: 48px;
+  height: 48px;
+  background: var(--accent);
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  box-shadow: 0 0 0 4px #fff;
+}
+.timelineContent h4 {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+.timelineContent p {
+  font-size: 0.95rem;
+  color: #64748b;
+}
 
+.otherServicesDetails {
+  margin-top: 40px;
+  background: #fff;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+.otherServicesSummary {
+  padding: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #334155;
+  cursor: pointer;
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.otherServicesSummary::-webkit-details-marker {
+  display: none;
+}
+.otherServicesSummary::after {
+  content: '+';
+  font-size: 1.5rem;
+  color: var(--accent);
+}
+.otherServicesDetails[open] .otherServicesSummary::after {
+  content: '-';
+}
+
+@media (max-width: 768px) {
+  .timelineContainer {
+    flex-direction: column;
+    padding-left: 24px;
+  }
+  .timelineContainer::before {
+    top: 0;
+    left: 48px;
+    width: 2px;
+    height: 100%;
+  }
+  .timelineItem {
+    flex-direction: row;
+    text-align: left;
+    margin-bottom: 30px;
+  }
+  .timelineItem:last-child {
+    margin-bottom: 0;
+  }
+  .timelineDot {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+}
 

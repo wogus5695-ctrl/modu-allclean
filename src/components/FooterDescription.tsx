@@ -49,10 +49,8 @@ export default function FooterDescription() {
 
   return (
     <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-      {displayRegion} {displayService} 전문 {BRAND_NAME}은<br />
-      외벽, 유리창, 준공, 화재 복구 등<br />
-      현장 맞춤형 종합청소 솔루션을 제공합니다.<br />
-      서울·경기 전 지역 신속 방문 견적 가능합니다.
+      모두종합환경은 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
+      다양한 공간의 청소 상담을 안내합니다.
     </p>
   );
 }

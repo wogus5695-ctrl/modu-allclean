@@ -27,7 +27,7 @@ export const services: CleaningService[] = [
     id: 'outer-wall',
     serviceNameKo: '외벽청소',
     serviceSlug: 'exterior-cleaning',
-    shortDescription: '고층 빌딩 및 상가 건물의 외벽 오염 완벽 제거',
+    shortDescription: '고층 빌딩 및 상가 건물의 외벽 오염 상태에 맞춰 세척',
     mainDescription: '대기 오염과 산성비로 인해 부식되고 오염된 건물의 외벽을 전문 장비와 전용 약품을 사용하여 신축 당시의 깨끗한 상태로 복원합니다.',
     neededSituations: [
       '대기 오염으로 인해 외벽이 변색된 경우',
@@ -114,8 +114,8 @@ export const services: CleaningService[] = [
     commonProblems: ['독성 그을음', '탄 냄새 고착', '소화 분말 오염', '소방수 습기'],
     process: ['긴급 출동 및 진단', '폐기물 정리 및 반출', '그을음 정밀 세척', '오존 탈취 시공', '항균 및 소독 마감', '마감 검수'],
     faq: [
-      { question: '탄 냄새가 100% 제거되나요?', answer: '공정 후 탄 냄새의 95% 이상 제거를 목표로 합니다. 탄 자재를 철거하고 시공하면 거의 완벽하게 제거됩니다.' },
-      { question: '보험 처리가 가능한가요?', answer: '네, 보험사에 제출하실 수 있는 상세 견적서, 시공 전후 사진, 완료 보고서 등 서류를 완벽히 지원합니다.' },
+      { question: '탄 냄새가 완전히 제거되나요?', answer: '공정 후 탄 냄새의 95% 이상 제거를 목표로 합니다. 탄 자재를 철거하고 시공하면 거의 깔끔하게 제거됩니다.' },
+      { question: '보험 처리가 가능한가요?', answer: '네, 보험사에 제출하실 수 있는 상세 견적서, 시공 전후 사진, 완료 보고서 등 서류를 꼼꼼히 지원합니다.' },
       { question: '청소만으로 복구가 되나요?', answer: '청소는 그을음과 냄새 제거 단계이며, 이후 필요에 따라 도배나 인테리어 복구가 병행되어야 합니다.' },
       { question: '작업 기간은 어느 정도인가요?', answer: '피해 규모에 따라 다르지만, 일반 주택 기준 2~4일 정도 소요됩니다.' },
       { question: '가전제품이나 가구도 청소해주나요?', answer: '그을음 세척이 가능한 제품은 정밀 닦기를 진행하나, 내부 손상이 심한 제품은 폐기를 권장합니다.' }
@@ -163,8 +163,8 @@ export const services: CleaningService[] = [
     id: 'awning',
     serviceNameKo: '어닝청소',
     serviceSlug: 'awning-cleaning',
-    shortDescription: '매장의 얼굴인 어닝의 곰팡이와 오염 완벽 제거',
-    mainDescription: '외부 노출로 인해 쉽게 더러워지는 어닝의 곰팡이와 찌든 때를 전용 약품으로 세척하여 매장의 첫인상을 완벽하게 회복합니다.',
+    shortDescription: '매장의 얼굴인 어닝의 곰팡이와 오염 상태에 맞춰 세척',
+    mainDescription: '외부 노출로 인해 쉽게 더러워지는 어닝의 곰팡이와 찌든 때를 전용 약품으로 세척하여 매장의 첫인상을 상태에 맞춰 회복합니다.',
     neededSituations: [
       '어닝에 검은 곰팡이나 이끼가 핀 경우',
       '장기적인 방치로 어닝 색상이 변색되었을 때',
@@ -182,7 +182,7 @@ export const services: CleaningService[] = [
     commonProblems: ['검은 곰팡이', '거미줄/벌레', '매연 자국', '변색'],
     process: ['상담 및 진단', '전기 안전 점검', '약품 살포 및 정밀 세척', '물기 제거 및 건조', '마감 검수'],
     faq: [
-      { question: '곰팡이가 완전히 지워지나요?', answer: '전용 약품 시공으로 훨씬 밝아진 효과를 드립니다. 다만 원단 깊숙이 침투한 경우 100% 제거가 어려울 수 있어 현장 진단 후 안내해 드립니다.' },
+      { question: '곰팡이가 완전히 지워지나요?', answer: '전용 약품 시공으로 훨씬 밝아진 효과를 드립니다. 다만 원단 깊숙이 침투한 경우 현장 진단 후 안내해 드립니다.' },
       { question: '원단이 찢어지지는 않나요?', answer: '고압수 압력을 원단 상태에 맞춰 조절하며, 숙련된 기술자가 수작업을 병행하여 안전하게 시공합니다.' }
     ],
     priority: 5,
@@ -225,7 +225,7 @@ export const services: CleaningService[] = [
     id: 'interior-post',
     serviceNameKo: '인테리어 후 청소',
     serviceSlug: 'interior-post-cleaning',
-    shortDescription: '리모델링 후 발생하는 막대한 분진과 먼지 완벽 제거',
+    shortDescription: '리모델링 후 발생하는 막대한 분진과 먼지 상태에 맞춰 정리',
     mainDescription: '인테리어 공사 후 집안 곳곳에 남은 톱밥 가루, 미세 먼지, 페인트 자국 등을 제거하여 쾌적한 실내 환경을 만듭니다.',
     neededSituations: [
       '리모델링 공사 후 미세한 톱밥 가루가 심할 때',
@@ -244,7 +244,7 @@ export const services: CleaningService[] = [
     commonProblems: ['톱밥 먼지', '실리콘 자국', '공사 분진', '페인트 흔적'],
     process: ['상담 및 진단', '분진 흡입', '정밀 세척', '항균 소독', '마감 검수'],
     faq: [
-      { question: '수납장 내부도 닦아주나요?', answer: '네, 모든 선반과 서랍을 분리하여 안쪽 깊숙한 곳의 먼지까지 완벽하게 제거합니다.' },
+      { question: '수납장 내부도 닦아주나요?', answer: '네, 모든 선반과 서랍을 분리하여 안쪽 깊숙한 곳의 먼지까지 꼼꼼하게 제거합니다.' },
       { question: '새집 냄새도 제거되나요?', answer: '기본 청소 후 요청 시 피톤치드 시공 등을 통해 냄새 완화를 도와드립니다.' }
     ],
     priority: 6,
@@ -257,7 +257,7 @@ export const services: CleaningService[] = [
     serviceNameKo: '준공청소',
     serviceSlug: 'construction-completion-cleaning',
     shortDescription: '신축 건물 완공 후 즉시 입주가 가능하도록 정밀 클리닝',
-    mainDescription: '건축 공사 후 발생하는 시멘트 가루, 보양지, 잔해물 등을 완벽하게 제거하여 준공 검사 및 입주를 준비합니다.',
+    mainDescription: '건축 공사 후 발생하는 시멘트 가루, 보양지, 잔해물 등을 상태에 맞춰 정리하여 준공 검사 및 입주를 준비합니다.',
     neededSituations: [
       '건물 신축 후 공사 먼지와 잔해물이 가득할 때',
       '준공 검사 전 건물의 청결 상태 확보가 필요할 때',
@@ -287,7 +287,7 @@ export const services: CleaningService[] = [
     id: 'hood',
     serviceNameKo: '후드청소',
     serviceSlug: 'hood-cleaning',
-    shortDescription: '식당 주방의 치명적인 기름때 완벽 제거 및 화재 예방',
+    shortDescription: '식당 주방의 치명적인 기름때 상태에 맞춰 세척 및 화재 예방',
     mainDescription: '주방 후드와 덕트에 쌓인 기름때를 정밀 세척하여 위생적인 조리 환경을 조성하고 기름 화재를 예방합니다.',
     neededSituations: [
       '후드에서 조리기구로 기름이 떨어지는 경우',
@@ -295,7 +295,7 @@ export const services: CleaningService[] = [
       '식당 위생 점검을 앞두고 있는 경우',
       '덕트 내부의 찌든 기름때로 화재가 우려될 때'
     ],
-    workingMethod: '강력한 기름 분해 세제를 도포하여 딱딱하게 굳은 유지분을 녹여냅니다. 이후 고온 스팀과 특수 스크래퍼를 사용하여 내부 깊숙한 곳까지 기름기를 완벽하게 제거합니다.',
+    workingMethod: '강력한 기름 분해 세제를 도포하여 딱딱하게 굳은 유지분을 녹여냅니다. 이후 고온 스팀과 특수 스크래퍼를 사용하여 내부 깊숙한 곳까지 기름기를 꼼꼼하게 제거합니다.',
     preCheckItems: [
       '주방 집기류 보양 공간',
       '후드 모터(팬) 정상 작동 여부',
@@ -309,7 +309,7 @@ export const services: CleaningService[] = [
       { question: '덕트 안쪽 깊은 곳도 가능한가요?', answer: '팔이 닿는 범위 및 점검구가 있는 구간까지 최대한 정밀하게 세척을 진행합니다.' },
       { question: '필터만 청소하면 안 되나요?', answer: '필터는 겉부분일 뿐입니다. 화재는 후드 내부와 덕트의 기름때에서 시작되므로 전체 청소가 필수입니다.' },
       { question: '영업 중에도 가능한가요?', answer: '조리 시설을 사용하지 않아야 하므로 주로 영업 종료 후나 준비 시간에 진행합니다.' },
-      { question: '기름때가 완벽히 제거되나요?', answer: '전용 약품과 고온 스팀으로 고착된 기름을 녹여내어 스테인리스 본래의 광택을 살려드립니다.' },
+      { question: '기름때가 깔끔히 제거되나요?', answer: '전용 약품과 고온 스팀으로 고착된 기름을 녹여내어 스테인리스 본래의 광택을 살려드립니다.' },
       { question: '주방 전체 청소도 병행되나요?', answer: '후드 위주 시공이 기본이며, 요청 시 벽면과 바닥 등 주방 전체 클리닝도 가능합니다.' }
     ],
     priority: 9,
@@ -321,7 +321,7 @@ export const services: CleaningService[] = [
     id: 'trash-house',
     serviceNameKo: '쓰레기집청소',
     serviceSlug: 'hoarder-house-cleaning',
-    shortDescription: '방치된 대량의 쓰레기와 악취를 완벽하게 해결하는 특수 클리닝',
+    shortDescription: '방치된 대량의 쓰레기와 악취를 현장 상태에 맞춰 해결하는 특수 클리닝',
     mainDescription: '장기간 방치되어 대량의 쓰레기와 오염물로 가득 찬 실내를 체계적으로 정리하고, 정밀 세척 및 강력 탈취를 통해 쾌적한 주거 공간으로 복원합니다.',
     neededSituations: [
       '쓰레기가 무릎 높이 이상 쌓여 자력으로 정리가 불가능한 경우',
@@ -329,7 +329,7 @@ export const services: CleaningService[] = [
       '거주지 이동 전이나 임대차 계약 종료 후 원상복구가 필요할 때',
       '주변 이웃으로부터 민원이 제기되어 긴급한 정리가 필요할 때'
     ],
-    workingMethod: '폐기물을 종류별로 신속하게 분류하여 배출한 후, 강력 세정제와 고온 스팀 장비를 사용하여 찌든 오염을 제거합니다. 마지막으로 오존 살균과 특수 탈취 공정을 통해 잔류 냄새를 완벽히 차단합니다.',
+    workingMethod: '폐기물을 종류별로 신속하게 분류하여 배출한 후, 강력 세정제와 고온 스팀 장비를 사용하여 찌든 오염을 제거합니다. 마지막으로 오존 살균과 특수 탈취 공정을 통해 잔류 냄새를 꼼꼼히 차단합니다.',
     preCheckItems: [
       '대형 폐기물 및 잡동사니 전체 폐기 여부',
       '귀중품 및 중요 서류 별도 보관 여부',
@@ -355,7 +355,7 @@ export const services: CleaningService[] = [
     serviceNameKo: '특수청소',
     serviceSlug: 'special-cleaning',
     shortDescription: '고독사 현장, 유품 정리, 쓰레기집 등 고난도 특수 케어',
-    mainDescription: '전문적인 기술과 장비가 필요한 특수 오염 현장을 신속하고 완벽하게 복구합니다. 탈취, 살균, 소독 및 심리적 배려까지 포함된 종합 솔루션을 제공합니다.',
+    mainDescription: '전문적인 기술과 장비가 필요한 특수 오염 현장을 신속하고 상태에 맞추어 복구합니다. 탈취, 살균, 소독 및 심리적 배려까지 포함된 종합 솔루션을 제공합니다.',
     neededSituations: [
       '장기간 방치된 고독사 현장 및 유품 정리가 필요할 때',
       '심각한 악취와 해충이 발생한 쓰레기집 복구 시',

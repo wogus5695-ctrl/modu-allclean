@@ -55,7 +55,7 @@ export default function MainTemplate({
           items.push({
             id: 'group-interior-completion',
             name: '인테리어 후/준공 청소',
-            desc: '공사 분진과 시멘트 가루를 완벽 제거하여 즉시 입주 가능한 쾌적한 상태를 만듭니다.',
+            desc: '공사 분진과 시멘트 가루를 상태에 맞춰 정리하여 즉시 입주 가능한 쾌적한 상태를 만듭니다.',
             image: '/images/services/interior-completion.jpg'
           });
           hasAddedInteriorGroup = true;
@@ -113,7 +113,7 @@ export default function MainTemplate({
     'special-cleaning': '악취, 오염, 폐기물, 일반 청소로 어려운 현장은 현장 상태에 맞는 장비와 인력 배치가 필요합니다.',
     'group-interior-completion': '공사 후 남은 분진, 창틀 먼지, 바닥 오염, 접착 자국 등을 입주 전 사용할 수 있는 상태로 정리합니다.',
     'outer-wall': '고층 빌딩, 아파트, 상가 건물의 외부 벽면 오염물과 그을음, 이끼를 전문 로프 장비 및 고압 세척으로 제거합니다.',
-    'fire': '그을음 제거, 유독성 분진 청소, 탄 냄새 제거 탈취 공정 등 화재 피해 현장의 신속하고 완벽한 복구를 지원합니다.',
+    'fire': '그을음 제거, 유독성 분진 청소, 탄 냄새 제거 탈취 공정 등 화재 피해 현장의 신속하고 상태에 맞춘 복구를 지원합니다.',
     'floor-wax': '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 프리미엄 코팅으로 광택을 회복하고 바닥을 보호합니다.',
     'group-awning-sign': '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 특수 약품으로 깨끗하게 지워냅니다.',
     'hood': '식당 주방 후드와 덕트 내부에 고착된 치명적인 기름때를 고온 스팀과 특수 세제로 정밀 제거하여 화재를 예방합니다.'
@@ -141,7 +141,7 @@ export default function MainTemplate({
       return (
         <>
           투명하고 깨끗한 시야를 선사하는 프리미엄 유리 케어, {BRAND_NAME}입니다.<br />
-          합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
+          합리적인 비용과 현장에 맞는 장비로 현장 상태에 맞춘 작업을 약속드립니다.
         </>
       );
     }
@@ -164,7 +164,7 @@ export default function MainTemplate({
     return (
       <>
         서울·경기 고객님이 신뢰하는 브랜드, {BRAND_NAME}입니다.<br />
-        합리적인 비용과 전문 장비로 완벽한 결과를 약속드립니다.
+        합리적인 비용과 현장에 맞는 장비로 현장 상태에 맞춘 작업을 약속드립니다.
       </>
     );
   };
@@ -176,7 +176,7 @@ export default function MainTemplate({
         <div className={styles.heroOverlay}></div>
         <div className={styles.inner}>
           <div className="animate-fade-up">
-            <span className={styles.badge}>서울·경기 No.1 청소 전문 업체</span>
+            <span className={styles.badge}>서울 주요 지역 청소 상담</span>
             <h1 className={styles.heroTitle}>
               {region} <span className={styles.highlight}>{service}</span> 전문<br />
               압도적인 청결 솔루션
@@ -220,16 +220,16 @@ export default function MainTemplate({
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>✨</div>
                 <h3>현장 맞춤형 장비</h3>
-                <p>{service}의 특성에 최적화된 최첨단 장비와 친환경 세제를 사용합니다.</p>
+                <p>{service}의 특성에 최적화된 현장에 맞는 장비와 세정제를 사용합니다.</p>
               </div>
             </div>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/team.jpg" alt="100% 직영 팀 운영" />
+                <img src="/images/why/team.jpg" alt="청소 전문 팀 투입" />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>👤</div>
-                <h3>100% 직영 팀 운영</h3>
+                <h3>청소 전문 팀 투입</h3>
                 <p>하청이 아닌 본사 직영 팀이 직접 방문하여 일관된 퀄리티를 유지합니다.</p>
               </div>
             </div>
@@ -362,7 +362,7 @@ export default function MainTemplate({
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>서울·경기 실제 작업 현장</h2>
-            <p className={styles.sectionDesc}>거짓 없는 작업 전후 사진으로 증명합니다.</p>
+            <p className={styles.sectionDesc}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
           <div className={styles.sliderContainer}>
             <div className={styles.sliderTrack}>
@@ -456,7 +456,7 @@ export default function MainTemplate({
                 <h3>{BRAND_NAME}</h3>
               </div>
               <ul className={styles.priceList}>
-                <li className={styles.good}>✔ 100% 본사 직영 팀 운영</li>
+                <li className={styles.good}>✔ 청소 전문 팀 투입</li>
                 <li className={styles.good}>✔ 현장 맞춤형 전문 장비</li>
                 <li className={styles.good}>✔ 친환경 공인 세제 사용</li>
                 <li className={styles.good}>✔ 투명한 견적 및 A/S 보장</li>
@@ -483,7 +483,7 @@ export default function MainTemplate({
               <div className={styles.mobilePricingCardBadge}>BEST CHOICE</div>
               <h3 className={styles.mobilePricingCardTitle}>{BRAND_NAME}의 견적 기준</h3>
               <ul className={styles.mobilePriceListGood}>
-                <li>✔ 100% 본사 직영 운영</li>
+                <li>✔ 청소 전문 팀 투입</li>
                 <li>✔ 현장 맞춤형 전문 장비</li>
                 <li>✔ 친환경 공인 세제 사용</li>
                 <li>✔ 투명한 견적 안내</li>
@@ -600,7 +600,7 @@ export default function MainTemplate({
           </h3>
           <p style={{ fontSize: '13px', color: '#777', lineHeight: '1.8', marginBottom: '20px', wordBreak: 'keep-all' }}>
             {BRAND_NAME}은 {region} 지역의 {service}뿐만 아니라 입주청소, 이사청소, 준공청소, 상가청소, 외벽청소 등 
-            현장에 필요한 모든 종합청소 솔루션을 완벽하게 제공합니다. 
+            현장에 필요한 모든 종합청소 솔루션을 상태에 맞춰 제공합니다. 
             주변 지역의 청소 서비스가 필요하시다면 아래 링크를 통해 상세 정보를 확인해 보세요.
           </p>
           <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>

@@ -44,7 +44,7 @@ export const portfolioItems: PortfolioItem[] = [
   },
   {
     id: 'construction',
-    category: '신축 중공 현장 청소',
+    category: '신축 준공 현장 청소',
     beforeImg: '/images/portfolio/construction-before.jpg',
     afterImg: '/images/portfolio/construction-after.jpg',
   },

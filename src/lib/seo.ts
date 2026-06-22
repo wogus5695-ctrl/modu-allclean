@@ -14,12 +14,11 @@ export const INDEXED_DONG_COMBINATIONS = [
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
 export const BRAND_NAME = '모두종합환경';
-export const BUSINESS_NAME = '올케어서비스';
+export const BUSINESS_NAME = '모두종합환경';
 export const DOMAIN = 'https://www.moduclean.co.kr';
 export const CONTACT_PHONE = '010-4667-5568'; // 전화번호
 export const CONTACT_SMS = 'sms:010-4667-5568'; // 문자 상담 링크
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
-export const BUSINESS_NUMBER = '405-15-02677'; // 사업자 등록 번호
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/services/outer-wall.jpg`;
 export const NAVER_VERIFICATION = '43f9e9e2c0022b1961730e583c46aef2bc51b2fa'; // 네이버 서치어드바이저 연동 코드
 export const GOOGLE_VERIFICATION = 'Ii7CJaIsKz33EVUVJhJfnbT6cv7MN_4Nda52eMQOv7s'; // 구글 서치 콘솔 연동 코드
@@ -74,7 +73,7 @@ export function getBaseMetadata({
     if (ogImage.startsWith('http')) {
       finalOgImage = ogImage;
     } else {
-      // 화이트리스트에 정확히 존재하는 이미지인지 검증하여 안정성 100% 보장
+      // 화이트리스트에 정확히 존재하는 이미지인지 검증하여 안정성 보장
       const isValid = VALID_OG_IMAGES.some(validPath => 
         ogImage === validPath || ogImage.replace(/\/+/, '/') === validPath
       );
@@ -123,7 +122,7 @@ export function getBaseMetadata({
 export function getMainMetadata(): Metadata {
   return getBaseMetadata({
     title: `서울·경기 종합청소 전문 | ${BRAND_NAME}`,
-    description: `외벽청소, 유리창청소, 화재복구, 바닥왁스코팅 등 종합청소의 모든 것. 서울·경기 전 지역 전문가의 손길로 완벽한 청결을 보장합니다.`,
+    description: `외벽청소, 유리창청소, 화재복구, 바닥왁스코팅 등 종합청소의 모든 것. 서울·경기 전 지역 전문가의 손길로 현장 상태에 맞춘 작업을 진행합니다.`,
     path: '',
     indexStatus: 'index',
   });
