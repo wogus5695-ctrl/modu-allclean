@@ -7,6 +7,7 @@ export interface LandingPageData {
   metaDescription: string;
   h1: string;
   heroDescription: string;
+  ctaHook: string;
   
   customIntroBlock: string;
   targetSceneBlock: string;
@@ -37,6 +38,7 @@ export function generateLandingPageData(region: SeoRegion, service: SeoService):
     metaDescription: `${region.displayNameKo} 지역 ${region.commercialCharacteristics} 맞춤형 ${service.serviceNameKo}. ${service.mainProblem} 문제를 해결해 드립니다.`,
     h1: `${region.displayNameKo} ${service.serviceNameKo}`,
     heroDescription,
+    ctaHook: service.ctaHook,
     
     // 블록별 동적 문구 생성 (SEO 요구사항: 고유 본문 700자 이상 확보를 위한 서술형 문장 강화)
     customIntroBlock: `${region.displayNameKo} 지역은 특성상 ${region.localCharacteristics} 현상이 두드러집니다. 특히 ${region.commercialCharacteristics}의 비율이 높아, 타 지역에 비해 ${service.serviceNameKo} 작업에 대한 수요가 지속적으로 발생하고 있습니다. 모두종합환경은 이러한 지역적 맥락을 정확히 이해하고 있으며, 다년간 축적된 현장 경험을 바탕으로 해당 지역의 환경적 제약을 극복하는 최적의 맞춤형 청소 솔루션을 제안해 드립니다.`,

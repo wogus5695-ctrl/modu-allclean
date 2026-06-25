@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
 import FooterDescription from "@/components/FooterDescription";
 import { Suspense } from "react";
-import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, BUSINESS_NUMBER, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION } from "@/lib/seo";
 
 const scDream = localFont({
   src: [

@@ -248,7 +248,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       {/* 7. Common Sections */}
       <SectionCTA 
         title={`${data.h1} 고민, 이제 끝내세요!`} 
-        desc={`${BRAND_NAME}만의 차별화된 전문성으로 현장 상태에 맞춘 작업을 약속드립니다.`} 
+        subtitle={`${BRAND_NAME}만의 차별화된 전문성으로 현장 상태에 맞춘 작업을 약속드립니다.`} 
       />
       <FloatingContact />
     </div>

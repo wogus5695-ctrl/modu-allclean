@@ -93,7 +93,7 @@ export default async function LandingPage({ params }: Props) {
   const { city, district, slug } = await params;
   const { region, service, seoRegion, seoService } = getRegionAndService(city, district, slug);
 
-  if (!region || !service) {
+  if (!region || !service || !seoService) {
     notFound();
   }
 
