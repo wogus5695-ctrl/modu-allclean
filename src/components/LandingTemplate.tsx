@@ -104,6 +104,48 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     }
   };
 
+  const getWhyDescription = () => {
+    const regionName = regionObj?.displayNameKo || '서울·인천';
+    const serviceName = currentService?.serviceNameKo || '청소';
+    
+    switch (serviceName) {
+      case '바닥왁스코팅':
+        return `${regionName} 상가·사무실·매장 바닥의 오염도와 기존 왁스 상태를 확인해 필요한 작업 범위를 안내합니다.`;
+      case '외벽청소':
+        return `${regionName} 건물 외벽의 먼지, 빗물 자국, 매연 오염 상태를 확인해 작업 가능 여부를 안내합니다.`;
+      case '유리창청소':
+        return `${regionName} 유리창의 물때, 손자국, 빗물 얼룩을 확인해 작업 범위에 맞는 상담을 안내합니다.`;
+      case '후드청소':
+        return `${regionName} 주방 후드와 배기 주변의 기름때, 악취, 오염 상태를 확인해 청소 범위를 안내합니다.`;
+      case '쓰레기집 청소':
+      case '쓰레기집청소':
+        return `${regionName} 생활폐기물이 쌓인 공간의 상태와 정리 범위를 확인해 작업 가능 여부를 안내합니다.`;
+      default:
+        return `${regionName} ${serviceName}의 오염 상태와 작업 범위를 확인해 필요한 청소 방향을 안내합니다.`;
+    }
+  };
+
+  const getPricingDescription = () => {
+    const regionName = regionObj?.displayNameKo || '서울·인천';
+    const serviceName = currentService?.serviceNameKo || '청소';
+    
+    switch (serviceName) {
+      case '바닥왁스코팅':
+        return `${regionName} 바닥왁스코팅 견적은 바닥 면적, 기존 왁스 상태, 오염 누적 정도, 작업 가능 시간에 따라 달라질 수 있습니다. 사진과 위치를 보내주시면 상담 방향을 안내합니다.`;
+      case '외벽청소':
+        return `${regionName} 외벽청소 견적은 건물 높이, 외장재 재질, 오염 범위, 장비 사용 여부에 따라 달라질 수 있습니다. 외벽 전체 사진과 오염 부위 사진을 보내주시면 상담이 빠릅니다.`;
+      case '유리창청소':
+        return `${regionName} 유리창청소 견적은 유리 면적, 내부·외부 여부, 물때 정도, 고층 작업 여부에 따라 달라질 수 있습니다. 유리창 전체와 오염 부위 사진을 보내주시면 상담 방향을 안내합니다.`;
+      case '후드청소':
+        return `${regionName} 후드청소 견적은 후드 크기, 기름때 정도, 배기 주변 오염 범위, 작업 가능 시간에 따라 달라질 수 있습니다. 주방 후드 사진을 보내주시면 상담이 빠릅니다.`;
+      case '쓰레기집 청소':
+      case '쓰레기집청소':
+        return `${regionName} 쓰레기집청소 견적은 생활폐기물 양, 악취 정도, 공간 형태, 정리 범위에 따라 달라질 수 있습니다. 현장 사진을 보내주시면 작업 가능 여부를 안내합니다.`;
+      default:
+        return `${regionName} ${serviceName} 견적은 작업 범위, 오염 상태, 면적, 장비 사용 여부에 따라 달라질 수 있습니다. 사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다.`;
+    }
+  };
+
   const getEstimateFactors = () => {
     const serviceName = currentService.serviceNameKo;
     switch (serviceName) {
@@ -245,14 +287,12 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Why {BRAND_NAME}?</span>
             <h2 className={styles.sectionTitle}>
-              {(data?.h1) || `${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'}`},<br />
-              왜 <span className={styles.highlight}>{BRAND_NAME}</span> 이어야 할까요?
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'},<br />
+              왜 <span className={styles.highlight}>{BRAND_NAME}</span>이어야 할까요?
             </h2>
-            {data?.customIntroBlock && (
-              <p className={styles.sectionDesc} style={{ marginTop: '1.2rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1.2rem auto 0 auto' }}>
-                {data.customIntroBlock} {data.targetSceneBlock}
-              </p>
-            )}
+            <p className={styles.sectionDesc} style={{ marginTop: '1.2rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1.2rem auto 0 auto' }}>
+              {getWhyDescription()}
+            </p>
           </div>
           <div className={styles.featureGrid}>
             <div className={styles.featureItem}>
@@ -420,11 +460,9 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
               {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 견적은<br />
               현장 상태에 따라 달라집니다
             </h2>
-            {data?.problemBlock && (
-              <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
-                {data.problemBlock} {data.preCheckBlock}
-              </p>
-            )}
+            <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
+              {getPricingDescription()}
+            </p>
           </div>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
@@ -506,6 +544,25 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
          </div>
       </section>
+
+      {/* 작업 안내 더보기 Accordion */}
+      {(data?.customIntroBlock || data?.targetSceneBlock || data?.problemBlock || data?.preCheckBlock) && (
+        <section style={{ padding: '3rem 0', background: '#fff', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
+          <div className={styles.inner} style={{ maxWidth: '800px', margin: '0 auto' }}>
+            <details style={{ border: '1px solid #e2e8f0', borderRadius: '8px', overflow: 'hidden', background: '#f8fafc' }}>
+              <summary style={{ padding: '1.2rem 1.5rem', fontWeight: 'bold', color: '#0f172a', cursor: 'pointer', userSelect: 'none' }}>
+                {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 작업 상세 안내 보기 (클릭)
+              </summary>
+              <div style={{ padding: '1.5rem', borderTop: '1px solid #e2e8f0', background: '#fff', color: '#475569', fontSize: '0.95rem', lineHeight: '1.7', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                {data?.customIntroBlock && <p style={{ margin: 0 }}>{data.customIntroBlock}</p>}
+                {data?.targetSceneBlock && <p style={{ margin: 0 }}>{data.targetSceneBlock}</p>}
+                {data?.problemBlock && <p style={{ margin: 0 }}>{data.problemBlock}</p>}
+                {data?.preCheckBlock && <p style={{ margin: 0 }}>{data.preCheckBlock}</p>}
+              </div>
+            </details>
+          </div>
+        </section>
+      )}
 
       {/* 8. Contact Section */}
       <section className={styles.contact} style={{ padding: '6rem 0' }}>
