@@ -381,7 +381,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 4. Portfolio Section */}
-      <section className={styles.portfolio} style={{ background: '#fff', padding: '5rem 0' }}>
+      <section className={styles.portfolio} style={{ padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>모두종합환경 청소 현장 사례</h2>
