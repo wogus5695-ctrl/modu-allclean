@@ -365,7 +365,7 @@ export default function MainTemplate({
       <section className={styles.portfolio}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>서울·경기 실제 작업 현장</h2>
+            <h2 className={styles.sectionTitle}>모두종합환경 청소 현장 사례</h2>
             <p className={styles.sectionDesc}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
           <div className={styles.sliderContainer}>

@@ -309,7 +309,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           <div className={styles.featureGrid}>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/pricing.jpg" alt="적정한 견적 제안" />
+                <img src="/images/why/pricing.jpg" alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 합리적인 비용 견적 제안`} />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>💰</div>
@@ -319,7 +319,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/equipment.jpg" alt="현장 맞춤형 장비" />
+                <img src="/images/why/equipment.jpg" alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 맞춤형 청소 장비 구성`} />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>✨</div>
@@ -329,7 +329,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/team.jpg" alt="청소 전문 팀 투입" />
+                <img src="/images/why/team.jpg" alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 전문 청소팀 작업 준비`} />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>👤</div>
@@ -345,7 +345,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       <section className={styles.portfolio} style={{ background: '#f8fafc', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <h2 className={styles.sectionTitle}>모두종합환경 실제 작업 현장</h2>
+            <h2 className={styles.sectionTitle}>모두종합환경 청소 현장 사례</h2>
             <p className={styles.sectionDesc}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
           <div className={styles.sliderContainer}>
@@ -355,11 +355,11 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
                   <div className={styles.portfolioCategory}>{item.category}</div>
                   <div className={styles.comparisonGrid}>
                     <div className={styles.imageBox}>
-                      <img src={item.beforeImg} alt={`${item.category} 전`} />
+                      <img src={item.beforeImg} alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} ${item.category} 청소 작업 전 상태`} />
                       <span className={styles.tagBefore}>BEFORE</span>
                     </div>
                     <div className={styles.imageBox}>
-                      <img src={item.afterImg} alt={`${item.category} 후`} />
+                      <img src={item.afterImg} alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} ${item.category} 청소 작업 후 완료`} />
                       <span className={styles.tagAfter}>AFTER</span>
                     </div>
                   </div>
@@ -532,15 +532,13 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2.5rem' }}>
             {relatedServiceList.map(s => (
               <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
-                <div 
-                  className={styles.serviceImage} 
-                  style={{ 
-                    backgroundImage: `url(${s.thumbnailImage})`, 
-                    height: '200px', 
-                    backgroundSize: 'cover', 
-                    backgroundPosition: 'center'
-                  }}
-                ></div>
+                <div className={styles.serviceImage} style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                  <img 
+                    src={s.thumbnailImage} 
+                    alt={`${regionObj.displayNameKo} ${s.serviceNameKo} 전문 청소 추천`} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                  />
+                </div>
                 <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
                   <p style={{ fontSize: '0.925rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 현장 정밀 오염 제거 및 케어</p>
@@ -570,15 +568,13 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '1.5rem', background: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
               {otherServiceList.map(s => (
                 <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
-                  <div 
-                    className={styles.serviceImage} 
-                    style={{ 
-                      backgroundImage: `url(${s.thumbnailImage})`, 
-                      height: '180px', 
-                      backgroundSize: 'cover', 
-                      backgroundPosition: 'center'
-                    }}
-                  ></div>
+                  <div className={styles.serviceImage} style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
+                    <img 
+                      src={s.thumbnailImage} 
+                      alt={`${regionObj.displayNameKo} ${s.serviceNameKo} 종합 청소 안내`} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  </div>
                   <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
                     <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
                     <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 현장 정밀 오염 제거 및 케어</p>
