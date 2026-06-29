@@ -505,11 +505,38 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
          </div>
       </section>
 
-      {/* 7. Common Sections */}
-      <SectionCTA 
-        title={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} 고민, 상담으로 확인하세요`} 
-        subtitle="사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다." 
-      />
+      {/* 8. Contact Section */}
+      <section className={styles.contact} style={{ padding: '6rem 0' }}>
+        <div className={styles.inner}>
+          <div className={styles.contactCard}>
+            <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: 'white', marginBottom: '16px', lineHeight: '1.3' }}>
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'},<br />
+              상담으로 확인하세요
+            </h2>
+            <p style={{ color: 'var(--gray-300)', marginBottom: '30px', fontSize: 'clamp(14px, 2vw, 18px)' }}>
+              사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginTop: '2rem' }}>
+              <a 
+                href={`tel:${CONTACT_PHONE}`} 
+                className={`${styles.ctaBtn} ${styles.primary}`}
+                style={{ minWidth: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              >
+                📞 전화 상담하기
+              </a>
+              <a 
+                href={CONTACT_KAKAOTALK} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`${styles.ctaBtn} ${styles.kakao}`}
+                style={{ minWidth: '200px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+              >
+                💬 카카오톡 문의하기
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
       <FloatingContact />
     </div>
   );
