@@ -370,8 +370,28 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
+      {/* 5. Trust Section */}
+      <section className={styles.trust} style={{ padding: '4rem 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
+        <div className={styles.inner}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', textAlign: 'center' }}>
+            <div className={styles.statItem}>
+              <span className={styles.statNum} style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}>1,200+</span>
+              <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: '700', color: 'var(--gray-600)', margin: 0 }}>서울·경기 청소 수행</p>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNum} style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}>98%</span>
+              <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: '700', color: 'var(--gray-600)', margin: 0 }}>고객 만족도</p>
+            </div>
+            <div className={styles.statItem}>
+              <span className={styles.statNum} style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}>24h</span>
+              <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: '700', color: 'var(--gray-600)', margin: 0 }}>상시 견적 응대</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 2-5. Dedicated Pricing/Estimate Section */}
-      <section className={styles.pricing} style={{ padding: '5rem 0', background: '#fff' }}>
+      <section className={styles.pricing} style={{ padding: '5rem 0', background: '#f8fafc' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Pricing & Estimate</span>
@@ -386,7 +406,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {/* 견적 기준 */}
-            <div style={{ background: '#f8fafc', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ background: '#fff', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid var(--accent)', paddingBottom: '0.6rem' }}>
                 {currentService.serviceNameKo} 견적 기준
               </h3>
@@ -401,7 +421,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
 
             {/* 상담 시 보내면 좋은 정보 */}
-            <div style={{ background: '#f8fafc', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
+            <div style={{ background: '#fff', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid var(--accent)', paddingBottom: '0.6rem' }}>
                 상담 시 보내면 좋은 정보
               </h3>
@@ -448,7 +468,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 3. Short 6-step Timeline Work Process */}
-      <section className={styles.process} style={{ padding: '5rem 0', background: '#f8fafc' }}>
+      <section className={styles.process} style={{ padding: '5rem 0', background: '#fff' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Work Process</span>
@@ -502,7 +522,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 4. Filtered Related Services & Accordion for Others */}
-      <section className={styles.services} style={{ background: '#fff', padding: '5rem 0' }}>
+      <section className={styles.services} style={{ background: '#f8fafc', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Our Services</span>
@@ -543,11 +563,11 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             ))}
           </div>
 
-          <details className={styles.otherServicesDetails} style={{ marginTop: '3rem', border: '1px solid #e2e8f0', borderRadius: '12px', background: '#f8fafc', overflow: 'hidden' }}>
+          <details className={styles.otherServicesDetails} style={{ marginTop: '3rem', border: '1px solid #e2e8f0', borderRadius: '12px', background: '#fff', overflow: 'hidden' }}>
             <summary className={styles.otherServicesSummary} style={{ padding: '1.2rem 1.5rem', fontWeight: 'bold', cursor: 'pointer', color: '#0f172a', fontSize: '1.1rem' }}>
               다른 청소 서비스 보기
             </summary>
-            <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '1.5rem', background: '#fff', borderTop: '1px solid #e2e8f0' }}>
+            <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '1.5rem', background: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
               {otherServiceList.map(s => (
                 <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
                   <div 
@@ -585,14 +605,14 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 5. FAQ Section */}
-      <section className={styles.faq} style={{ padding: '4rem 0', background: '#f8fafc' }}>
+      <section className={styles.faq} style={{ padding: '4rem 0', background: '#fff' }}>
          <div className={styles.inner}>
             <div className={styles.sectionHeader}>
                <h2 className={styles.sectionTitle}>자주 묻는 질문</h2>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem' }}>
               {data.faqBlock.map((faq, index) => (
-                <div key={index} style={{ background: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
+                <div key={index} style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                   <h4 style={{ fontWeight: 'bold', color: '#1e293b', marginBottom: '0.5rem' }}>Q. {faq.q}</h4>
                   <p style={{ color: '#475569' }}>A. {faq.a}</p>
                 </div>
@@ -602,7 +622,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 6. Related Links (Internal Linking for SEO) */}
-      <section style={{ padding: '2rem 0', background: '#fff', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+      <section style={{ padding: '2rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
         <div className={styles.inner}>
            <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem' }}>인근 지역 추천 서비스</h3>
            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
