@@ -3,6 +3,7 @@
 import { LandingPageData } from '@/lib/seo-builder';
 import { CONTACT_PHONE, BRAND_NAME, CONTACT_KAKAOTALK } from '@/lib/seo';
 import { seoServices, SeoService } from '@/data/seo/services';
+import { portfolioItems } from '@/data/portfolio';
 import styles from '@/app/page.module.css';
 import SectionCTA from '@/components/SectionCTA';
 import FloatingContact from '@/components/FloatingContact';
@@ -79,6 +80,80 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
+      {/* 3. Why Choose Us Section */}
+      <section className={styles.solution} style={{ background: '#fff', borderTop: '1px solid #f1f5f9', padding: '5rem 0' }}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.subTitle}>Why {BRAND_NAME}?</span>
+            <h2 className={styles.sectionTitle}>
+              {data.h1},<br />
+              왜 <span className={styles.highlight}>{BRAND_NAME}</span> 이어야 할까요?
+            </h2>
+          </div>
+          <div className={styles.featureGrid}>
+            <div className={styles.featureItem}>
+              <div className={styles.featureImage}>
+                <img src="/images/why/pricing.jpg" alt="적정한 견적 제안" />
+              </div>
+              <div className={styles.featureContent}>
+                <div className={styles.featureIcon}>💰</div>
+                <h3>적정한 견적 제안</h3>
+                <p>거품 없는 합리적인 비용으로 현장 상황에 맞는 정직한 견적을 제안합니다.</p>
+              </div>
+            </div>
+            <div className={styles.featureItem}>
+              <div className={styles.featureImage}>
+                <img src="/images/why/equipment.jpg" alt="현장 맞춤형 장비" />
+              </div>
+              <div className={styles.featureContent}>
+                <div className={styles.featureIcon}>✨</div>
+                <h3>현장 맞춤형 장비</h3>
+                <p>{currentService.serviceNameKo}의 특성에 최적화된 현장에 맞는 장비와 세정제를 사용합니다.</p>
+              </div>
+            </div>
+            <div className={styles.featureItem}>
+              <div className={styles.featureImage}>
+                <img src="/images/why/team.jpg" alt="청소 전문 팀 투입" />
+              </div>
+              <div className={styles.featureContent}>
+                <div className={styles.featureIcon}>👤</div>
+                <h3>청소 전문 팀 투입</h3>
+                <p>하청이 아닌 본사 직영 팀이 직접 방문하여 일관된 퀄리티를 유지합니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Portfolio Section */}
+      <section className={styles.portfolio} style={{ background: '#f8fafc', padding: '5rem 0' }}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>모두종합환경 실제 작업 현장</h2>
+            <p className={styles.sectionDesc}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
+          </div>
+          <div className={styles.sliderContainer}>
+            <div className={styles.sliderTrack}>
+              {[...portfolioItems, ...portfolioItems].map((item, idx) => (
+                <div key={`${item.id}-${idx}`} className={styles.portfolioCard}>
+                  <div className={styles.portfolioCategory}>{item.category}</div>
+                  <div className={styles.comparisonGrid}>
+                    <div className={styles.imageBox}>
+                      <img src={item.beforeImg} alt={`${item.category} 전`} />
+                      <span className={styles.tagBefore}>BEFORE</span>
+                    </div>
+                    <div className={styles.imageBox}>
+                      <img src={item.afterImg} alt={`${item.category} 후`} />
+                      <span className={styles.tagAfter}>AFTER</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* 2-5. Dedicated Pricing/Estimate Section */}
       <section className={styles.pricing} style={{ padding: '5rem 0', background: '#fff' }}>
         <div className={styles.inner}>
@@ -130,7 +205,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 3. Short 6-step Timeline Work Process */}
-      <section className={styles.process} style={{ padding: '5rem 0', background: '#fff' }}>
+      <section className={styles.process} style={{ padding: '5rem 0', background: '#f8fafc' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Work Process</span>
@@ -184,7 +259,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 4. Filtered Related Services & Accordion for Others */}
-      <section className={styles.services} style={{ background: '#f8fafc', padding: '5rem 0' }}>
+      <section className={styles.services} style={{ background: '#fff', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Our Services</span>
@@ -222,14 +297,14 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 5. FAQ Section */}
-      <section className={styles.faq} style={{ padding: '4rem 0', background: '#fff' }}>
+      <section className={styles.faq} style={{ padding: '4rem 0', background: '#f8fafc' }}>
          <div className={styles.inner}>
             <div className={styles.sectionHeader}>
                <h2 className={styles.sectionTitle}>자주 묻는 질문</h2>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem' }}>
               {data.faqBlock.map((faq, index) => (
-                <div key={index} style={{ background: '#f1f5f9', padding: '1.5rem', borderRadius: '8px' }}>
+                <div key={index} style={{ background: '#fff', padding: '1.5rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
                   <h4 style={{ fontWeight: 'bold', color: '#1e293b', marginBottom: '0.5rem' }}>Q. {faq.q}</h4>
                   <p style={{ color: '#475569' }}>A. {faq.a}</p>
                 </div>
@@ -239,7 +314,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 6. Related Links (Internal Linking for SEO) */}
-      <section style={{ padding: '2rem 0', background: '#f8fafc' }}>
+      <section style={{ padding: '2rem 0', background: '#fff', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
         <div className={styles.inner}>
            <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem' }}>인근 지역 추천 서비스</h3>
            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
