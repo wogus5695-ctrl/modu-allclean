@@ -198,13 +198,18 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           <div className="animate-fade-up">
             <span className={styles.badge}>서울 주요 지역 청소 상담</span>
             <h1 className={styles.heroTitle} style={{ lineHeight: '1.4' }}>
-              <span className="pc-only">{regionObj.displayNameKo} {currentService.serviceNameKo} 전문</span>
-              <span className="mo-only">{regionObj.displayNameKo} {currentService.serviceNameKo}</span>
+              <span className="pc-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문</span>
+              <span className="mo-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'}</span>
               <br />
               <span className={styles.highlight}>{BRAND_NAME}</span>
             </h1>
             <p className={styles.heroDesc}>
-              {getHeroDescription()}
+              {getHeroDescription()}<br />
+              {regionObj?.displayNameKo && (
+                <span style={{ fontSize: '0.9rem', opacity: 0.85, display: 'block', marginTop: '0.8rem' }}>
+                  {regionObj.displayNameKo} 지역은 {regionObj.commercialCharacteristics || '주요 상업/주거'} 특성을 띄고 있어 {currentService?.serviceNameKo || '청소'}의 전문적인 접근이 필요합니다.
+                </span>
+              )}
             </p>
             <div className={styles.heroCta}>
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
@@ -223,93 +228,27 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
           </div>
         </div>
-      </section>      {/* 2. SEO Unique Content Block (High text density for Naver, refactored into clean cards) */}
-      <section className={styles.solution} style={{ background: '#f8fafc', padding: '5rem 0' }}>
-        <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>현장 특성 분석</span>
-            <h2 className={styles.sectionTitle}>
-              {regionObj.displayNameKo} {currentService.serviceNameKo}이 필요한 현장
-            </h2>
-            <p className={styles.sectionDesc} style={{ marginTop: '0.5rem', color: '#475569' }}>
-              지역 특성과 작업 조건에 맞춰 필요한 청소 범위를 확인합니다.
-            </p>
-          </div>
-          
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
-            {/* 카드 1: 지역 특성 */}
-            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
-                <span>📍</span>
-                <h3>지역 특성</h3>
-              </div>
-              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
-                {regionObj.displayNameKo} {regionObj.commercialCharacteristics || '주요 상업/주거'} 중심
-              </div>
-              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
-                {data.customIntroBlock}
-              </p>
-            </div>
-
-            {/* 카드 2: 주요 현장 */}
-            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
-                <span>🏢</span>
-                <h3>주요 현장</h3>
-              </div>
-              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
-                {currentService.serviceNameKo} 전문 타겟
-              </div>
-              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
-                {data.targetSceneBlock}
-              </p>
-            </div>
-
-            {/* 카드 3: 자주 발생하는 오염 */}
-            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
-                <span>⚠️</span>
-                <h3>자주 발생하는 오염</h3>
-              </div>
-              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
-                {currentService.mainProblem || '현장 주요 오염원'} 해결
-              </div>
-              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
-                {data.problemBlock}
-              </p>
-            </div>
-
-            {/* 카드 4: 상담 전 확인사항 */}
-            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
-                <span>📋</span>
-                <h3>상담 전 확인사항</h3>
-              </div>
-              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
-                안전하고 정확한 진단
-              </div>
-              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
-                {data.preCheckBlock}
-              </p>
-            </div>
-
-          </div>
-        </div>
       </section>
-      {/* 3. Why Choose Us Section */}
-      <section className={styles.solution} style={{ background: '#fff', borderTop: '1px solid #f1f5f9', padding: '5rem 0' }}>
+
+      {/* 2. WHY 모두종합환경? Section */}
+      <section className={styles.solution} style={{ background: '#fff', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Why {BRAND_NAME}?</span>
             <h2 className={styles.sectionTitle}>
-              {data.h1},<br />
+              {(data?.h1) || `${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'}`},<br />
               왜 <span className={styles.highlight}>{BRAND_NAME}</span> 이어야 할까요?
             </h2>
+            {data?.customIntroBlock && (
+              <p className={styles.sectionDesc} style={{ marginTop: '1.2rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1.2rem auto 0 auto' }}>
+                {data.customIntroBlock} {data.targetSceneBlock}
+              </p>
+            )}
           </div>
           <div className={styles.featureGrid}>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/pricing.jpg" alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 합리적인 비용 견적 제안`} />
+                <img src="/images/why/pricing.jpg" alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} 합리적인 비용 견적 제안`} />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>💰</div>
@@ -319,17 +258,17 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/equipment.jpg" alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 맞춤형 청소 장비 구성`} />
+                <img src="/images/why/equipment.jpg" alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} 맞춤형 청소 장비 구성`} />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>✨</div>
                 <h3>현장 맞춤형 장비</h3>
-                <p>{currentService.serviceNameKo}의 특성에 최적화된 현장에 맞는 장비와 세정제를 사용합니다.</p>
+                <p>{(currentService?.serviceNameKo) || '청소'}의 특성에 최적화된 현장에 맞는 장비와 세정제를 사용합니다.</p>
               </div>
             </div>
             <div className={styles.featureItem}>
               <div className={styles.featureImage}>
-                <img src="/images/why/team.jpg" alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 전문 청소팀 작업 준비`} />
+                <img src="/images/why/team.jpg" alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} 전문 청소팀 작업 준비`} />
               </div>
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>👤</div>
@@ -341,8 +280,72 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
+      {/* 3. Detailed Services Section (모두종합환경의 청소 서비스 안내) */}
+      <section className={styles.services} style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
+        <div className={styles.inner}>
+          <div className={styles.sectionHeader}>
+            <span className={styles.subTitle}>Our Services</span>
+            <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>{BRAND_NAME}</span>의 청소 서비스 안내</h2>
+            <p className={styles.sectionDesc}>{BRAND_NAME}은 {(regionObj?.displayNameKo) || '서울·인천'} 및 인근 전 지역 모든 현장에 대응합니다.</p>
+          </div>
+
+          <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            {seoServices.map((s) => {
+              const isCurrent = s.serviceSlug === currentService?.serviceSlug;
+              return (
+                <div 
+                  key={s.serviceSlug} 
+                  className={styles.serviceCard} 
+                  style={{ 
+                    display: 'flex', 
+                    flexDirection: 'column', 
+                    height: '100%', 
+                    border: isCurrent ? '2px solid var(--accent)' : '1px solid #e2e8f0', 
+                    borderRadius: '12px', 
+                    overflow: 'hidden', 
+                    boxShadow: 'var(--shadow-sm)', 
+                    background: '#fff',
+                    position: 'relative'
+                  }}
+                >
+                  {isCurrent && (
+                    <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'var(--accent)', color: '#fff', padding: '4px 10px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', zIndex: 10 }}>
+                      현재 추천 서비스
+                    </div>
+                  )}
+                  <div className={styles.serviceImage} style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                    <img 
+                      src={s.thumbnailImage} 
+                      alt={`${regionObj?.displayNameKo || '서울·인천'} ${s.serviceNameKo} 전문 청소`} 
+                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
+                    />
+                  </div>
+                  <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
+                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
+                    <p style={{ fontSize: '0.925rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 전문 케어</p>
+                    <div style={{ marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '0.75rem' }}>
+                      <Link 
+                        href={`/${regionObj?.citySlug || 'seoul'}/${regionObj?.districtSlug || 'all'}/${regionObj?.neighborhoodSlug || 'all'}/${s.serviceSlug}`} 
+                        style={{ 
+                          display: 'inline-block', 
+                          color: isCurrent ? 'var(--accent)' : 'var(--accent-dark)', 
+                          fontWeight: 'bold', 
+                          fontSize: '0.95rem' 
+                        }}
+                      >
+                        {regionObj?.displayNameKo || '서울·인천'} {s.serviceNameKo} 바로가기 &rarr;
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* 4. Portfolio Section */}
-      <section className={styles.portfolio} style={{ background: '#f8fafc', padding: '5rem 0' }}>
+      <section className={styles.portfolio} style={{ background: '#fff', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>모두종합환경 청소 현장 사례</h2>
@@ -355,11 +358,11 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
                   <div className={styles.portfolioCategory}>{item.category}</div>
                   <div className={styles.comparisonGrid}>
                     <div className={styles.imageBox}>
-                      <img src={item.beforeImg} alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} ${item.category} 청소 작업 전 상태`} />
+                      <img src={item.beforeImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 전 상태`} />
                       <span className={styles.tagBefore}>BEFORE</span>
                     </div>
                     <div className={styles.imageBox}>
-                      <img src={item.afterImg} alt={`${regionObj.displayNameKo} ${currentService.serviceNameKo} ${item.category} 청소 작업 후 완료`} />
+                      <img src={item.afterImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 후 완료`} />
                       <span className={styles.tagAfter}>AFTER</span>
                     </div>
                   </div>
@@ -370,45 +373,27 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
-      {/* 5. Trust Section */}
-      <section className={styles.trust} style={{ padding: '4rem 0', background: '#fff', borderBottom: '1px solid #e2e8f0' }}>
-        <div className={styles.inner}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1rem', textAlign: 'center' }}>
-            <div className={styles.statItem}>
-              <span className={styles.statNum} style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}>1,200+</span>
-              <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: '700', color: 'var(--gray-600)', margin: 0 }}>서울·경기 청소 수행</p>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNum} style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}>98%</span>
-              <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: '700', color: 'var(--gray-600)', margin: 0 }}>고객 만족도</p>
-            </div>
-            <div className={styles.statItem}>
-              <span className={styles.statNum} style={{ fontSize: 'clamp(32px, 5vw, 64px)', color: 'var(--accent)' }}>24h</span>
-              <p style={{ fontSize: 'clamp(14px, 2vw, 18px)', fontWeight: '700', color: 'var(--gray-600)', margin: 0 }}>상시 견적 응대</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 2-5. Dedicated Pricing/Estimate Section */}
-      <section className={styles.pricing} style={{ padding: '5rem 0', background: '#f8fafc' }}>
+      {/* 5. Pricing & Estimate (Reasonable Price) Section */}
+      <section className={styles.pricing} style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Pricing & Estimate</span>
             <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(24px, 4vw, 36px)', lineHeight: '1.3' }}>
-              {regionObj.displayNameKo} {currentService.serviceNameKo} 견적은<br />
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 견적은<br />
               현장 상태에 따라 달라집니다
             </h2>
-            <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569' }}>
-              사진과 위치를 보내주시면 작업 범위, 오염 상태, 장비 사용 여부를 확인해 상담 방향을 안내합니다.
-            </p>
+            {data?.problemBlock && (
+              <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
+                {data.problemBlock} {data.preCheckBlock}
+              </p>
+            )}
           </div>
           
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {/* 견적 기준 */}
             <div style={{ background: '#fff', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
               <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid var(--accent)', paddingBottom: '0.6rem' }}>
-                {currentService.serviceNameKo} 견적 기준
+                {(currentService?.serviceNameKo) || '청소'} 견적 기준
               </h3>
               <ul style={{ listStyleType: 'none', paddingLeft: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 {getEstimateFactors().map((factor, idx) => (
@@ -453,7 +438,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           {/* CTA 버튼 세트 */}
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '3.5rem', flexWrap: 'wrap' }}>
             <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
-              {regionObj.displayNameKo} {currentService.serviceNameKo} 상담하기
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 상담하기
             </a>
             <a 
               href={CONTACT_KAKAOTALK} 
@@ -467,147 +452,14 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
-      {/* 3. Short 6-step Timeline Work Process */}
-      <section className={styles.process} style={{ padding: '5rem 0', background: '#fff' }}>
-        <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Work Process</span>
-            <h2 className={styles.sectionTitle}>체계적인 6단계 프로세스</h2>
-          </div>
-          <div className={styles.timelineContainer}>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot}>01</div>
-              <div className={styles.timelineContent}>
-                <h4>상담 접수</h4>
-                <p>사진·위치 확인</p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot}>02</div>
-              <div className={styles.timelineContent}>
-                <h4>상태 확인</h4>
-                <p>오염도·면적 확인</p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot}>03</div>
-              <div className={styles.timelineContent}>
-                <h4>견적 안내</h4>
-                <p>범위·비용 안내</p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot}>04</div>
-              <div className={styles.timelineContent}>
-                <h4>일정 조율</h4>
-                <p>작업 시간 조율</p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot}>05</div>
-              <div className={styles.timelineContent}>
-                <h4>청소 진행</h4>
-                <p>현장 맞춤 작업</p>
-              </div>
-            </div>
-            <div className={styles.timelineItem}>
-              <div className={styles.timelineDot}>06</div>
-              <div className={styles.timelineContent}>
-                <h4>마감 확인</h4>
-                <p>작업 후 확인</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. Filtered Related Services & Accordion for Others */}
-      <section className={styles.services} style={{ background: '#f8fafc', padding: '5rem 0' }}>
-        <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Our Services</span>
-            <h2 className={styles.sectionTitle}>{regionObj.displayNameKo} {currentService.serviceNameKo}와 함께 많이 문의되는 작업</h2>
-          </div>
-          
-          <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2.5rem' }}>
-            {relatedServiceList.map(s => (
-              <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
-                <div className={styles.serviceImage} style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
-                  <img 
-                    src={s.thumbnailImage} 
-                    alt={`${regionObj.displayNameKo} ${s.serviceNameKo} 전문 청소 추천`} 
-                    style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                  />
-                </div>
-                <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
-                  <p style={{ fontSize: '0.925rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 현장 정밀 오염 제거 및 케어</p>
-                  
-                  <div style={{ marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '0.75rem' }}>
-                    <Link 
-                      href={getRelatedServiceUrl(s)} 
-                      style={{ 
-                        display: 'inline-block', 
-                        color: 'var(--accent-dark)', 
-                        fontWeight: 'bold', 
-                        fontSize: '0.95rem' 
-                      }}
-                    >
-                      {regionObj.displayNameKo} {s.serviceNameKo} 바로가기 &rarr;
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <details className={styles.otherServicesDetails} style={{ marginTop: '3rem', border: '1px solid #e2e8f0', borderRadius: '12px', background: '#fff', overflow: 'hidden' }}>
-            <summary className={styles.otherServicesSummary} style={{ padding: '1.2rem 1.5rem', fontWeight: 'bold', cursor: 'pointer', color: '#0f172a', fontSize: '1.1rem' }}>
-              다른 청소 서비스 보기
-            </summary>
-            <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '1.5rem', background: '#f8fafc', borderTop: '1px solid #e2e8f0' }}>
-              {otherServiceList.map(s => (
-                <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
-                  <div className={styles.serviceImage} style={{ height: '180px', overflow: 'hidden', position: 'relative' }}>
-                    <img 
-                      src={s.thumbnailImage} 
-                      alt={`${regionObj.displayNameKo} ${s.serviceNameKo} 종합 청소 안내`} 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                    />
-                  </div>
-                  <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
-                    <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
-                    <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 현장 정밀 오염 제거 및 케어</p>
-                    <div style={{ marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '0.75rem' }}>
-                      <Link 
-                        href={getRelatedServiceUrl(s)} 
-                        style={{ 
-                          display: 'inline-block', 
-                          color: 'var(--accent-dark)', 
-                          fontWeight: 'bold', 
-                          fontSize: '0.9rem' 
-                        }}
-                      >
-                        {regionObj.displayNameKo} {s.serviceNameKo} 바로가기 &rarr;
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </details>
-
-        </div>
-      </section>
-
-      {/* 5. FAQ Section */}
+      {/* 6. FAQ Section */}
       <section className={styles.faq} style={{ padding: '5rem 0', background: '#fff' }}>
          <div className={styles.inner}>
             <div className={styles.sectionHeader}>
                <h2 className={styles.sectionTitle}>자주 묻는 질문</h2>
             </div>
             <div className={styles.faqList} style={{ marginTop: '2rem' }}>
-               {data.faqBlock.map((faq, index) => (
+               {(data?.faqBlock || []).map((faq, index) => (
                  <div key={index} className={styles.faqItem} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '1.8rem 2rem' }}>
                    <h4 style={{ fontWeight: 'bold', color: '#1e293b', marginBottom: '0.6rem' }}>Q. {faq.q}</h4>
                    <p style={{ color: '#475569', margin: 0 }}>A. {faq.a}</p>
@@ -617,23 +469,9 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
          </div>
       </section>
 
-      {/* 6. Related Links (Internal Linking for SEO) */}
-      <section style={{ padding: '2rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
-        <div className={styles.inner}>
-           <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1rem' }}>인근 지역 추천 서비스</h3>
-           <div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem' }}>
-             {data.relatedLinks.map((link, idx) => (
-               <Link key={idx} href={link.url} style={{ padding: '0.5rem 1rem', background: '#e2e8f0', borderRadius: '4px', color: '#334155', textDecoration: 'none', fontSize: '0.9rem' }}>
-                 {link.name}
-               </Link>
-             ))}
-           </div>
-        </div>
-      </section>
-
       {/* 7. Common Sections */}
       <SectionCTA 
-        title={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 고민, 상담으로 확인하세요`} 
+        title={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} 고민, 상담으로 확인하세요`} 
         subtitle="사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다." 
       />
       <FloatingContact />
