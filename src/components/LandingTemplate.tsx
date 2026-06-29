@@ -605,18 +605,18 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 5. FAQ Section */}
-      <section className={styles.faq} style={{ padding: '4rem 0', background: '#fff' }}>
+      <section className={styles.faq} style={{ padding: '5rem 0', background: '#fff' }}>
          <div className={styles.inner}>
             <div className={styles.sectionHeader}>
                <h2 className={styles.sectionTitle}>자주 묻는 질문</h2>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '2rem' }}>
-              {data.faqBlock.map((faq, index) => (
-                <div key={index} style={{ background: '#f8fafc', padding: '1.5rem', borderRadius: '8px', border: '1px solid #e2e8f0' }}>
-                  <h4 style={{ fontWeight: 'bold', color: '#1e293b', marginBottom: '0.5rem' }}>Q. {faq.q}</h4>
-                  <p style={{ color: '#475569' }}>A. {faq.a}</p>
-                </div>
-              ))}
+            <div className={styles.faqList} style={{ marginTop: '2rem' }}>
+               {data.faqBlock.map((faq, index) => (
+                 <div key={index} className={styles.faqItem} style={{ background: '#f8fafc', border: '1px solid #e2e8f0', padding: '1.8rem 2rem' }}>
+                   <h4 style={{ fontWeight: 'bold', color: '#1e293b', marginBottom: '0.6rem' }}>Q. {faq.q}</h4>
+                   <p style={{ color: '#475569', margin: 0 }}>A. {faq.a}</p>
+                 </div>
+               ))}
             </div>
          </div>
       </section>
@@ -637,8 +637,8 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
 
       {/* 7. Common Sections */}
       <SectionCTA 
-        title={`${data.h1} 고민, 이제 끝내세요!`} 
-        subtitle={`${BRAND_NAME}만의 차별화된 전문성으로 현장 상태에 맞춘 작업을 약속드립니다.`} 
+        title={`${regionObj.displayNameKo} ${currentService.serviceNameKo} 고민, 상담으로 확인하세요`} 
+        subtitle="사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다." 
       />
       <FloatingContact />
     </div>

@@ -1,4 +1,4 @@
-import { CONTACT_PHONE, BRAND_NAME } from '@/lib/seo';
+import { CONTACT_PHONE, BRAND_NAME, CONTACT_KAKAOTALK } from '@/lib/seo';
 import styles from './SectionCTA.module.css';
 
 interface Props {
@@ -26,9 +26,16 @@ export default function SectionCTA({
 
           <div className={styles.btnGroup}>
             <a href={`tel:${CONTACT_PHONE}`} className={styles.phoneBtn}>
-              <span className={styles.icon}>📞</span> 실시간 전화 상담
+              <span className={styles.icon}>📞</span> 전화 상담하기
             </a>
-
+            <a 
+              href={CONTACT_KAKAOTALK} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={styles.kakaoBtn}
+            >
+              <span className={styles.icon}>💬</span> 카카오톡 문의하기
+            </a>
           </div>
         </div>
       </div>
