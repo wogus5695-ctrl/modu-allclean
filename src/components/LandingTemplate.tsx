@@ -21,6 +21,41 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   const relatedServiceList = seoServices.filter(s => relatedSlugs.includes(s.serviceNameKo) || relatedSlugs.includes(s.serviceSlug));
   const otherServiceList = seoServices.filter(s => s.serviceSlug !== currentService.serviceSlug && !relatedServiceList.includes(s));
 
+  const getHeroDescription = () => {
+    const regionName = regionObj.displayNameKo;
+    const serviceName = currentService.serviceNameKo;
+    
+    switch (serviceName) {
+      case '외벽청소':
+        return `${regionName} 건물 외벽에 쌓인 먼지, 빗물 자국, 매연 오염을 확인하고 현장 조건에 맞춰 작업 가능 여부를 안내합니다.`;
+      case '유리창청소':
+        return `${regionName} 상가, 빌딩, 매장 유리창의 물때, 손자국, 빗물 얼룩을 확인하고 작업 범위에 맞춰 상담을 안내합니다.`;
+      case '화재청소':
+        return `${regionName} 화재 피해 현장의 그을음, 냄새, 분진 상태를 확인하고 정리 범위와 청소 가능 여부를 안내합니다.`;
+      case '바닥왁스코팅':
+        return `${regionName} 상가, 사무실, 매장 바닥의 광택 저하와 오염 상태를 확인하고 왁스코팅 작업 범위를 안내합니다.`;
+      case '어닝청소':
+        return `${regionName} 매장 어닝에 쌓인 먼지, 빗물 자국, 곰팡이 오염을 확인하고 원단 상태와 작업 가능 여부를 안내합니다.`;
+      case '간판청소':
+        return `${regionName} 매장 간판의 먼지, 빗물 얼룩, 조류 오염 상태를 확인하고 외부 작업 가능 여부를 안내합니다.`;
+      case '인테리어 후 청소':
+        return `${regionName} 인테리어 공사 후 남은 분진, 접착제 자국, 실내 오염 상태를 확인하고 입주 전 청소 범위를 안내합니다.`;
+      case '준공청소':
+        return `${regionName} 준공 현장의 공사 분진, 시멘트 가루, 보양재 잔여물을 확인하고 입주 전 정리 범위를 안내합니다.`;
+      case '후드청소':
+        return `${regionName} 음식점 주방 후드와 배기 주변의 기름때, 악취, 오염 상태를 확인하고 청소 범위를 안내합니다.`;
+      case '특수청소':
+        return `${regionName} 일반 청소로 처리하기 어려운 오염, 악취, 방치 공간 상태를 확인하고 현장에 맞는 정리 방향을 안내합니다.`;
+      case '바닥청소':
+        return `${regionName} 상가, 사무실, 매장 바닥의 찌든 때, 오염 누적, 미끄럼 상태를 확인하고 청소 범위를 안내합니다.`;
+      case '쓰레기집 청소':
+      case '쓰레기집청소':
+        return `${regionName} 원룸, 오피스텔, 빌라 등 생활폐기물이 쌓인 공간의 상태를 확인하고 정리 범위와 청소 가능 여부를 안내합니다.`;
+      default:
+        return `${regionName}의 ${serviceName}가 필요한 현장 상태와 작업 범위를 확인해 상담을 안내합니다.`;
+    }
+  };
+
   return (
     <div className={styles.container}>
       {/* 1. Hero Section (Dynamic) */}
@@ -30,21 +65,27 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           <div className="animate-fade-up">
             <span className={styles.badge}>서울 주요 지역 청소 상담</span>
             <h1 className={styles.heroTitle} style={{ lineHeight: '1.4' }}>
-              {data.h1.split(' ')[0]} <br className="mo-only" />
-              <span className={styles.highlight}>{data.h1.split(' ').slice(1).join(' ')}</span>
+              <span className="pc-only">{regionObj.displayNameKo} {currentService.serviceNameKo} 전문</span>
+              <span className="mo-only">{regionObj.displayNameKo} {currentService.serviceNameKo}</span>
+              <br />
+              <span className={styles.highlight}>{BRAND_NAME}</span>
             </h1>
             <p className={styles.heroDesc}>
-              {data.heroDescription}
+              {getHeroDescription()}
             </p>
             <div className={styles.heroCta}>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>전화 상담하기</a>
+              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
+                <span className="pc-only">전화 상담하기</span>
+                <span className="mo-only">전화 상담</span>
+              </a>
               <a 
                 href={CONTACT_KAKAOTALK} 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className={`${styles.ctaBtn} ${styles.kakao}`}
               >
-                카카오톡 문의하기
+                <span className="pc-only">카카오톡 문의하기</span>
+                <span className="mo-only">카카오톡 문의</span>
               </a>
             </div>
           </div>

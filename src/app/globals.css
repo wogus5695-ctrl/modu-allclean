@@ -100,3 +100,23 @@ img {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
+/* Responsive Utilities */
+.pc-only {
+  display: inline;
+}
+.mo-only {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .pc-only {
+    display: none !important;
+  }
+  .mo-only {
+    display: inline !important;
+  }
+  br.mo-only {
+    display: block !important;
+  }
+}
+
