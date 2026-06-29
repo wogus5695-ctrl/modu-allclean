@@ -56,6 +56,100 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     }
   };
 
+  const getEstimateFactors = () => {
+    const serviceName = currentService.serviceNameKo;
+    switch (serviceName) {
+      case '외벽청소':
+        return [
+          '건물 높이',
+          '외장재 재질',
+          '오염도',
+          '스카이차 필요 여부',
+          '작업 가능 시간대'
+        ];
+      case '유리창청소':
+        return [
+          '유리 면적',
+          '내부/외부 유리 여부',
+          '물때와 빗물 얼룩 정도',
+          '고층 작업 여부'
+        ];
+      case '화재청소':
+        return [
+          '그을음 범위',
+          '냄새 정도',
+          '분진 오염 범위',
+          '청소 대상 공간 크기'
+        ];
+      case '바닥왁스코팅':
+        return [
+          '바닥 면적',
+          '기존 왁스층 상태',
+          '오염 누적 정도',
+          '스크래치 정도'
+        ];
+      case '어닝청소':
+        return [
+          '어닝 크기',
+          '원단 노후도',
+          '빗물 자국과 곰팡이 정도',
+          '설치 높이'
+        ];
+      case '간판청소':
+        return [
+          '간판 크기',
+          '설치 높이',
+          '표면 오염 정도',
+          '장비 사용 여부'
+        ];
+      case '인테리어 후 청소':
+        return [
+          '공사 범위',
+          '분진 정도',
+          '접착제 자국 여부',
+          '입점 또는 오픈 일정'
+        ];
+      case '준공청소':
+        return [
+          '전체 면적',
+          '공사 잔여물 범위',
+          '시멘트 가루와 분진 정도',
+          '입주 일정'
+        ];
+      case '후드청소':
+        return [
+          '후드 크기',
+          '기름때 정도',
+          '배기 주변 오염 범위',
+          '영업시간 외 작업 가능 여부'
+        ];
+      case '쓰레기집 청소':
+      case '쓰레기집청소':
+        return [
+          '생활폐기물 양',
+          '악취 정도',
+          '주거공간 형태',
+          '분리배출 범위'
+        ];
+      case '특수청소':
+        return [
+          '오염 유형',
+          '악취 정도',
+          '방치 기간',
+          '폐기물 여부'
+        ];
+      case '바닥청소':
+        return [
+          '바닥 면적',
+          '바닥 재질 및 상태',
+          '오염 누적 정도',
+          '작업 가능 시간대'
+        ];
+      default:
+        return currentService.estimateFactors;
+    }
+  };
+
   return (
     <div className={styles.container}>
       {/* 1. Hero Section (Dynamic) */}
@@ -242,46 +336,73 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Pricing & Estimate</span>
-            <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(24px, 4vw, 36px)' }}>
-              {data.h1} 견적은 현장 상태에 따라 달라집니다
+            <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(24px, 4vw, 36px)', lineHeight: '1.3' }}>
+              {regionObj.displayNameKo} {currentService.serviceNameKo} 견적은<br />
+              현장 상태에 따라 달라집니다
             </h2>
             <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569' }}>
               사진과 위치를 보내주시면 작업 범위, 오염 상태, 장비 사용 여부를 확인해 상담 방향을 안내합니다.
             </p>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {/* 견적 기준 */}
-            <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid #cbd5e1', paddingBottom: '0.5rem' }}>
+            <div style={{ background: '#f8fafc', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid var(--accent)', paddingBottom: '0.6rem' }}>
                 {currentService.serviceNameKo} 견적 기준
               </h3>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#334155', lineHeight: '1.8' }}>
-                {currentService.estimateFactors.map((factor, idx) => (
-                  <li key={idx} style={{ marginBottom: '0.5rem' }}>{factor}</li>
+              <ul style={{ listStyleType: 'none', paddingLeft: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                {getEstimateFactors().map((factor, idx) => (
+                  <li key={idx} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#334155', fontSize: '1.05rem' }}>
+                    <span style={{ color: 'var(--accent-dark)', fontWeight: 'bold' }}>✔</span>
+                    {factor}
+                  </li>
                 ))}
               </ul>
             </div>
 
             {/* 상담 시 보내면 좋은 정보 */}
-            <div style={{ background: '#f8fafc', padding: '2rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-              <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid #cbd5e1', paddingBottom: '0.5rem' }}>
+            <div style={{ background: '#f8fafc', padding: '2.2rem 2rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)' }}>
+              <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0f172a', borderBottom: '2px solid var(--accent)', paddingBottom: '0.6rem' }}>
                 상담 시 보내면 좋은 정보
               </h3>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '1.5rem', color: '#334155', lineHeight: '1.8' }}>
-                <li style={{ marginBottom: '0.5rem' }}>현장 위치</li>
-                <li style={{ marginBottom: '0.5rem' }}>작업이 필요한 공간 사진</li>
-                <li style={{ marginBottom: '0.5rem' }}>오염 상태가 잘 보이는 사진</li>
-                <li style={{ marginBottom: '0.5rem' }}>대략적인 면적 또는 층수</li>
-                <li style={{ marginBottom: '0.5rem' }}>희망 작업 일정</li>
+              <ul style={{ listStyleType: 'none', paddingLeft: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#334155', fontSize: '1.05rem' }}>
+                  <span style={{ color: 'var(--accent-dark)', fontWeight: 'bold' }}>✔</span>
+                  현장 위치
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#334155', fontSize: '1.05rem' }}>
+                  <span style={{ color: 'var(--accent-dark)', fontWeight: 'bold' }}>✔</span>
+                  작업이 필요한 공간 사진
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#334155', fontSize: '1.05rem' }}>
+                  <span style={{ color: 'var(--accent-dark)', fontWeight: 'bold' }}>✔</span>
+                  오염 상태가 잘 보이는 사진
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#334155', fontSize: '1.05rem' }}>
+                  <span style={{ color: 'var(--accent-dark)', fontWeight: 'bold' }}>✔</span>
+                  대략적인 면적 또는 층수
+                </li>
+                <li style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#334155', fontSize: '1.05rem' }}>
+                  <span style={{ color: 'var(--accent-dark)', fontWeight: 'bold' }}>✔</span>
+                  희망 작업 일정
+                </li>
               </ul>
             </div>
           </div>
 
-          {/* 단일 CTA 버튼 */}
-          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
-            <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ display: 'inline-block' }}>
-              {data.h1} 견적 상담하기
+          {/* CTA 버튼 세트 */}
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '3.5rem', flexWrap: 'wrap' }}>
+            <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
+              {regionObj.displayNameKo} {currentService.serviceNameKo} 상담하기
+            </a>
+            <a 
+              href={CONTACT_KAKAOTALK} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className={`${styles.ctaBtn} ${styles.kakao}`}
+            >
+              카카오톡 문의하기
             </a>
           </div>
         </div>
