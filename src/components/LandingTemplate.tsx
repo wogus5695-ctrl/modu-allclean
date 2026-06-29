@@ -90,37 +90,79 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </div>
           </div>
         </div>
-      </section>
-
-      {/* 2. SEO Unique Content Block (High text density for Naver) */}
-      <section className={styles.solution} style={{ background: '#f8fafc' }}>
+      </section>      {/* 2. SEO Unique Content Block (High text density for Naver, refactored into clean cards) */}
+      <section className={styles.solution} style={{ background: '#f8fafc', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Why Choose Us?</span>
+            <span className={styles.subTitle}>현장 특성 분석</span>
             <h2 className={styles.sectionTitle}>
-              {data.h1} 현장 특성
+              {regionObj.displayNameKo} {currentService.serviceNameKo}이 필요한 현장
             </h2>
+            <p className={styles.sectionDesc} style={{ marginTop: '0.5rem', color: '#475569' }}>
+              지역 특성과 작업 조건에 맞춰 필요한 청소 범위를 확인합니다.
+            </p>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', marginTop: '2rem', fontSize: '1.1rem', lineHeight: '1.7', color: '#333' }}>
-            <div style={{ background: '#fff', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0f172a' }}>지역 및 수요 특징</h3>
-              <p>{data.customIntroBlock}</p>
-            </div>
-            
-            <div style={{ background: '#fff', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0f172a' }}>주요 타겟 및 현장</h3>
-              <p>{data.targetSceneBlock}</p>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '2.5rem' }}>
+            {/* 카드 1: 지역 특성 */}
+            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
+                <span>📍</span>
+                <h3>지역 특성</h3>
+              </div>
+              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
+                {regionObj.displayNameKo} {regionObj.commercialCharacteristics || '주요 상업/주거'} 중심
+              </div>
+              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
+                {data.customIntroBlock}
+              </p>
             </div>
 
-            <div style={{ background: '#fff', padding: '2rem', borderRadius: '12px', boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1)' }}>
-              <h3 style={{ fontSize: '1.3rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0f172a' }}>빈발 문제 및 해결안</h3>
-              <p>{data.problemBlock}</p>
+            {/* 카드 2: 주요 현장 */}
+            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
+                <span>🏢</span>
+                <h3>주요 현장</h3>
+              </div>
+              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
+                {currentService.serviceNameKo} 전문 타겟
+              </div>
+              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
+                {data.targetSceneBlock}
+              </p>
+            </div>
+
+            {/* 카드 3: 자주 발생하는 오염 */}
+            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
+                <span>⚠️</span>
+                <h3>자주 발생하는 오염</h3>
+              </div>
+              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
+                {currentService.mainProblem || '현장 주요 오염원'} 해결
+              </div>
+              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
+                {data.problemBlock}
+              </p>
+            </div>
+
+            {/* 카드 4: 상담 전 확인사항 */}
+            <div style={{ background: '#fff', padding: '1.8rem', borderRadius: '12px', border: '1px solid #e2e8f0', boxShadow: 'var(--shadow-sm)', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a' }}>
+                <span>📋</span>
+                <h3>상담 전 확인사항</h3>
+              </div>
+              <div style={{ color: 'var(--accent-dark)', fontSize: '1rem', fontWeight: '600' }}>
+                안전하고 정확한 진단
+              </div>
+              <p style={{ fontSize: '0.925rem', color: '#475569', lineHeight: '1.6', borderTop: '1px solid #f1f5f9', paddingTop: '0.8rem', margin: 0 }}>
+                {data.preCheckBlock}
+              </p>
             </div>
 
           </div>
         </div>
       </section>
-
       {/* 3. Why Choose Us Section */}
       <section className={styles.solution} style={{ background: '#fff', borderTop: '1px solid #f1f5f9', padding: '5rem 0' }}>
         <div className={styles.inner}>
