@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { services } from '@/data/services';
 import { portfolioItems } from '@/data/portfolio';
-import { BRAND_NAME, CONTACT_PHONE } from '@/lib/seo';
+import { BRAND_NAME, CONTACT_PHONE, CONTACT_KAKAOTALK } from '@/lib/seo';
 import { regions, Region } from '@/data/regions';
 import Link from 'next/link';
 import SectionCTA from '@/components/SectionCTA';
@@ -185,8 +185,15 @@ export default function MainTemplate({
               {getHeroDesc()}
             </p>
             <div className={styles.heroCta}>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>무료 방문 견적 신청</a>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.outline}`}>실시간 전화 상담</a>
+              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>전화 상담하기</a>
+              <a 
+                href={CONTACT_KAKAOTALK} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`${styles.ctaBtn} ${styles.kakao}`}
+              >
+                카카오톡 문의하기
+              </a>
             </div>
           </div>
         </div>
@@ -490,7 +497,7 @@ export default function MainTemplate({
                 <li>✔ 작업 범위 사전 설명</li>
               </ul>
               <a href={`tel:${CONTACT_PHONE}`} className={styles.mobilePricingCta}>
-                📞 무료 견적 문의하기
+                📞 전화 상담하기
               </a>
             </div>
 
@@ -553,7 +560,7 @@ export default function MainTemplate({
           <div className={styles.faqList}>
             <div className={styles.faqItem}>
               <h4>Q. 서울·경기 지역 견적 비용은 어떻게 되나요?</h4>
-              <p>A. 현장의 면적, 오염도, 작업 방식에 따라 상이하므로 무료 방문 견적을 통해 정확한 금액을 산출해 드립니다.</p>
+              <p>A. 현장의 면적, 오염도, 작업 방식에 따라 상이하므로 상세한 현장 상담을 통해 정확한 견적을 안내해 드립니다.</p>
             </div>
             <div className={styles.faqItem}>
               <h4>Q. {service} 작업 시간은 얼마나 걸리나요?</h4>
@@ -584,7 +591,7 @@ export default function MainTemplate({
               <span style={{ color: '#00aaff' }}>{region} {service}</span> 전문가와<br />
               상담하세요!
             </h2>
-            <p>24시간 친절 상담 | 무료 방문 견적 | 사후 관리 보장</p>
+            <p>24시간 친절 상담 | 현장 상담 문의 | 사후 관리 보장</p>
             <div className={styles.contactInfo}>
               <a href={`tel:${CONTACT_PHONE}`} className={styles.mainPhone}>{CONTACT_PHONE}</a>
             </div>

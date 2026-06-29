@@ -1,7 +1,7 @@
 "use client";
 
 import { LandingPageData } from '@/lib/seo-builder';
-import { CONTACT_PHONE, BRAND_NAME } from '@/lib/seo';
+import { CONTACT_PHONE, BRAND_NAME, CONTACT_KAKAOTALK } from '@/lib/seo';
 import { seoServices, SeoService } from '@/data/seo/services';
 import styles from '@/app/page.module.css';
 import SectionCTA from '@/components/SectionCTA';
@@ -36,8 +36,15 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
               {data.heroDescription}
             </p>
             <div className={styles.heroCta}>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>{data.ctaHook}</a>
-              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.outline}`}>실시간 전화 상담</a>
+              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>전화 상담하기</a>
+              <a 
+                href={CONTACT_KAKAOTALK} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`${styles.ctaBtn} ${styles.kakao}`}
+              >
+                카카오톡 문의하기
+              </a>
             </div>
           </div>
         </div>

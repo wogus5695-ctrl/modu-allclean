@@ -37,7 +37,7 @@ export const seoServices: SeoService[] = [
     ],
     relatedServices: ['유리창청소', '간판청소'],
     heroDescriptionTemplate: '{{displayNameKo}}의 {{commonBuildingTypes}}에 최적화된 외벽청소로 건물의 가치를 높여드립니다.',
-    ctaHook: '무료 방문 견적 신청하기',
+    ctaHook: '현장 상담 문의',
     thumbnailImage: '/images/seo/exterior-cleaning.jpg',
     ogImage: '/images/seo/exterior-cleaning-og.jpg',
     altBase: '외벽청소 전문업체'
@@ -103,7 +103,7 @@ export const seoServices: SeoService[] = [
     ],
     relatedServices: ['인테리어 후 청소', '사무실 대청소'],
     heroDescriptionTemplate: '{{displayNameKo}} 매장과 사무실의 품격을 높이는 바닥왁스코팅, 잃어버린 광택을 되찾아 드립니다.',
-    ctaHook: '바닥 상태 무료 진단',
+    ctaHook: '바닥 상태 상담받기',
     thumbnailImage: '/images/seo/floor-waxing.jpg',
     ogImage: '/images/seo/floor-waxing-og.jpg',
     altBase: '바닥 왁스코팅'

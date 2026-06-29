@@ -2,7 +2,7 @@ import Link from 'next/link';
 import styles from './Header.module.css';
 import { services } from '@/data/services';
 
-import { CONTACT_PHONE } from '@/lib/seo';
+import { CONTACT_PHONE, CONTACT_KAKAOTALK } from '@/lib/seo';
 
 export default function Header() {
   return (
@@ -22,7 +22,15 @@ export default function Header() {
         </nav>
         <div className={styles.cta}>
           <a href={`tel:${CONTACT_PHONE}`} className={styles.phoneBtn}>
-            무료 견적 상담
+            전화 상담
+          </a>
+          <a 
+            href={CONTACT_KAKAOTALK} 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            className={styles.kakaoBtn}
+          >
+            카카오톡 문의
           </a>
         </div>
       </div>

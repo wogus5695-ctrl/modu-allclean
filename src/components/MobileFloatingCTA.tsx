@@ -1,4 +1,4 @@
-import { CONTACT_PHONE, CONTACT_SMS } from '@/lib/seo';
+import { CONTACT_PHONE, CONTACT_KAKAOTALK } from '@/lib/seo';
 import styles from './MobileFloatingCTA.module.css';
 
 export default function MobileFloatingCTA() {
@@ -9,11 +9,15 @@ export default function MobileFloatingCTA() {
           <div className={styles.icon}>📞</div>
           <div className={styles.text}>전화상담</div>
         </a>
-        <a href={CONTACT_SMS} className={styles.btn}>
-          <div className={styles.icon}>✉️</div>
-          <div className={styles.text}>문자상담</div>
+        <a 
+          href={CONTACT_KAKAOTALK} 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className={styles.btn}
+        >
+          <div className={styles.icon}>💬</div>
+          <div className={styles.text}>카톡상담</div>
         </a>
-
       </div>
     </div>
   );

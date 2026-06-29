@@ -18,6 +18,7 @@ export const BUSINESS_NAME = '모두종합환경';
 export const DOMAIN = 'https://www.moduclean.co.kr';
 export const CONTACT_PHONE = '010-8189-6900'; // 전화번호
 export const CONTACT_SMS = 'sms:010-8189-6900'; // 문자 상담 링크
+export const CONTACT_KAKAOTALK = 'http://pf.kakao.com/_xgjxmjX'; // 카카오톡 채널 링크
 export const BUSINESS_ADDRESS = '서울특별시 강남구 ...'; // 사업장 주소
 export const DEFAULT_OG_IMAGE = `${DOMAIN}/images/services/outer-wall.jpg`;
 export const NAVER_VERIFICATION = '43f9e9e2c0022b1961730e583c46aef2bc51b2fa'; // 네이버 서치어드바이저 연동 코드
@@ -149,7 +150,7 @@ export function getRegionMetadata(districtSlug: string): Metadata {
 
   return getBaseMetadata({
     title: `${region.district} 종합청소 전문 | ${BRAND_NAME}`,
-    description: `${region.district} 전 지역 종합청소 전문업체 ${BRAND_NAME}입니다. ${region.localDescription} 빌딩, 상가, 사무실 무료 견적 상담 가능.`,
+    description: `${region.district} 전 지역 종합청소 전문업체 ${BRAND_NAME}입니다. ${region.localDescription} 빌딩, 상가, 사무실 견적 상담 가능.`,
     indexStatus: region.indexStatus,
     path: `/area/${region.regionSlug}/${region.districtSlug}`,
   });
@@ -186,7 +187,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   return getBaseMetadata({
     title: `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,
-    description: `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`,
+    description: `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`,
     indexStatus: indexStatus,
     path: path,
     ogType: 'article',

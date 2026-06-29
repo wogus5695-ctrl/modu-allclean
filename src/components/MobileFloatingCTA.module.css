@@ -42,8 +42,7 @@
 
 /* Specific colors on hover/active */
 .btn:nth-child(1) .icon { color: #003366; }
-.btn:nth-child(2) .icon { color: #00AEEF; }
-.btn:nth-child(3) .icon { color: #f9d800; }
+.btn:nth-child(2) .icon { color: #F5B800; }
 
 @media (max-width: 768px) {
   .wrapper {

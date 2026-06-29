@@ -121,7 +121,7 @@ export default async function LandingPage({ params }: Props) {
   const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : region.subDistrict;
 
   const title = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-  const description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 무료 견적을 제공합니다.`;
+  const description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
   
   const path = region.subDistrictSlug === 'all'
     ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`

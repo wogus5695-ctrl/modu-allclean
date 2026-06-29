@@ -115,6 +115,19 @@
   color: var(--primary);
 }
 
+.kakao {
+  background: #FEE500;
+  color: #191919;
+  border: 1px solid #FEE500;
+}
+
+.kakao:hover {
+  background: #E2CB00;
+  color: #191919;
+  border: 1px solid #E2CB00;
+  transform: translateY(-3px);
+}
+
 /* 2. Solution Section */
 .solution {
   background-color: var(--gray-50);
