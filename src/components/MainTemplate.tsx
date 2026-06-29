@@ -556,8 +556,8 @@ export default function MainTemplate({
           </div>
           <div className={styles.faqList}>
             <div className={styles.faqItem}>
-              <h4>Q. 서울·경기 지역 견적 비용은 어떻게 되나요?</h4>
-              <p>A. 현장의 면적, 오염도, 작업 방식에 따라 상이하므로 상세한 현장 상담을 통해 정확한 견적을 안내해 드립니다.</p>
+              <h4>Q. 청소 작업 비용은 어떻게 확인하나요?</h4>
+              <p>A. 현장 위치, 작업 범위, 오염 상태, 면적에 따라 달라질 수 있습니다. 사진과 기본 정보를 보내주시면 상담 방향을 안내해 드립니다.</p>
             </div>
             <div className={styles.faqItem}>
               <h4>Q. {service} 작업 시간은 얼마나 걸리나요?</h4>
