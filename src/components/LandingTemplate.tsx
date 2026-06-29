@@ -16,52 +16,58 @@ interface LandingTemplateProps {
 }
 
 export default function LandingTemplate({ data, regionObj, currentService }: LandingTemplateProps) {
-  const getRelatedServiceNames = () => {
-    const serviceName = currentService.serviceNameKo;
-    switch (serviceName) {
-      case '외벽청소':
-        return ['유리창청소', '어닝청소', '간판청소', '바닥왁스코팅'];
-      case '유리창청소':
-        return ['외벽청소', '간판청소', '어닝청소'];
-      case '화재청소':
-        return ['특수청소', '바닥왁스코팅', '후드청소'];
-      case '바닥왁스코팅':
-        return ['인테리어 후 청소', '준공청소'];
-      case '어닝청소':
-        return ['간판청소', '외벽청소', '유리창청소'];
-      case '간판청소':
-        return ['어닝청소', '외벽청소', '유리창청소'];
-      case '인테리어 후 청소':
-        return ['준공청소', '유리창청소', '바닥왁스코팅'];
-      case '준공청소':
-        return ['인테리어 후 청소', '유리창청소', '바닥왁스코팅'];
-      case '후드청소':
-        return ['화재청소', '특수청소', '바닥왁스코팅'];
-      case '쓰레기집 청소':
-      case '쓰레기집청소':
-        return ['특수청소', '바닥왁스코팅', '화재청소'];
-      case '특수청소':
-        return ['쓰레기집청소', '화재청소', '바닥왁스코팅'];
-      default:
-        return currentService.relatedServices;
-    }
+  const getDisplayServices = () => {
+    return [
+      {
+        id: 'outer-wall',
+        name: '외벽청소',
+        desc: '고층 빌딩, 아파트, 상가 건물의 외부 벽면 오염물과 그을음, 이끼를 전문 로프 장비 및 고압 세척으로 제거합니다.',
+        image: '/images/services/outer-wall.jpg'
+      },
+      {
+        id: 'window',
+        name: '유리창청소',
+        desc: '외부 유리, 상가 유리, 건물 유리창, 고소 유리창 등 현장 상태에 맞춰 장비와 작업 방식을 안내드립니다.',
+        image: '/images/services/window.jpg'
+      },
+      {
+        id: 'fire',
+        name: '화재청소',
+        desc: '그을음 제거, 유독성 분진 청소, 탄 냄새 제거 탈취 공정 등 화재 피해 현장의 신속하고 상태에 맞춘 복구를 지원합니다.',
+        image: '/images/services/fire.jpg'
+      },
+      {
+        id: 'floor-wax',
+        name: '바닥왁스코팅',
+        desc: '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 프리미엄 코팅으로 광택을 회복하고 바닥을 보호합니다.',
+        image: '/images/services/floor-wax.jpg'
+      },
+      {
+        id: 'group-awning-sign',
+        name: '어닝/간판 청소',
+        desc: '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 특수 약품으로 깨끗하게 지워냅니다.',
+        image: '/images/services/awning-sign.jpg'
+      },
+      {
+        id: 'group-interior-completion',
+        name: '인테리어 후/준공 청소',
+        desc: '공사 후 남은 분진, 창틀 먼지, 바닥 오염, 접착 자국 등을 입주 전 사용할 수 있는 상태로 정리합니다.',
+        image: '/images/services/interior-completion.jpg'
+      },
+      {
+        id: 'hood',
+        name: '후드청소',
+        desc: '식당 주방 후드와 덕트 내부에 고착된 치명적인 기름때를 고온 스팀과 특수 세제로 정밀 제거하여 화재를 예방합니다.',
+        image: '/images/services/hood.jpg'
+      },
+      {
+        id: 'special-cleaning',
+        name: '특수청소',
+        desc: '악취, 오염, 폐기물, 일반 청소로 어려운 현장은 현장 상태에 맞는 장비와 인력 배치가 필요합니다.',
+        image: '/images/services/special-cleaning.jpg'
+      }
+    ];
   };
-
-  const getRelatedServiceUrl = (s: SeoService) => {
-    const city = regionObj?.citySlug || regionObj?.regionSlug || 'seoul';
-    const district = regionObj?.districtSlug || 'all';
-    const neighborhood = regionObj?.neighborhoodSlug || regionObj?.subDistrictSlug || 'all';
-    return `/${city}/${district}/${neighborhood}/${s.serviceSlug}`;
-  };
-
-  // 1. Get 3~4 related services dynamically based on mapping
-  const relatedNames = getRelatedServiceNames();
-  const relatedServiceList = seoServices.filter(s => 
-    relatedNames.includes(s.serviceNameKo) || 
-    relatedNames.includes(s.serviceSlug) ||
-    (s.serviceNameKo === '쓰레기집청소' && relatedNames.includes('쓰레기집 청소'))
-  );
-  const otherServiceList = seoServices.filter(s => s.serviceSlug !== currentService.serviceSlug && !relatedServiceList.includes(s));
 
   const getHeroDescription = () => {
     const regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
@@ -287,59 +293,86 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       <section className={styles.services} style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Our Services</span>
             <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>{BRAND_NAME}</span>의 청소 서비스 안내</h2>
-            <p className={styles.sectionDesc}>{BRAND_NAME}은 {(regionObj?.displayNameKo) || '서울·인천'} 및 인근 전 지역 모든 현장에 대응합니다.</p>
+            <p className={styles.sectionDesc}>모두종합환경은 서울 주요 지역의 다양한 청소 현장에 맞춰 상담을 안내합니다.</p>
           </div>
 
-          <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {seoServices.map((s) => {
-              const isCurrent = s.serviceSlug === currentService?.serviceSlug;
+          {/* Desktop view (only visible on desktop via page.module.css) */}
+          <div className={`${styles.serviceCards} ${styles.desktopOnly}`} style={{ marginTop: '3rem' }}>
+            {getDisplayServices().map((item) => {
+              const isMatched = 
+                (item.id === 'outer-wall' && currentService?.serviceNameKo === '외벽청소') ||
+                (item.id === 'window' && currentService?.serviceNameKo === '유리창청소') ||
+                (item.id === 'fire' && currentService?.serviceNameKo === '화재청소') ||
+                (item.id === 'floor-wax' && currentService?.serviceNameKo === '바닥왁스코팅') ||
+                (item.id === 'group-awning-sign' && (currentService?.serviceNameKo === '어닝청소' || currentService?.serviceNameKo === '간판청소')) ||
+                (item.id === 'group-interior-completion' && (currentService?.serviceNameKo === '인테리어 후 청소' || currentService?.serviceNameKo === '준공청소')) ||
+                (item.id === 'hood' && currentService?.serviceNameKo === '후드청소') ||
+                (item.id === 'special-cleaning' && (currentService?.serviceNameKo === '특수청소' || currentService?.serviceNameKo === '쓰레기집 청소' || currentService?.serviceNameKo === '쓰레기집청소'));
+
               return (
                 <div 
-                  key={s.serviceSlug} 
-                  className={styles.serviceCard} 
-                  style={{ 
-                    display: 'flex', 
-                    flexDirection: 'column', 
-                    height: '100%', 
-                    border: isCurrent ? '2px solid var(--accent)' : '1px solid #e2e8f0', 
-                    borderRadius: '12px', 
-                    overflow: 'hidden', 
-                    boxShadow: 'var(--shadow-sm)', 
-                    background: '#fff',
-                    position: 'relative'
-                  }}
+                  key={item.id} 
+                  className={styles.serviceItem} 
+                  style={isMatched ? { border: '2px solid var(--accent)', position: 'relative' } : undefined}
                 >
-                  {isCurrent && (
+                  {isMatched && (
                     <div style={{ position: 'absolute', top: '12px', right: '12px', background: 'var(--accent)', color: '#fff', padding: '4px 10px', borderRadius: '20px', fontSize: '0.8rem', fontWeight: 'bold', zIndex: 10 }}>
                       현재 추천 서비스
                     </div>
                   )}
-                  <div className={styles.serviceImage} style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
-                    <img 
-                      src={s.thumbnailImage} 
-                      alt={`${regionObj?.displayNameKo || '서울·인천'} ${s.serviceNameKo} 전문 청소`} 
-                      style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
-                    />
+                  <div className={styles.serviceInfo}>
+                    <h3>{item.name}</h3>
+                    <p>{item.desc}</p>
+                    <ul className={styles.serviceList}>
+                      <li>✔ 현장 정밀 진단 및 견적</li>
+                      <li>✔ 전문 인력 투입</li>
+                      <li>✔ 사후 관리(A/S) 보장</li>
+                    </ul>
                   </div>
-                  <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
-                    <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
-                    <p style={{ fontSize: '0.925rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 전문 케어</p>
-                    <div style={{ marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '0.75rem' }}>
-                      <Link 
-                        href={`/${regionObj?.citySlug || 'seoul'}/${regionObj?.districtSlug || 'all'}/${regionObj?.neighborhoodSlug || 'all'}/${s.serviceSlug}`} 
-                        style={{ 
-                          display: 'inline-block', 
-                          color: isCurrent ? 'var(--accent)' : 'var(--accent-dark)', 
-                          fontWeight: 'bold', 
-                          fontSize: '0.95rem' 
-                        }}
-                      >
-                        {regionObj?.displayNameKo || '서울·인천'} {s.serviceNameKo} 바로가기 &rarr;
-                      </Link>
+                  {item.image && (
+                    <div className={styles.serviceImage}>
+                      <img src={item.image} alt={item.name} />
                     </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+
+          {/* Mobile view (only visible on mobile via page.module.css) */}
+          <div className={`${styles.mobileServiceCards} ${styles.moOnly}`} style={{ marginTop: '2rem' }}>
+            {getDisplayServices().map((item) => {
+              const isMatched = 
+                (item.id === 'outer-wall' && currentService?.serviceNameKo === '외벽청소') ||
+                (item.id === 'window' && currentService?.serviceNameKo === '유리창청소') ||
+                (item.id === 'fire' && currentService?.serviceNameKo === '화재청소') ||
+                (item.id === 'floor-wax' && currentService?.serviceNameKo === '바닥왁스코팅') ||
+                (item.id === 'group-awning-sign' && (currentService?.serviceNameKo === '어닝청소' || currentService?.serviceNameKo === '간판청소')) ||
+                (item.id === 'group-interior-completion' && (currentService?.serviceNameKo === '인테리어 후 청소' || currentService?.serviceNameKo === '준공청소')) ||
+                (item.id === 'hood' && currentService?.serviceNameKo === '후드청소') ||
+                (item.id === 'special-cleaning' && (currentService?.serviceNameKo === '특수청소' || currentService?.serviceNameKo === '쓰레기집 청소' || currentService?.serviceNameKo === '쓰레기집청소'));
+
+              return (
+                <div 
+                  key={item.id} 
+                  className={styles.serviceItem}
+                  style={isMatched ? { border: '2px solid var(--accent)', position: 'relative', background: '#fff' } : { background: '#fff' }}
+                >
+                  {isMatched && (
+                    <div style={{ position: 'absolute', top: '8px', right: '8px', background: 'var(--accent)', color: '#fff', padding: '2px 8px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: 'bold', zIndex: 10 }}>
+                      현재 추천
+                    </div>
+                  )}
+                  <div className={styles.serviceInfo}>
+                    <h3 style={{ margin: '0 0 6px 0', fontSize: '1.1rem' }}>{item.name}</h3>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--gray-600)', lineHeight: '1.4' }}>{item.desc}</p>
                   </div>
+                  {item.image && (
+                    <div className={styles.serviceImage} style={{ width: '80px', height: '80px', flexShrink: 0, borderRadius: '6px', overflow: 'hidden' }}>
+                      <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                  )}
                 </div>
               );
             })}
