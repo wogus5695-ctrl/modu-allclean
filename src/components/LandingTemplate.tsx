@@ -16,9 +16,48 @@ interface LandingTemplateProps {
 }
 
 export default function LandingTemplate({ data, regionObj, currentService }: LandingTemplateProps) {
-  // 1. Get 3~4 related services
-  const relatedSlugs = currentService.relatedServices;
-  const relatedServiceList = seoServices.filter(s => relatedSlugs.includes(s.serviceNameKo) || relatedSlugs.includes(s.serviceSlug));
+  const getRelatedServiceNames = () => {
+    const serviceName = currentService.serviceNameKo;
+    switch (serviceName) {
+      case '외벽청소':
+        return ['유리창청소', '어닝청소', '간판청소', '바닥왁스코팅'];
+      case '유리창청소':
+        return ['외벽청소', '간판청소', '어닝청소'];
+      case '화재청소':
+        return ['특수청소', '바닥왁스코팅', '후드청소'];
+      case '바닥왁스코팅':
+        return ['인테리어 후 청소', '준공청소'];
+      case '어닝청소':
+        return ['간판청소', '외벽청소', '유리창청소'];
+      case '간판청소':
+        return ['어닝청소', '외벽청소', '유리창청소'];
+      case '인테리어 후 청소':
+        return ['준공청소', '유리창청소', '바닥왁스코팅'];
+      case '준공청소':
+        return ['인테리어 후 청소', '유리창청소', '바닥왁스코팅'];
+      case '후드청소':
+        return ['화재청소', '특수청소', '바닥왁스코팅'];
+      case '쓰레기집 청소':
+      case '쓰레기집청소':
+        return ['특수청소', '바닥왁스코팅', '화재청소'];
+      case '특수청소':
+        return ['쓰레기집청소', '화재청소', '바닥왁스코팅'];
+      default:
+        return currentService.relatedServices;
+    }
+  };
+
+  const getRelatedServiceUrl = (s: SeoService) => {
+    return `/${regionObj.citySlug}/${regionObj.districtSlug}/${regionObj.neighborhoodSlug}/${s.serviceSlug}`;
+  };
+
+  // 1. Get 3~4 related services dynamically based on mapping
+  const relatedNames = getRelatedServiceNames();
+  const relatedServiceList = seoServices.filter(s => 
+    relatedNames.includes(s.serviceNameKo) || 
+    relatedNames.includes(s.serviceSlug) ||
+    (s.serviceNameKo === '쓰레기집청소' && relatedNames.includes('쓰레기집 청소'))
+  );
   const otherServiceList = seoServices.filter(s => s.serviceSlug !== currentService.serviceSlug && !relatedServiceList.includes(s));
 
   const getHeroDescription = () => {
@@ -467,30 +506,75 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Our Services</span>
-            <h2 className={styles.sectionTitle}>{data.h1} 연관 서비스</h2>
+            <h2 className={styles.sectionTitle}>{regionObj.displayNameKo} {currentService.serviceNameKo}와 함께 많이 문의되는 작업</h2>
           </div>
           
-          <div className={styles.serviceGrid}>
+          <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '2.5rem' }}>
             {relatedServiceList.map(s => (
-              <div key={s.serviceSlug} className={styles.serviceCard}>
-                <div className={styles.serviceImage} style={{ backgroundImage: `url(${s.thumbnailImage})` }}></div>
-                <div className={styles.serviceContent}>
-                  <h3>{s.serviceNameKo}</h3>
-                  <p>{s.mainProblem} 해결</p>
+              <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
+                <div 
+                  className={styles.serviceImage} 
+                  style={{ 
+                    backgroundImage: `url(${s.thumbnailImage})`, 
+                    height: '200px', 
+                    backgroundSize: 'cover', 
+                    backgroundPosition: 'center'
+                  }}
+                ></div>
+                <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
+                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
+                  <p style={{ fontSize: '0.925rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 현장 정밀 오염 제거 및 케어</p>
+                  
+                  <div style={{ marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '0.75rem' }}>
+                    <Link 
+                      href={getRelatedServiceUrl(s)} 
+                      style={{ 
+                        display: 'inline-block', 
+                        color: 'var(--accent-dark)', 
+                        fontWeight: 'bold', 
+                        fontSize: '0.95rem' 
+                      }}
+                    >
+                      {regionObj.displayNameKo} {s.serviceNameKo} 바로가기 &rarr;
+                    </Link>
+                  </div>
                 </div>
               </div>
             ))}
           </div>
 
-          <details className={styles.otherServicesDetails}>
-            <summary className={styles.otherServicesSummary}>다른 청소 서비스 보기</summary>
-            <div className={styles.serviceGrid} style={{ marginTop: '2rem' }}>
+          <details className={styles.otherServicesDetails} style={{ marginTop: '3rem', border: '1px solid #e2e8f0', borderRadius: '12px', background: '#f8fafc', overflow: 'hidden' }}>
+            <summary className={styles.otherServicesSummary} style={{ padding: '1.2rem 1.5rem', fontWeight: 'bold', cursor: 'pointer', color: '#0f172a', fontSize: '1.1rem' }}>
+              다른 청소 서비스 보기
+            </summary>
+            <div className={styles.serviceGrid} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', padding: '1.5rem', background: '#fff', borderTop: '1px solid #e2e8f0' }}>
               {otherServiceList.map(s => (
-                <div key={s.serviceSlug} className={styles.serviceCard}>
-                  <div className={styles.serviceImage} style={{ backgroundImage: `url(${s.thumbnailImage})` }}></div>
-                  <div className={styles.serviceContent}>
-                    <h3>{s.serviceNameKo}</h3>
-                    <p>{s.mainProblem} 해결</p>
+                <div key={s.serviceSlug} className={styles.serviceCard} style={{ display: 'flex', flexDirection: 'column', height: '100%', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: 'var(--shadow-sm)', background: '#fff' }}>
+                  <div 
+                    className={styles.serviceImage} 
+                    style={{ 
+                      backgroundImage: `url(${s.thumbnailImage})`, 
+                      height: '180px', 
+                      backgroundSize: 'cover', 
+                      backgroundPosition: 'center'
+                    }}
+                  ></div>
+                  <div className={styles.serviceContent} style={{ padding: '1.5rem', display: 'flex', flexDirection: 'column', flexGrow: 1, gap: '0.75rem' }}>
+                    <h3 style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#0f172a', margin: 0 }}>{s.serviceNameKo}</h3>
+                    <p style={{ fontSize: '0.9rem', color: '#475569', margin: 0, lineHeight: '1.5', flexGrow: 1 }}>{s.mainProblem} 현장 정밀 오염 제거 및 케어</p>
+                    <div style={{ marginTop: 'auto', borderTop: '1px solid #f1f5f9', paddingTop: '0.75rem' }}>
+                      <Link 
+                        href={getRelatedServiceUrl(s)} 
+                        style={{ 
+                          display: 'inline-block', 
+                          color: 'var(--accent-dark)', 
+                          fontWeight: 'bold', 
+                          fontSize: '0.9rem' 
+                        }}
+                      >
+                        {regionObj.displayNameKo} {s.serviceNameKo} 바로가기 &rarr;
+                      </Link>
+                    </div>
                   </div>
                 </div>
               ))}
