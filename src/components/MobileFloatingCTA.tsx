@@ -5,18 +5,18 @@ export default function MobileFloatingCTA() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
-        <a href={`tel:${CONTACT_PHONE}`} className={styles.btn}>
-          <div className={styles.icon}>📞</div>
-          <div className={styles.text}>전화상담</div>
+        <a href={`tel:${CONTACT_PHONE}`} className={`${styles.btn} ${styles.phoneBtn}`}>
+          <span className={styles.icon}>📞</span>
+          <span className={styles.text}>전화 상담</span>
         </a>
         <a 
           href={CONTACT_KAKAOTALK} 
           target="_blank" 
           rel="noopener noreferrer" 
-          className={styles.btn}
+          className={`${styles.btn} ${styles.kakaoBtn}`}
         >
-          <div className={styles.icon}>💬</div>
-          <div className={styles.text}>카톡상담</div>
+          <span className={styles.icon}>💬</span>
+          <span className={styles.text}>카카오톡 문의</span>
         </a>
       </div>
     </div>

@@ -288,9 +288,6 @@ export default function MainTemplate({
                   <p className={styles.highlightedDesc}>
                     {highlightDescMap[highlightedService.id] || highlightedService.desc}
                   </p>
-                  <a href={`tel:${CONTACT_PHONE}`} className={styles.highlightedCta}>
-                    💬 {highlightCtaTextMap[highlightedService.id] || `${highlightedService.name} 견적 문의`}
-                  </a>
                 </div>
 
                 {/* Related Services Title */}

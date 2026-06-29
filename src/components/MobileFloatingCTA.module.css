@@ -4,7 +4,7 @@
   left: 0;
   right: 0;
   background: white;
-  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -3px 15px rgba(0, 0, 0, 0.08);
   z-index: 1000;
   padding-bottom: env(safe-area-inset-bottom);
   display: none; /* Default hidden, show on mobile */
@@ -12,37 +12,49 @@
 
 .container {
   display: flex;
-  height: 65px;
+  height: 60px;
+  padding: 8px 12px;
+  gap: 8px;
 }
 
 .btn {
   flex: 1;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   text-decoration: none;
-  border-right: 1px solid #f0f0f0;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 14px;
 }
 
-.btn:last-child {
-  border-right: none;
+.phoneBtn {
+  background-color: #003366;
+  color: white;
+}
+
+.phoneBtn .icon {
+  color: white;
+}
+
+.kakaoBtn {
+  background-color: #FEE500;
+  color: #191919;
+}
+
+.kakaoBtn .icon {
+  color: #191919;
 }
 
 .icon {
-  font-size: 20px;
-  margin-bottom: 3px;
+  font-size: 18px;
 }
 
 .text {
-  font-size: 11px;
-  font-weight: 700;
-  color: #333;
+  white-space: nowrap;
 }
-
-/* Specific colors on hover/active */
-.btn:nth-child(1) .icon { color: #003366; }
-.btn:nth-child(2) .icon { color: #F5B800; }
 
 @media (max-width: 768px) {
   .wrapper {
