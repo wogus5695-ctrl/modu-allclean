@@ -146,6 +146,14 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     }
   };
 
+  const getCard2Description = () => {
+    const serviceName = currentService?.serviceNameKo || '청소';
+    if (serviceName === '바닥왁스코팅' || serviceName === '바닥청소') {
+      return '바닥 상태에 맞는 장비와 세정 방식을 검토합니다.';
+    }
+    return `${serviceName} 상태에 맞는 전문 장비와 작업 방식을 검토합니다.`;
+  };
+
   const getEstimateFactors = () => {
     const serviceName = currentService.serviceNameKo;
     switch (serviceName) {
@@ -282,7 +290,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       </section>
 
       {/* 2. WHY 모두종합환경? Section */}
-      <section className={styles.solution} style={{ background: '#fff', padding: '5rem 0' }}>
+      <section className={`${styles.solution} ${styles.landingSolution}`} style={{ background: '#fff', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Why {BRAND_NAME}?</span>
@@ -302,7 +310,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>💰</div>
                 <h3>적정한 견적 제안</h3>
-                <p>거품 없는 합리적인 비용으로 현장 상황에 맞는 정직한 견적을 제안합니다.</p>
+                <p>현장 상태와 작업 범위를 기준으로 상담을 안내합니다.</p>
               </div>
             </div>
             <div className={styles.featureItem}>
@@ -312,7 +320,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>✨</div>
                 <h3>현장 맞춤형 장비</h3>
-                <p>{(currentService?.serviceNameKo) || '청소'}의 특성에 최적화된 현장에 맞는 장비와 세정제를 사용합니다.</p>
+                <p>{getCard2Description()}</p>
               </div>
             </div>
             <div className={styles.featureItem}>
@@ -322,7 +330,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
               <div className={styles.featureContent}>
                 <div className={styles.featureIcon}>👤</div>
                 <h3>청소 전문 팀 투입</h3>
-                <p>하청이 아닌 본사 직영 팀이 직접 방문하여 일관된 퀄리티를 유지합니다.</p>
+                <p>작업 범위에 맞춰 필요한 인력과 진행 방식을 조율합니다.</p>
               </div>
             </div>
           </div>
