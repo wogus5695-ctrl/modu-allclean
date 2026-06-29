@@ -147,7 +147,7 @@ export default async function LandingPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {landingData ? (
-        <LandingTemplate data={landingData} regionObj={region} currentService={seoService} />
+        <LandingTemplate data={landingData} regionObj={seoRegion} currentService={seoService} />
       ) : (
         <MainTemplate region={regionName} service={service.serviceNameKo} regionObj={region} />
       )}

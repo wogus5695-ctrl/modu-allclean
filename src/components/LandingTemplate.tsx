@@ -48,7 +48,10 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   };
 
   const getRelatedServiceUrl = (s: SeoService) => {
-    return `/${regionObj.citySlug}/${regionObj.districtSlug}/${regionObj.neighborhoodSlug}/${s.serviceSlug}`;
+    const city = regionObj?.citySlug || regionObj?.regionSlug || 'seoul';
+    const district = regionObj?.districtSlug || 'all';
+    const neighborhood = regionObj?.neighborhoodSlug || regionObj?.subDistrictSlug || 'all';
+    return `/${city}/${district}/${neighborhood}/${s.serviceSlug}`;
   };
 
   // 1. Get 3~4 related services dynamically based on mapping
@@ -61,8 +64,8 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   const otherServiceList = seoServices.filter(s => s.serviceSlug !== currentService.serviceSlug && !relatedServiceList.includes(s));
 
   const getHeroDescription = () => {
-    const regionName = regionObj.displayNameKo;
-    const serviceName = currentService.serviceNameKo;
+    const regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
+    const serviceName = currentService?.serviceNameKo || '청소';
     
     switch (serviceName) {
       case '외벽청소':
