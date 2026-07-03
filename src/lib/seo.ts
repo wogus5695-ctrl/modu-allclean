@@ -157,7 +157,7 @@ export function getRegionMetadata(districtSlug: string): Metadata {
 }
 
 // 4. 지역+작업명 통합 랜딩 페이지 (구/동 공통)
-export function getLandingMetadata(districtSlug: string, subDistrictSlug: string, serviceId: string): Metadata {
+export function getLandingMetadata(districtSlug: string, subDistrictSlug: string, serviceId: string, requestedDistrictParam?: string): Metadata {
   const region = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
   const service = services.find((s) => s.id === serviceId);
 
@@ -168,28 +168,57 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   // 인덱싱 로직 (구 및 동 단위 모든 유효 페이지는 index 상태로 지정)
   const parentRegion = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
   const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
-  const indexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
-
-  // clean URL 기반 path 지정
-  const path = subDistrictSlug === 'all'
-    ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
-    : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
+  const requestedDistrict = requestedDistrictParam || region.districtSlug;
+  const requestedWithSuffix = requestedDistrictParam ? (requestedDistrictParam.endsWith('-gu') || requestedDistrictParam.endsWith('-si')) : false;
 
   const isIncheon = region.regionSlug === 'incheon';
   const isDistrictLevel = subDistrictSlug === 'all' || region.subDistrict === '전지역';
+
+  // clean URL 기반 path 지정
+  const path = subDistrictSlug === 'all'
+    ? `/${region.regionSlug}/${requestedDistrict}/${service.serviceSlug}`
+    : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
+
+  let canonicalPath = path;
+  let finalIndexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
+
+  if (!isIncheon && isDistrictLevel) {
+    const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+    const suffixPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
+    if (!requestedWithSuffix) {
+      // 구/시 제거 버전: canonical을 구/시 포함 버전으로 지정 및 noindex 처리
+      canonicalPath = suffixPath;
+      finalIndexStatus = 'noindex';
+    } else {
+      // 구/시 포함 버전: index
+      canonicalPath = path;
+      finalIndexStatus = 'index';
+    }
+  }
+
   const shortDistrict = isIncheon ? region.district : region.district.replace(/(구|시)$/, '');
-  const titleRegion = isDistrictLevel 
-    ? (isIncheon ? region.district : `${region.district} ${shortDistrict}`) 
-    : `${region.district} ${region.subDistrict}`;
-  const descRegion = isDistrictLevel 
-    ? (isIncheon ? region.district : `${region.district}(${shortDistrict})`) 
-    : `${region.district} ${region.subDistrict}`;
+  
+  let titleRegion = '';
+  let descRegion = '';
+  
+  if (isDistrictLevel) {
+    if (requestedDistrictParam) {
+      titleRegion = requestedWithSuffix ? region.district : shortDistrict;
+      descRegion = requestedWithSuffix ? region.district : shortDistrict;
+    } else {
+      titleRegion = isIncheon ? region.district : `${region.district} ${shortDistrict}`;
+      descRegion = isIncheon ? region.district : `${region.district}(${shortDistrict})`;
+    }
+  } else {
+    titleRegion = `${region.district} ${region.subDistrict}`;
+    descRegion = `${region.district} ${region.subDistrict}`;
+  }
 
   return getBaseMetadata({
     title: `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,
     description: `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`,
-    indexStatus: indexStatus,
-    path: path,
+    indexStatus: finalIndexStatus,
+    path: canonicalPath,
     ogType: 'article',
     publishedTime: new Date().toISOString(),
     modifiedTime: new Date().toISOString(),

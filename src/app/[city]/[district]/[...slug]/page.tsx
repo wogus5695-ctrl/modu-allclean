@@ -19,16 +19,30 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
   const subDistrictSlug = slug.length > 1 ? slug[0] : 'all';
 
   const service = services.find(s => s.serviceSlug === serviceSlug);
-  const region = regions.find(r => 
+  
+  // 1차적으로 정확히 일치하는 districtSlug 매칭 시도
+  let region = regions.find(r => 
     r.regionSlug === city && 
     r.districtSlug === district && 
     r.subDistrictSlug === subDistrictSlug
   );
   
+  let targetDistrictSlug = district;
+  
+  // 정확히 매핑이 안 되었고 인천이 아닌 경우 정규화 적용 (서울/경기 접미사 제거형 대응)
+  if (!region && city !== 'incheon') {
+    targetDistrictSlug = district.replace(/-gu$/, '').replace(/-si$/, '');
+    region = regions.find(r => 
+      r.regionSlug === city && 
+      r.districtSlug === targetDistrictSlug && 
+      r.subDistrictSlug === subDistrictSlug
+    );
+  }
+  
   // 신규 데이터 구조 매칭 (동 단위 매칭 우선)
   let seoRegion = seoRegions.find(r => 
     r.citySlug === city && 
-    r.districtSlug === district && 
+    r.districtSlug === targetDistrictSlug && 
     r.neighborhoodSlug === subDistrictSlug
   );
   
@@ -86,7 +100,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return {};
   }
 
-  return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id);
+  return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id, district);
 }
 
 export default async function LandingPage({ params }: Props) {
@@ -117,17 +131,30 @@ export default async function LandingPage({ params }: Props) {
 
   const isDistrictLevel = region.subDistrict === '전지역';
   const shortDistrict = region.district.replace(/(구|시)$/, '');
-  const titleRegion = isDistrictLevel ? `${region.district} ${shortDistrict}` : region.subDistrict;
-  const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : region.subDistrict;
+  const requestedWithSuffix = district.endsWith('-gu') || district.endsWith('-si');
+  const titleRegion = isDistrictLevel 
+    ? (requestedWithSuffix ? region.district : shortDistrict) 
+    : region.subDistrict;
+  const descRegion = isDistrictLevel 
+    ? (requestedWithSuffix ? region.district : shortDistrict) 
+    : region.subDistrict;
 
   const title = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
   const description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
   
   const path = region.subDistrictSlug === 'all'
-    ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
+    ? `/${region.regionSlug}/${district}/${service.serviceSlug}`
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
   
-  const url = `${DOMAIN}${path}`;
+  let canonicalPath = path;
+  if (region.regionSlug !== 'incheon' && isDistrictLevel) {
+    if (!requestedWithSuffix) {
+      const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+      canonicalPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
+    }
+  }
+  
+  const url = `${DOMAIN}${canonicalPath}`;
   
   const articleJsonLd = getArticleJsonLd(title, description, url);
   const breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
@@ -163,11 +190,22 @@ export async function generateStaticParams() {
 
   guRegions.forEach(region => {
     activeServices.forEach(service => {
+      // 1. 행정단위 제거형 (e.g. gangnam)
       params.push({
         city: region.regionSlug,
         district: region.districtSlug,
         slug: [service.serviceSlug]
       });
+
+      // 2. 행정단위 포함형 (e.g. gangnam-gu, bucheon-si - 인천 제외)
+      if (region.regionSlug !== 'incheon') {
+        const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+        params.push({
+          city: region.regionSlug,
+          district: `${region.districtSlug}${suffix}`,
+          slug: [service.serviceSlug]
+        });
+      }
     });
   });
 

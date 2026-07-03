@@ -1404,5 +1404,1293 @@ export const regions: Region[] = [
     localDescription: '청라 국제도시 수변 오피스들과 루원시티, 검단 신도시의 신축 대규모 빌딩들을 안전하게 복원합니다.',
     buildingCharacteristics: '신축 복합 상가 빌딩, 수변 오피스 타워, 초고층 주상복합 단지',
     priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '쌍문동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'ssangmun-dong',
+    localDescription: '도봉구 쌍문동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '방학동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'banghak-dong',
+    localDescription: '도봉구 방학동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '창동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'chang-dong',
+    localDescription: '도봉구 창동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '도봉동',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'dobong-dong',
+    localDescription: '도봉구 도봉동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '도봉구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'dobong', subDistrictSlug: 'all',
+    localDescription: '도봉산 인근의 주거 밀집 지역으로 아파트 단지와 근린생활시설이 발달해 있습니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '월계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'wolgye-dong',
+    localDescription: '노원구 월계동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '공릉동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'gongneung-dong',
+    localDescription: '노원구 공릉동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '하계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'hagye-dong',
+    localDescription: '노원구 하계동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '중계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'junggye-dong',
+    localDescription: '노원구 중계동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '상계동',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'sanggye-dong',
+    localDescription: '노원구 상계동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '노원구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'nowon', subDistrictSlug: 'all',
+    localDescription: '대규모 아파트 단지와 우수한 교육 인프라, 학원가가 발달한 주거 중심 지역입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '미아동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'mia-dong',
+    localDescription: '강북구 미아동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '번동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'beon-dong',
+    localDescription: '강북구 번동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '수유동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'suyu-dong',
+    localDescription: '강북구 수유동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '우이동',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'ui-dong',
+    localDescription: '강북구 우이동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강북구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangbuk', subDistrictSlug: 'all',
+    localDescription: '북한산 아래 위치하여 자연 환경이 좋고 역세권 주변 상권이 조화를 이루는 거주지입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '돈암동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'donam-dong',
+    localDescription: '성북구 돈암동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '정릉동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'jeongneung-dong',
+    localDescription: '성북구 정릉동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '길음동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'gireum-dong',
+    localDescription: '성북구 길음동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '월곡동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'wolgok-dong',
+    localDescription: '성북구 월곡동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '장위동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'jangwi-dong',
+    localDescription: '성북구 장위동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '성북동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'seongbuk-dong',
+    localDescription: '성북구 성북동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '삼선동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'samseon-dong',
+    localDescription: '성북구 삼선동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '동선동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'dongseon-dong',
+    localDescription: '성북구 동선동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '안암동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'anam-dong',
+    localDescription: '성북구 안암동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '보문동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'bomun-dong',
+    localDescription: '성북구 보문동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '종암동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'jongam-dong',
+    localDescription: '성북구 종암동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '석관동',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'seokgwan-dong',
+    localDescription: '성북구 석관동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성북구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'seongbuk', subDistrictSlug: 'all',
+    localDescription: '구릉지형의 전통적인 주택가와 대학가가 공존하며 정취 있는 주거 타운을 형성하고 있습니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '신설동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'sinseol-dong',
+    localDescription: '동대문구 신설동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '용두동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'yongdu-dong',
+    localDescription: '동대문구 용두동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '제기동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'jegi-dong',
+    localDescription: '동대문구 제기동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '전농동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'jeonnong-dong',
+    localDescription: '동대문구 전농동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '답십리동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'dapsimni-dong',
+    localDescription: '동대문구 답십리동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '장안동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'jangan-dong',
+    localDescription: '동대문구 장안동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '청량리동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'cheongnyangni-dong',
+    localDescription: '동대문구 청량리동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '회기동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'hoegi-dong',
+    localDescription: '동대문구 회기동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '휘경동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'hwigyeong-dong',
+    localDescription: '동대문구 휘경동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '이문동',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'imun-dong',
+    localDescription: '동대문구 이문동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '동대문구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'dongdaemun', subDistrictSlug: 'all',
+    localDescription: '청량리역 중심의 교통 요지이자 상업 시설 및 교육기관이 밀집한 전통적인 중심부입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '면목동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'myeonmok-dong',
+    localDescription: '중랑구 면목동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '상봉동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'sangbong-dong',
+    localDescription: '중랑구 상봉동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '중화동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'junghwa-dong',
+    localDescription: '중랑구 중화동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '묵동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'muk-dong',
+    localDescription: '중랑구 묵동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '망우동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'mangu-dong',
+    localDescription: '중랑구 망우동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '신내동',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'sinnae-dong',
+    localDescription: '중랑구 신내동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '중랑구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'jungnang', subDistrictSlug: 'all',
+    localDescription: '상봉역 상권과 신내지구 신축 아파트 단지 등 생활 편의가 높은 친근한 주거지입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '왕십리동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'wangsimni-dong',
+    localDescription: '성동구 왕십리동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '마장동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'majang-dong',
+    localDescription: '성동구 마장동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '사근동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'sageun-dong',
+    localDescription: '성동구 사근동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '행당동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'haengdang-dong',
+    localDescription: '성동구 행당동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '응봉동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'eungbong-dong',
+    localDescription: '성동구 응봉동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '금호동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'geumho-dong',
+    localDescription: '성동구 금호동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '옥수동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'oksu-dong',
+    localDescription: '성동구 옥수동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '성수동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'seongsu-dong',
+    localDescription: '성동구 성수동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '송정동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'songjeong-dong',
+    localDescription: '성동구 송정동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '용답동',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'yongdap-dong',
+    localDescription: '성동구 용답동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '성동구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'seongdong', subDistrictSlug: 'all',
+    localDescription: '성수동 IT 밸리와 힙한 상권, 한강변 신흥 고급 주거단지가 공존하는 다이나믹한 지역입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '중곡동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'junggok-dong',
+    localDescription: '광진구 중곡동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '군자동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'gunja-dong',
+    localDescription: '광진구 군자동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '능동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'neung-dong',
+    localDescription: '광진구 능동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '광장동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'gwangjang-dong',
+    localDescription: '광진구 광장동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '구의동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'guui-dong',
+    localDescription: '광진구 구의동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '자양동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'jayang-dong',
+    localDescription: '광진구 자양동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '화양동',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'hwayang-dong',
+    localDescription: '광진구 화양동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '광진구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gwangjin', subDistrictSlug: 'all',
+    localDescription: '건국대 상권과 어린이대공원, 한강 공원이 인접하여 활기차고 쾌적한 환경을 자랑합니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '서초동',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'seocho-dong',
+    localDescription: '서초구 서초동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '잠원동',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'jamwon-dong',
+    localDescription: '서초구 잠원동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '반포동',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'banpo-dong',
+    localDescription: '서초구 반포동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '방배동',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'bangbae-dong',
+    localDescription: '서초구 방배동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '양재동',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'yangjae-dong',
+    localDescription: '서초구 양재동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '내곡동',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'naegok-dong',
+    localDescription: '서초구 내곡동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '서초구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'seocho', subDistrictSlug: 'all',
+    localDescription: '대법원 등 법조 타운과 예술의전당, 고급 빌라 및 신축 대단지 아파트가 밀집한 명품 지역입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '개포동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'gaepo-dong',
+    localDescription: '강남구 개포동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '논현동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'nonhyeon-dong',
+    localDescription: '강남구 논현동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '대치동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'daechi-dong',
+    localDescription: '강남구 대치동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '도곡동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'dogok-dong',
+    localDescription: '강남구 도곡동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '삼성동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'samseong-dong',
+    localDescription: '강남구 삼성동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '일원동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'ilwon-dong',
+    localDescription: '강남구 일원동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '역삼동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'yeoksam-dong',
+    localDescription: '강남구 역삼동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '세곡동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'segok-dong',
+    localDescription: '강남구 세곡동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '수서동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'suseo-dong',
+    localDescription: '강남구 수서동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '신사동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'sinsa-dong',
+    localDescription: '강남구 신사동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '압구정동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'apgujeong-dong',
+    localDescription: '강남구 압구정동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '청담동',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'cheongdam-dong',
+    localDescription: '강남구 청담동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강남구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangnam', subDistrictSlug: 'all',
+    localDescription: '테헤란로 금융/IT 벨트와 압구정·청담동의 명품 상권, 대치동 학원가가 어우러진 비즈니스와 교육의 메카입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '풍납동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'pungnap-dong',
+    localDescription: '송파구 풍납동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '거여동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'geoye-dong',
+    localDescription: '송파구 거여동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '마천동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'macheon-dong',
+    localDescription: '송파구 마천동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '방이동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'bangi-dong',
+    localDescription: '송파구 방이동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '오륜동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'oryun-dong',
+    localDescription: '송파구 오륜동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '오금동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'ogeum-dong',
+    localDescription: '송파구 오금동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '송파동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'songpa-dong',
+    localDescription: '송파구 송파동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '석촌동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'seokchon-dong',
+    localDescription: '송파구 석촌동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '삼전동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'samjeon-dong',
+    localDescription: '송파구 삼전동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '가락동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'garak-dong',
+    localDescription: '송파구 가락동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '문정동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'munjeong-dong',
+    localDescription: '송파구 문정동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '장지동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'jangji-dong',
+    localDescription: '송파구 장지동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '위례동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'wirye-dong',
+    localDescription: '송파구 위례동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '잠실동',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'jamsil-dong',
+    localDescription: '송파구 잠실동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '송파구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'songpa', subDistrictSlug: 'all',
+    localDescription: '롯데타워와 올림픽공원, 잠실 엘스·리센츠 등 대단지 아파트가 들어선 강남권의 핵심 주거·상업 구역입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '강일동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'gangil-dong',
+    localDescription: '강동구 강일동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '고덕동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'godeok-dong',
+    localDescription: '강동구 고덕동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '길동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'gil-dong',
+    localDescription: '강동구 길동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '둔촌동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'dunchon-dong',
+    localDescription: '강동구 둔촌동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '명일동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'myeongil-dong',
+    localDescription: '강동구 명일동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '상일동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'sangil-dong',
+    localDescription: '강동구 상일동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '성내동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'seongnae-dong',
+    localDescription: '강동구 성내동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '암사동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'amsa-dong',
+    localDescription: '강동구 암사동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '천호동',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'cheonho-dong',
+    localDescription: '강동구 천호동의 쾌적한 빌딩 위생 및 상가 청소 서비스를 전문으로 담당합니다.',
+    buildingCharacteristics: '상가 주택, 아파트 단지 상가, 근린 시설 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '서울', district: '강동구', subDistrict: '전지역',
+    regionSlug: 'seoul', districtSlug: 'gangdong', subDistrictSlug: 'all',
+    localDescription: '고덕 비즈밸리 신규 개발과 대단지 아파트 입주로 새롭게 발돋움하는 쾌적한 녹지 친화적 도시입니다.',
+    buildingCharacteristics: '아파트 상가 빌딩, 소형 사옥, 학원가, 상업 타워',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '심곡동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'simgok-dong',
+    localDescription: '부천시 심곡동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '원미동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'wonmi-dong',
+    localDescription: '부천시 원미동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '소사동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'sosa-dong',
+    localDescription: '부천시 소사동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '역곡동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'yeokgok-dong',
+    localDescription: '부천시 역곡동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '중동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'jung-dong',
+    localDescription: '부천시 중동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '상동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'sang-dong',
+    localDescription: '부천시 상동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '송내동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'songnae-dong',
+    localDescription: '부천시 송내동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '원종동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'wonjong-dong',
+    localDescription: '부천시 원종동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '고강동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'gogang-dong',
+    localDescription: '부천시 고강동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '춘의동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'chunui-dong',
+    localDescription: '부천시 춘의동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '도당동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'dodang-dong',
+    localDescription: '부천시 도당동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '약대동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'yakdae-dong',
+    localDescription: '부천시 약대동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '범박동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'beombak-dong',
+    localDescription: '부천시 범박동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '옥길동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'okgil-dong',
+    localDescription: '부천시 옥길동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '괴안동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'goean-dong',
+    localDescription: '부천시 괴안동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '성곡동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'seonggok-dong',
+    localDescription: '부천시 성곡동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '오정동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'ojeong-dong',
+    localDescription: '부천시 오정동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '신흥동',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'sinheung-dong',
+    localDescription: '부천시 신흥동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '부천시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'bucheon', subDistrictSlug: 'all',
+    localDescription: '서울과 인천을 잇는 거점 도시로 상동 및 중동 신도시의 대규모 주거 상업 환경이 고도로 발달해 있습니다.',
+    buildingCharacteristics: '지식산업센터, 프라자 상가 빌딩, 주거 밀집 상권 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '광명동',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'gwangmyeong-dong',
+    localDescription: '광명시 광명동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '철산동',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'cheolsan-dong',
+    localDescription: '광명시 철산동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '하안동',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'haan-dong',
+    localDescription: '광명시 하안동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '소하동',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'soha-dong',
+    localDescription: '광명시 소하동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '일직동',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'iljik-dong',
+    localDescription: '광명시 일직동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '학온동',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'hagon-dong',
+    localDescription: '광명시 학온동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '광명시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangmyeong', subDistrictSlug: 'all',
+    localDescription: 'KTX 광명역 역세권 개발과 대형 유통 상권(이케아, 코스트코)이 결합된 서울 서남부 인접 핵심 요지입니다.',
+    buildingCharacteristics: '지식산업센터, 프라자 상가 빌딩, 주거 밀집 상권 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '구리시', subDistrict: '갈매동',
+    regionSlug: 'gyeonggi', districtSlug: 'guri', subDistrictSlug: 'galmae-dong',
+    localDescription: '구리시 갈매동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '구리시', subDistrict: '동구동',
+    regionSlug: 'gyeonggi', districtSlug: 'guri', subDistrictSlug: 'donggu-dong',
+    localDescription: '구리시 동구동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '구리시', subDistrict: '인창동',
+    regionSlug: 'gyeonggi', districtSlug: 'guri', subDistrictSlug: 'inchang-dong',
+    localDescription: '구리시 인창동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '구리시', subDistrict: '교문동',
+    regionSlug: 'gyeonggi', districtSlug: 'guri', subDistrictSlug: 'gyomun-dong',
+    localDescription: '구리시 교문동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '구리시', subDistrict: '수택동',
+    regionSlug: 'gyeonggi', districtSlug: 'guri', subDistrictSlug: 'sutaek-dong',
+    localDescription: '구리시 수택동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '구리시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'guri', subDistrictSlug: 'all',
+    localDescription: '서울 동부와 밀착되어 지하철 연장으로 가치가 높아진 주거 환경 및 근린 생활권이 발달한 도시입니다.',
+    buildingCharacteristics: '지식산업센터, 프라자 상가 빌딩, 주거 밀집 상권 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '천현동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'cheonhyeon-dong',
+    localDescription: '하남시 천현동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '신장동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'sinjang-dong',
+    localDescription: '하남시 신장동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '덕풍동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'deokpung-dong',
+    localDescription: '하남시 덕풍동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '미사동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'misa-dong',
+    localDescription: '하남시 미사동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '감북동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'gambuk-dong',
+    localDescription: '하남시 감북동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '감일동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'gamil-dong',
+    localDescription: '하남시 감일동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '춘궁동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'chungung-dong',
+    localDescription: '하남시 춘궁동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '초이동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'choi-dong',
+    localDescription: '하남시 초이동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '위례동',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'wirye-dong',
+    localDescription: '하남시 위례동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '하남시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'hanam', subDistrictSlug: 'all',
+    localDescription: '미사강변도시 및 위례 신도시, 감일지구 등 친환경 대단지 아파트와 지식산업센터가 밀집한 역동적인 신흥 주거지입니다.',
+    buildingCharacteristics: '지식산업센터, 프라자 상가 빌딩, 주거 밀집 상권 빌딩',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '신흥동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sinheung-dong',
+    localDescription: '성남시 신흥동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '태평동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'taepyeong-dong',
+    localDescription: '성남시 태평동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '수진동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sujin-dong',
+    localDescription: '성남시 수진동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '단대동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'dandae-dong',
+    localDescription: '성남시 단대동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '산성동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sanseong-dong',
+    localDescription: '성남시 산성동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '양지동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'yangji-dong',
+    localDescription: '성남시 양지동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '복정동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'bokjeong-dong',
+    localDescription: '성남시 복정동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '위례동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'wirye-dong',
+    localDescription: '성남시 위례동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '신촌동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sinchon-dong',
+    localDescription: '성남시 신촌동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '고등동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'godeung-dong',
+    localDescription: '성남시 고등동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '시흥동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'siheung-dong',
+    localDescription: '성남시 시흥동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '성남동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'seongnam-dong',
+    localDescription: '성남시 성남동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '중앙동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'jungang-dong',
+    localDescription: '성남시 중앙동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '금광동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'geumgwang-dong',
+    localDescription: '성남시 금광동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '은행동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'eunhaeng-dong',
+    localDescription: '성남시 은행동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '상대원동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sangdaewon-dong',
+    localDescription: '성남시 상대원동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '하대원동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'hadaewon-dong',
+    localDescription: '성남시 하대원동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '도촌동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'dochon-dong',
+    localDescription: '성남시 도촌동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '분당동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'bundang-dong',
+    localDescription: '성남시 분당동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '수내동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sunae-dong',
+    localDescription: '성남시 수내동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '정자동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'jeongja-dong',
+    localDescription: '성남시 정자동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '서현동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'seohyeon-dong',
+    localDescription: '성남시 서현동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '이매동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'imae-dong',
+    localDescription: '성남시 이매동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '야탑동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'yatap-dong',
+    localDescription: '성남시 야탑동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '판교동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'pangyo-dong',
+    localDescription: '성남시 판교동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '삼평동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'sampyeong-dong',
+    localDescription: '성남시 삼평동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '백현동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'baekhyeon-dong',
+    localDescription: '성남시 백현동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '금곡동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'geum곡-dong',
+    localDescription: '성남시 금곡동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '운중동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'unjung-dong',
+    localDescription: '성남시 운중동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '구미동',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'gumi-dong',
+    localDescription: '성남시 구미동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
+    buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '성남시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'all',
+    localDescription: '판교테크노밸리의 IT 핵심 기업 단지와 분당 신도시의 쾌적한 고층 주상복합, 수정/중원구의 신축 아파트 단지가 공존하는 경기 최고 거점지입니다.',
+    buildingCharacteristics: '지식산업센터, 프라자 상가 빌딩, 주거 밀집 상권 빌딩',
+    priority: 1, indexStatus: 'index'
   }
 ];

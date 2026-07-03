@@ -27,7 +27,7 @@ export async function GET(request: Request, { params }: Props) {
       });
     });
   } 
-  else if (fileName === 'seoul' || fileName === 'incheon') {
+  else if (fileName === 'seoul' || fileName === 'incheon' || fileName === 'gyeonggi') {
     const targetRegionSlug = fileName;
     
     // 1. 구 단위 허브 (area)
@@ -52,16 +52,27 @@ export async function GET(request: Request, { params }: Props) {
         });
       });
 
-    // 3. 구 단위 + 작업명 조합
+    // 3. 구 단위 + 작업명 조합 (sitemap.xml 에는 index 대표 URL만 포함)
     regions
       .filter(r => r.regionSlug === targetRegionSlug && r.subDistrictSlug === 'all' && r.indexStatus === 'index')
       .forEach(region => {
         services.filter(s => s.indexStatus === 'index').forEach(service => {
-          urls.push({
-            url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
-            priority: 0.7,
-            changeFrequency: 'weekly'
-          });
+          if (region.regionSlug === 'incheon') {
+            // 인천은 기존대로 대표 단일 URL 포함
+            urls.push({
+              url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+              priority: 0.7,
+              changeFrequency: 'weekly'
+            });
+          } else {
+            // 서울/경기는 구/시 포함 버전을 대표 index URL로 sitemap.xml에 포함 (제거 버전은 canonical 처리되므로 제외)
+            const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+            urls.push({
+              url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
+              priority: 0.7,
+              changeFrequency: 'weekly'
+            });
+          }
         });
       });
 

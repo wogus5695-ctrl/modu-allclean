@@ -36,7 +36,7 @@ export function generateLandingPageData(region: SeoRegion, service: SeoService):
     url,
     title: `${region.displayNameKo} ${service.serviceNameKo} 전문 업체 | 모두종합환경`,
     metaDescription: `${region.displayNameKo} 지역 ${region.commercialCharacteristics} 맞춤형 ${service.serviceNameKo}. ${service.mainProblem} 문제를 해결해 드립니다.`,
-    h1: `${region.displayNameKo} ${service.serviceNameKo}`,
+    h1: `${region.displayNameKo} ${service.serviceNameKo} 전문 모두종합환경`,
     heroDescription,
     ctaHook: service.ctaHook,
     

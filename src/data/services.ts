@@ -319,7 +319,7 @@ export const services: CleaningService[] = [
   },
   {
     id: 'trash-house',
-    serviceNameKo: '쓰레기집청소',
+    serviceNameKo: '쓰레기집 청소',
     serviceSlug: 'hoarder-house-cleaning',
     shortDescription: '방치된 대량의 쓰레기와 악취를 현장 상태에 맞춰 해결하는 특수 클리닝',
     mainDescription: '장기간 방치되어 대량의 쓰레기와 오염물로 가득 찬 실내를 체계적으로 정리하고, 정밀 세척 및 강력 탈취를 통해 쾌적한 주거 공간으로 복원합니다.',
@@ -382,4 +382,34 @@ export const services: CleaningService[] = [
     imageUrl: '/images/services/special-cleaning.jpg',
     showOnMain: true,
   },
+  {
+    id: 'floor-cleaning',
+    serviceNameKo: '바닥청소',
+    serviceSlug: 'floor-cleaning',
+    shortDescription: '타일, 대리석, 에폭시 등 바닥 오염 상태에 맞춰 세척',
+    mainDescription: '공장, 사무실, 상가의 오염된 바닥을 전문 세척 장비와 세제를 이용해 묵은 때와 먼지를 완전히 닦아내고 깨끗하게 관리합니다.',
+    neededSituations: [
+      '바닥 틈새의 찌든 때와 매연 오염이 심할 때',
+      '정기적인 비즈니스 공간의 바닥 관리가 필요할 때',
+      '이전 설치 전후 바닥 클리닝을 통해 청결 상태를 복원하고 싶을 때',
+      '각종 바닥 자재 본래의 깨끗함을 되찾고자 할 때'
+    ],
+    workingMethod: '바닥 재질에 맞는 세정제 살포 후 바닥 세척기를 작동하여 묵은 때를 불려 문지릅니다. 집수기를 사용하여 오염수를 깨끗이 흡입하고 맑은 물로 린스 세척하여 마무리합니다.',
+    preCheckItems: [
+      '바닥 마감재 재질 정보',
+      '수도 배수시설 및 220V 전원 위치 확인',
+      '이동이 필요한 집기 및 보양 구간 파악'
+    ],
+    targetBuildings: ['사무실 바닥', '상가 매장', '공장/창고', '학원/병원', '공용 복도'],
+    commonProblems: ['찌든 오염물', '스크래치 및 미끄러움', '얼룩/자국'],
+    process: ['상담 및 현장 확인', '집기 보양 및 사전 정리', '바닥 기계 세척 시공', '오수 흡입 및 잔여물 제거', '바닥 건조 및 최종 점검', '마감 검수'],
+    faq: [
+      { question: '바닥청소 시 광택 코팅도 포함인가요?', answer: '기본 세척 작업만 진행되며, 코팅막 형성을 원하실 경우에는 바닥왁스코팅 서비스를 추가 선택해 주셔야 합니다.' },
+      { question: '타일 틈새 오염도 지워지나요?', answer: '기계 세척과 틈새 솔 작업을 통해 대부분 제거가 가능합니다. 단, 변색된 줄눈의 경우에는 줄눈 시공이 별도로 필요할 수 있습니다.' }
+    ],
+    priority: 11,
+    indexStatus: 'index',
+    imageUrl: '/images/services/floor-wax.jpg',
+    showOnMain: true,
+  }
 ];

@@ -19,7 +19,7 @@ const SERVICE_NAME_MAP: { [key: string]: string } = {
   '화재': 'fire',
   '화재청소': 'fire',
   '바닥': 'floor-wax',
-  '바닥청소': 'floor-wax',
+  '바닥청소': 'floor-cleaning',
   '바닥왁스': 'floor-wax',
   '바닥왁스코팅': 'floor-wax',
   '왁스코팅': 'floor-wax',
@@ -46,6 +46,7 @@ const SERVICE_NAME_MAP: { [key: string]: string } = {
   '쓰레기청소': 'trash-house',
   '쓰레기집': 'trash-house',
   '쓰레기집청소': 'trash-house',
+  '쓰레기집 청소': 'trash-house',
   '특수': 'special-cleaning',
   '특수청소': 'special-cleaning',
 };

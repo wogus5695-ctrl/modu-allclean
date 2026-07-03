@@ -117,3 +117,16 @@
     grid-template-columns: 1fr;
   }
 }
+
+.regionGroup {
+  margin-bottom: 80px;
+}
+
+.regionGroupTitle {
+  font-size: 28px;
+  font-weight: 800;
+  color: #1e3a8a;
+  margin-bottom: 40px;
+  padding-bottom: 10px;
+  border-bottom: 3px solid #1e3a8a;
+}

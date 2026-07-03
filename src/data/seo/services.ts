@@ -261,5 +261,24 @@ export const seoServices: SeoService[] = [
     thumbnailImage: '/images/seo/special-cleaning.jpg',
     ogImage: '/images/seo/special-cleaning-og.jpg',
     altBase: '고독사 특수청소'
+  },
+  {
+    serviceNameKo: '바닥청소',
+    serviceSlug: 'floor-cleaning',
+    mainProblem: '상가 및 사무실 바닥의 고착된 묵은 때와 먼지 오염',
+    targetPlaces: ['사무실', '상가 매장', '공장/창고', '학원/병원', '공용 복도'],
+    contaminationTypes: ['찌든 오염물', '스크래치 얼룩', '미끄러운 기름때'],
+    preCheckItems: ['바닥재 재질', '수도 및 배수 상태', '작업 공간 확보'],
+    estimateFactors: ['작업 면적', '오염도', '이동할 집기 유무'],
+    faqSet: [
+      { q: '{{지역명}} 바닥청소는 왁스코팅도 포함인가요?', a: '기본 세척 작업만 진행되며, 코팅막 형성을 원하실 경우에는 바닥왁스코팅 서비스를 추가 선택해 주셔야 합니다.' },
+      { q: '타일 틈새 오염도 정리하나요?', a: '기계 세척과 틈새 수작업을 통해 줄눈 사이의 묵은 때까지 최대한 제거합니다.' }
+    ],
+    relatedServices: ['바닥왁스코팅', '사무실 대청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 매장과 사무실의 청결을 책임지는 정밀 바닥청소 서비스입니다.',
+    ctaHook: '바닥 세척 문의하기',
+    thumbnailImage: '/images/seo/floor-waxing.jpg',
+    ogImage: '/images/seo/floor-waxing-og.jpg',
+    altBase: '바닥청소 전문'
   }
 ];
