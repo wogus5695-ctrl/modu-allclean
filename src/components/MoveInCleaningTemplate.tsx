@@ -793,8 +793,8 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           }
           .comparison-row {
             display: grid !important;
-            grid-template-columns: 1fr 1fr !important; /* 모바일 2열 가로 동등 50% 분할 강제 */
-            gap: 8px !important; /* 모바일 2열 gap 축소 */
+            grid-template-columns: 1fr !important; /* 모바일 세로 1열 배치 구조 변경 */
+            gap: 12px !important; 
             width: 100% !important;
             box-sizing: border-box !important;
           }
@@ -803,8 +803,8 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             box-sizing: border-box !important;
           }
           .img-box-wrapper {
-            aspect-ratio: 3 / 4 !important;
-            max-height: 240px !important; /* 모바일 이미지 세로 확대 방지 */
+            aspect-ratio: 16 / 10 !important; /* 1열 배치에 최적화된 16:10 가로 비율 */
+            max-height: 180px !important; /* 모바일 높이 제한으로 전체 카드 컴팩트화 */
             width: 100% !important;
             box-sizing: border-box !important;
           }
