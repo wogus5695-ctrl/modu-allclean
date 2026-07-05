@@ -790,7 +790,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           }
           .comparison-row {
             display: grid !important;
-            grid-template-columns: repeat(2, 1fr) !important;
+            grid-template-columns: 1fr 1fr !important; /* 모바일 2열 가로 동등 분할 강제 */
             gap: 10px !important; /* 모바일 2열 gap */
             width: 100% !important;
             box-sizing: border-box !important;
