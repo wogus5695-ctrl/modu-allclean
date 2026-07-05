@@ -65,12 +65,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
   // 4. 입주청소 진행 과정
   const processSteps = [
-    { num: "1", title: "지역·평수·입주일 확인", desc: "정확한 상담의 시작을 위해 작업할 상세 주소지, 공급 평면 및 이사 일정을 먼저 확인합니다." },
-    { num: "2", title: "현장 상태 확인", desc: "신축/구축 유무, 리모델링 범위, 특별히 오염이 심한 집중 구역을 파악합니다." },
-    { num: "3", title: "작업 범위와 견적 안내", desc: "선택해주신 조건에 부합하는 투명한 표준 청소 범위와 예상 견적을 산출하여 안내합니다." },
-    { num: "4", title: "일정 확정", desc: "고객님의 가구 진입 및 이삿짐 보관 일정에 조율하여 최적의 청소 시간대를 최종 예약합니다." },
-    { num: "5", title: "입주 전 청소 진행", desc: "탈거식 분해 청소 공정 및 구역별 위에서 아래로 순차적인 정밀 클리닝 작업을 시작합니다." },
-    { num: "6", title: "작업 후 주요 공간 확인", desc: "작업 직후 실시간 전후 사진 보고 또는 현장 확인을 통해 확실히 마무리를 검수합니다." }
+    { num: "01", title: "입주일·평수 확인", desc: "지역, 평수, 입주 예정일, 신축·구축 여부를 먼저 확인합니다." },
+    { num: "02", title: "작업 범위 정리", desc: "욕실, 주방, 베란다·창틀, 분진 오염 중 필요한 범위를 확인합니다." },
+    { num: "03", title: "견적·일정 안내", desc: "현장 상태와 입주일을 기준으로 가능 일정과 예상 견적을 안내합니다." },
+    { num: "04", title: "입주 전 청소·확인", desc: "작업 후 욕실, 주방, 베란다·창틀 등 주요 공간을 확인합니다." }
   ];
 
   // 5. 견적 기준
@@ -478,6 +476,135 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             font-size: 12px !important;
           }
         }
+
+        /* PC 가로 타임라인 CSS */
+        .pc-timeline-wrapper {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          margin-top: 3.5rem;
+          position: relative;
+        }
+
+        .timeline-node {
+          position: relative;
+          text-align: center;
+          padding: 0 10px;
+        }
+
+        .timeline-line {
+          position: absolute;
+          top: 20px;
+          left: calc(50% + 20px);
+          width: calc(100% - 40px);
+          height: 2px;
+          background-color: #e2e8f0;
+          z-index: 1;
+        }
+
+        .node-badge {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #eff6ff;
+          color: #2563eb;
+          border: 2px solid #bfdbfe;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 15px;
+          margin-bottom: 1.2rem;
+          position: relative;
+          zIndex: 2;
+        }
+
+        .node-title {
+          font-size: 1.125rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 0.6rem;
+        }
+
+        .node-desc {
+          font-size: 0.9rem;
+          color: #64748b;
+          line-height: 1.55;
+          word-break: keep-all;
+        }
+
+        /* 모바일 세로 타임라인 CSS */
+        .mo-timeline-wrapper {
+          display: none;
+        }
+
+        .pc-br-only {
+          display: block;
+        }
+
+        @media (max-width: 768px) {
+          .pc-br-only {
+            display: none;
+          }
+          .pc-timeline-wrapper {
+            display: none;
+          }
+          .mo-timeline-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 1.8rem;
+            margin-top: 2.5rem;
+            padding: 0 10px;
+          }
+          .mo-timeline-row {
+            display: flex;
+            gap: 15px;
+            position: relative;
+          }
+          .mo-timeline-vertical-line {
+            position: absolute;
+            top: 32px;
+            left: 16px;
+            width: 2px;
+            height: calc(100% + 0.6rem);
+            background-color: #e2e8f0;
+            z-index: 1;
+          }
+          .mo-node-badge-col {
+            position: relative;
+            z-index: 2;
+          }
+          .mo-node-badge {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background-color: #eff6ff;
+            color: #2563eb;
+            border: 2px solid #bfdbfe;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 13px;
+          }
+          .mo-node-content-col {
+            text-align: left;
+            padding-top: 3px;
+          }
+          .mo-node-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 4px 0;
+          }
+          .mo-node-desc {
+            font-size: 0.85rem;
+            color: #64748b;
+            line-height: 1.45;
+            margin: 0;
+            word-break: keep-all;
+          }
+        }
       `}</style>
 
       {/* 간결화된 입주청소 전용 헤더 (작업범위, 진행과정, 견적기준, 자주묻는질문 메뉴 포함) */}
@@ -759,23 +886,75 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 4. 입주청소 진행 과정 Section */}
-      <section id="process-flow" style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9' }}>
+      <section 
+        id="process-flow"
+        className="process-flow-section"
+        style={{ 
+          padding: '5rem 0', 
+          background: '#ffffff', 
+          borderTop: '1px solid #f1f5f9' 
+        }}
+      >
         <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Process Flow</span>
-            <h2 className={styles.sectionTitle}>
-              입주청소는 이렇게 진행됩니다
+          
+          {/* 섹션 상단 헤더 */}
+          <div className={styles.sectionHeader} style={{ marginBottom: '3.5rem' }}>
+            <span className="process-badge" style={{ display: 'inline-block', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', padding: '5px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: '700', marginBottom: '12px', letterSpacing: '0.5px' }}>
+              PROCESS FLOW
+            </span>
+            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a' }}>
+              입주일에 맞춰<br />범위·일정·견적을 먼저 정리합니다
             </h2>
+            <p className="process-desc" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.65', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px' }}>
+              입주 전 청소는 작업 범위보다 일정 조율이 먼저입니다.<br className="pc-br-only" />
+              입주일, 평수, 집 상태를 기준으로 필요한 청소 범위와 가능 일정을 안내합니다.
+            </p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
+
+          {/* PC용 4단계 가로 타임라인 라인 그리드 */}
+          <div className="pc-timeline-wrapper">
             {processSteps.map((step, idx) => (
-              <div key={idx} style={{ background: '#fff', padding: '2rem 1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0', position: 'relative' }}>
-                <div style={{ position: 'absolute', top: '1rem', right: '1.2rem', fontSize: '2.5rem', fontWeight: '900', color: '#e2e8f0', lineHeight: 1 }}>{step.num}</div>
-                <h3 style={{ fontSize: '1.1rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.8rem', position: 'relative', zIndex: 1 }}>{step.title}</h3>
-                <p style={{ color: '#64748b', fontSize: '0.875rem', lineHeight: '1.5', margin: 0, position: 'relative', zIndex: 1 }}>{step.desc}</p>
+              <div key={idx} className="timeline-node">
+                
+                {/* 라인 장식 */}
+                {idx < processSteps.length - 1 && <div className="timeline-line"></div>}
+                
+                <div className="node-badge">{step.num}</div>
+                <h3 className="node-title">{step.title}</h3>
+                <p className="node-desc">{step.desc}</p>
               </div>
             ))}
           </div>
+
+          {/* 모바일용 세로 콤팩트 타임라인 리스트 */}
+          <div className="mo-timeline-wrapper">
+            {processSteps.map((step, idx) => (
+              <div key={idx} className="mo-timeline-row">
+                
+                {/* 세로 라인 장식 */}
+                {idx < processSteps.length - 1 && <div className="mo-timeline-vertical-line"></div>}
+                
+                <div className="mo-node-badge-col">
+                  <div className="mo-node-badge">{step.num}</div>
+                </div>
+                <div className="mo-node-content-col">
+                  <h3 className="mo-node-title">{step.title}</h3>
+                  <p className="mo-node-desc">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 하단 안내 문구 및 텍스트 링크 */}
+          <div style={{ marginTop: '3.5rem', textAlign: 'center' }}>
+            <p style={{ fontSize: '14px', color: '#64748b', fontWeight: '500', margin: '0 0 10px 0' }}>
+              입주일이 가까운 경우, 먼저 가능 일정부터 확인하는 것이 좋습니다.
+            </p>
+            <a href={`tel:${CONTACT_PHONE}`} style={{ fontSize: '14px', color: '#2563eb', fontWeight: '700', textDecoration: 'underline' }}>
+              실시간 예약 가능 일정 문의하기 ➔
+            </a>
+          </div>
+
         </div>
       </section>
 
