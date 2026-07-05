@@ -22,10 +22,16 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   // 작업 전후 비교 전용 슬라이드 데이터 정의
   const portfolioSlides = [
     {
+      title: "욕실 세면대와 수전 주변 물때",
+      description: "세수할 때 가장 먼저 체감되는 수전의 오염과 물때를 제거합니다.",
+      tags: ["욕실", "물때", "세면대"],
       beforeImg: "/images/portfolio/sink-before.jpg",
       afterImg: "/images/portfolio/sink-after.jpg"
     },
     {
+      title: "욕실 바닥 배수구 주변 오염",
+      description: "머리카락 및 이물질로 막히고 오염된 욕실 배수 트랩을 위생 살균 세정합니다.",
+      tags: ["욕실", "배수구", "살균"],
       beforeImg: "/images/portfolio/drain-before.jpg",
       afterImg: "/images/portfolio/drain-after.jpg"
     }
@@ -638,12 +644,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         /* 프리미엄 전후비교 슬라이더 CSS */
         .premium-portfolio-section {
           position: relative;
+          padding: 80px 0 !important; /* desktop section padding */
         }
         .slider-view-container {
           position: relative;
-          max-width: 920px; /* 880~960px 범위 제한 */
+          max-width: 960px; /* 880~960px 범위 제한 */
           margin: 0 auto;
-          padding: 0 50px;
+          padding: 0;
+          overflow: hidden; /* viewport 밖 카드 완전히 숨김 */
         }
         .slider-nav-btn {
           position: absolute;
@@ -671,39 +679,41 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           box-shadow: 0 6px 16px rgba(37,99,235,0.25);
         }
         .prev-btn {
-          left: 0px;
+          left: 5px; /* 외곽 배치 */
         }
         .next-btn {
-          right: 0px;
+          right: 5px; /* 외곽 배치 */
         }
         .comparison-row {
-          display: flex;
-          gap: 1.2rem;
+          display: grid;
+          grid-template-columns: repeat(2, 1fr); /* 2 columns */
+          gap: 18px; /* 16~20px gap */
         }
         .comparison-col {
-          flex: 1;
-          width: 50%;
+          position: relative;
         }
         .img-box-wrapper {
           position: relative;
-          border-radius: 12px;
+          border-radius: 16px; /* 16px border-radius */
           overflow: hidden;
-          height: 380px; /* 360~420px 범위 고정 */
-          border: 1px solid #f1f5f9;
-          background: #f4f7fb; /* 이미지 주변 빈 공간 백그라운드 */
+          aspect-ratio: 3 / 4; /* 세로형 3/4 비율 */
+          border: 1px solid #e2e8f0;
+          background: #f4f7fb;
+          width: 100%;
         }
         .img-box-wrapper img {
           width: 100%;
           height: 100%;
-          object-fit: contain; /* 잘림 방지, 전체 노출 보장 */
+          object-fit: cover; /* 세로형 3/4 프레임 맞춤 */
+          object-position: center center;
           display: block;
         }
         .state-label {
           position: absolute;
-          top: 12px;
-          left: 12px;
-          padding: 4px 10px;
-          border-radius: 4px;
+          top: 10px;
+          left: 10px;
+          padding: 5px 8px;
+          border-radius: 6px;
           font-size: 12px;
           font-weight: 700;
           color: #ffffff;
@@ -711,10 +721,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
         .before-label {
-          background-color: #ef4444; /* 빨간색 작업 전 */
+          background-color: #ef4444; /* red 작업 전 */
         }
         .after-label {
-          background-color: #10b981; /* 초록색 작업 후 */
+          background-color: #2563eb; /* brand blue 작업 후 */
         }
         
         .dot-indicator {
@@ -728,7 +738,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           transition: all 0.2s ease;
         }
         .dot-indicator.active {
-          background-color: #2563eb;
+          background-color: #2563eb; /* 활성 도트 브랜드 블루 */
           width: 24px;
           border-radius: 5px;
         }
@@ -737,29 +747,52 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           border-color: #2563eb !important;
         }
 
+        .slide-card {
+          background: #ffffff;
+          padding: 30px; /* 24~32px padding */
+          border-radius: 16px;
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+          margin: 0 10px;
+          border: 1px solid rgba(255,255,255,0.8);
+        }
+
         @media (max-width: 768px) {
+          .premium-portfolio-section {
+            padding: 56px 0 !important; /* mobile section padding */
+          }
           .slider-view-container {
-            padding: 0 10px !important;
+            max-width: 100% !important;
           }
           .slider-nav-btn {
-            display: none !important; /* 모바일은 스와이프 및 도트 포커스 대응으로 버튼 미노출 */
-          }
-          .comparison-row {
-            gap: 0.6rem !important;
+            display: none !important; /* 모바일은 버튼 미노출 */
           }
           .slide-card {
+            width: calc(100% - 32px) !important; /* 모바일 카드 너비 */
+            margin: 0 auto !important;
             padding: 15px !important; /* 모바일 카드 패딩 14~18px 고정 */
-            border-radius: 12px !important;
+          }
+          .comparison-row {
+            gap: 10px !important; /* 모바일 2열 gap */
           }
           .img-box-wrapper {
-            height: 200px !important; /* 모바일 이미지 높이 180~230px 범위 내 고정 */
-            aspect-ratio: auto !important;
+            aspect-ratio: 3 / 4 !important;
+            max-height: 240px !important; /* 모바일 이미지 세로 확대 방지 */
           }
           .state-label {
-            top: 6px !important;
-            left: 6px !important;
+            top: 8px !important;
+            left: 8px !important;
             padding: 3px 6px !important;
             font-size: 10px !important;
+          }
+          .caption-title {
+            font-size: 1rem !important;
+          }
+          .caption-desc {
+            font-size: 0.82rem !important;
+            display: -webkit-box;
+            -webkit-line-clamp: 2; /* 2줄 제한 */
+            -webkit-box-orient: vertical;
+            overflow: hidden;
           }
         }
       `}</style>
@@ -1197,6 +1230,21 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                         </div>
                       </div>
                     </div>
+
+                    {/* 이미지 아래에 캡션 정보 배치 */}
+                    <div className="slide-info-caption" style={{ marginTop: '1.2rem', textAlign: 'left' }}>
+                      <h3 className="caption-title" style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0f172a', margin: '0 0 6px 0' }}>{slide.title}</h3>
+                      <p className="caption-desc" style={{ fontSize: '0.92rem', color: '#64748b', margin: '0 0 10px 0', lineHeight: '1.5' }}>{slide.description}</p>
+                      
+                      <div className="caption-tags" style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        {slide.tags.slice(0, 3).map((tag, tIdx) => (
+                          <span key={tIdx} style={{ fontSize: '0.78rem', color: '#2563eb', backgroundColor: '#eff6ff', padding: '3px 8px', borderRadius: '4px', fontWeight: '600' }}>
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
                 </div>
               ))}
