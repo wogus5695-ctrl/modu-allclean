@@ -20,12 +20,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
   // 1. 입주 전 청소가 필요한 이유 리스트
   const whyReasons = [
-    { title: "신축 분진", desc: "도배 풀, 시멘트 가루, 미세 톱밥 등 신축/리모델링 후 구석구석 남은 분진을 찾아냅니다." },
-    { title: "생활 오염", desc: "이전 거주자가 나가며 남긴 벽지 찌든 먼지, 바닥 얼룩 및 생활 흔적을 세정합니다." },
-    { title: "창틀 먼지", desc: "외부 미세먼지와 빗물이 유입되어 굳어버린 창틀 틈새의 새까만 찌든 먼지를 케어합니다." },
-    { title: "욕실 물때", desc: "세면대, 거울, 샤워부스 유리, 타일 틈새에 축적된 불투명한 물때와 이물질을 세척합니다." },
-    { title: "주방 기름때", desc: "가스레인지 주변 벽 타일, 가구 하부, 후드 필터에 고착된 끈적한 기름 오염을 녹여냅니다." },
-    { title: "입주 일정 압박", desc: "이사 당일에는 짐이 들어오기 때문에 반드시 짐 반입 전에 완료할 수 있도록 일정을 확보합니다." }
+    { title: "신축 분진", desc: "도배 풀, 시멘트 가루, 미세 톱밥 등 신축/리모델링 후 구석구석 남은 분진을 찾아냅니다.", img: "/images/why/dust.jpg" },
+    { title: "생활 오염", desc: "이전 거주자가 나가며 남긴 벽지 찌든 먼지, 바닥 얼룩 및 생활 흔적을 세정합니다.", img: "/images/why/living.jpg" },
+    { title: "창틀 먼지", desc: "외부 미세먼지와 빗물이 유입되어 굳어버린 창틀 틈새의 새까만 찌든 먼지를 케어합니다.", img: "/images/why/window.jpg" },
+    { title: "욕실 물때", desc: "세면대, 거울, 샤워부스 유리, 타일 틈새에 축적된 불투명한 물때와 이물질을 세척합니다.", img: "/images/why/bathroom.jpg" },
+    { title: "주방 기름때", desc: "가스레인지 주변 벽 타일, 가구 하부, 후드 필터에 고착된 끈적한 기름 오염을 녹여냅니다.", img: "/images/why/kitchen.jpg" },
+    { title: "입주 일정 압박", desc: "이사 당일에는 짐이 들어오기 때문에 반드시 짐 반입 전에 완료할 수 있도록 일정을 확보합니다.", img: "" }
   ];
 
   // 2. 입주청소 작업 범위 - 4카드
@@ -189,11 +189,22 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
             {whyReasons.map((item, idx) => (
-              <div key={idx} style={{ background: '#f8fafc', padding: '1.8rem 1.5rem', borderRadius: '12px', border: '1px solid #e2e8f0' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                  <span style={{ color: '#0070f3' }}>✔</span> {item.title}
-                </h3>
-                <p style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', margin: 0 }}>{item.desc}</p>
+              <div key={idx} style={{ background: '#f8fafc', overflow: 'hidden', borderRadius: '12px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
+                {item.img ? (
+                  <div style={{ width: '100%', height: '180px', overflow: 'hidden', position: 'relative' }}>
+                    <img src={item.img} alt={`${regionName} 입주청소 ${item.title}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  </div>
+                ) : (
+                  <div style={{ width: '100%', height: '180px', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: '#94a3b8' }}>
+                    📅
+                  </div>
+                )}
+                <div style={{ padding: '1.5rem' }}>
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                    <span style={{ color: '#0070f3' }}>✔</span> {item.title}
+                  </h3>
+                  <p style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', margin: 0 }}>{item.desc}</p>
+                </div>
               </div>
             ))}
           </div>
