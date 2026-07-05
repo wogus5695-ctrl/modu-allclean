@@ -38,7 +38,9 @@ export default function RootLayout({
         />
       </head>
       <body className={scDream.className}>
-        <Header />
+        <div id="global-header-wrapper">
+          <Header />
+        </div>
         <main>{children}</main>
         
         <footer style={{ padding: '80px 0 100px', backgroundColor: '#f0f4f8', color: '#333' }}>

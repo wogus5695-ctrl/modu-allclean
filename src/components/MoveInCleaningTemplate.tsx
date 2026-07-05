@@ -128,53 +128,181 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
   return (
     <div className={styles.wrapper}>
-      {/* 간결화된 입주청소 전용 헤더 (로고 & 전화상담만 표시) */}
+      {/* 글로벌 레이아웃 헤더 중복 차단 및 섹션 ID 스크롤 패딩 제어 style */}
+      <style jsx global>{`
+        #global-header-wrapper {
+          display: none !important;
+        }
+        html {
+          scroll-behavior: smooth;
+          scroll-padding-top: 80px;
+        }
+        .pc-br { display: block; }
+        .mo-badge-text { display: none; }
+        .pc-badge-text { display: inline; }
+        .pc-checkpoint { display: flex; }
+        
+        .cta-primary-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background-color: #2563eb;
+          color: #ffffff;
+          font-weight: 700;
+          font-size: 16px;
+          padding: 16px 32px;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: all 0.25s ease;
+          box-shadow: 0 4px 14px rgba(37, 99, 235, 0.4);
+          margin-right: 12px;
+        }
+        .cta-primary-btn:hover {
+          background-color: #1d4ed8;
+          transform: translateY(-2px);
+        }
+        .cta-secondary-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          background-color: rgba(255, 255, 255, 0.15);
+          backdrop-filter: blur(8px);
+          color: #ffffff;
+          font-weight: 600;
+          font-size: 16px;
+          padding: 16px 32px;
+          border-radius: 8px;
+          text-decoration: none;
+          transition: all 0.25s ease;
+          border: 1px solid rgba(255, 255, 255, 0.25);
+        }
+        .cta-secondary-btn:hover {
+          background-color: rgba(255, 255, 255, 0.25);
+          transform: translateY(-2px);
+        }
+
+        @media (min-width: 769px) {
+          .move-in-hero-section {
+            background-position: center right !important;
+          }
+          .move-in-hero-overlay {
+            background: linear-gradient(90deg, rgba(0,34,66,0.85) 0%, rgba(0,34,66,0.55) 45%, rgba(0,34,66,0.12) 100%) !important;
+          }
+          .move-in-hero-content {
+            margin-left: 8%;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .pc-br { display: none; }
+          .pc-badge-text { display: none; }
+          .mo-badge-text { display: inline; }
+          .pc-checkpoint { display: none !important; }
+          .move-in-hero-section {
+            min-height: 520px !important;
+            height: clamp(520px, 60vh, 580px) !important;
+            background-position: 58% center !important;
+          }
+          .move-in-hero-overlay {
+            background: linear-gradient(180deg, rgba(0,34,66,0.3) 0%, rgba(0,34,66,0.82) 100%) !important;
+          }
+          .move-in-hero-content {
+            padding: 0 4px;
+          }
+          .hero-cta-wrapper {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+          .cta-primary-btn {
+            width: 100%;
+            max-width: 300px;
+            margin-right: 0;
+            padding: 14px 20px;
+            font-size: 15px;
+          }
+          .cta-secondary-btn {
+            display: none !important;
+          }
+        }
+      `}</style>
+
+      {/* 간결화된 입주청소 전용 헤더 (작업범위, 진행과정, 견적기준, 자주묻는질문 메뉴 포함) */}
       <Header isMoveInOnly={true} />
 
       {/* Hero Section */}
-      <section className={styles.hero} style={{ background: "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/images/services/move-in-hero.jpg') no-repeat center center/cover" }}>
-        <div className={styles.heroOverlay} style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.25) 100%)" }}></div>
-        <div className={styles.inner}>
-          <div className="animate-fade-up">
-            {/* 데스크톱 Hero 영역 */}
-            <div className={styles.desktopOnly}>
-              <h1 className={styles.heroTitle} style={{ fontSize: 'clamp(32px, 5vw, 54px)', lineHeight: '1.2', fontWeight: 800 }}>
-                {regionName} 입주청소
-              </h1>
-              <p className={styles.heroDesc} style={{ fontSize: '1.5rem', fontWeight: 600, color: '#fff', marginTop: '1rem', marginBottom: '0.5rem' }}>
-                입주 전, 집 안 곳곳의 먼지와 오염을 정리합니다
-              </p>
-              <p className={styles.heroDesc} style={{ fontSize: '1.05rem', color: '#e2e8f0', lineHeight: '1.6', maxWidth: '750px', margin: '0 auto 2.5rem auto' }}>
-                신축 아파트, 구축 아파트, 오피스텔, 빌라 입주 전<br />
-                욕실·주방·베란다·전체 오염 상태를 기준으로 작업 범위를 확인합니다.
-              </p>
-              <div className={styles.heroCta} style={{ display: 'flex', justifyContent: 'center', gap: '1rem' }}>
-                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ padding: '15px 30px', fontSize: '16px' }}>
-                  전화 견적 상담
-                </a>
-                <a href={CONTACT_KAKAOTALK} target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtn} ${styles.kakao}`} style={{ padding: '15px 30px', fontSize: '16px' }}>
-                  입주일 전 일정 확인
-                </a>
+      <section 
+        className="move-in-hero-section"
+        style={{ 
+          position: 'relative',
+          minHeight: '620px',
+          height: 'clamp(620px, 70vh, 680px)',
+          display: 'flex',
+          alignItems: 'center',
+          background: "url('/images/services/move-in-hero.jpg') no-repeat center right/cover",
+          color: 'white',
+          overflow: 'hidden'
+        }}
+      >
+        {/* PC 좌측 텍스트 가독성을 위한 그라데이션 오버레이 */}
+        <div 
+          className="move-in-hero-overlay"
+          style={{
+            position: 'absolute',
+            inset: 0,
+            zIndex: 1
+          }}
+        ></div>
+
+        <div className={styles.inner} style={{ position: 'relative', zIndex: 2, width: '100%', padding: '0 20px' }}>
+          <div className="animate-fade-up move-in-hero-content" style={{ maxWidth: '640px', textAlign: 'left' }}>
+            
+            {/* 상단 배지 */}
+            <div className="hero-badge" style={{ display: 'inline-block', backgroundColor: '#3b82f6', color: '#ffffff', padding: '6px 14px', borderRadius: '50px', fontSize: '14px', fontWeight: '700', marginBottom: '20px', letterSpacing: '-0.3px' }}>
+              <span className="pc-badge-text">입주 전 빈집 청소 전문</span>
+              <span className="mo-badge-text">입주 전 빈집 청소</span>
+            </div>
+
+            {/* H1 */}
+            <h1 className={styles.heroTitle} style={{ fontSize: 'clamp(34px, 5.5vw, 54px)', lineHeight: '1.2', fontWeight: 800, color: '#ffffff', margin: '0 0 18px 0', letterSpacing: '-1px' }}>
+              {regionName} 입주청소
+            </h1>
+
+            {/* 메인 문구 */}
+            <p style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#ffffff', lineHeight: '1.35', margin: '0 0 16px 0', letterSpacing: '-0.5px' }}>
+              <span style={{ color: '#fed7aa' }}>입주 전 마지막 점검</span>,<br />
+              <span style={{ color: '#60a5fa' }}>욕실·주방·베란다</span>까지 확인합니다
+            </p>
+
+            {/* 보조 문구 */}
+            <p style={{ fontSize: 'clamp(14px, 1.8vw, 17px)', color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 28px 0', letterSpacing: '-0.2px' }}>
+              <span style={{ color: '#ffffff', fontWeight: '600' }}>신축 분진</span>, 전 세입자 <span style={{ color: '#ffffff', fontWeight: '600' }}>생활오염</span>, 창틀 먼지처럼<br className="pc-br" />
+              입주 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.
+            </p>
+
+            {/* 체크포인트 */}
+            <div className="hero-checkpoints" style={{ display: 'flex', flexWrap: 'wrap', gap: '15px 25px', marginBottom: '35px', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '20px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
+                <span style={{ color: '#60a5fa' }}>✓</span> 입주일 기준 상담
+              </div>
+              <div className="pc-checkpoint" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
+                <span style={{ color: '#60a5fa' }}>✓</span> 빈집 상태 작업 권장
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
+                <span style={{ color: '#60a5fa' }}>✓</span> 사진 기반 견적 안내
               </div>
             </div>
 
-            {/* 모바일 Hero 영역 */}
-            <div className={styles.mobileOnly}>
-              <h1 className={styles.heroTitle} style={{ fontSize: '28px', lineHeight: '1.3', fontWeight: 800, marginBottom: '12px' }}>
-                {regionName} 입주청소
-              </h1>
-              <p className={styles.heroDesc} style={{ fontSize: '18px', fontWeight: 700, color: '#fff', marginBottom: '8px' }}>
-                입주 전 집 안 청소,
-              </p>
-              <p className={styles.heroDesc} style={{ fontSize: '15px', color: '#cbd5e1', lineHeight: '1.5', marginBottom: '24px' }}>
-                욕실·주방·베란다까지 확인합니다.
-              </p>
-              <div className={styles.heroCta} style={{ display: 'flex', justifyContent: 'center' }}>
-                <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ width: '100%', maxWidth: '300px', padding: '14px 20px', fontSize: '15px', display: 'block', textAlign: 'center' }}>
-                  📞 전화 견적 상담
-                </a>
-              </div>
+            {/* CTA 버튼 */}
+            <div className="hero-cta-wrapper">
+              <a href={`tel:${CONTACT_PHONE}`} className="cta-primary-btn">
+                전화 견적 상담
+              </a>
+              <a href={CONTACT_KAKAOTALK} target="_blank" rel="noopener noreferrer" className="cta-secondary-btn">
+                입주일 전 일정 확인
+              </a>
             </div>
+
           </div>
         </div>
       </section>
@@ -216,11 +344,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 2. 입주청소 작업 범위 - 4카드 Section */}
-      <section style={{ 
-        padding: '6rem 0', 
-        background: "linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('/images/services/move-in-guide-bg.jpg') no-repeat center center/cover", 
-        borderTop: '1px solid #1e293b' 
-      }}>
+      <section 
+        id="service-guide"
+        style={{ 
+          padding: '6rem 0', 
+          background: "linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('/images/services/move-in-guide-bg.jpg') no-repeat center center/cover", 
+          borderTop: '1px solid #1e293b' 
+        }}
+      >
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle} style={{ color: '#3b82f6' }}>Service Guide</span>
@@ -282,7 +413,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 4. 입주청소 진행 과정 Section */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9' }}>
+      <section id="process-flow" style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Process Flow</span>
@@ -374,7 +505,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 6. 견적 기준 & 상담 전 체크리스트 Section */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
+      <section id="estimate-standard" style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Estimate & Check</span>
@@ -426,7 +557,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 8. FAQ Section */}
-      <section className={styles.faq} style={{ padding: '5rem 0', background: '#fff' }}>
+      <section id="faq" className={styles.faq} style={{ padding: '5rem 0', background: '#fff' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>자주 묻는 질문</h2>

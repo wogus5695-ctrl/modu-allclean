@@ -17,14 +17,39 @@ export default function Header({ isMoveInOnly = false }: HeaderProps) {
           <Link href="/" className={styles.logo}>
             모두<span>종합환경</span>
           </Link>
-          {/* 모바일 및 데스크톱 전체에서 간결하게 로고와 전화상담만 노출 (메뉴 미노출) */}
-          <nav className={styles.nav} style={{ display: 'none' }}></nav>
+          
+          {/* PC 전용 헤더 메뉴 (모바일에서는 display: none 처리 등으로 숨김) */}
+          <nav className={styles.nav} style={{ display: 'flex' }}>
+            <ul className={`${styles.menu} move-in-header-menu`}>
+              <li>
+                <a href="#service-guide">작업범위</a>
+              </li>
+              <li>
+                <a href="#process-flow">진행과정</a>
+              </li>
+              <li>
+                <a href="#estimate-standard">견적기준</a>
+              </li>
+              <li>
+                <a href="#faq">자주묻는질문</a>
+              </li>
+            </ul>
+          </nav>
+
           <div className={styles.cta} style={{ display: 'flex' }}>
             <a href={`tel:${CONTACT_PHONE}`} className={styles.phoneBtn}>
-              전화 상담
+              전화상담
             </a>
           </div>
         </div>
+
+        <style jsx global>{`
+          @media (max-width: 768px) {
+            .move-in-header-menu {
+              display: none !important;
+            }
+          }
+        `}</style>
       </header>
     );
   }
