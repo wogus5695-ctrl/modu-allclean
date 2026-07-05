@@ -212,28 +212,32 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 2. 입주청소 작업 범위 - 4카드 Section */}
-      <section style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9' }}>
+      <section style={{ 
+        padding: '6rem 0', 
+        background: "linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('/images/services/move-in-guide-bg.jpg') no-repeat center center/cover", 
+        borderTop: '1px solid #1e293b' 
+      }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Service Guide</span>
-            <h2 className={styles.sectionTitle}>
+            <span className={styles.subTitle} style={{ color: '#3b82f6' }}>Service Guide</span>
+            <h2 className={styles.sectionTitle} style={{ color: '#ffffff' }}>
               {regionName} 입주청소 작업 범위
             </h2>
-            <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569', fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
+            <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#cbd5e1', fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
               입주 전 가장 많이 확인하는 욕실, 주방, 베란다·창틀, 전체 오염·분진을 중심으로 현장 상태에 맞춰 청소합니다.
             </p>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {serviceCards.map((card, idx) => (
-              <div key={idx} style={{ background: '#fff', padding: '2.2rem 2rem', borderRadius: '16px', boxShadow: 'var(--shadow-sm)', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+              <div key={idx} style={{ background: 'rgba(255, 255, 255, 0.96)', backdropFilter: 'blur(8px)', padding: '2.2rem 2rem', borderRadius: '16px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1rem' }}>{card.title}</h3>
-                  <p style={{ color: '#64748b', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem', minHeight: '4.5rem' }}>{card.desc}</p>
+                  <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem', minHeight: '4.5rem' }}>{card.desc}</p>
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', borderTop: '1px solid #f1f5f9', paddingTop: '1.2rem' }}>
+                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.2rem' }}>
                   {card.details.map((detail, dIdx) => (
-                    <span key={dIdx} style={{ fontSize: '0.785rem', color: '#0070f3', backgroundColor: '#eef6ff', padding: '4px 10px', borderRadius: '4px', fontWeight: '600' }}>
+                    <span key={dIdx} style={{ fontSize: '0.785rem', color: '#1d4ed8', backgroundColor: '#eff6ff', padding: '4px 10px', borderRadius: '4px', fontWeight: '600' }}>
                       {detail}
                     </span>
                   ))}
@@ -243,7 +247,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           </div>
 
           <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3.5rem' }}>
-            <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '260px', textAlign: 'center' }}>
+            <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '260px', textAlign: 'center', boxShadow: '0 4px 14px 0 rgba(0, 112, 243, 0.3)' }}>
               입주청소 작업 범위 상담
             </a>
           </div>
