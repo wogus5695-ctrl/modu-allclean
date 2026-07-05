@@ -698,7 +698,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         .comparison-col {
           position: relative;
         }
-        .img-box-wrapper {
+        .ba-image-frame {
           position: relative;
           border-radius: 16px; /* 16px border-radius */
           overflow: hidden;
@@ -707,7 +707,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           background: #f4f7fb;
           width: 100%;
         }
-        .img-box-wrapper img {
+        .ba-image-frame img {
           width: 100%;
           height: 100%;
           object-fit: cover; /* 세로형 3/4 프레임 맞춤 */
@@ -770,7 +770,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           }
           .slider-view-container {
             max-width: 100% !important;
-            padding: 0 16px !important;
+            padding: 0 !important;
             box-sizing: border-box !important;
             overflow: hidden !important;
           }
@@ -784,16 +784,17 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             flex-shrink: 0 !important;
           }
           .slide-card {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 15px !important; /* 모바일 카드 패딩 14~18px 고정 */
+            width: calc(100% - 32px) !important; /* 모바일 슬라이드 카드 규격 */
+            max-width: 420px !important;
+            margin: 0 auto !important;
+            padding: 16px !important; /* 모바일 카드 패딩 14~18px 고정 */
             box-sizing: border-box !important;
-            border-radius: 12px !important;
+            border-radius: 20px !important;
+            overflow: hidden !important;
           }
           .comparison-row {
-            display: grid !important;
-            grid-template-columns: 1fr !important; /* 모바일 세로 1열 배치 구조 변경 */
+            display: flex !important;
+            flex-direction: column !important; /* 2열 grid가 모바일에 상속되지 않게 flex 세로 정렬 */
             gap: 12px !important; 
             width: 100% !important;
             box-sizing: border-box !important;
@@ -802,28 +803,35 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             width: 100% !important;
             box-sizing: border-box !important;
           }
-          .img-box-wrapper {
-            aspect-ratio: 3 / 4 !important; /* 원본 세로 구도(3:4) */
-            max-height: 280px !important;
+          .ba-image-frame {
             width: 100% !important;
+            height: clamp(260px, 72vw, 320px) !important; /* 모바일 이미지 프레임 높이 */
+            border-radius: 16px !important;
+            overflow: hidden !important;
+            background: #f4f7fb !important;
+            position: relative !important;
             box-sizing: border-box !important;
-            background: #0f172a !important; /* contain 적용 시 이미지 여백을 위한 다크 블루 블랙 배경 */
           }
-          .img-box-wrapper img {
-            object-fit: contain !important; /* 이미지 크롭 방지 및 전체 영역 100% 노출 */
+          .ba-image-frame img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important; /* 여백 방지를 위한 cover 모드 강제 */
             object-position: center center !important;
+            display: block !important;
           }
           .state-label {
-            top: 8px !important;
-            left: 8px !important;
-            padding: 3px 6px !important;
-            font-size: 10px !important;
+            position: absolute !important;
+            top: 10px !important;
+            left: 10px !important;
+            z-index: 2 !important;
+            padding: 5px 8px !important;
+            font-size: 11px !important;
           }
           .caption-title {
-            font-size: 1rem !important;
+            font-size: 1.05rem !important;
           }
           .caption-desc {
-            font-size: 0.82rem !important;
+            font-size: 0.85rem !important;
             display: -webkit-box;
             -webkit-line-clamp: 2; /* 2줄 제한 */
             -webkit-box-orient: vertical;
@@ -1251,7 +1259,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                     <div className="comparison-row">
                       {/* 작업 전 */}
                       <div className="comparison-col">
-                        <div className="img-box-wrapper">
+                        <div className="ba-image-frame">
                           <span className="state-label before-label">작업 전</span>
                           <img src={slide.beforeImg} alt={`${regionName} 입주청소 작업 전 상태`} />
                         </div>
@@ -1259,7 +1267,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
                       {/* 작업 후 */}
                       <div className="comparison-col">
-                        <div className="img-box-wrapper">
+                        <div className="ba-image-frame">
                           <span className="state-label after-label">작업 후</span>
                           <img src={slide.afterImg} alt={`${regionName} 입주청소 작업 후 상태`} />
                         </div>
