@@ -772,14 +772,16 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             max-width: 100% !important;
             padding: 0 16px !important;
             box-sizing: border-box !important;
+            overflow: hidden !important;
           }
           .slider-nav-btn {
             display: none !important; /* 모바일은 버튼 미노출 */
           }
           .slider-item {
-            padding: 0 !important;
             width: 100% !important;
+            padding: 0 !important;
             box-sizing: border-box !important;
+            flex-shrink: 0 !important;
           }
           .slide-card {
             width: 100% !important;
@@ -787,11 +789,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             margin: 0 !important;
             padding: 15px !important; /* 모바일 카드 패딩 14~18px 고정 */
             box-sizing: border-box !important;
+            border-radius: 12px !important;
           }
           .comparison-row {
             display: grid !important;
-            grid-template-columns: 1fr 1fr !important; /* 모바일 2열 가로 동등 분할 강제 */
-            gap: 10px !important; /* 모바일 2열 gap */
+            grid-template-columns: 1fr 1fr !important; /* 모바일 2열 가로 동등 50% 분할 강제 */
+            gap: 8px !important; /* 모바일 2열 gap 축소 */
             width: 100% !important;
             box-sizing: border-box !important;
           }
