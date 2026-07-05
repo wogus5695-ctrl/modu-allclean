@@ -22,28 +22,34 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   // 입주청소 주요 작업 예시 정적 데이터 정의
   const staticCleaningPoints = [
     {
-      title: "욕실 오염 확인",
-      description: "물때, 배수구, 수전 주변처럼 입주 후 가장 먼저 체감되는 공간을 확인합니다.",
-      tags: ["욕실", "물때", "배수구"],
-      img: "/images/portfolio/sink-before.jpg" // 기존 수전 전후 사진 중 하나 활용
+      title: "주방 수납장 확인",
+      description: "싱크대 상·하부장 문을 열어 선반 구석의 미세 톱밥과 찌든 오염을 확인합니다.",
+      tags: ["주방", "싱크대", "수납장"],
+      img: "/images/portfolio/cabinet.jpg"
     },
     {
-      title: "주방 생활오염",
-      description: "싱크대, 수납장, 조리대 주변의 기름때와 이전 사용 흔적을 확인합니다.",
-      tags: ["주방", "싱크대", "기름때"],
-      img: "/images/why/kitchen.jpg" // 기존 주방 이미지 재활용
+      title: "샤워부스 물때",
+      description: "샤워부스 유리와 타일 벽면에 축적된 고착성 물때와 백화 현상을 확인합니다.",
+      tags: ["욕실", "물때", "샤워부스"],
+      img: "/images/portfolio/glass.jpg"
     },
     {
-      title: "베란다·창틀 먼지",
-      description: "창틀 틈새, 베란다 바닥, 배수구 주변처럼 직접 하기 번거로운 구간을 확인합니다.",
-      tags: ["베란다", "창틀", "먼지"],
-      img: "/images/why/window.jpg" // 기존 베란다/창틀 이미지 재활용
+      title: "배수구 탈거 분해",
+      description: "머리카락 및 이물질로 가로막힌 배수구 트랩을 탈거하여 내부 안쪽까지 살균 세정합니다.",
+      tags: ["배수구", "살균", "욕실"],
+      img: "/images/portfolio/drain-before.jpg"
     },
     {
-      title: "분진·바닥 오염",
-      description: "신축 분진, 바닥 잔먼지, 몰딩 주변 오염을 입주 전에 확인합니다.",
-      tags: ["분진", "바닥", "잔먼지"],
-      img: "/images/why/dust.jpg" // 기존 신축분진 이미지 재활용
+      title: "창틀 먼지 오염",
+      description: "외부 유입 미세먼지와 빗물 찌꺼기가 고착되어 굳어버린 창틀 틈새를 케어합니다.",
+      tags: ["창틀", "먼지", "베란다"],
+      img: "/images/portfolio/window-dirty.jpg"
+    },
+    {
+      title: "욕실 세면대 수전",
+      description: "세면대 볼 내부와 수전 손잡이 주변의 고착된 비누 때와 뿌연 물때를 세척합니다.",
+      tags: ["세면대", "수전", "욕실"],
+      img: "/images/portfolio/sink-before.jpg"
     }
   ];
 
@@ -660,8 +666,8 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         }
         .cleaning-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr); /* 1200px 이상에서는 4열 배치 */
-          gap: 24px;
+          grid-template-columns: repeat(5, 1fr); /* 1200px 이상에서는 5열 배치 */
+          gap: 20px; /* 5열 배치에 따라 간격을 약간 축소하여 핏 조절 */
           margin-top: 40px;
         }
         .cleaning-card {
