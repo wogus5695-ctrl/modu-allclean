@@ -803,8 +803,8 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             box-sizing: border-box !important;
           }
           .img-box-wrapper {
-            aspect-ratio: 16 / 10 !important; /* 1열 배치에 최적화된 16:10 가로 비율 */
-            max-height: 180px !important; /* 모바일 높이 제한으로 전체 카드 컴팩트화 */
+            aspect-ratio: 3 / 4 !important; /* 원본 세로 구도(3:4)가 잘리지 않도록 복구 */
+            max-height: 280px !important; /* 1열 구조에서 크롭 없이 시원하게 다 노출되도록 조정 */
             width: 100% !important;
             box-sizing: border-box !important;
           }
