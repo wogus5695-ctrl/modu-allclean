@@ -803,10 +803,15 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             box-sizing: border-box !important;
           }
           .img-box-wrapper {
-            aspect-ratio: 3 / 4 !important; /* 원본 세로 구도(3:4)가 잘리지 않도록 복구 */
-            max-height: 280px !important; /* 1열 구조에서 크롭 없이 시원하게 다 노출되도록 조정 */
+            aspect-ratio: 3 / 4 !important; /* 원본 세로 구도(3:4) */
+            max-height: 280px !important;
             width: 100% !important;
             box-sizing: border-box !important;
+            background: #0f172a !important; /* contain 적용 시 이미지 여백을 위한 다크 블루 블랙 배경 */
+          }
+          .img-box-wrapper img {
+            object-fit: contain !important; /* 이미지 크롭 방지 및 전체 영역 100% 노출 */
+            object-position: center center !important;
           }
           .state-label {
             top: 8px !important;
