@@ -1240,8 +1240,8 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
               }}
             >
               {portfolioSlides.map((slide, idx) => (
-                <div key={idx} className="slider-item" style={{ width: '100%', flexShrink: 0 }}>
-                  <div className="slide-card" style={{ background: '#ffffff', padding: '1.8rem', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)', margin: '0 10px', border: '1px solid rgba(255,255,255,0.8)' }}>
+                <div key={idx} className="slider-item">
+                  <div className="slide-card">
                     {/* 이미지 나란히 배치 */}
                     <div className="comparison-row">
                       {/* 작업 전 */}
