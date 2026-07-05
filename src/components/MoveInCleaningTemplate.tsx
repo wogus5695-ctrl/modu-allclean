@@ -661,7 +661,9 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         }
         .slider-view-container {
           position: relative;
-          padding: 0 40px;
+          max-width: 920px; /* 880~960px 범위 제한 */
+          margin: 0 auto;
+          padding: 0 50px;
         }
         .slider-nav-btn {
           position: absolute;
@@ -689,10 +691,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           box-shadow: 0 6px 16px rgba(37,99,235,0.25);
         }
         .prev-btn {
-          left: 10px;
+          left: 0px;
         }
         .next-btn {
-          right: 10px;
+          right: 0px;
         }
         .comparison-row {
           display: flex;
@@ -706,13 +708,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           position: relative;
           border-radius: 12px;
           overflow: hidden;
-          aspect-ratio: 4 / 3;
+          height: 380px; /* 360~420px 범위 고정 */
           border: 1px solid #f1f5f9;
+          background: #f4f7fb; /* 이미지 주변 빈 공간 백그라운드 */
         }
         .img-box-wrapper img {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain; /* 잘림 방지, 전체 노출 보장 */
           display: block;
         }
         .state-label {
@@ -756,7 +759,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
         @media (max-width: 768px) {
           .slider-view-container {
-            padding: 0 !important;
+            padding: 0 10px !important;
           }
           .slider-nav-btn {
             display: none !important; /* 모바일은 스와이프 및 도트 포커스 대응으로 버튼 미노출 */
@@ -765,11 +768,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             gap: 0.6rem !important;
           }
           .slide-card {
-            padding: 1rem !important;
+            padding: 15px !important; /* 모바일 카드 패딩 14~18px 고정 */
             border-radius: 12px !important;
           }
           .img-box-wrapper {
-            aspect-ratio: 1 / 1 !important; /* 모바일 폭 좁을 시 1:1 정방형 비율 축소 */
+            height: 200px !important; /* 모바일 이미지 높이 180~230px 범위 내 고정 */
+            aspect-ratio: auto !important;
           }
           .state-label {
             top: 6px !important;
