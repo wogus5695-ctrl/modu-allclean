@@ -47,6 +47,22 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
     }
   ];
 
+  // 모바일 전용 카루셀 상태 및 타이머 설정
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches || isHovering) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % staticCleaningPoints.length);
+    }, 3500); // 3.5초 주기 자동 전환
+
+    return () => clearInterval(timer);
+  }, [isHovering, staticCleaningPoints.length]);
+
   // 1. 입주 전 청소가 필요한 이유 리스트
   const whyReasons = [
     { title: "신축 분진", desc: "도배 풀, 시멘트 가루, 미세 톱밥 등 신축/리모델링 후 구석구석 남은 분진을 찾아냅니다.", img: "/images/why/dust.jpg" },
@@ -644,14 +660,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         }
         .cleaning-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr); /* PC에서는 4열 배치 */
+          grid-template-columns: repeat(4, 1fr); /* 1200px 이상에서는 4열 배치 */
           gap: 24px;
           margin-top: 40px;
         }
         .cleaning-card {
           background: #ffffff;
-          border-radius: 16px;
-          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+          border-radius: 20px;
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.04);
           border: 1px solid rgba(255,255,255,0.8);
           overflow: hidden;
           display: flex;
@@ -736,9 +752,17 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           border-color: #2563eb;
         }
 
-        @media (max-width: 1024px) {
+        /* 모바일 카루셀 뷰포트 (기본 PC는 미사용) */
+        .cleaning-slider-viewport {
+          display: none;
+        }
+        .cleaning-dot-pagination {
+          display: none;
+        }
+
+        @media (max-width: 1199px) and (min-width: 768px) {
           .cleaning-grid {
-            grid-template-columns: repeat(2, 1fr); /* 태블릿에서는 2열 배치 */
+            grid-template-columns: repeat(2, 1fr); /* 768px~1199px 범위에서는 2x2 그리드 */
             gap: 20px;
           }
         }
@@ -748,32 +772,79 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             padding: 56px 0 !important;
           }
           .cleaning-grid {
-            grid-template-columns: 1fr !important; /* 모바일 가로폭 기준 1열 정렬로 단순화 */
-            gap: 16px;
-            max-width: 420px;
-            margin: 30px auto 0 auto;
-            padding: 0 16px;
+            display: none; /* 모바일에서는 정적 그리드 숨김 */
           }
-          .cleaning-card {
+          
+          /* 모바일 전용 카루셀 */
+          .cleaning-slider-viewport {
+            display: block;
             width: 100%;
+            overflow: hidden;
+            position: relative;
+            box-sizing: border-box;
+          }
+          .cleaning-slider-track {
+            display: flex;
+            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            width: 100%;
+            box-sizing: border-box;
+          }
+          .cleaning-slider-item {
+            width: 100%;
+            flex-shrink: 0;
+            padding: 0 16px;
+            box-sizing: border-box;
+          }
+          .cleaning-slider-item .cleaning-card {
+            width: calc(100% - 32px);
+            max-width: 360px;
+            margin: 0 auto;
             border-radius: 20px;
+            background: #ffffff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            box-sizing: border-box;
           }
-          .card-image-frame {
-            aspect-ratio: 1 / 1; /* 모바일 aspect-ratio 1:1 고정 */
+          .cleaning-slider-item .card-image-frame {
+            aspect-ratio: 4 / 3; /* 모바일 aspect-ratio 4:3 고정 */
+            width: 100%;
+            overflow: hidden;
+            display: block;
           }
-          .card-body {
-            padding: 16px;
+          .cleaning-slider-item .card-body {
+            padding: 20px;
+            box-sizing: border-box;
           }
-          .card-title {
+          .cleaning-slider-item .card-title {
             font-size: 1.05rem;
           }
-          .card-desc {
+          .cleaning-slider-item .card-desc {
             font-size: 0.85rem;
             margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2; /* 2줄 제한 */
             -webkit-box-orient: vertical;
             overflow: hidden;
+          }
+          .cleaning-dot-pagination {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+          }
+          .cleaning-dot-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background-color: #cbd5e1;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+          }
+          .cleaning-dot-indicator.active {
+            background-color: #2563eb; /* 활성 도트 브랜드 블루 */
+            width: 20px;
+            border-radius: 4px;
           }
         }
       `}</style>
@@ -1129,7 +1200,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         </div>
       </section>
 
-      {/* 5. 입주청소 주요 작업 예시 Section (정적 그리드 리뉴얼) */}
+      {/* 5. 입주청소 주요 작업 예시 Section (정적 그리드 + 모바일 카루셀 융합) */}
       <section className="cleaning-point-section">
         <div className={styles.inner}>
           
@@ -1147,7 +1218,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             </p>
           </div>
 
-          {/* 정적 카드 그리드 영역 */}
+          {/* PC & 태블릿용 정적 카드 그리드 영역 */}
           <div className="cleaning-grid">
             {staticCleaningPoints.map((point, idx) => (
               <div key={idx} className="cleaning-card">
@@ -1160,7 +1231,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                     <p className="card-desc">{point.description}</p>
                   </div>
                   <div className="card-tags">
-                    {point.tags.map((tag, tIdx) => (
+                    {point.tags.slice(0, 3).map((tag, tIdx) => (
                       <span key={tIdx} className="card-tag">
                         #{tag}
                       </span>
@@ -1171,9 +1242,60 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             ))}
           </div>
 
+          {/* 모바일 전용 카루셀 영역 */}
+          <div 
+            className="cleaning-slider-viewport"
+            onMouseEnter={() => setIsHovering(true)}
+            onMouseLeave={() => setIsHovering(false)}
+            onTouchStart={() => setIsHovering(true)}
+            onTouchEnd={() => setIsHovering(false)}
+          >
+            <div 
+              className="cleaning-slider-track"
+              style={{
+                transform: `translateX(-${currentSlide * 100}%)`
+              }}
+            >
+              {staticCleaningPoints.map((point, idx) => (
+                <div key={idx} className="cleaning-slider-item">
+                  <div className="cleaning-card">
+                    <div className="card-image-frame">
+                      <img src={point.img} alt={`${regionName} 입주청소 ${point.title} 상태 예시`} />
+                    </div>
+                    <div className="card-body">
+                      <div>
+                        <h3 className="card-title">{point.title}</h3>
+                        <p className="card-desc">{point.description}</p>
+                      </div>
+                      <div className="card-tags">
+                        {point.tags.slice(0, 3).map((tag, tIdx) => (
+                          <span key={tIdx} className="card-tag">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 모바일 카루셀 닷 페이지네이션 */}
+            <div className="cleaning-dot-pagination">
+              {staticCleaningPoints.map((_, idx) => (
+                <button
+                  key={idx}
+                  className={`cleaning-dot-indicator ${idx === currentSlide ? 'active' : ''}`}
+                  onClick={() => setCurrentSlide(idx)}
+                  aria-label={`${idx + 1}번째 작업 예시로 이동`}
+                ></button>
+              ))}
+            </div>
+          </div>
+
           {/* 하단 안내 및 낮은 위계의 텍스트 CTA */}
           <div className="cleaning-bottom-cta">
-            <p>
+            <p style={{ fontSize: '14px', color: '#64748b', fontWeight: '500', margin: '0 0 12px 0' }}>
               입주일, 평수, 오염 상태에 따라 작업 범위와 견적이 달라질 수 있습니다.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
