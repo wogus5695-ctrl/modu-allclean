@@ -58,12 +58,9 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
   // 3. 현장 유형별 대응
   const buildingTypes = [
-    { type: "신축 아파트", desc: "공사 분진, 창틀 먼지, 수납장 내부 먼지 확인" },
-    { type: "구축 아파트", desc: "주방 기름때, 욕실 물때, 전 세입자 생활 오염 확인" },
-    { type: "오피스텔", desc: "좁은 공간의 주방·욕실·수납장 중심 청소" },
-    { type: "빌라", desc: "베란다, 욕실, 창틀 상태에 따른 작업 범위 확인" },
-    { type: "인테리어 후 입주", desc: "목공 분진, 페인트 자국, 바닥 잔먼지 확인" },
-    { type: "전세·월세 입주", desc: "이전 거주 흔적과 생활 오염 중심 확인" }
+    { type: "신축 입주", desc: "공사 분진 · 창틀 먼지 · 수납장 내부" },
+    { type: "구축 입주", desc: "욕실 물때 · 주방 기름때 · 전 세입자 흔적" },
+    { type: "인테리어 후 입주", desc: "목공 분진 · 페인트 자국 · 바닥 잔먼지" }
   ];
 
   // 4. 입주청소 진행 과정
@@ -451,6 +448,36 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             margin-top: 2rem;
           }
         }
+
+        .highlight-blue {
+          color: #1d4ed8;
+          font-weight: 700;
+        }
+
+        @media (max-width: 1024px) {
+          .pc-type-cards-wrapper {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+        }
+
+        @media (max-width: 768px) {
+          .pc-type-cards-wrapper {
+            display: none !important;
+          }
+          .mo-type-checklist-wrapper {
+            display: flex !important;
+          }
+          .pc-desc-text {
+            display: none !important;
+          }
+          .mo-desc-text {
+            display: block !important;
+          }
+          .mo-bottom-type-chip {
+            padding: 5px 12px !important;
+            font-size: 12px !important;
+          }
+        }
       `}</style>
 
       {/* 간결화된 입주청소 전용 헤더 (작업범위, 진행과정, 견적기준, 자주묻는질문 메뉴 포함) */}
@@ -653,22 +680,81 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 3. 현장 유형별 대응 Section */}
-      <section style={{ padding: '5rem 0', background: '#fff' }}>
+      <section 
+        className="building-types-section"
+        style={{ 
+          padding: '5rem 0', 
+          background: '#f0f7ff', 
+          borderTop: '1px solid #dbeafe',
+          borderBottom: '1px solid #dbeafe'
+        }}
+      >
         <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Solutions by Type</span>
-            <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(22px, 4vw, 32px)', lineHeight: '1.3' }}>
-              현장 상태에 따라<br />입주청소 기준이 달라집니다
+          
+          {/* 섹션 상단 헤더 */}
+          <div className={styles.sectionHeader} style={{ marginBottom: '3rem' }}>
+            <span className="type-section-badge" style={{ display: 'inline-block', backgroundColor: '#e0f2fe', color: '#0369a1', border: '1px solid #bae6fd', padding: '5px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: '700', marginBottom: '12px' }}>
+              현장별 체크 포인트
+            </span>
+            
+            {/* PC 타이틀 / 모바일 타이틀 분기 */}
+            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a' }}>
+              우리 집 상태에 따라<br />먼저 봐야 할 곳이 다릅니다
             </h2>
+
+            {/* PC 보조문구 / 모바일 보조문구 분기 */}
+            <p className="type-section-desc pc-desc-text" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto' }}>
+              신축은 <span className="highlight-blue">공사 분진</span>, 구축은 <span className="highlight-blue">생활오염</span>, 인테리어 후 입주는 <span className="highlight-blue">잔먼지와 자국</span>을 중심으로 확인합니다.
+            </p>
+            <p className="type-section-desc mo-desc-text" style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5', maxWidth: '800px', margin: '10px auto 0 auto', display: 'none' }}>
+              신축은 <span className="highlight-blue">분진</span>, 구축은 <span className="highlight-blue">생활오염</span>, 공사 후 입주는 <span className="highlight-blue">잔먼지</span>를 먼저 봅니다.
+            </p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
+
+          {/* PC용 3대 카드 가로 나열 */}
+          <div className="pc-type-cards-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
             {buildingTypes.map((item, idx) => (
-              <div key={idx} style={{ background: '#fff', borderLeft: '4px solid #0070f3', padding: '1.5rem 1.8rem', boxShadow: 'var(--shadow-sm)', borderTop: '1px solid #e2e8f0', borderRight: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0', borderRadius: '0 8px 8px 0' }}>
-                <h3 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.6rem' }}>{item.type}</h3>
-                <p style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.5', margin: 0 }}>{item.desc}</p>
+              <div key={idx} style={{ background: '#ffffff', borderTop: '4px solid #2563eb', padding: '2rem 1.8rem', boxShadow: '0 4px 15px -3px rgba(0, 0, 0, 0.05)', borderRadius: '0 0 12px 12px', borderLeft: '1px solid #e2e8f0', borderRight: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+                <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <span style={{ color: '#2563eb', fontSize: '1.1rem' }}>✓</span> {item.type}
+                </h3>
+                <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', margin: 0, fontWeight: '500', wordBreak: 'keep-all' }}>
+                  {item.desc.split(' · ').map((word, wIdx) => {
+                    const isKeyword = ["공사 분진", "욕실 물때", "주방 기름때", "전 세입자 흔적", "목공 분진", "페인트 자국", "바닥 잔먼지", "수납장 내부"].includes(word);
+                    return (
+                      <span key={wIdx}>
+                        {wIdx > 0 && ' · '}
+                        <span style={isKeyword ? { color: '#1e3a8a', fontWeight: '700' } : {}}>{word}</span>
+                      </span>
+                    );
+                  })}
+                </p>
               </div>
             ))}
           </div>
+
+          {/* 모바일용 체크리스트형 레이아웃 */}
+          <div className="mo-type-checklist-wrapper" style={{ display: 'none', flexDirection: 'column', gap: '0.8rem', padding: '0 4px' }}>
+            {buildingTypes.map((item, idx) => (
+              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', background: '#ffffff', padding: '1.2rem 1rem', borderRadius: '10px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
+                <span style={{ color: '#2563eb', fontWeight: 'bold', fontSize: '1.1rem', marginTop: '1px' }}>✓</span>
+                <div style={{ textAlign: 'left' }}>
+                  <h4 style={{ fontSize: '0.98rem', fontWeight: '800', color: '#0f172a', margin: '0 0 4px 0' }}>{item.type}</h4>
+                  <p style={{ color: '#475569', fontSize: '0.85rem', lineHeight: '1.4', margin: 0, wordBreak: 'keep-all' }}>
+                    {item.desc.replace(/ · /g, ' · ')}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* 보조 유형 처리 (작은 칩/한 줄 설명) */}
+          <div style={{ marginTop: '2.5rem', textAlign: 'center' }}>
+            <span className="mo-bottom-type-chip" style={{ display: 'inline-block', backgroundColor: '#e0f2fe', color: '#0369a1', fontSize: '13px', fontWeight: '600', padding: '6px 16px', borderRadius: '50px', border: '1px solid #bae6fd' }}>
+              오피스텔 · 빌라 · 전세/월세 입주도 상담 가능합니다.
+            </span>
+          </div>
+
         </div>
       </section>
 
