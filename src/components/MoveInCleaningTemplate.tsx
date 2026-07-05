@@ -32,27 +32,27 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   const serviceCards = [
     {
       title: "욕실 청소",
-      desc: "세면대, 변기, 수전, 거울, 배수구 주변의 물때와 오염을 확인합니다.",
-      details: ["세면대", "변기", "배수구", "타일"],
-      icon: "🛁"
+      desc: "입주 후 가장 먼저 체감되는 공간입니다. 물때, 배수구 주변, 수전·거울 오염까지 확인합니다.",
+      details: ["물때", "배수구", "수전", "타일 틈"],
+      moDesc: "물때·배수구·수전 오염"
     },
     {
       title: "주방 청소",
-      desc: "싱크대, 상·하부장, 조리대, 타일 주변의 기름때와 생활 오염을 정리합니다.",
-      details: ["싱크대", "수납장", "조리대", "타일"],
-      icon: "🍳"
+      desc: "이전 사용 흔적이 가장 많이 남는 공간입니다. 싱크대, 상·하부장, 조리대 주변의 기름때와 생활오염을 정리합니다.",
+      details: ["싱크대", "수납장", "조리대", "기름때"],
+      moDesc: "싱크대·수납장·기름때"
     },
     {
       title: "베란다·창틀 청소",
-      desc: "베란다 바닥, 배수구 주변, 창틀 틈새 먼지처럼 입주 후 직접 하기 번거로운 구간을 확인합니다.",
-      details: ["베란다", "창틀", "배수구", "방충망"],
-      icon: "🪟"
+      desc: "입주 후 직접 청소하기 가장 번거로운 구간입니다. 창틀 틈새, 배수구 주변, 베란다 바닥 먼지를 확인합니다.",
+      details: ["창틀", "베란다", "배수구", "방충망"],
+      moDesc: "틈새 먼지·배수구 주변"
     },
     {
       title: "전체 오염·분진 청소",
-      desc: "바닥, 몰딩, 문틀, 수납장 내부, 콘센트 주변의 먼지와 분진을 확인합니다.",
-      details: ["바닥", "몰딩", "문틀", "수납장"],
-      icon: "🧹"
+      desc: "신축 분진부터 구축 생활먼지까지 확인합니다. 바닥, 몰딩, 문틀, 수납장 내부의 잔먼지를 정리합니다.",
+      details: ["신축 분진", "바닥", "몰딩", "수납장"],
+      moDesc: "바닥·몰딩·수납장 잔먼지"
     }
   ];
 
@@ -181,6 +181,151 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           transform: translateY(-2px);
         }
 
+        /* 작업 범위 섹션 레이아웃 및 디코레이션 정의 */
+        .service-guide-section {
+          padding: 6rem 0;
+          border-top: 1px solid #1e293b;
+        }
+        
+        .guide-section-badge {
+          display: inline-block;
+          background-color: #eff6ff;
+          color: #1d4ed8;
+          border: 1px solid #bfdbfe;
+          padding: 5px 12px;
+          border-radius: 4px;
+          font-size: 13px;
+          font-weight: 700;
+          margin-bottom: 12px;
+          letter-spacing: -0.2px;
+        }
+
+        .guide-section-title {
+          font-size: clamp(24px, 4.5vw, 36px);
+          font-weight: 800;
+          line-height: 1.3;
+          letter-spacing: -0.8px;
+          margin-bottom: 15px;
+        }
+
+        .guide-section-desc {
+          font-size: 1.05rem;
+          line-height: 1.65;
+          max-width: 800px;
+          margin: 10px auto 0 auto;
+          letter-spacing: -0.3px;
+        }
+
+        .highlight-text {
+          color: #2563eb;
+          font-weight: 700;
+        }
+
+        .guide-bottom-content {
+          margin-top: 3.5rem;
+          text-align: center;
+        }
+
+        .guide-bottom-notice {
+          font-size: 14px;
+          color: #64748b;
+          font-weight: 500;
+          margin-bottom: 5px;
+        }
+
+        /* PC 카드 정의 */
+        .pc-cards-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          margin-top: 3.5rem;
+        }
+
+        .pc-guide-card {
+          background: rgba(255, 255, 255, 0.96);
+          backdrop-filter: blur(8px);
+          padding: 2.2rem 1.8rem;
+          border-radius: 16px;
+          box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+          border: 1px solid rgba(255, 255, 255, 0.8);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          min-height: 260px;
+          transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .pc-guide-card:hover {
+          transform: translateY(-4px);
+          box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.22);
+        }
+
+        .pc-guide-card .card-title {
+          font-size: 1.2rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 0.8rem;
+          border-left: 3px solid #2563eb;
+          padding-left: 10px;
+        }
+
+        .pc-guide-card .card-desc {
+          color: #475569;
+          font-size: 0.92rem;
+          line-height: 1.55;
+          letter-spacing: -0.1px;
+        }
+
+        .pc-guide-card .card-tag-wrapper {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 0.4rem;
+          border-top: 1px solid #f1f5f9;
+          padding-top: 1.2rem;
+          margin-top: 1rem;
+        }
+
+        .pc-guide-card .card-tag {
+          font-size: 0.78rem;
+          color: #2563eb;
+          background-color: #eff6ff;
+          padding: 3px 8px;
+          border-radius: 4px;
+          font-weight: 600;
+        }
+
+        /* 모바일 미니 카드 정의 */
+        .mo-cards-grid {
+          display: none;
+        }
+
+        @media (min-width: 1025px) {
+          .service-guide-section {
+            background: linear-gradient(rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.65)), url('/images/services/move-in-guide-bg.jpg') no-repeat center center/cover;
+          }
+          .guide-section-badge {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: #93c5fd;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+          }
+          .guide-section-title {
+            color: #ffffff;
+          }
+          .guide-section-desc {
+            color: #cbd5e1;
+          }
+          .highlight-text {
+            color: #60a5fa;
+          }
+          .guide-bottom-notice {
+            color: #94a3b8;
+          }
+          .pc-title { display: block; }
+          .mo-title { display: none; }
+          .pc-desc { display: block; }
+          .mo-desc { display: none; }
+        }
+
         @media (min-width: 769px) {
           .move-in-hero-section {
             background-position: center right !important;
@@ -191,6 +336,29 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           .move-in-hero-content {
             margin-left: 8%;
           }
+        }
+
+        @media (max-width: 1024px) {
+          .pc-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .service-guide-section {
+            background: #f6f8fb;
+            padding: 4rem 0;
+          }
+          .guide-section-title {
+            color: #0f172a;
+          }
+          .guide-section-desc {
+            color: #475569;
+          }
+          .highlight-text {
+            color: #2563eb;
+          }
+          .pc-title { display: block; }
+          .mo-title { display: none; }
+          .pc-desc { display: block; }
+          .mo-desc { display: none; }
         }
 
         @media (max-width: 768px) {
@@ -223,6 +391,64 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           }
           .cta-secondary-btn {
             display: none !important;
+          }
+          .pc-title { display: none; }
+          .mo-title { display: block; }
+          .pc-desc { display: none; }
+          .mo-desc { display: block; }
+          .pc-cards-grid {
+            display: none;
+          }
+          .mo-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.8rem;
+            margin-top: 2rem;
+            padding: 0 4px;
+          }
+          .mo-guide-card {
+            background: #ffffff;
+            padding: 1.2rem 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 145px;
+          }
+          .mo-card-title {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 0 0 6px 0;
+            border-left: 3px solid #2563eb;
+            padding-left: 6px;
+          }
+          .mo-card-desc {
+            color: #475569;
+            font-size: 0.82rem;
+            line-height: 1.4;
+            margin: 0 0 8px 0;
+            flex-grow: 1;
+          }
+          .mo-card-tag-wrapper {
+            display: flex;
+            gap: 0.3rem;
+            border-top: 1px solid #f1f5f9;
+            padding-top: 6px;
+          }
+          .mo-card-tag {
+            font-size: 0.72rem;
+            color: #2563eb;
+            background-color: #eff6ff;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 600;
+            white-space: nowrap;
+          }
+          .guide-bottom-content {
+            margin-top: 2rem;
           }
         }
       `}</style>
@@ -346,36 +572,42 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       {/* 2. 입주청소 작업 범위 - 4카드 Section */}
       <section 
         id="service-guide"
-        style={{ 
-          padding: '6rem 0', 
-          background: "linear-gradient(rgba(15, 23, 42, 0.75), rgba(15, 23, 42, 0.75)), url('/images/services/move-in-guide-bg.jpg') no-repeat center center/cover", 
-          borderTop: '1px solid #1e293b' 
-        }}
+        className="service-guide-section"
       >
         <div className={styles.inner}>
+          
+          {/* 섹션 상단 헤더 */}
           <div className={styles.sectionHeader}>
-            <span className={styles.subTitle} style={{ color: '#3b82f6' }}>Service Guide</span>
-            <h2 className={styles.sectionTitle} style={{ color: '#ffffff' }}>
-              {regionName} 입주청소 작업 범위
+            <span className="guide-section-badge">입주청소 검수 포인트</span>
+            
+            {/* PC 타이틀 / 모바일 타이틀 분기 */}
+            <h2 className="guide-section-title pc-title">
+              {regionName} 입주청소 핵심 검수 범위
             </h2>
-            <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#cbd5e1', fontSize: '1.05rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
-              입주 전 가장 많이 확인하는 욕실, 주방, 베란다·창틀, 전체 오염·분진을 중심으로 현장 상태에 맞춰 청소합니다.
+            <h2 className="guide-section-title mo-title">
+              {regionName} 입주청소,<br />입주 전 이 <span className="highlight-text">4곳</span>을 먼저 봅니다
+            </h2>
+
+            {/* PC 설명 / 모바일 설명 분기 */}
+            <p className="guide-section-desc pc-desc">
+              입주 전 가장 많이 확인하는 <span className="highlight-text">욕실·주방·베란다·분진 오염</span>을 중심으로 청소합니다.
+            </p>
+            <p className="guide-section-desc mo-desc">
+              <span className="highlight-text">욕실·주방·베란다·분진 오염</span>은 입주 후 직접 정리하기 번거로운 구간입니다.
             </p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          {/* PC용 4개 카드 그리드 레이아웃 */}
+          <div className="pc-cards-grid">
             {serviceCards.map((card, idx) => (
-              <div key={idx} style={{ background: 'rgba(255, 255, 255, 0.96)', backdropFilter: 'blur(8px)', padding: '2.2rem 2rem', borderRadius: '16px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.2rem', boxShadow: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)' }}>
-                    {card.icon}
-                  </div>
-                  <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1rem' }}>{card.title}</h3>
-                  <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem', minHeight: '4.5rem' }}>{card.desc}</p>
+              <div key={idx} className="pc-guide-card">
+                <div className="card-top-content">
+                  <h3 className="card-title">{card.title}</h3>
+                  <p className="card-desc">{card.desc}</p>
                 </div>
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', borderTop: '1px solid #e2e8f0', paddingTop: '1.2rem' }}>
+                <div className="card-tag-wrapper">
                   {card.details.map((detail, dIdx) => (
-                    <span key={dIdx} style={{ fontSize: '0.785rem', color: '#1d4ed8', backgroundColor: '#eff6ff', padding: '4px 10px', borderRadius: '4px', fontWeight: '600' }}>
+                    <span key={dIdx} className="card-tag">
                       {detail}
                     </span>
                   ))}
@@ -384,11 +616,39 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             ))}
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '3.5rem' }}>
-            <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '260px', textAlign: 'center', boxShadow: '0 4px 14px 0 rgba(0, 112, 243, 0.3)' }}>
-              입주청소 작업 범위 상담
-            </a>
+          {/* 모바일용 2x2 미니 카드 레이아웃 */}
+          <div className="mo-cards-grid">
+            {serviceCards.map((card, idx) => (
+              <div key={idx} className="mo-guide-card">
+                <h3 className="mo-card-title">
+                  {card.title.replace(' 청소', '')}
+                </h3>
+                <p className="mo-card-desc">
+                  {card.moDesc}
+                </p>
+                <div className="mo-card-tag-wrapper">
+                  {card.details.slice(0, 2).map((detail, dIdx) => (
+                    <span key={dIdx} className="mo-card-tag">
+                      {detail}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
+
+          {/* 하단 설명 및 단일 CTA */}
+          <div className="guide-bottom-content">
+            <p className="guide-bottom-notice">
+              입주일, 평수, 오염 상태에 따라 작업 범위가 달라질 수 있습니다.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
+              <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '260px', textAlign: 'center', boxShadow: '0 4px 14px 0 rgba(0, 112, 243, 0.3)' }}>
+                입주청소 작업 범위 상담
+              </a>
+            </div>
+          </div>
+
         </div>
       </section>
 
