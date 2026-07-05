@@ -22,32 +22,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   // 작업 전후 비교 전용 슬라이드 데이터 정의
   const portfolioSlides = [
     {
-      title: "욕실 물때와 배수구 주변",
-      desc: "입주 후 가장 먼저 체감되는 욕실 오염을 확인합니다.",
-      tags: ["욕실", "물때", "배수구"],
-      beforeImg: "/images/portfolio/floor-before.jpg",
-      afterImg: "/images/portfolio/floor-after.jpg"
+      beforeImg: "/images/portfolio/sink-before.jpg",
+      afterImg: "/images/portfolio/sink-after.jpg"
     },
     {
-      title: "싱크대와 수납장 주변 생활오염",
-      desc: "이전 사용 흔적이 남기 쉬운 주방 오염을 정리합니다.",
-      tags: ["주방", "싱크대", "기름때"],
-      beforeImg: "/images/portfolio/ac-before.jpg",
-      afterImg: "/images/portfolio/ac-after.jpg"
-    },
-    {
-      title: "창틀 틈새와 베란다 먼지",
-      desc: "입주 후 직접 하기 번거로운 틈새 먼지를 확인합니다.",
-      tags: ["창틀", "베란다", "먼지"],
-      beforeImg: "/images/portfolio/construction-before.jpg",
-      afterImg: "/images/portfolio/construction-after.jpg"
-    },
-    {
-      title: "신축 분진과 바닥 잔먼지",
-      desc: "공사 후 남은 분진과 생활먼지를 입주 전에 정리합니다.",
-      tags: ["분진", "바닥", "잔먼지"],
-      beforeImg: "/images/portfolio/interior-before.jpg",
-      afterImg: "/images/portfolio/interior-after.jpg"
+      beforeImg: "/images/portfolio/drain-before.jpg",
+      afterImg: "/images/portfolio/drain-after.jpg"
     }
   ];
 
@@ -1199,14 +1179,13 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
               {portfolioSlides.map((slide, idx) => (
                 <div key={idx} className="slider-item" style={{ width: '100%', flexShrink: 0 }}>
                   <div className="slide-card" style={{ background: '#ffffff', padding: '1.8rem', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)', margin: '0 10px', border: '1px solid rgba(255,255,255,0.8)' }}>
-                    
                     {/* 이미지 나란히 배치 */}
                     <div className="comparison-row">
                       {/* 작업 전 */}
                       <div className="comparison-col">
                         <div className="img-box-wrapper">
                           <span className="state-label before-label">작업 전</span>
-                          <img src={slide.beforeImg} alt={`${regionName} 입주청소 ${slide.title} 작업 전 상태`} />
+                          <img src={slide.beforeImg} alt={`${regionName} 입주청소 작업 전 상태`} />
                         </div>
                       </div>
 
@@ -1214,25 +1193,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                       <div className="comparison-col">
                         <div className="img-box-wrapper">
                           <span className="state-label after-label">작업 후</span>
-                          <img src={slide.afterImg} alt={`${regionName} 입주청소 ${slide.title} 작업 후 상태`} />
+                          <img src={slide.afterImg} alt={`${regionName} 입주청소 작업 후 상태`} />
                         </div>
                       </div>
                     </div>
-
-                    {/* 카드 설명 정보 */}
-                    <div className="slide-info" style={{ marginTop: '1.5rem', textAlign: 'left' }}>
-                      <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.5rem' }}>{slide.title}</h3>
-                      <p style={{ fontSize: '0.95rem', color: '#64748b', margin: '0 0 1rem 0' }}>{slide.desc}</p>
-                      
-                      <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                        {slide.tags.map((tag, tIdx) => (
-                          <span key={tIdx} style={{ fontSize: '0.78rem', color: '#2563eb', backgroundColor: '#eff6ff', padding: '3px 8px', borderRadius: '4px', fontWeight: '600' }}>
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
                   </div>
                 </div>
               ))}
