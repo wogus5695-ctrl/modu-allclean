@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from 'react';
 import { LandingPageData } from '@/lib/seo-builder';
 import { CONTACT_PHONE, BRAND_NAME, CONTACT_KAKAOTALK } from '@/lib/seo';
 import { SeoService } from '@/data/seo/services';
@@ -17,6 +18,54 @@ interface MoveInCleaningTemplateProps {
 export default function MoveInCleaningTemplate({ data, regionObj, currentService }: MoveInCleaningTemplateProps) {
   const regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
   const parentRegion = regionObj?.district || '';
+
+  // 작업 전후 비교 전용 슬라이드 데이터 정의
+  const portfolioSlides = [
+    {
+      title: "욕실 물때와 배수구 주변",
+      desc: "입주 후 가장 먼저 체감되는 욕실 오염을 확인합니다.",
+      tags: ["욕실", "물때", "배수구"],
+      beforeImg: "/images/portfolio/floor-before.jpg",
+      afterImg: "/images/portfolio/floor-after.jpg"
+    },
+    {
+      title: "싱크대와 수납장 주변 생활오염",
+      desc: "이전 사용 흔적이 남기 쉬운 주방 오염을 정리합니다.",
+      tags: ["주방", "싱크대", "기름때"],
+      beforeImg: "/images/portfolio/ac-before.jpg",
+      afterImg: "/images/portfolio/ac-after.jpg"
+    },
+    {
+      title: "창틀 틈새와 베란다 먼지",
+      desc: "입주 후 직접 하기 번거로운 틈새 먼지를 확인합니다.",
+      tags: ["창틀", "베란다", "먼지"],
+      beforeImg: "/images/portfolio/construction-before.jpg",
+      afterImg: "/images/portfolio/construction-after.jpg"
+    },
+    {
+      title: "신축 분진과 바닥 잔먼지",
+      desc: "공사 후 남은 분진과 생활먼지를 입주 전에 정리합니다.",
+      tags: ["분진", "바닥", "잔먼지"],
+      beforeImg: "/images/portfolio/interior-before.jpg",
+      afterImg: "/images/portfolio/interior-after.jpg"
+    }
+  ];
+
+  // 슬라이더 타이머 & 호버 조작 상태 관리
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
+
+  useEffect(() => {
+    // prefers-reduced-motion 미디어 쿼리 조회
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mediaQuery.matches || isHovering) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % portfolioSlides.length);
+    }, 4000); // 4초 주기 자동 전환
+
+    return () => clearInterval(timer);
+  }, [isHovering, portfolioSlides.length]);
 
   // 1. 입주 전 청소가 필요한 이유 리스트
   const whyReasons = [
@@ -605,6 +654,130 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             word-break: keep-all;
           }
         }
+
+        /* 프리미엄 전후비교 슬라이더 CSS */
+        .premium-portfolio-section {
+          position: relative;
+        }
+        .slider-view-container {
+          position: relative;
+          padding: 0 40px;
+        }
+        .slider-nav-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 45px;
+          height: 45px;
+          border-radius: 50%;
+          background: #ffffff;
+          border: 1px solid #e2e8f0;
+          color: #0f172a;
+          font-size: 16px;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          z-index: 10;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          transition: all 0.2s ease;
+        }
+        .slider-nav-btn:hover {
+          background: #2563eb;
+          color: #ffffff;
+          border-color: #2563eb;
+          box-shadow: 0 6px 16px rgba(37,99,235,0.25);
+        }
+        .prev-btn {
+          left: 10px;
+        }
+        .next-btn {
+          right: 10px;
+        }
+        .comparison-row {
+          display: flex;
+          gap: 1.2rem;
+        }
+        .comparison-col {
+          flex: 1;
+          width: 50%;
+        }
+        .img-box-wrapper {
+          position: relative;
+          border-radius: 12px;
+          overflow: hidden;
+          aspect-ratio: 4 / 3;
+          border: 1px solid #f1f5f9;
+        }
+        .img-box-wrapper img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+        }
+        .state-label {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          padding: 4px 10px;
+          border-radius: 4px;
+          font-size: 12px;
+          font-weight: 700;
+          color: #ffffff;
+          z-index: 5;
+          box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        }
+        .before-label {
+          background-color: #ef4444; /* 빨간색 작업 전 */
+        }
+        .after-label {
+          background-color: #10b981; /* 초록색 작업 후 */
+        }
+        
+        .dot-indicator {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #cbd5e1;
+          border: none;
+          padding: 0;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+        .dot-indicator.active {
+          background-color: #2563eb;
+          width: 24px;
+          border-radius: 5px;
+        }
+        .sub-cta-link:hover {
+          color: #2563eb !important;
+          border-color: #2563eb !important;
+        }
+
+        @media (max-width: 768px) {
+          .slider-view-container {
+            padding: 0 !important;
+          }
+          .slider-nav-btn {
+            display: none !important; /* 모바일은 스와이프 및 도트 포커스 대응으로 버튼 미노출 */
+          }
+          .comparison-row {
+            gap: 0.6rem !important;
+          }
+          .slide-card {
+            padding: 1rem !important;
+            border-radius: 12px !important;
+          }
+          .img-box-wrapper {
+            aspect-ratio: 1 / 1 !important; /* 모바일 폭 좁을 시 1:1 정방형 비율 축소 */
+          }
+          .state-label {
+            top: 6px !important;
+            left: 6px !important;
+            padding: 3px 6px !important;
+            font-size: 10px !important;
+          }
+        }
       `}</style>
 
       {/* 간결화된 입주청소 전용 헤더 (작업범위, 진행과정, 견적기준, 자주묻는질문 메뉴 포함) */}
@@ -958,74 +1131,135 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         </div>
       </section>
 
-      {/* 5. 작업 예시 / 전후 이미지 Section */}
-      <section className={styles.portfolio} style={{ padding: '5rem 0', background: '#fff' }}>
+      {/* 5. 작업 예시 / 전후 이미지 Section (프리미엄 슬라이더 리뉴얼) */}
+      <section 
+        className="premium-portfolio-section"
+        onMouseEnter={() => setIsHovering(true)}
+        onMouseLeave={() => setIsHovering(false)}
+        style={{ 
+          padding: '4rem 0', 
+          background: 'linear-gradient(180deg, #F2FAFF 0%, #E8F5FF 100%)',
+          borderTop: '1px solid #dbeafe',
+          borderBottom: '1px solid #dbeafe',
+          position: 'relative'
+        }}
+      >
         <div className={styles.inner}>
-          <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Before & After</span>
-            <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(22px, 4vw, 32px)', lineHeight: '1.3' }}>
-              입주 전 확인이 필요한 공간을<br />사진으로 보여드립니다
+          
+          {/* 섹션 헤더 */}
+          <div className={styles.sectionHeader} style={{ marginBottom: '2.5rem' }}>
+            <span className="portfolio-section-badge" style={{ display: 'inline-block', backgroundColor: '#ffffff', color: '#1d4ed8', border: '1px solid #bfdbfe', padding: '5px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: '700', marginBottom: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
+              BEFORE & AFTER
+            </span>
+            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a' }}>
+              입주 전 오염,<br />사진으로 먼저 확인하세요
             </h2>
+            
+            <p className="portfolio-desc pc-desc-text" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px' }}>
+              욕실·주방·베란다·창틀·분진처럼 입주 전 확인이 필요한 공간을 중심으로 작업합니다.
+            </p>
+            <p className="portfolio-desc mo-desc-text" style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.5', maxWidth: '800px', margin: '10px auto 0 auto', display: 'none' }}>
+              욕실·주방·베란다·분진 오염을 입주 전에 확인합니다.
+            </p>
           </div>
-          <div className={styles.sliderContainer} style={{ marginTop: '3rem' }}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '2rem' }}>
-              <div className={styles.portfolioCard}>
-                <div className={styles.portfolioCategory}>욕실 작업 예시</div>
-                <div className={styles.comparisonGrid}>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/floor-before.jpg" alt={`${regionName} 입주청소 욕실 세척 전 상태`} />
-                    <span className={styles.tagBefore}>BEFORE</span>
-                  </div>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/floor-after.jpg" alt={`${regionName} 입주청소 욕실 세척 후 상태`} />
-                    <span className={styles.tagAfter}>AFTER</span>
-                  </div>
-                </div>
-              </div>
 
-              <div className={styles.portfolioCard}>
-                <div className={styles.portfolioCategory}>주방 작업 예시</div>
-                <div className={styles.comparisonGrid}>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/ac-before.jpg" alt={`${regionName} 입주청소 주방 조리대 청소 전`} />
-                    <span className={styles.tagBefore}>BEFORE</span>
-                  </div>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/ac-after.jpg" alt={`${regionName} 입주청소 주방 조리대 청소 후`} />
-                    <span className={styles.tagAfter}>AFTER</span>
-                  </div>
-                </div>
-              </div>
+          {/* 슬라이더 영역 */}
+          <div className="slider-view-container" style={{ position: 'relative', maxWidth: '960px', margin: '0 auto', overflow: 'hidden' }}>
+            
+            {/* 좌우 화살표 내비게이션 (PC 전용) */}
+            <button 
+              className="slider-nav-btn prev-btn" 
+              onClick={() => setCurrentSlide((prev) => (prev - 1 + portfolioSlides.length) % portfolioSlides.length)}
+              aria-label="이전 슬라이드"
+            >
+              ❮
+            </button>
+            <button 
+              className="slider-nav-btn next-btn" 
+              onClick={() => setCurrentSlide((prev) => (prev + 1) % portfolioSlides.length)}
+              aria-label="다음 슬라이드"
+            >
+              ❯
+            </button>
 
-              <div className={styles.portfolioCard}>
-                <div className={styles.portfolioCategory}>베란다·창틀 작업 예시</div>
-                <div className={styles.comparisonGrid}>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/construction-before.jpg" alt={`${regionName} 입주청소 창틀 찌든 먼지 제거 전`} />
-                    <span className={styles.tagBefore}>BEFORE</span>
-                  </div>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/construction-after.jpg" alt={`${regionName} 입주청소 창틀 찌든 먼지 제거 후`} />
-                    <span className={styles.tagAfter}>AFTER</span>
-                  </div>
-                </div>
-              </div>
+            {/* 슬라이더 트랙 */}
+            <div 
+              className="slider-track"
+              style={{
+                display: 'flex',
+                transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
+                transform: `translateX(-${currentSlide * 100}%)`,
+                width: `${portfolioSlides.length * 100}%`
+              }}
+            >
+              {portfolioSlides.map((slide, idx) => (
+                <div key={idx} className="slider-item" style={{ width: '100%', flexShrink: 0 }}>
+                  <div className="slide-card" style={{ background: '#ffffff', padding: '1.8rem', borderRadius: '16px', boxShadow: '0 8px 24px rgba(0, 0, 0, 0.08)', margin: '0 10px', border: '1px solid rgba(255,255,255,0.8)' }}>
+                    
+                    {/* 이미지 나란히 배치 */}
+                    <div className="comparison-row">
+                      {/* 작업 전 */}
+                      <div className="comparison-col">
+                        <div className="img-box-wrapper">
+                          <span className="state-label before-label">작업 전</span>
+                          <img src={slide.beforeImg} alt={`${regionName} 입주청소 ${slide.title} 작업 전 상태`} />
+                        </div>
+                      </div>
 
-              <div className={styles.portfolioCard}>
-                <div className={styles.portfolioCategory}>전체 오염·분진 작업 예시</div>
-                <div className={styles.comparisonGrid}>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/interior-before.jpg" alt={`${regionName} 입주청소 인테리어 미세 먼지 분진 제거 전`} />
-                    <span className={styles.tagBefore}>BEFORE</span>
-                  </div>
-                  <div className={styles.imageBox}>
-                    <img src="/images/portfolio/interior-after.jpg" alt={`${regionName} 입주청소 인테리어 미세 먼지 분진 제거 후`} />
-                    <span className={styles.tagAfter}>AFTER</span>
+                      {/* 작업 후 */}
+                      <div className="comparison-col">
+                        <div className="img-box-wrapper">
+                          <span className="state-label after-label">작업 후</span>
+                          <img src={slide.afterImg} alt={`${regionName} 입주청소 ${slide.title} 작업 후 상태`} />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* 카드 설명 정보 */}
+                    <div className="slide-info" style={{ marginTop: '1.5rem', textAlign: 'left' }}>
+                      <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.5rem' }}>{slide.title}</h3>
+                      <p style={{ fontSize: '0.95rem', color: '#64748b', margin: '0 0 1rem 0' }}>{slide.desc}</p>
+                      
+                      <div style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
+                        {slide.tags.map((tag, tIdx) => (
+                          <span key={tIdx} style={{ fontSize: '0.78rem', color: '#2563eb', backgroundColor: '#eff6ff', padding: '3px 8px', borderRadius: '4px', fontWeight: '600' }}>
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
                   </div>
                 </div>
-              </div>
+              ))}
+            </div>
+
+          </div>
+
+          {/* 도트 페이지네이션 */}
+          <div className="dot-pagination" style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '1.5rem' }}>
+            {portfolioSlides.map((_, idx) => (
+              <button 
+                key={idx}
+                className={`dot-indicator ${idx === currentSlide ? 'active' : ''}`}
+                onClick={() => setCurrentSlide(idx)}
+                aria-label={`${idx + 1}번째 슬라이드로 이동`}
+              ></button>
+            ))}
+          </div>
+
+          {/* 하단 안내 및 낮은 위계의 텍스트 CTA */}
+          <div className="portfolio-bottom-cta" style={{ marginTop: '3rem', textAlign: 'center' }}>
+            <p style={{ fontSize: '14px', color: '#64748b', fontWeight: '500', margin: '0 0 10px 0' }}>
+              입주일, 평수, 오염 상태에 따라 작업 범위와 견적이 달라질 수 있습니다.
+            </p>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <a href={`tel:${CONTACT_PHONE}`} className="sub-cta-link" style={{ fontSize: '15px', color: '#1e3a8a', fontWeight: '700', textDecoration: 'none', borderBottom: '2px solid #1e3a8a', paddingBottom: '2px', transition: 'color 0.2s' }}>
+                우리 집 상태도 상담하기 ➔
+              </a>
             </div>
           </div>
+
         </div>
       </section>
 
