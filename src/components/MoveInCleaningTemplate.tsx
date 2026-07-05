@@ -25,7 +25,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
     { title: "창틀 먼지", desc: "외부 미세먼지와 빗물이 유입되어 굳어버린 창틀 틈새의 새까만 찌든 먼지를 케어합니다.", img: "/images/why/window.jpg" },
     { title: "욕실 물때", desc: "세면대, 거울, 샤워부스 유리, 타일 틈새에 축적된 불투명한 물때와 이물질을 세척합니다.", img: "/images/why/bathroom.jpg" },
     { title: "주방 기름때", desc: "가스레인지 주변 벽 타일, 가구 하부, 후드 필터에 고착된 끈적한 기름 오염을 녹여냅니다.", img: "/images/why/kitchen.jpg" },
-    { title: "입주 일정 압박", desc: "이사 당일에는 짐이 들어오기 때문에 반드시 짐 반입 전에 완료할 수 있도록 일정을 확보합니다.", img: "" }
+    { title: "입주 일정 압박", desc: "이사 당일에는 짐이 들어오기 때문에 반드시 짐 반입 전에 완료할 수 있도록 일정을 확보합니다.", img: "/images/why/schedule.jpg" }
   ];
 
   // 2. 입주청소 작업 범위 - 4카드
