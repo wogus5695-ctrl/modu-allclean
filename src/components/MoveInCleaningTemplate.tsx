@@ -19,39 +19,33 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   const regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
   const parentRegion = regionObj?.district || '';
 
-  // 작업 전후 비교 전용 슬라이드 데이터 정의
-  const portfolioSlides = [
+  // 입주청소 주요 작업 예시 정적 데이터 정의
+  const staticCleaningPoints = [
     {
-      title: "욕실 세면대와 수전 주변 물때",
-      description: "세수할 때 가장 먼저 체감되는 수전의 오염과 물때를 제거합니다.",
-      tags: ["욕실", "물때", "세면대"],
-      beforeImg: "/images/portfolio/sink-before.jpg",
-      afterImg: "/images/portfolio/sink-after.jpg"
+      title: "욕실 오염 확인",
+      description: "물때, 배수구, 수전 주변처럼 입주 후 가장 먼저 체감되는 공간을 확인합니다.",
+      tags: ["욕실", "물때", "배수구"],
+      img: "/images/portfolio/sink-before.jpg" // 기존 수전 전후 사진 중 하나 활용
     },
     {
-      title: "욕실 바닥 배수구 주변 오염",
-      description: "머리카락 및 이물질로 막히고 오염된 욕실 배수 트랩을 위생 살균 세정합니다.",
-      tags: ["욕실", "배수구", "살균"],
-      beforeImg: "/images/portfolio/drain-before.jpg",
-      afterImg: "/images/portfolio/drain-after.jpg"
+      title: "주방 생활오염",
+      description: "싱크대, 수납장, 조리대 주변의 기름때와 이전 사용 흔적을 확인합니다.",
+      tags: ["주방", "싱크대", "기름때"],
+      img: "/images/why/kitchen.jpg" // 기존 주방 이미지 재활용
+    },
+    {
+      title: "베란다·창틀 먼지",
+      description: "창틀 틈새, 베란다 바닥, 배수구 주변처럼 직접 하기 번거로운 구간을 확인합니다.",
+      tags: ["베란다", "창틀", "먼지"],
+      img: "/images/why/window.jpg" // 기존 베란다/창틀 이미지 재활용
+    },
+    {
+      title: "분진·바닥 오염",
+      description: "신축 분진, 바닥 잔먼지, 몰딩 주변 오염을 입주 전에 확인합니다.",
+      tags: ["분진", "바닥", "잔먼지"],
+      img: "/images/why/dust.jpg" // 기존 신축분진 이미지 재활용
     }
   ];
-
-  // 슬라이더 타이머 & 호버 조작 상태 관리
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isHovering, setIsHovering] = useState(false);
-
-  useEffect(() => {
-    // prefers-reduced-motion 미디어 쿼리 조회
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    if (mediaQuery.matches || isHovering) return;
-
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % portfolioSlides.length);
-    }, 4000); // 4초 주기 자동 전환
-
-    return () => clearInterval(timer);
-  }, [isHovering, portfolioSlides.length]);
 
   // 1. 입주 전 청소가 필요한 이유 리스트
   const whyReasons = [
@@ -641,197 +635,141 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           }
         }
 
-        /* 프리미엄 전후비교 슬라이더 CSS */
-        .premium-portfolio-section {
-          position: relative;
-          padding: 80px 0 !important; /* desktop section padding */
-          overflow: hidden;
+        /* 입주청소 주요 작업 예시 정적 그리드 CSS */
+        .cleaning-point-section {
+          padding: 80px 0 !important;
+          background: linear-gradient(180deg, #F2FAFF 0%, #E8F5FF 100%);
+          border-top: 1px solid #dbeafe;
+          border-bottom: 1px solid #dbeafe;
         }
-        .slider-view-container {
-          position: relative;
-          max-width: 960px; /* 880~960px 범위 제한 */
-          margin: 0 auto;
-          padding: 0;
-          overflow: hidden; /* viewport 밖 카드 완전히 숨김 */
-        }
-        .slider-nav-btn {
-          position: absolute;
-          top: 50%;
-          transform: translateY(-50%);
-          width: 45px;
-          height: 45px;
-          border-radius: 50%;
-          background: #ffffff;
-          border: 1px solid #e2e8f0;
-          color: #0f172a;
-          font-size: 16px;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          z-index: 10;
-          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-          transition: all 0.2s ease;
-        }
-        .slider-nav-btn:hover {
-          background: #2563eb;
-          color: #ffffff;
-          border-color: #2563eb;
-          box-shadow: 0 6px 16px rgba(37,99,235,0.25);
-        }
-        .prev-btn {
-          left: 5px; /* 외곽 배치 */
-        }
-        .next-btn {
-          right: 5px; /* 외곽 배치 */
-        }
-        .slider-item {
-          width: 100%;
-          flex-shrink: 0;
-          box-sizing: border-box;
-        }
-        .comparison-row {
+        .cleaning-grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr); /* 2 columns */
-          gap: 18px; /* 16~20px gap */
+          grid-template-columns: repeat(4, 1fr); /* PC에서는 4열 배치 */
+          gap: 24px;
+          margin-top: 40px;
         }
-        .comparison-col {
-          position: relative;
-        }
-        .ba-image-frame {
-          position: relative;
-          border-radius: 16px; /* 16px border-radius */
+        .cleaning-card {
+          background: #ffffff;
+          border-radius: 16px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+          border: 1px solid rgba(255,255,255,0.8);
           overflow: hidden;
-          aspect-ratio: 3 / 4; /* 세로형 3/4 비율 */
-          border: 1px solid #e2e8f0;
-          background: #f4f7fb;
-          width: 100%;
+          display: flex;
+          flex-direction: column;
+          box-sizing: border-box;
+          transition: transform 0.25s ease;
         }
-        .ba-image-frame img {
+        .cleaning-card:hover {
+          transform: translateY(-5px);
+        }
+        .card-image-frame {
+          width: 100%;
+          aspect-ratio: 4 / 3; /* PC 고정 비율 */
+          overflow: hidden;
+          background: #f4f7fb;
+          position: relative;
+        }
+        .card-image-frame img {
           width: 100%;
           height: 100%;
-          object-fit: cover; /* 세로형 3/4 프레임 맞춤 */
+          object-fit: cover;
           object-position: center center;
           display: block;
         }
-        .state-label {
-          position: absolute;
-          top: 10px;
-          left: 10px;
-          padding: 5px 8px;
-          border-radius: 6px;
-          font-size: 12px;
+        .card-body {
+          padding: 20px;
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          text-align: left;
+        }
+        .card-title {
+          font-size: 1.15rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0 0 8px 0;
+          line-height: 1.4;
+        }
+        .card-desc {
+          font-size: 0.92rem;
+          color: #64748b;
+          margin: 0 0 16px 0;
+          line-height: 1.5;
+          word-break: keep-all;
+        }
+        .card-tags {
+          display: flex;
+          gap: 6px;
+          flex-wrap: wrap;
+        }
+        .card-tag {
+          font-size: 0.78rem;
+          color: #2563eb;
+          background-color: #eff6ff;
+          padding: 3px 8px;
+          border-radius: 4px;
+          font-weight: 600;
+        }
+        .cleaning-bottom-cta {
+          margin-top: 3.5rem;
+          text-align: center;
+        }
+        .cleaning-bottom-cta p {
+          font-size: 14px;
+          color: #64748b;
+          font-weight: 500;
+          margin: 0 0 12px 0;
+        }
+        .cleaning-sub-cta {
+          display: inline-block;
+          font-size: 15px;
+          color: #1e3a8a;
           font-weight: 700;
-          color: #ffffff;
-          z-index: 5;
-          box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
-        .before-label {
-          background-color: #ef4444; /* red 작업 전 */
-        }
-        .after-label {
-          background-color: #2563eb; /* brand blue 작업 후 */
-        }
-        
-        .dot-indicator {
-          width: 10px;
-          height: 10px;
-          border-radius: 50%;
-          background-color: #cbd5e1;
-          border: none;
-          padding: 0;
-          cursor: pointer;
+          text-decoration: none;
+          border-bottom: 2px solid #1e3a8a;
+          padding-bottom: 2px;
           transition: all 0.2s ease;
         }
-        .dot-indicator.active {
-          background-color: #2563eb; /* 활성 도트 브랜드 블루 */
-          width: 24px;
-          border-radius: 5px;
-        }
-        .sub-cta-link:hover {
-          color: #2563eb !important;
-          border-color: #2563eb !important;
+        .cleaning-sub-cta:hover {
+          color: #2563eb;
+          border-color: #2563eb;
         }
 
-        .slide-card {
-          background: #ffffff;
-          max-width: 920px; /* PC 중앙 슬라이드 가로 폭 고정 제한 */
-          margin: 0 auto;
-          padding: 30px; /* 24~32px padding */
-          border-radius: 16px;
-          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-          border: 1px solid rgba(255,255,255,0.8);
-          box-sizing: border-box;
+        @media (max-width: 1024px) {
+          .cleaning-grid {
+            grid-template-columns: repeat(2, 1fr); /* 태블릿에서는 2열 배치 */
+            gap: 20px;
+          }
         }
 
         @media (max-width: 768px) {
-          .premium-portfolio-section {
-            padding: 56px 0 !important; /* mobile section padding */
+          .cleaning-point-section {
+            padding: 56px 0 !important;
           }
-          .slider-view-container {
-            max-width: 100% !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-            overflow: hidden !important;
+          .cleaning-grid {
+            grid-template-columns: 1fr !important; /* 모바일 가로폭 기준 1열 정렬로 단순화 */
+            gap: 16px;
+            max-width: 420px;
+            margin: 30px auto 0 auto;
+            padding: 0 16px;
           }
-          .slider-nav-btn {
-            display: none !important; /* 모바일은 버튼 미노출 */
+          .cleaning-card {
+            width: 100%;
+            border-radius: 20px;
           }
-          .slider-item {
-            width: 100% !important;
-            padding: 0 !important;
-            box-sizing: border-box !important;
-            flex-shrink: 0 !important;
+          .card-image-frame {
+            aspect-ratio: 1 / 1; /* 모바일 aspect-ratio 1:1 고정 */
           }
-          .slide-card {
-            width: calc(100% - 32px) !important; /* 모바일 슬라이드 카드 규격 */
-            max-width: 420px !important;
-            margin: 0 auto !important;
-            padding: 16px !important; /* 모바일 카드 패딩 14~18px 고정 */
-            box-sizing: border-box !important;
-            border-radius: 20px !important;
-            overflow: hidden !important;
+          .card-body {
+            padding: 16px;
           }
-          .comparison-row {
-            display: flex !important;
-            flex-direction: column !important; /* 2열 grid가 모바일에 상속되지 않게 flex 세로 정렬 */
-            gap: 12px !important; 
-            width: 100% !important;
-            box-sizing: border-box !important;
+          .card-title {
+            font-size: 1.05rem;
           }
-          .comparison-col {
-            width: 100% !important;
-            box-sizing: border-box !important;
-          }
-          .ba-image-frame {
-            width: 100% !important;
-            height: clamp(260px, 72vw, 320px) !important; /* 모바일 이미지 프레임 높이 */
-            border-radius: 16px !important;
-            overflow: hidden !important;
-            background: #f4f7fb !important;
-            position: relative !important;
-            box-sizing: border-box !important;
-          }
-          .ba-image-frame img {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: cover !important; /* 여백 방지를 위한 cover 모드 강제 */
-            object-position: center center !important;
-            display: block !important;
-          }
-          .state-label {
-            position: absolute !important;
-            top: 10px !important;
-            left: 10px !important;
-            z-index: 2 !important;
-            padding: 5px 8px !important;
-            font-size: 11px !important;
-          }
-          .caption-title {
-            font-size: 1.05rem !important;
-          }
-          .caption-desc {
-            font-size: 0.85rem !important;
+          .card-desc {
+            font-size: 0.85rem;
+            margin-bottom: 12px;
             display: -webkit-box;
             -webkit-line-clamp: 2; /* 2줄 제한 */
             -webkit-box-orient: vertical;
@@ -1191,129 +1129,55 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         </div>
       </section>
 
-      {/* 5. 작업 예시 / 전후 이미지 Section (프리미엄 슬라이더 리뉴얼) */}
-      <section 
-        className="premium-portfolio-section"
-        onMouseEnter={() => setIsHovering(true)}
-        onMouseLeave={() => setIsHovering(false)}
-        style={{ 
-          padding: '4rem 0', 
-          background: 'linear-gradient(180deg, #F2FAFF 0%, #E8F5FF 100%)',
-          borderTop: '1px solid #dbeafe',
-          borderBottom: '1px solid #dbeafe',
-          position: 'relative'
-        }}
-      >
+      {/* 5. 입주청소 주요 작업 예시 Section (정적 그리드 리뉴얼) */}
+      <section className="cleaning-point-section">
         <div className={styles.inner}>
           
           {/* 섹션 헤더 */}
           <div className={styles.sectionHeader} style={{ marginBottom: '2.5rem' }}>
             <span className="portfolio-section-badge" style={{ display: 'inline-block', backgroundColor: '#ffffff', color: '#1d4ed8', border: '1px solid #bfdbfe', padding: '5px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: '700', marginBottom: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
-              BEFORE & AFTER
+              CLEANING POINT
             </span>
             <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a' }}>
-              입주 전 오염,<br />사진으로 먼저 확인하세요
+              입주 전 확인이 필요한 공간,<br />사진으로 먼저 확인하세요
             </h2>
             
-            <p className="portfolio-desc pc-desc-text" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px' }}>
-              욕실·주방·베란다·창틀·분진처럼 입주 전 확인이 필요한 공간을 중심으로 작업합니다.
-            </p>
-            <p className="portfolio-desc mo-desc-text" style={{ fontSize: '0.92rem', color: '#475569', lineHeight: '1.5', maxWidth: '800px', margin: '10px auto 0 auto', display: 'none' }}>
-              욕실·주방·베란다·분진 오염을 입주 전에 확인합니다.
+            <p className="portfolio-desc" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px', wordBreak: 'keep-all' }}>
+              욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.
             </p>
           </div>
 
-          {/* 슬라이더 영역 */}
-          <div className="slider-view-container" style={{ position: 'relative', maxWidth: '960px', margin: '0 auto', overflow: 'hidden' }}>
-            
-            {/* 좌우 화살표 내비게이션 (PC 전용) */}
-            <button 
-              className="slider-nav-btn prev-btn" 
-              onClick={() => setCurrentSlide((prev) => (prev - 1 + portfolioSlides.length) % portfolioSlides.length)}
-              aria-label="이전 슬라이드"
-            >
-              ❮
-            </button>
-            <button 
-              className="slider-nav-btn next-btn" 
-              onClick={() => setCurrentSlide((prev) => (prev + 1) % portfolioSlides.length)}
-              aria-label="다음 슬라이드"
-            >
-              ❯
-            </button>
-
-            {/* 슬라이더 트랙 */}
-            <div 
-              className="slider-track"
-              style={{
-                display: 'flex',
-                transition: 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)',
-                transform: `translateX(-${currentSlide * 100}%)`,
-                width: `${portfolioSlides.length * 100}%`
-              }}
-            >
-              {portfolioSlides.map((slide, idx) => (
-                <div key={idx} className="slider-item">
-                  <div className="slide-card">
-                    {/* 이미지 나란히 배치 */}
-                    <div className="comparison-row">
-                      {/* 작업 전 */}
-                      <div className="comparison-col">
-                        <div className="ba-image-frame">
-                          <span className="state-label before-label">작업 전</span>
-                          <img src={slide.beforeImg} alt={`${regionName} 입주청소 작업 전 상태`} />
-                        </div>
-                      </div>
-
-                      {/* 작업 후 */}
-                      <div className="comparison-col">
-                        <div className="ba-image-frame">
-                          <span className="state-label after-label">작업 후</span>
-                          <img src={slide.afterImg} alt={`${regionName} 입주청소 작업 후 상태`} />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* 이미지 아래에 캡션 정보 배치 */}
-                    <div className="slide-info-caption" style={{ marginTop: '1.2rem', textAlign: 'left' }}>
-                      <h3 className="caption-title" style={{ fontSize: '1.15rem', fontWeight: '800', color: '#0f172a', margin: '0 0 6px 0' }}>{slide.title}</h3>
-                      <p className="caption-desc" style={{ fontSize: '0.92rem', color: '#64748b', margin: '0 0 10px 0', lineHeight: '1.5' }}>{slide.description}</p>
-                      
-                      <div className="caption-tags" style={{ display: 'flex', gap: '0.4rem', flexWrap: 'wrap' }}>
-                        {slide.tags.slice(0, 3).map((tag, tIdx) => (
-                          <span key={tIdx} style={{ fontSize: '0.78rem', color: '#2563eb', backgroundColor: '#eff6ff', padding: '3px 8px', borderRadius: '4px', fontWeight: '600' }}>
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
+          {/* 정적 카드 그리드 영역 */}
+          <div className="cleaning-grid">
+            {staticCleaningPoints.map((point, idx) => (
+              <div key={idx} className="cleaning-card">
+                <div className="card-image-frame">
+                  <img src={point.img} alt={`${regionName} 입주청소 ${point.title} 상태 예시`} />
+                </div>
+                <div className="card-body">
+                  <div>
+                    <h3 className="card-title">{point.title}</h3>
+                    <p className="card-desc">{point.description}</p>
+                  </div>
+                  <div className="card-tags">
+                    {point.tags.map((tag, tIdx) => (
+                      <span key={tIdx} className="card-tag">
+                        #{tag}
+                      </span>
+                    ))}
                   </div>
                 </div>
-              ))}
-            </div>
-
-          </div>
-
-          {/* 도트 페이지네이션 */}
-          <div className="dot-pagination" style={{ display: 'flex', justifyContent: 'center', gap: '8px', marginTop: '1.5rem' }}>
-            {portfolioSlides.map((_, idx) => (
-              <button 
-                key={idx}
-                className={`dot-indicator ${idx === currentSlide ? 'active' : ''}`}
-                onClick={() => setCurrentSlide(idx)}
-                aria-label={`${idx + 1}번째 슬라이드로 이동`}
-              ></button>
+              </div>
             ))}
           </div>
 
           {/* 하단 안내 및 낮은 위계의 텍스트 CTA */}
-          <div className="portfolio-bottom-cta" style={{ marginTop: '3rem', textAlign: 'center' }}>
-            <p style={{ fontSize: '14px', color: '#64748b', fontWeight: '500', margin: '0 0 10px 0' }}>
+          <div className="cleaning-bottom-cta">
+            <p>
               입주일, 평수, 오염 상태에 따라 작업 범위와 견적이 달라질 수 있습니다.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <a href={`tel:${CONTACT_PHONE}`} className="sub-cta-link" style={{ fontSize: '15px', color: '#1e3a8a', fontWeight: '700', textDecoration: 'none', borderBottom: '2px solid #1e3a8a', paddingBottom: '2px', transition: 'color 0.2s' }}>
+              <a href={`tel:${CONTACT_PHONE}`} className="cleaning-sub-cta">
                 우리 집 상태도 상담하기 ➔
               </a>
             </div>
