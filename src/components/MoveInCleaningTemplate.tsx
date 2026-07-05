@@ -33,22 +33,26 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
     {
       title: "욕실 청소",
       desc: "세면대, 변기, 수전, 거울, 배수구 주변의 물때와 오염을 확인합니다.",
-      details: ["세면대", "변기", "배수구", "타일"]
+      details: ["세면대", "변기", "배수구", "타일"],
+      icon: "🛁"
     },
     {
       title: "주방 청소",
       desc: "싱크대, 상·하부장, 조리대, 타일 주변의 기름때와 생활 오염을 정리합니다.",
-      details: ["싱크대", "수납장", "조리대", "타일"]
+      details: ["싱크대", "수납장", "조리대", "타일"],
+      icon: "🍳"
     },
     {
       title: "베란다·창틀 청소",
       desc: "베란다 바닥, 배수구 주변, 창틀 틈새 먼지처럼 입주 후 직접 하기 번거로운 구간을 확인합니다.",
-      details: ["베란다", "창틀", "배수구", "방충망"]
+      details: ["베란다", "창틀", "배수구", "방충망"],
+      icon: "🪟"
     },
     {
       title: "전체 오염·분진 청소",
       desc: "바닥, 몰딩, 문틀, 수납장 내부, 콘센트 주변의 먼지와 분진을 확인합니다.",
-      details: ["바닥", "몰딩", "문틀", "수납장"]
+      details: ["바닥", "몰딩", "문틀", "수납장"],
+      icon: "🧹"
     }
   ];
 
@@ -232,6 +236,9 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             {serviceCards.map((card, idx) => (
               <div key={idx} style={{ background: 'rgba(255, 255, 255, 0.96)', backdropFilter: 'blur(8px)', padding: '2.2rem 2rem', borderRadius: '16px', boxShadow: '0 10px 25px -5px rgba(0, 0, 0, 0.3)', border: '1px solid rgba(255, 255, 255, 0.2)', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                 <div>
+                  <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: '#eff6ff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.5rem', marginBottom: '1.2rem', boxShadow: 'inset 0 2px 4px 0 rgba(0,0,0,0.06)' }}>
+                    {card.icon}
+                  </div>
                   <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1rem' }}>{card.title}</h3>
                   <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', marginBottom: '1.5rem', minHeight: '4.5rem' }}>{card.desc}</p>
                 </div>
