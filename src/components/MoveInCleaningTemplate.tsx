@@ -645,6 +645,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         .premium-portfolio-section {
           position: relative;
           padding: 80px 0 !important; /* desktop section padding */
+          overflow: hidden;
         }
         .slider-view-container {
           position: relative;
@@ -683,6 +684,11 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         }
         .next-btn {
           right: 5px; /* 외곽 배치 */
+        }
+        .slider-item {
+          width: 100%;
+          flex-shrink: 0;
+          box-sizing: border-box;
         }
         .comparison-row {
           display: grid;
@@ -749,11 +755,13 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
         .slide-card {
           background: #ffffff;
+          max-width: 920px; /* PC 중앙 슬라이드 가로 폭 고정 제한 */
+          margin: 0 auto;
           padding: 30px; /* 24~32px padding */
           border-radius: 16px;
           box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-          margin: 0 10px;
           border: 1px solid rgba(255,255,255,0.8);
+          box-sizing: border-box;
         }
 
         @media (max-width: 768px) {
@@ -762,13 +770,18 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           }
           .slider-view-container {
             max-width: 100% !important;
+            padding: 0 16px !important;
           }
           .slider-nav-btn {
             display: none !important; /* 모바일은 버튼 미노출 */
           }
+          .slider-item {
+            padding: 0 !important;
+          }
           .slide-card {
-            width: calc(100% - 32px) !important; /* 모바일 카드 너비 */
-            margin: 0 auto !important;
+            width: 100% !important; /* 모바일 부모 패딩에 맞춰 꽉 차게 변경 */
+            max-width: 100% !important;
+            margin: 0 !important;
             padding: 15px !important; /* 모바일 카드 패딩 14~18px 고정 */
           }
           .comparison-row {
