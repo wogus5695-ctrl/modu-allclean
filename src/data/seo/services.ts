@@ -280,5 +280,28 @@ export const seoServices: SeoService[] = [
     thumbnailImage: '/images/seo/floor-waxing.jpg',
     ogImage: '/images/seo/floor-waxing-og.jpg',
     altBase: '바닥청소 전문'
+  },
+  {
+    serviceNameKo: '입주청소',
+    serviceSlug: 'move-in-cleaning',
+    mainProblem: '신축 공사 분진 및 이전 거주자의 묵은 찌든 오염 제거',
+    targetPlaces: ['아파트', '빌라', '오피스텔', '단독 주택'],
+    contaminationTypes: ['시멘트 가루', '도배풀 흔적', '수납장 톱밥가루', '주방 기름때', '욕실 물때', '창틀 먼지'],
+    preCheckItems: ['수도 및 전기 정상 작동 상태', '이사 일정 및 시간 조율', '빈집 상태 여부'],
+    estimateFactors: ['공급 면적(평수)', '방 및 욕실 개수', '신축/구축 연식', '오염 수준'],
+    faqSet: [
+      { q: '{{지역명}} 입주청소는 입주 며칠 전에 하는 게 좋나요?', a: '가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다.' },
+      { q: '욕실과 주방 오염도 따로 확인해주시나요?', a: '네. 욕실은 물때, 배수구, 수전 주변을 중심으로 확인하고, 주방은 싱크대, 상·하부장, 조리대, 타일 주변의 생활 오염을 중심으로 확인합니다.' },
+      { q: '베란다와 창틀도 포함되나요?', a: '베란다 바닥, 배수구 주변, 창틀 틈새 먼지 등은 입주 후 직접 정리하기 번거로운 구간입니다. 현장 상태와 견적 범위에 따라 포함 여부를 상담 시 확인합니다.' },
+      { q: '신축 아파트 공사 분진도 청소 가능한가요?', a: '가능합니다. 신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다.' },
+      { q: '짐이 있는 상태에서도 입주청소가 가능한가요?', a: '가능은 하지만 빈집 상태보다 작업 범위가 제한될 수 있습니다. 가구나 짐이 많다면 상담 시 미리 알려주셔야 합니다.' },
+      { q: '견적은 어떻게 확인하나요?', a: '지역, 평수, 집 형태, 오염도, 작업 범위, 입주 예정일에 따라 달라집니다. 사진과 기본 정보를 알려주시면 상담이 빠릅니다.' }
+    ],
+    relatedServices: ['바닥청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 입주청소 욕실·주방·베란다 청소 - 모두종합환경',
+    ctaHook: '입주청소 견적 받기',
+    thumbnailImage: '/images/services/interior-completion.jpg',
+    ogImage: '/images/services/interior-completion.jpg',
+    altBase: '입주청소'
   }
 ];

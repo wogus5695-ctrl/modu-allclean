@@ -411,5 +411,34 @@ export const services: CleaningService[] = [
     indexStatus: 'index',
     imageUrl: '/images/services/floor-wax.jpg',
     showOnMain: true,
+  },
+  {
+    id: 'move-in',
+    serviceNameKo: '입주청소',
+    serviceSlug: 'move-in-cleaning',
+    shortDescription: '새 주거지로 입주 전 겉과 속의 모든 분진과 오염을 정밀 세정',
+    mainDescription: '신축 건물의 공사 먼지 및 분진, 혹은 구축 건물의 이전 생활 오염 흔적을 주방, 욕실, 창틀, 바닥 등 공간별 특수 장비와 세제로 말끔히 청소합니다.',
+    neededSituations: [
+      '신축 아파트 또는 빌라 첫 입주 전 공사 먼지가 가득할 때',
+      '이전 세입자가 사용한 욕실 물때, 주방 기름때 등 구축 이사를 준비할 때',
+      '리모델링 공사 완료 후 미세한 톱밥과 몰딩 분진 제거가 필요할 때',
+      '면역력이 약한 영유아나 반려동물과 함께 이사를 준비할 때'
+    ],
+    workingMethod: '탈거 가능한 모든 서랍, 전등갓, 환풍기, 배수구 부속을 분해하여 보이지 않는 안쪽 분진을 흡입 및 세척하고 고온 스팀 소독으로 위생 관리를 실시합니다.',
+    preCheckItems: [
+      '청소 당일 전기 및 수도 공급 가능 상태 여부',
+      '빌트인 가전 외 별도 가전 내부 세척 요구 유무',
+      '이사(가구 반입) 일정과의 시간 겹침 여부'
+    ],
+    targetBuildings: ['아파트', '빌라', '오피스텔', '단독주택'],
+    commonProblems: ['신축 분진', '생활 오염', '창틀 찌든 때', '욕실/주방 곰팡이 및 물때'],
+    process: ['상담 및 예약', '현장 상태 진단', '탈거 및 정밀 세척', '스팀 소독', '실시간 검수 및 마감'],
+    faq: [
+      { question: '{{region}} 입주청소는 입주 며칠 전에 하는 게 좋나요?', answer: '가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다.' }
+    ],
+    priority: 12,
+    indexStatus: 'index',
+    imageUrl: '/images/services/interior-completion.jpg',
+    showOnMain: false,
   }
 ];

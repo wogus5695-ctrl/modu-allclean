@@ -39,6 +39,11 @@ export async function GET() {
     .filter(r => r.subDistrictSlug === 'all' && r.indexStatus === 'index')
     .forEach(region => {
       activeServices.forEach(service => {
+        // 입주청소는 오직 서울(seoul) 지역만 생성
+        if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+          if (region.regionSlug !== 'seoul') return;
+        }
+
         if (region.regionSlug === 'incheon') {
           // 인천은 대표 단일 URL 포함
           addRssItem(
@@ -67,6 +72,11 @@ export async function GET() {
       
       if (isParentIndexed) {
         activeServices.forEach(service => {
+          // 입주청소는 오직 서울(seoul) 지역만 생성
+          if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+            if (dong.regionSlug !== 'seoul') return;
+          }
+
           addRssItem(
             `${dong.district} ${dong.subDistrict} ${service.serviceNameKo} 전문 업체 | ${BRAND_NAME}`,
             `/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,

@@ -57,6 +57,11 @@ export async function GET(request: Request, { params }: Props) {
       .filter(r => r.regionSlug === targetRegionSlug && r.subDistrictSlug === 'all' && r.indexStatus === 'index')
       .forEach(region => {
         services.filter(s => s.indexStatus === 'index').forEach(service => {
+          // 입주청소는 오직 서울(seoul) 지역만 생성
+          if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+            if (region.regionSlug !== 'seoul') return;
+          }
+
           if (region.regionSlug === 'incheon') {
             // 인천은 기존대로 대표 단일 URL 포함
             urls.push({
@@ -85,6 +90,11 @@ export async function GET(request: Request, { params }: Props) {
         
         if (isParentIndexed) {
           services.filter(s => s.indexStatus === 'index').forEach(service => {
+            // 입주청소는 오직 서울(seoul) 지역만 생성
+            if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+              if (dong.regionSlug !== 'seoul') return;
+            }
+
             urls.push({
               url: `${DOMAIN}/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
               priority: 0.5,

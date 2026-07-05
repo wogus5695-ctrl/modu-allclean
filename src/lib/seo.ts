@@ -214,9 +214,25 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     descRegion = `${region.district} ${region.subDistrict}`;
   }
 
+  // 서울 입주청소, 서울시 입주청소 단어 생성 방지: titleRegion 및 descRegion에서 "서울" 또는 "서울특별시" 부분 제거
+  let cleanTitleRegion = titleRegion;
+  let cleanDescRegion = descRegion;
+  if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+    cleanTitleRegion = titleRegion.replace(/^서울(특별)?시?\s*/, '');
+    cleanDescRegion = descRegion.replace(/^서울(특별)?시?\s*/, '');
+  }
+
+  const finalTitle = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
+    ? `${cleanTitleRegion} 입주청소 | 욕실·주방·베란다 청소 - ${BRAND_NAME}`
+    : `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
+
+  const finalDescription = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
+    ? `${cleanDescRegion} 입주청소 상담. 입주 전 욕실, 주방, 베란다·창틀, 전체 오염·분진까지 현장 상태에 맞춰 작업 범위를 안내합니다.`
+    : `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+
   return getBaseMetadata({
-    title: `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`,
-    description: `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`,
+    title: finalTitle,
+    description: finalDescription,
     indexStatus: finalIndexStatus,
     path: canonicalPath,
     ogType: 'article',

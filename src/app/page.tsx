@@ -1,10 +1,12 @@
 import { Metadata } from 'next';
 import MainTemplate from '@/components/MainTemplate';
+import MoveInCleaningTemplate from '@/components/MoveInCleaningTemplate';
 
 export const dynamic = 'force-dynamic';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
 import { getLandingMetadata, getMainMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME } from '@/lib/seo';
+import { generateLandingPageData } from '@/lib/seo-builder';
 
 interface Props {
   searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
@@ -31,10 +33,10 @@ const SERVICE_NAME_MAP: { [key: string]: string } = {
   '인테리어청소': 'interior-post',
   '인테리어후청소': 'interior-post',
   '인테리어 후 청소': 'interior-post',
-  '입주': 'interior-post',
-  '입주청소': 'interior-post',
-  '이사': 'interior-post',
-  '이사청소': 'interior-post',
+  '입주': 'move-in',
+  '입주청소': 'move-in',
+  '이사': 'move-in',
+  '이사청소': 'move-in',
   '준공': 'completion',
   '준공청소': 'completion',
   '후드': 'hood',
@@ -89,7 +91,7 @@ function findClosestSubDistrict(inputRegion: string) {
     if (cleanSub === cleanInput) {
       return r;
     }
-
+ 
     // 2차: 편집 거리 계산
     const distance = getLevenshteinDistance(cleanInput, cleanSub);
     if (distance < minDistance) {
@@ -239,13 +241,93 @@ export default async function Home({ searchParams }: Props) {
       const titleRegion = isDistrictLevel ? `${region.district} ${shortDistrict}` : region.subDistrict;
       const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : region.subDistrict;
 
+      // 서울 입주청소 단어 매칭 방지
+      let cleanTitleRegion = titleRegion;
+      let cleanDescRegion = descRegion;
+      if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+        cleanTitleRegion = titleRegion.replace(/^서울(특별)?시?\s*/, '');
+        cleanDescRegion = descRegion.replace(/^서울(특별)?시?\s*/, '');
+      }
+
       // SEO 최적화 메타데이터 생성 (동일 로직 재사용)
-      const title = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-      const description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+      const title = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
+        ? `${cleanTitleRegion} 입주청소 | 욕실·주방·베란다 청소 - ${BRAND_NAME}`
+        : `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
+
+      const description = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
+        ? `${cleanDescRegion} 입주청소 상담. 입주 전 욕실, 주방, 베란다·창틀, 전체 오염·분진까지 현장 상태에 맞춰 작업 범위를 안내합니다.`
+        : `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+      
       const url = `${DOMAIN}/?k=${k}`;
       
       const articleJsonLd = getArticleJsonLd(title, description, url);
       const breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
+
+      // 입주청소 서비스 템플릿 분기
+      if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+        // region 임시 매칭 데이터 생성
+        const seoRegion = {
+          cityNameKo: region.city,
+          citySlug: region.regionSlug,
+          districtNameKo: region.district,
+          districtSlug: region.districtSlug,
+          neighborhoodNameKo: region.subDistrict,
+          neighborhoodSlug: region.subDistrictSlug,
+          displayNameKo: region.subDistrict === '전지역' ? region.district : region.subDistrict,
+          regionType: region.subDistrict === '전지역' ? 'district' : 'neighborhood',
+          localCharacteristics: region.localDescription,
+          commonBuildingTypes: region.buildingCharacteristics,
+          commercialCharacteristics: '혼합형',
+          cleaningDemandContext: '일반적인 청소 수요',
+          nearbyAreas: [],
+          relatedAreaLinks: region.subDistrict === '전지역' 
+            ? regions
+                .filter(r => r.districtSlug === region.districtSlug && r.subDistrictSlug !== 'all')
+                .slice(0, 5)
+                .map(r => ({ name: `${r.subDistrict} 청소`, url: `/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}` }))
+            : regions
+                .filter(r => r.districtSlug === region.districtSlug && r.subDistrictSlug !== 'all' && r.subDistrictSlug !== region.subDistrictSlug)
+                .slice(0, 3)
+                .map(r => ({ name: `${r.subDistrict} 청소`, url: `/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}` }))
+        };
+
+        const seoService = {
+          serviceNameKo: service.serviceNameKo,
+          serviceSlug: service.serviceSlug,
+          mainProblem: service.commonProblems.join(', '),
+          targetPlaces: service.targetBuildings,
+          contaminationTypes: service.commonProblems,
+          preCheckItems: service.preCheckItems,
+          estimateFactors: ['현장 오염도', '면적', '작업 난이도'],
+          faqSet: service.faq.map(f => ({ q: f.question, a: f.answer })),
+          relatedServices: [],
+          heroDescriptionTemplate: '{{displayNameKo}}의 {{commonBuildingTypes}}에 최적화된 청소 서비스',
+          ctaHook: '빠른 견적 상담',
+          thumbnailImage: service.imageUrl || '',
+          ogImage: service.imageUrl || '',
+          altBase: service.serviceNameKo
+        };
+
+        const landingData = generateLandingPageData(seoRegion as any, seoService as any);
+
+        return (
+          <>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+            />
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+            />
+            <MoveInCleaningTemplate data={landingData} regionObj={seoRegion} currentService={seoService} />
+          </>
+        );
+      }
 
       return (
         <>

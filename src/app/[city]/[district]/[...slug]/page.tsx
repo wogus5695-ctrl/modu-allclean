@@ -8,6 +8,7 @@ import { generateLandingPageData } from '@/lib/seo-builder';
 import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import LandingTemplate from '@/components/LandingTemplate';
 import MainTemplate from '@/components/MainTemplate';
+import MoveInCleaningTemplate from '@/components/MoveInCleaningTemplate';
 
 type Props = {
   params: Promise<{ city: string; district: string; slug: string[] }>;
@@ -64,7 +65,15 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
           commercialCharacteristics: '혼합형',
           cleaningDemandContext: '일반적인 청소 수요',
           nearbyAreas: [],
-          relatedAreaLinks: []
+          relatedAreaLinks: region.subDistrict === '전지역' 
+            ? regions
+                .filter(r => r.districtSlug === region.districtSlug && r.subDistrictSlug !== 'all')
+                .slice(0, 5)
+                .map(r => ({ name: `${r.subDistrict} 청소`, url: `/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}` }))
+            : regions
+                .filter(r => r.districtSlug === region.districtSlug && r.subDistrictSlug !== 'all' && r.subDistrictSlug !== region.subDistrictSlug)
+                .slice(0, 3)
+                .map(r => ({ name: `${r.subDistrict} 청소`, url: `/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}` }))
       };
   }
 
@@ -139,8 +148,21 @@ export default async function LandingPage({ params }: Props) {
     ? (requestedWithSuffix ? region.district : shortDistrict) 
     : region.subDistrict;
 
-  const title = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-  const description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+  // 서울 입주청소 단어 매칭 방지
+  let cleanTitleRegion = titleRegion;
+  let cleanDescRegion = descRegion;
+  if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+    cleanTitleRegion = titleRegion.replace(/^서울(특별)?시?\s*/, '');
+    cleanDescRegion = descRegion.replace(/^서울(특별)?시?\s*/, '');
+  }
+
+  const title = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
+    ? `${cleanTitleRegion} 입주청소 | 욕실·주방·베란다 청소 - ${BRAND_NAME}`
+    : `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
+
+  const description = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
+    ? `${cleanDescRegion} 입주청소 상담. 입주 전 욕실, 주방, 베란다·창틀, 전체 오염·분진까지 현장 상태에 맞춰 작업 범위를 안내합니다.`
+    : `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
   
   const path = region.subDistrictSlug === 'all'
     ? `/${region.regionSlug}/${district}/${service.serviceSlug}`
@@ -158,6 +180,29 @@ export default async function LandingPage({ params }: Props) {
   
   const articleJsonLd = getArticleJsonLd(title, description, url);
   const breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
+
+  // 입주청소 서비스인 경우 전용 템플릿 반환
+  if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+    return (
+      <>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+        />
+        {seoRegion && (
+          <MoveInCleaningTemplate data={landingData || {} as any} regionObj={seoRegion} currentService={seoService} />
+        )}
+      </>
+    );
+  }
 
   return (
     <>
