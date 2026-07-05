@@ -39,6 +39,8 @@ export const VALID_OG_IMAGES = [
   '/images/services/special-cleaning.jpg',
   '/images/services/awning-sign.jpg',
   '/images/services/interior-completion.jpg',
+  '/images/services/move-in-cleaning.jpg',
+  '/images/services/move-in-hero.jpg',
   '/images/og-main.jpg',
   '/images/og-image.jpg',
   '/images/hero-bg.jpg',

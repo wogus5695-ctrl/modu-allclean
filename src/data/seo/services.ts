@@ -300,8 +300,8 @@ export const seoServices: SeoService[] = [
     relatedServices: ['바닥청소'],
     heroDescriptionTemplate: '{{displayNameKo}} 입주청소 욕실·주방·베란다 청소 - 모두종합환경',
     ctaHook: '입주청소 견적 받기',
-    thumbnailImage: '/images/services/interior-completion.jpg',
-    ogImage: '/images/services/interior-completion.jpg',
+    thumbnailImage: '/images/services/move-in-cleaning.jpg',
+    ogImage: '/images/services/move-in-cleaning.jpg',
     altBase: '입주청소'
   }
 ];

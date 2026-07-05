@@ -128,8 +128,8 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       <Header isMoveInOnly={true} />
 
       {/* Hero Section */}
-      <section className={styles.hero}>
-        <div className={styles.heroOverlay}></div>
+      <section className={styles.hero} style={{ background: "linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('/images/services/move-in-hero.jpg') no-repeat center center/cover" }}>
+        <div className={styles.heroOverlay} style={{ background: "linear-gradient(135deg, rgba(15, 23, 42, 0.4) 0%, rgba(15, 23, 42, 0.25) 100%)" }}></div>
         <div className={styles.inner}>
           <div className="animate-fade-up">
             {/* 데스크톱 Hero 영역 */}
