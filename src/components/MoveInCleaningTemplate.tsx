@@ -188,6 +188,11 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         .pc-badge-text { display: inline; }
         .pc-checkpoint { display: flex; }
         
+        /* Hero 텍스트 영역 가독성 보강 다크 필터 */
+        .move-in-hero-overlay {
+          background: linear-gradient(90deg, rgba(15, 23, 42, 0.8) 0%, rgba(15, 23, 42, 0.55) 45%, rgba(15, 23, 42, 0.15) 100%);
+        }
+        
         .cta-primary-btn {
           display: inline-flex;
           align-items: center;
@@ -502,7 +507,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             background-position: 58% center !important;
           }
           .move-in-hero-overlay {
-            background: linear-gradient(180deg, rgba(0,34,66,0.3) 0%, rgba(0,34,66,0.82) 100%) !important;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.35) 0%, rgba(15, 23, 42, 0.85) 100%) !important;
           }
           .move-in-hero-content {
             padding: 0 4px;
