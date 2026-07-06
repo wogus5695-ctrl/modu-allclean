@@ -21,7 +21,7 @@ export async function GET() {
 
   // 1. 메인 및 허브 페이지
   addRssItem(BRAND_NAME, '/', '서울, 인천, 경기 주요 지역 종합청소 상담 및 견적 안내.');
-  addRssItem(`${BRAND_NAME} 서비스 키워드 맵`, '/sitemap-seoul', '모두종합환경이 제공하는 서울, 인천, 경기 전역의 지역별 맞춤 청소 솔루션 한눈에 보기.');
+  addRssItem(`${BRAND_NAME} 서비스 키워드 맵`, '/sitemap-seoul', `${BRAND_NAME}이 제공하는 서울, 인천, 경기 전역의 지역별 맞춤 청소 솔루션 한눈에 보기.`);
 
   // 2. 서비스 기본 안내 페이지
   services.filter(s => s.indexStatus === 'index').forEach(service => {

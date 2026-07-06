@@ -342,7 +342,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>{BRAND_NAME}</span>의 청소 서비스 안내</h2>
-            <p className={styles.sectionDesc}>모두종합환경은 서울 주요 지역의 다양한 청소 현장에 맞춰 상담을 안내합니다.</p>
+            <p className={styles.sectionDesc}>{BRAND_NAME}는 서울 주요 지역의 다양한 청소 현장에 맞춰 상담을 안내합니다.</p>
           </div>
 
           {/* Desktop view (only visible on desktop via page.module.css) */}
@@ -435,8 +435,8 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              <span className="pc-only">모두종합환경 청소 현장 사례</span>
-              <span className="mo-only">모두종합환경<br />청소 현장 사례</span>
+              <span className="pc-only">{BRAND_NAME} 청소 현장 사례</span>
+              <span className="mo-only">{BRAND_NAME}<br />청소 현장 사례</span>
             </h2>
             <p className={styles.sectionDesc} style={{ whiteSpace: 'nowrap' }}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>

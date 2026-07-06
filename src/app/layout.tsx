@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
 import FooterDescription from "@/components/FooterDescription";
 import { Suspense } from "react";
-import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION } from "@/lib/seo";
+import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION, OWNER_NAME, BUSINESS_NUMBER } from "@/lib/seo";
 
 const scDream = localFont({
   src: [
@@ -50,7 +50,7 @@ export default function RootLayout({
                 <h3 style={{ fontSize: '20px', marginBottom: '20px', color: '#003366' }}>{BRAND_NAME}</h3>
                 <Suspense fallback={
                   <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-                    모두종합환경은 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
+                    {BRAND_NAME}는 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
                     다양한 공간의 청소 상담을 안내합니다.<br />
                   </p>
                 }>
@@ -72,7 +72,9 @@ export default function RootLayout({
               </div>
             </div>
             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid #ddd', textAlign: 'center', fontSize: '13px', color: '#999' }}>
-              <p style={{ marginBottom: '5px' }}>상호명: {BUSINESS_NAME}</p>
+              <p style={{ marginBottom: '5px' }}>
+                상호명: {BUSINESS_NAME} &nbsp;|&nbsp; 대표자: {OWNER_NAME} &nbsp;|&nbsp; 사업자등록번호: {BUSINESS_NUMBER}
+              </p>
               <p>&copy; 2026 {BRAND_NAME}. All rights reserved.</p>
             </div>
           </div>

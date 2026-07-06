@@ -49,7 +49,7 @@ export default function FooterDescription() {
 
   return (
     <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-      모두종합환경은 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
+      {BRAND_NAME}는 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
       다양한 공간의 청소 상담을 안내합니다.
     </p>
   );

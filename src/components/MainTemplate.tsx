@@ -366,8 +366,8 @@ export default function MainTemplate({
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}>
-              <span className="pc-only">모두종합환경 청소 현장 사례</span>
-              <span className="mo-only">모두종합환경<br />청소 현장 사례</span>
+              <span className="pc-only">{BRAND_NAME} 청소 현장 사례</span>
+              <span className="mo-only">{BRAND_NAME}<br />청소 현장 사례</span>
             </h2>
             <p className={styles.sectionDesc} style={{ whiteSpace: 'nowrap' }}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
