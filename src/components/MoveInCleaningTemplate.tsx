@@ -279,15 +279,15 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           margin-bottom: 5px;
         }
 
-        /* PC 카드 정의 */
-        .pc-cards-grid {
+        /* 단일 마크업 기반 작업 범위 카드 CSS */
+        .cleaning-cards-container {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
           gap: 1.5rem;
           margin-top: 3.5rem;
         }
 
-        .pc-guide-card {
+        .cleaning-guide-card {
           background: rgba(255, 255, 255, 0.96);
           backdrop-filter: blur(8px);
           padding: 2.2rem 1.8rem;
@@ -301,12 +301,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
-        .pc-guide-card:hover {
+        .cleaning-guide-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.22);
         }
 
-        .pc-guide-card .card-title {
+        .cleaning-guide-card .card-title {
           font-size: 1.2rem;
           font-weight: 800;
           color: #0f172a;
@@ -315,14 +315,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           padding-left: 10px;
         }
 
-        .pc-guide-card .card-desc {
+        .cleaning-guide-card .card-desc {
           color: #475569;
           font-size: 0.92rem;
           line-height: 1.55;
           letter-spacing: -0.1px;
         }
 
-        .pc-guide-card .card-tag-wrapper {
+        .cleaning-guide-card .card-tag-wrapper {
           display: flex;
           flex-wrap: wrap;
           gap: 0.4rem;
@@ -331,7 +331,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           margin-top: 1rem;
         }
 
-        .pc-guide-card .card-tag {
+        .cleaning-guide-card .card-tag {
           font-size: 0.78rem;
           color: #2563eb;
           background-color: #eff6ff;
@@ -340,9 +340,112 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           font-weight: 600;
         }
 
-        /* 모바일 미니 카드 정의 */
-        .mo-cards-grid {
-          display: none;
+        .highlight-blue {
+          color: #1d4ed8;
+          font-weight: 700;
+        }
+
+        /* 단일 마크업 기반 체크포인트 카드 CSS */
+        .type-cards-wrapper {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 1.5rem;
+        }
+
+        .type-card-item {
+          background: #ffffff;
+          border-top: 4px solid #2563eb;
+          padding: 2rem 1.8rem;
+          box-shadow: 0 4px 15px -3px rgba(0, 0, 0, 0.05);
+          border-radius: 0 0 12px 12px;
+          border-left: 1px solid #e2e8f0;
+          border-right: 1px solid #e2e8f0;
+          border-bottom: 1px solid #e2e8f0;
+          text-align: left;
+        }
+
+        .type-card-title {
+          font-size: 1.2rem;
+          font-weight: '800';
+          color: #0f172a;
+          margin: 0 0 0.8rem 0;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .type-card-check {
+          color: #2563eb;
+          font-size: 1.1rem;
+        }
+
+        .type-card-desc {
+          color: #475569;
+          font-size: 0.95rem;
+          line-height: 1.6;
+          margin: 0;
+          font-weight: 500;
+          word-break: keep-all;
+        }
+
+        /* 단일 마크업 기반 진행 과정 타임라인 CSS */
+        .timeline-wrapper-container {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 1.5rem;
+          margin-top: 3.5rem;
+          position: relative;
+        }
+
+        .timeline-step-node {
+          position: relative;
+          text-align: center;
+          padding: 0 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .timeline-step-line {
+          position: absolute;
+          top: 20px;
+          left: calc(50% + 20px);
+          width: calc(100% - 40px);
+          height: 2px;
+          background-color: #e2e8f0;
+          z-index: 1;
+        }
+
+        .step-node-badge {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: #eff6ff;
+          color: #2563eb;
+          border: 2px solid #bfdbfe;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: 800;
+          font-size: 15px;
+          margin-bottom: 1.2rem;
+          position: relative;
+          z-index: 2;
+        }
+
+        .step-node-title {
+          font-size: 1.125rem;
+          font-weight: 800;
+          color: #0f172a;
+          margin: 0 0 0.6rem 0;
+        }
+
+        .step-node-desc {
+          font-size: 0.9rem;
+          color: #64748b;
+          line-height: 1.55;
+          word-break: keep-all;
+          margin: 0;
         }
 
         @media (min-width: 1025px) {
@@ -366,26 +469,13 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           .guide-bottom-notice {
             color: #94a3b8;
           }
-          .pc-title { display: block; }
-          .mo-title { display: none; }
-          .pc-desc { display: block; }
-          .mo-desc { display: none; }
-        }
-
-        @media (min-width: 769px) {
-          .move-in-hero-section {
-            background-position: center right !important;
-          }
-          .move-in-hero-overlay {
-            background: linear-gradient(90deg, rgba(0,34,66,0.85) 0%, rgba(0,34,66,0.55) 45%, rgba(0,34,66,0.12) 100%) !important;
-          }
-          .move-in-hero-content {
-            margin-left: 8%;
-          }
         }
 
         @media (max-width: 1024px) {
-          .pc-cards-grid {
+          .cleaning-cards-container {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .type-cards-wrapper {
             grid-template-columns: repeat(2, 1fr);
           }
           .service-guide-section {
@@ -401,16 +491,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           .highlight-text {
             color: #2563eb;
           }
-          .pc-title { display: block; }
-          .mo-title { display: none; }
-          .pc-desc { display: block; }
-          .mo-desc { display: none; }
         }
 
         @media (max-width: 768px) {
           .pc-br { display: none; }
-          .pc-badge-text { display: none; }
-          .mo-badge-text { display: inline; }
           .pc-checkpoint { display: none !important; }
           .move-in-hero-section {
             min-height: 520px !important;
@@ -438,222 +522,138 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           .cta-secondary-btn {
             display: none !important;
           }
-          .pc-title { display: none; }
-          .mo-title { display: block; }
-          .pc-desc { display: none; }
-          .mo-desc { display: block; }
-          .pc-cards-grid {
-            display: none;
-          }
-          .mo-cards-grid {
-            display: grid;
+          
+          /* 모바일 작업범위 카드 조절 */
+          .cleaning-cards-container {
             grid-template-columns: repeat(2, 1fr);
             gap: 0.8rem;
             margin-top: 2rem;
             padding: 0 4px;
           }
-          .mo-guide-card {
-            background: #ffffff;
+          .cleaning-guide-card {
             padding: 1.2rem 1rem;
             border-radius: 12px;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
             border: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
             height: 145px;
+            min-height: auto;
           }
-          .mo-card-title {
+          .cleaning-guide-card .pc-card-title-text {
+            display: none !important;
+          }
+          .cleaning-guide-card .mo-card-title-text {
+            display: inline !important;
+          }
+          .cleaning-guide-card .card-title {
             font-size: 1rem;
-            font-weight: 800;
-            color: #0f172a;
             margin: 0 0 6px 0;
             border-left: 3px solid #2563eb;
             padding-left: 6px;
           }
-          .mo-card-desc {
-            color: #475569;
+          .cleaning-guide-card .pc-card-desc-text {
+            display: none !important;
+          }
+          .cleaning-guide-card .mo-card-desc-text {
+            display: inline !important;
+          }
+          .cleaning-guide-card .card-desc {
             font-size: 0.82rem;
             line-height: 1.4;
             margin: 0 0 8px 0;
             flex-grow: 1;
           }
-          .mo-card-tag-wrapper {
-            display: flex;
+          .cleaning-guide-card .card-tag-wrapper {
             gap: 0.3rem;
             border-top: 1px solid #f1f5f9;
             padding-top: 6px;
+            margin-top: 0;
           }
-          .mo-card-tag {
+          .cleaning-guide-card .card-tag {
             font-size: 0.72rem;
-            color: #2563eb;
-            background-color: #eff6ff;
             padding: 2px 6px;
             border-radius: 3px;
-            font-weight: 600;
             white-space: nowrap;
+          }
+          .cleaning-guide-card .card-tag:nth-child(n+3) {
+            display: none !important; /* 모바일에서 태그 최대 2개(3번째부터 숨김) */
           }
           .guide-bottom-content {
             margin-top: 2rem;
           }
-        }
 
-        .highlight-blue {
-          color: #1d4ed8;
-          font-weight: 700;
-        }
-
-        @media (max-width: 1024px) {
-          .pc-type-cards-wrapper {
-            grid-template-columns: repeat(2, 1fr) !important;
+          /* 모바일 체크포인트 조절 */
+          .type-cards-wrapper {
+            grid-template-columns: 1fr;
+            gap: 0.8rem;
+            padding: 0 4px;
           }
-        }
-
-        @media (max-width: 768px) {
-          .pc-type-cards-wrapper {
-            display: none !important;
+          .type-card-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            padding: 1.2rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            border-top: 1px solid #e2e8f0;
           }
-          .mo-type-checklist-wrapper {
-            display: flex !important;
+          .type-card-title {
+            font-size: 0.98rem;
+            font-weight: 800;
+            margin: 0;
+            flex-shrink: 0;
           }
-          .pc-desc-text {
-            display: none !important;
-          }
-          .mo-desc-text {
-            display: block !important;
+          .type-card-desc {
+            font-size: 0.85rem;
+            line-height: 1.4;
           }
           .mo-bottom-type-chip {
             padding: 5px 12px !important;
             font-size: 12px !important;
           }
-        }
 
-        /* PC 가로 타임라인 CSS */
-        .pc-timeline-wrapper {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 1.5rem;
-          margin-top: 3.5rem;
-          position: relative;
-        }
-
-        .timeline-node {
-          position: relative;
-          text-align: center;
-          padding: 0 10px;
-        }
-
-        .timeline-line {
-          position: absolute;
-          top: 20px;
-          left: calc(50% + 20px);
-          width: calc(100% - 40px);
-          height: 2px;
-          background-color: #e2e8f0;
-          z-index: 1;
-        }
-
-        .node-badge {
-          width: 40px;
-          height: 40px;
-          border-radius: 50%;
-          background-color: #eff6ff;
-          color: #2563eb;
-          border: 2px solid #bfdbfe;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-weight: 800;
-          font-size: 15px;
-          margin-bottom: 1.2rem;
-          position: relative;
-          zIndex: 2;
-        }
-
-        .node-title {
-          font-size: 1.125rem;
-          font-weight: 800;
-          color: #0f172a;
-          margin-bottom: 0.6rem;
-        }
-
-        .node-desc {
-          font-size: 0.9rem;
-          color: #64748b;
-          line-height: 1.55;
-          word-break: keep-all;
-        }
-
-        /* 모바일 세로 타임라인 CSS */
-        .mo-timeline-wrapper {
-          display: none;
-        }
-
-        .pc-br-only {
-          display: block;
-        }
-
-        @media (max-width: 768px) {
-          .pc-br-only {
-            display: none;
-          }
-          .pc-timeline-wrapper {
-            display: none;
-          }
-          .mo-timeline-wrapper {
+          /* 모바일 진행 과정 세로 전환 */
+          .timeline-wrapper-container {
             display: flex;
             flex-direction: column;
             gap: 1.8rem;
             margin-top: 2.5rem;
             padding: 0 10px;
           }
-          .mo-timeline-row {
-            display: flex;
+          .timeline-step-node {
+            flex-direction: row;
+            text-align: left;
+            align-items: flex-start;
             gap: 15px;
-            position: relative;
+            padding: 0;
           }
-          .mo-timeline-vertical-line {
-            position: absolute;
+          .timeline-step-line {
             top: 32px;
             left: 16px;
             width: 2px;
             height: calc(100% + 0.6rem);
             background-color: #e2e8f0;
-            z-index: 1;
           }
-          .mo-node-badge-col {
+          .step-badge-col {
             position: relative;
             z-index: 2;
           }
-          .mo-node-badge {
+          .step-node-badge {
             width: 32px;
             height: 32px;
-            border-radius: 50%;
-            background-color: #eff6ff;
-            color: #2563eb;
-            border: 2px solid #bfdbfe;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 800;
             font-size: 13px;
+            margin-bottom: 0;
           }
-          .mo-node-content-col {
-            text-align: left;
+          .step-content-col {
             padding-top: 3px;
           }
-          .mo-node-title {
+          .step-node-title {
             font-size: 1rem;
-            font-weight: 800;
-            color: #0f172a;
             margin: 0 0 4px 0;
           }
-          .mo-node-desc {
+          .step-node-desc {
             font-size: 0.85rem;
-            color: #64748b;
             line-height: 1.45;
-            margin: 0;
-            word-break: keep-all;
           }
         }
 
@@ -887,8 +887,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             
             {/* 상단 배지 */}
             <div className="hero-badge" style={{ display: 'inline-block', backgroundColor: '#3b82f6', color: '#ffffff', padding: '6px 14px', borderRadius: '50px', fontSize: '14px', fontWeight: '700', marginBottom: '20px', letterSpacing: '-0.3px' }}>
-              <span className="pc-badge-text">입주 전 빈집 청소 전문</span>
-              <span className="mo-badge-text">입주 전 빈집 청소</span>
+              입주 전 빈집 청소 전문
             </div>
 
             {/* H1 */}
@@ -981,56 +980,31 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           {/* 섹션 상단 헤더 */}
           <div className={styles.sectionHeader}>
             <span className="guide-section-badge">입주청소 검수 포인트</span>
-            
-            {/* PC 타이틀 / 모바일 타이틀 분기 */}
-            <h2 className="guide-section-title pc-title">
+            <h2 className="guide-section-title">
               {regionName} 입주청소 핵심 검수 범위
             </h2>
-            <h2 className="guide-section-title mo-title">
-              {regionName} 입주청소,<br />입주 전 이 <span className="highlight-text">4곳</span>을 먼저 봅니다
-            </h2>
-
-            {/* PC 설명 / 모바일 설명 분기 */}
-            <p className="guide-section-desc pc-desc">
+            <p className="guide-section-desc">
               입주 전 가장 많이 확인하는 <span className="highlight-text">욕실·주방·베란다·분진 오염</span>을 중심으로 청소합니다.
-            </p>
-            <p className="guide-section-desc mo-desc">
-              <span className="highlight-text">욕실·주방·베란다·분진 오염</span>은 입주 후 직접 정리하기 번거로운 구간입니다.
             </p>
           </div>
 
-          {/* PC용 4개 카드 그리드 레이아웃 */}
-          <div className="pc-cards-grid">
+          {/* 단일 마크업 기반 4개 카드 그리드 레이아웃 (CSS media query로만 크기/배치 분기 처리) */}
+          <div className="cleaning-cards-container">
             {serviceCards.map((card, idx) => (
-              <div key={idx} className="pc-guide-card">
+              <div key={idx} className="cleaning-guide-card">
                 <div className="card-top-content">
-                  <h3 className="card-title">{card.title}</h3>
-                  <p className="card-desc">{card.desc}</p>
+                  <h3 className="card-title">
+                    <span className="pc-card-title-text">{card.title}</span>
+                    <span className="mo-card-title-text" style={{ display: 'none' }}>{card.title.replace(' 청소', '')}</span>
+                  </h3>
+                  <p className="card-desc">
+                    <span className="pc-card-desc-text">{card.desc}</span>
+                    <span className="mo-card-desc-text" style={{ display: 'none' }}>{card.moDesc}</span>
+                  </p>
                 </div>
                 <div className="card-tag-wrapper">
                   {card.details.map((detail, dIdx) => (
                     <span key={dIdx} className="card-tag">
-                      {detail}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* 모바일용 2x2 미니 카드 레이아웃 */}
-          <div className="mo-cards-grid">
-            {serviceCards.map((card, idx) => (
-              <div key={idx} className="mo-guide-card">
-                <h3 className="mo-card-title">
-                  {card.title.replace(' 청소', '')}
-                </h3>
-                <p className="mo-card-desc">
-                  {card.moDesc}
-                </p>
-                <div className="mo-card-tag-wrapper">
-                  {card.details.slice(0, 2).map((detail, dIdx) => (
-                    <span key={dIdx} className="mo-card-tag">
                       {detail}
                     </span>
                   ))}
@@ -1077,23 +1051,20 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
               우리 집 상태에 따라<br />먼저 봐야 할 곳이 다릅니다
             </h2>
 
-            {/* PC 보조문구 / 모바일 보조문구 분기 */}
-            <p className="type-section-desc pc-desc-text" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto' }}>
+            {/* PC/MO 통합 보조문구 */}
+            <p className="type-section-desc" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto' }}>
               신축은 <span className="highlight-blue">공사 분진</span>, 구축은 <span className="highlight-blue">생활오염</span>, 인테리어 후 입주는 <span className="highlight-blue">잔먼지와 자국</span>을 중심으로 확인합니다.
-            </p>
-            <p className="type-section-desc mo-desc-text" style={{ fontSize: '0.95rem', color: '#475569', lineHeight: '1.5', maxWidth: '800px', margin: '10px auto 0 auto', display: 'none' }}>
-              신축은 <span className="highlight-blue">분진</span>, 구축은 <span className="highlight-blue">생활오염</span>, 공사 후 입주는 <span className="highlight-blue">잔먼지</span>를 먼저 봅니다.
             </p>
           </div>
 
-          {/* PC용 3대 카드 가로 나열 */}
-          <div className="pc-type-cards-wrapper" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5rem' }}>
+          {/* 단일 마크업 기반 3대 카드 가로/세로 레이아웃 (CSS media query로 제어) */}
+          <div className="type-cards-wrapper">
             {buildingTypes.map((item, idx) => (
-              <div key={idx} style={{ background: '#ffffff', borderTop: '4px solid #2563eb', padding: '2rem 1.8rem', boxShadow: '0 4px 15px -3px rgba(0, 0, 0, 0.05)', borderRadius: '0 0 12px 12px', borderLeft: '1px solid #e2e8f0', borderRight: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
-                <h3 style={{ fontSize: '1.2rem', fontWeight: '800', color: '#0f172a', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  <span style={{ color: '#2563eb', fontSize: '1.1rem' }}>✓</span> {item.type}
+              <div key={idx} className="type-card-item">
+                <h3 className="type-card-title">
+                  <span className="type-card-check">✓</span> {item.type}
                 </h3>
-                <p style={{ color: '#475569', fontSize: '0.95rem', lineHeight: '1.6', margin: 0, fontWeight: '500', wordBreak: 'keep-all' }}>
+                <p className="type-card-desc">
                   {item.desc.split(' · ').map((word, wIdx) => {
                     const isKeyword = ["공사 분진", "욕실 물때", "주방 기름때", "전 세입자 흔적", "목공 분진", "페인트 자국", "바닥 잔먼지", "수납장 내부"].includes(word);
                     return (
@@ -1104,21 +1075,6 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                     );
                   })}
                 </p>
-              </div>
-            ))}
-          </div>
-
-          {/* 모바일용 체크리스트형 레이아웃 */}
-          <div className="mo-type-checklist-wrapper" style={{ display: 'none', flexDirection: 'column', gap: '0.8rem', padding: '0 4px' }}>
-            {buildingTypes.map((item, idx) => (
-              <div key={idx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', background: '#ffffff', padding: '1.2rem 1rem', borderRadius: '10px', border: '1px solid #e2e8f0', boxShadow: '0 2px 6px rgba(0,0,0,0.02)' }}>
-                <span style={{ color: '#2563eb', fontWeight: 'bold', fontSize: '1.1rem', marginTop: '1px' }}>✓</span>
-                <div style={{ textAlign: 'left' }}>
-                  <h4 style={{ fontSize: '0.98rem', fontWeight: '800', color: '#0f172a', margin: '0 0 4px 0' }}>{item.type}</h4>
-                  <p style={{ color: '#475569', fontSize: '0.85rem', lineHeight: '1.4', margin: 0, wordBreak: 'keep-all' }}>
-                    {item.desc.replace(/ · /g, ' · ')}
-                  </p>
-                </div>
               </div>
             ))}
           </div>
@@ -1159,35 +1115,17 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             </p>
           </div>
 
-          {/* PC용 4단계 가로 타임라인 라인 그리드 */}
-          <div className="pc-timeline-wrapper">
+          {/* 단일 마크업 기반 타임라인 4단계 노드 (CSS flex-direction으로 가로/세로 레이아웃 변경) */}
+          <div className="timeline-wrapper-container">
             {processSteps.map((step, idx) => (
-              <div key={idx} className="timeline-node">
-                
-                {/* 라인 장식 */}
-                {idx < processSteps.length - 1 && <div className="timeline-line"></div>}
-                
-                <div className="node-badge">{step.num}</div>
-                <h3 className="node-title">{step.title}</h3>
-                <p className="node-desc">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* 모바일용 세로 콤팩트 타임라인 리스트 */}
-          <div className="mo-timeline-wrapper">
-            {processSteps.map((step, idx) => (
-              <div key={idx} className="mo-timeline-row">
-                
-                {/* 세로 라인 장식 */}
-                {idx < processSteps.length - 1 && <div className="mo-timeline-vertical-line"></div>}
-                
-                <div className="mo-node-badge-col">
-                  <div className="mo-node-badge">{step.num}</div>
+              <div key={idx} className="timeline-step-node">
+                {idx < processSteps.length - 1 && <div className="timeline-step-line"></div>}
+                <div className="step-badge-col">
+                  <div className="step-node-badge">{step.num}</div>
                 </div>
-                <div className="mo-node-content-col">
-                  <h3 className="mo-node-title">{step.title}</h3>
-                  <p className="mo-node-desc">{step.desc}</p>
+                <div className="step-content-col">
+                  <h3 className="step-node-title">{step.title}</h3>
+                  <p className="step-node-desc">{step.desc}</p>
                 </div>
               </div>
             ))}
