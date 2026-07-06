@@ -13,8 +13,8 @@ export const INDEXED_DONG_COMBINATIONS = [
 ];
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
-export const BRAND_NAME = '올케어 서비스';
-export const BUSINESS_NAME = '올케어 서비스';
+export const BRAND_NAME = '모두종합환경';
+export const BUSINESS_NAME = '모두종합환경';
 export const OWNER_NAME = '김재현';
 export const BUSINESS_NUMBER = '405-15-02677';
 export const DOMAIN = 'https://www.moduclean.co.kr';
@@ -280,7 +280,7 @@ export function getJsonLd() {
     '@type': 'CleaningService',
     'name': BRAND_NAME,
     'legalName': BUSINESS_NAME,
-    'alternateName': '올케어 서비스 청소전문',
+    'alternateName': '모두종합환경 청소전문',
     'description': '서울·경기 전 지역 종합청소 전문업체. 외벽청소, 유리창청소, 화재복구, 바닥왁스코팅, 어닝청소, 간판청소, 준공청소, 인테리어청소, 후드청소 등 전문 시공.',
     'url': DOMAIN,
     'logo': `${DOMAIN}/logo.png`,
