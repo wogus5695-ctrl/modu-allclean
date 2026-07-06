@@ -138,14 +138,14 @@ export default function SitemapSeoulPage() {
                     href={`/seoul/${districtRegion.districtSlug}${suffix}/${moveInService.serviceSlug}`}
                     style={{ fontSize: '13px', color: '#1e3a8a', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', padding: '6px 12px', borderRadius: '6px', fontWeight: 'bold', textDecoration: 'none' }}
                   >
-                    {districtRegion.district} {moveInService.serviceNameKo}
+                    {districtRegion.district} 입주청소
                   </Link>
                   {showShortDistrict && (
                     <Link 
                       href={`/seoul/${districtRegion.districtSlug}/${moveInService.serviceSlug}`}
                       style={{ fontSize: '13px', color: '#1e3a8a', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', padding: '6px 12px', borderRadius: '6px', fontWeight: 'bold', textDecoration: 'none' }}
                     >
-                      {shortDistrict} {moveInService.serviceNameKo}
+                      {shortDistrict} 입주청소
                     </Link>
                   )}
 
@@ -156,7 +156,7 @@ export default function SitemapSeoulPage() {
                       href={`/seoul/${dong.districtSlug}/${dong.subDistrictSlug}/${moveInService.serviceSlug}`}
                       style={{ fontSize: '13px', color: '#475569', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '6px 12px', borderRadius: '6px', textDecoration: 'none' }}
                     >
-                      {dong.subDistrict} {moveInService.serviceNameKo}
+                      {dong.subDistrict} 입주청소
                     </Link>
                   ))}
                 </div>

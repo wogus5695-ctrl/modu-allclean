@@ -141,28 +141,42 @@ export default async function LandingPage({ params }: Props) {
   const isDistrictLevel = region.subDistrict === '전지역';
   const shortDistrict = region.district.replace(/(구|시)$/, '');
   const requestedWithSuffix = district.endsWith('-gu') || district.endsWith('-si');
-  const titleRegion = isDistrictLevel 
-    ? (requestedWithSuffix ? region.district : shortDistrict) 
-    : region.subDistrict;
-  const descRegion = isDistrictLevel 
-    ? (requestedWithSuffix ? region.district : shortDistrict) 
-    : region.subDistrict;
 
-  // 서울 입주청소 단어 매칭 방지
-  let cleanTitleRegion = titleRegion;
-  let cleanDescRegion = descRegion;
-  if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-    cleanTitleRegion = titleRegion.replace(/^서울(특별)?시?\s*/, '');
-    cleanDescRegion = descRegion.replace(/^서울(특별)?시?\s*/, '');
+  let title = '';
+  let description = '';
+
+  const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+
+  if (isMoveIn) {
+    if (!isDistrictLevel) {
+      // 1. 동 단위 페이지
+      const neighborhoodName = region.subDistrict.replace(/^서울(특별)?시?\s*/, '');
+      const districtName = region.district.replace(/^서울(특별)?시?\s*/, '');
+      title = `${neighborhoodName} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
+      description = `${neighborhoodName} 입주청소 상담. ${districtName} ${neighborhoodName} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
+    } else {
+      if (requestedWithSuffix) {
+        // 2. 구 단위 페이지
+        const cleanDistrict = region.district.replace(/^서울(특별)?시?\s*/, '');
+        title = `${cleanDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
+        description = `${cleanDistrict} 입주청소 상담. 신축 분진, 전 세입자 생활오염, 욕실 물때, 주방 기름때, 베란다·창틀 먼지를 입주 전 확인합니다.`;
+      } else {
+        // 3. 구 제거형 페이지
+        const cleanShortDistrict = shortDistrict.replace(/^서울(특별)?시?\s*/, '');
+        title = `${cleanShortDistrict} 입주청소 | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
+        description = `${cleanShortDistrict} 입주청소 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
+      }
+    }
+  } else {
+    const titleRegion = isDistrictLevel 
+      ? (requestedWithSuffix ? region.district : shortDistrict) 
+      : region.subDistrict;
+    const descRegion = isDistrictLevel 
+      ? (requestedWithSuffix ? region.district : shortDistrict) 
+      : region.subDistrict;
+    title = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
+    description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
   }
-
-  const title = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
-    ? `${cleanTitleRegion} 입주청소 | 욕실·주방·베란다 청소 - ${BRAND_NAME}`
-    : `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-
-  const description = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
-    ? `${cleanDescRegion} 입주청소 상담. 입주 전 욕실, 주방, 베란다·창틀, 전체 오염·분진까지 현장 상태에 맞춰 작업 범위를 안내합니다.`
-    : `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
   
   const path = region.subDistrictSlug === 'all'
     ? `/${region.regionSlug}/${district}/${service.serviceSlug}`

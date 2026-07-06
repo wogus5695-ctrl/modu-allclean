@@ -59,6 +59,8 @@ interface SeoOptions {
   publishedTime?: string;
   modifiedTime?: string;
   ogImage?: string;
+  customOgTitle?: string;
+  customOgDesc?: string;
 }
 
 export function getBaseMetadata({ 
@@ -69,7 +71,9 @@ export function getBaseMetadata({
   ogType = 'website',
   publishedTime,
   modifiedTime,
-  ogImage
+  ogImage,
+  customOgTitle,
+  customOgDesc
 }: SeoOptions): Metadata {
   const url = `${DOMAIN}${path}`;
   const robots = indexStatus === 'index' ? 'index, follow' : 'noindex, follow';
@@ -92,6 +96,9 @@ export function getBaseMetadata({
     }
   }
 
+  const ogTitle = customOgTitle || title;
+  const ogDescription = customOgDesc || description;
+
   return {
     title: title,
     description: description,
@@ -104,8 +111,8 @@ export function getBaseMetadata({
       shortcut: '/favicon.ico',
     },
     openGraph: {
-      title: title,
-      description: description,
+      title: ogTitle,
+      description: ogDescription,
       url: url,
       type: ogType,
       images: [{ url: finalOgImage, width: 1200, height: 630, alt: title }],
@@ -115,8 +122,8 @@ export function getBaseMetadata({
     } as any,
     twitter: {
       card: 'summary_large_image',
-      title: title,
-      description: description,
+      title: ogTitle,
+      description: ogDescription,
       images: [finalOgImage],
     },
   };
@@ -203,37 +210,56 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   const shortDistrict = isIncheon ? region.district : region.district.replace(/(구|시)$/, '');
   
-  let titleRegion = '';
-  let descRegion = '';
-  
-  if (isDistrictLevel) {
-    if (requestedDistrictParam) {
-      titleRegion = requestedWithSuffix ? region.district : shortDistrict;
-      descRegion = requestedWithSuffix ? region.district : shortDistrict;
+  let finalTitle = '';
+  let finalDescription = '';
+  const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+
+  if (isMoveIn) {
+    if (!isDistrictLevel) {
+      // 1. 동 단위 페이지
+      const neighborhoodName = region.subDistrict.replace(/^서울(특별)?시?\s*/, '');
+      const districtName = region.district.replace(/^서울(특별)?시?\s*/, '');
+      finalTitle = `${neighborhoodName} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
+      finalDescription = `${neighborhoodName} 입주청소 상담. ${districtName} ${neighborhoodName} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
     } else {
-      titleRegion = isIncheon ? region.district : `${region.district} ${shortDistrict}`;
-      descRegion = isIncheon ? region.district : `${region.district}(${shortDistrict})`;
+      if (requestedDistrictParam && !requestedWithSuffix) {
+        // 3. 구 제거형 페이지
+        const cleanShortDistrict = shortDistrict.replace(/^서울(특별)?시?\s*/, '');
+        finalTitle = `${cleanShortDistrict} 입주청소 | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
+        finalDescription = `${cleanShortDistrict} 입주청소 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
+      } else {
+        // 2. 구 단위 페이지
+        const cleanDistrict = region.district.replace(/^서울(특별)?시?\s*/, '');
+        finalTitle = `${cleanDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
+        finalDescription = `${cleanDistrict} 입주청소 상담. 신축 분진, 전 세입자 생활오염, 욕실 물때, 주방 기름때, 베란다·창틀 먼지를 입주 전 확인합니다.`;
+      }
     }
-  } else {
-    titleRegion = `${region.district} ${region.subDistrict}`;
-    descRegion = `${region.district} ${region.subDistrict}`;
+    let titleRegion = '';
+    let descRegion = '';
+    if (isDistrictLevel) {
+      if (requestedDistrictParam) {
+        titleRegion = requestedWithSuffix ? region.district : shortDistrict;
+        descRegion = requestedWithSuffix ? region.district : shortDistrict;
+      } else {
+        titleRegion = isIncheon ? region.district : `${region.district} ${shortDistrict}`;
+        descRegion = isIncheon ? region.district : `${region.district}(${shortDistrict})`;
+      }
+    } else {
+      titleRegion = `${region.district} ${region.subDistrict}`;
+      descRegion = `${region.district} ${region.subDistrict}`;
+    }
+    finalTitle = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
+    finalDescription = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
   }
 
-  // 서울 입주청소, 서울시 입주청소 단어 생성 방지: titleRegion 및 descRegion에서 "서울" 또는 "서울특별시" 부분 제거
-  let cleanTitleRegion = titleRegion;
-  let cleanDescRegion = descRegion;
-  if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-    cleanTitleRegion = titleRegion.replace(/^서울(특별)?시?\s*/, '');
-    cleanDescRegion = descRegion.replace(/^서울(특별)?시?\s*/, '');
+  // 동 단위 입주청소 전용 OG custom 속성
+  let customOgTitle = undefined;
+  let customOgDesc = undefined;
+  if (isMoveIn && !isDistrictLevel) {
+    const neighborhoodName = region.subDistrict.replace(/^서울(특별)?시?\s*/, '');
+    customOgTitle = `${neighborhoodName} 입주청소 | 입주 전 마지막 점검`;
+    customOgDesc = `욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.`;
   }
-
-  const finalTitle = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
-    ? `${cleanTitleRegion} 입주청소 | 욕실·주방·베란다 청소 - ${BRAND_NAME}`
-    : `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-
-  const finalDescription = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
-    ? `${cleanDescRegion} 입주청소 상담. 입주 전 욕실, 주방, 베란다·창틀, 전체 오염·분진까지 현장 상태에 맞춰 작업 범위를 안내합니다.`
-    : `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
 
   return getBaseMetadata({
     title: finalTitle,
@@ -244,6 +270,8 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     publishedTime: new Date().toISOString(),
     modifiedTime: new Date().toISOString(),
     ogImage: service.imageUrl,
+    customOgTitle,
+    customOgDesc
   });
 }
 
