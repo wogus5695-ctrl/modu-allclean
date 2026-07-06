@@ -182,6 +182,13 @@ export default function SitemapSeoulPage() {
 
       <section className={styles.content}>
         <div className={styles.container}>
+          {/* 입주청소 전용 허브 이동 안내 배너 */}
+          <div style={{ marginBottom: '30px', padding: '20px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
+            <span style={{ fontSize: '15px', color: '#1e3a8a', fontWeight: '700' }}>
+              💡 입주청소 키워드만 따로 확인하려면 <Link href="/move-in-cleaning/seoul" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800' }}>[서울권 입주청소 지역별 안내]</Link> 페이지를 확인하세요.
+            </span>
+          </div>
+
           {/* 1. 입주청소 전용 추가 섹션 (최상단 구분) */}
           {renderMoveInCleaningSection()}
 
