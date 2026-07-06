@@ -976,6 +976,22 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         className="service-guide-section"
       >
         <div className={styles.inner}>
+
+          {/* 지역별 고유 설명 문단 배치 (Hero 바로 아래이자 작업 범위 섹션 상단) */}
+          <div className="region-specific-intro" style={{ marginBottom: '3.5rem', background: '#f8fafc', padding: '1.8rem 2.2rem', borderRadius: '16px', border: '1px solid #e2e8f0', textAlign: 'left', display: regionObj?.citySlug === 'seoul' ? 'block' : 'none' }}>
+            <p style={{ fontSize: '1.025rem', lineHeight: '1.7', color: '#334155', margin: 0, fontWeight: '500', wordBreak: 'keep-all' }}>
+              {regionObj?.regionType === 'neighborhood' ? (
+                // 1. 동 단위 페이지
+                `💡 ${regionName} 입주청소는 입주일과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${parentRegion} ${regionName} 입주 전에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진처럼 짐이 들어온 뒤 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`
+              ) : regionObj?.neighborhoodSlug === 'all' ? (
+                // 3. 구 제거형 페이지 (districtSlug === neighborhoodSlug 또는 district param 제거 매핑)
+                `💡 ${regionName} 입주청소 상담은 입주일, 평수, 집 상태를 기준으로 작업 범위를 확인합니다. 욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 안내합니다.`
+              ) : (
+                // 2. 구 단위 페이지
+                `💡 ${regionName} 입주청소는 신축·구축·인테리어 후 입주 여부에 따라 확인해야 할 공간이 달라집니다. 입주 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 상태를 기준으로 작업 범위를 상담합니다.`
+              )}
+            </p>
+          </div>
           
           {/* 섹션 상단 헤더 */}
           <div className={styles.sectionHeader}>
