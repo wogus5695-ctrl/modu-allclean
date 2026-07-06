@@ -197,7 +197,8 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
     const parsed = parseK(k);
     if (parsed) {
       const { region, service } = parsed;
-      return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id);
+      // 입주청소인 경우 구 단위 접미사 검증을 위해 세번째 파라미터 및 네번째 district 전달 연계
+      return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id, region.subDistrict === '전지역' ? region.districtSlug : undefined);
     } else {
       // k 파라미터가 존재하지만 파싱에 실패한 경우 (오타, 잘못된 유입 등)
       // 검색 엔진이 중복 페이지로 수집하지 않도록 noindex를 주입하고 고유한 제목을 부여합니다.
@@ -220,6 +221,26 @@ export default async function Home({ searchParams }: Props) {
     const parsed = parseK(k);
     if (parsed) {
       const { region, service } = parsed;
+      
+      // 1. 입주청소 서비스인 경우, 중복 색인 방지를 위해 301성 리다이렉트 수행 (slug URL 고정)
+      if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+        const isDistrictLevel = region.subDistrict === '전지역';
+        const path = region.subDistrictSlug === 'all'
+          ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
+          : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
+        
+        let redirectPath = path;
+        // 구 단위 처리 시 접미사 교정 규칙 반영
+        if (region.regionSlug !== 'incheon' && isDistrictLevel) {
+          const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+          redirectPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
+        }
+        
+        // Next.js redirect 호출
+        const { redirect } = require('next/navigation');
+        redirect(redirectPath);
+      }
+
       const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
 
       // Naver SEO를 위한 FAQ 스키마 생성
