@@ -274,8 +274,35 @@ export default async function LandingPage({ params }: Props) {
   // 입주청소용 Breadcrumb 계층 구조 처리 (서울, 인천, 경기 다중 광역권 대응)
   let breadcrumbJsonLd;
   if (isMoveIn) {
-    const cityName = region.city === '서울' ? '서울권' : region.city === '인천' ? '인천권' : '경기권';
     const parentDistrictName = region.district;
+    
+    // 대표지역명 바인딩 변수 재계산 (동 단위 충돌 방지 및 구/시 suffix 대응 완료)
+    let representativeArea = '';
+    const isIncheon = region.regionSlug === 'incheon';
+
+    if (!isDistrictLevel) {
+      const neighborhoodName = region.subDistrict;
+      if (region.regionSlug === 'seoul') {
+        representativeArea = neighborhoodName;
+      } else if (region.regionSlug === 'incheon') {
+        const isConflictIncheon = ['논현동', '신흥동'].includes(neighborhoodName);
+        representativeArea = isConflictIncheon ? `인천 ${neighborhoodName}` : neighborhoodName;
+      } else {
+        const isConflictGyeonggi = ['문산읍', '신흥동', '중앙동', '역삼동', '신교동', '성남동', '태평동', '수진동', '단대동', '상대원동'].includes(neighborhoodName);
+        representativeArea = isConflictGyeonggi ? `${parentDistrictName.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
+      }
+    } else {
+      if (requestedWithSuffix) {
+        const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+        representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
+      } else {
+        const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+        representativeArea = cleanShortDistrict;
+      }
+    }
+
+    const cityMetaName = region.regionSlug === 'seoul' ? '서울' : region.regionSlug === 'incheon' ? '인천' : '경기';
+
     breadcrumbJsonLd = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -289,19 +316,31 @@ export default async function LandingPage({ params }: Props) {
         {
           '@type': 'ListItem',
           'position': 2,
-          'name': `${cityName} 입주청소`,
+          'name': '입주청소',
           'item': `${DOMAIN}/move-in-cleaning/seoul`
         },
         {
           '@type': 'ListItem',
           'position': 3,
+          'name': '수도권 통합 허브',
+          'item': `${DOMAIN}/move-in-cleaning/seoul`
+        },
+        {
+          '@type': 'ListItem',
+          'position': 4,
+          'name': `${cityMetaName} 입주청소`,
+          'item': `${DOMAIN}/move-in-cleaning/seoul`
+        },
+        {
+          '@type': 'ListItem',
+          'position': 5,
           'name': parentDistrictName,
           'item': `${DOMAIN}/keyword-hub/${region.regionSlug}-${region.districtSlug}`
         },
         {
           '@type': 'ListItem',
-          'position': 4,
-          'name': `${regionName} 입주청소`,
+          'position': 6,
+          'name': `${representativeArea} 입주청소`,
           'item': url
         }
       ]
@@ -315,7 +354,31 @@ export default async function LandingPage({ params }: Props) {
     '@context': 'https://schema.org',
     '@type': 'Service',
     'serviceType': 'CleaningService',
-    'name': `${regionName} 입주청소`,
+    'name': (() => {
+      let representativeArea = '';
+      const isIncheon = region.regionSlug === 'incheon';
+      if (!isDistrictLevel) {
+        const neighborhoodName = region.subDistrict;
+        if (region.regionSlug === 'seoul') {
+          representativeArea = neighborhoodName;
+        } else if (region.regionSlug === 'incheon') {
+          const isConflictIncheon = ['논현동', '신흥동'].includes(neighborhoodName);
+          representativeArea = isConflictIncheon ? `인천 ${neighborhoodName}` : neighborhoodName;
+        } else {
+          const isConflictGyeonggi = ['문산읍', '신흥동', '중앙동', '역삼동', '신교동', '성남동', '태평동', '수진동', '단대동', '상대원동'].includes(neighborhoodName);
+          representativeArea = isConflictGyeonggi ? `${region.district.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
+        }
+      } else {
+        if (requestedWithSuffix) {
+          const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+          representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
+        } else {
+          const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+          representativeArea = cleanShortDistrict;
+        }
+      }
+      return `${representativeArea} 입주청소`;
+    })(),
     'description': description,
     'provider': {
       '@type': 'LocalBusiness',
