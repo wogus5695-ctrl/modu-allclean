@@ -303,5 +303,27 @@ export const seoServices: SeoService[] = [
     thumbnailImage: '/images/services/move-in-cleaning.jpg',
     ogImage: '/images/services/move-in-cleaning.jpg',
     altBase: '입주청소'
+  },
+  {
+    serviceNameKo: '이사청소',
+    serviceSlug: 'moving-cleaning',
+    mainProblem: '이전 거주자가 남긴 주방 기름때, 욕실 물때, 생활 찌든 오염 제거',
+    targetPlaces: ['아파트', '빌라', '오피스텔', '단독 주택'],
+    contaminationTypes: ['생활 찌든때', '배수구 냄새', '환풍기 기름때', '창틀 먼지', '싱크대 물때'],
+    preCheckItems: ['수도 및 전기 정상 작동 상태', '이사짐 반입 일정 조율', '빈집 상태 여부'],
+    estimateFactors: ['공급 면적(평수)', '오염의 정도', '베란다/창 수량', '추가 소독 필요성'],
+    faqSet: [
+      { q: '{{지역명}} 이사청소는 이사 며칠 전에 하는 게 좋나요?', a: '짐이 없는 공실 상태에서 구석구석 정밀 클리닝이 진행되도록 이사 전 1~3일 전 일정을 잡으시는 것이 가장 이상적입니다.' },
+      { q: '생활 찌든 때와 곰팡이도 청소 범위에 포함되나요?', a: '네. 주방의 묵은 기름때, 욕실의 물때 및 실리콘 주변 곰팡이는 전용 분해 약품과 고온 스팀을 동반해 집중적으로 제거합니다.' },
+      { q: '창틀과 창문도 닦아주나요?', a: '기본적으로 내부 창틀과 내부 창문 유리가 기본 청소 범위에 포함되며, 바깥쪽을 바라보는 외창 유리는 위험성과 구조에 따라 협의 후 진행됩니다.' },
+      { q: '도배 직후인데 이사청소 예약해도 되나요?', a: '도배 시공 직후에는 벽지가 다 마를 때까지 다소 주의가 필요하지만, 벽지에 묻은 미세 도배풀과 먼지를 깔끔하게 닦는 작업은 이사 전에 반드시 하시는 것이 좋습니다.' },
+      { q: '가전 내부 필터나 빌트인 세정도 가능한가요?', a: '기본 빌트인 가전의 외부 청소는 포함되나 냉장고, 오븐 등 가전 내부의 정밀 세척은 별도 추가 옵션으로 상담 시 포함 여부를 확인합니다.' }
+    ],
+    relatedServices: ['바닥청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 이사청소 생활오염 제거 및 고온 스팀 소독 - 모두종합환경',
+    ctaHook: '이사청소 견적 받기',
+    thumbnailImage: '/images/services/move-in-cleaning.jpg',
+    ogImage: '/images/services/move-in-cleaning.jpg',
+    altBase: '이사청소'
   }
 ];

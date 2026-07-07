@@ -137,17 +137,22 @@ export default async function LandingPage({ params }: Props) {
 
   // FAQPage JSON-LD 처리 (화면과 100% 동일하게 일원화)
   const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+  const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
+  const isMoveOrMoving = isMoveIn || isMoving;
+  const workName = isMoveIn ? '입주청소' : '이사청소';
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    'mainEntity': isMoveIn ? [
+    'mainEntity': isMoveOrMoving ? [
       {
         '@type': 'Question',
-        'name': `${regionName} 입주청소는 입주 며칠 전에 하는 게 좋나요?`,
+        'name': `${regionName} ${workName}는 ${isMoveIn ? '입주' : '이사'} 며칠 전에 하는 게 좋나요?`,
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': '가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다.'
+          'text': isMoveIn 
+            ? '가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다.'
+            : '가구나 짐이 없는 완전히 비어있는 집 상태에서 구석구석 정밀 클리닝이 진행되도록 이사일 기준 1~3일 전 일정을 잡고 완료하시는 것을 추천합니다.'
         }
       },
       {
@@ -168,15 +173,17 @@ export default async function LandingPage({ params }: Props) {
       },
       {
         '@type': 'Question',
-        'name': '신축 아파트 공사 분진도 청소 가능한가요?',
+        'name': isMoveIn ? '신축 아파트 공사 분진도 청소 가능한가요?' : '기존 세입자가 남긴 생활 찌든 때도 제거되나요?',
         'acceptedAnswer': {
           '@type': 'Answer',
-          'text': '신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다.'
+          'text': isMoveIn 
+            ? '신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다.'
+            : '주방의 찌든 기름때, 욕실 배수구 주변 및 변기/세면대 물때, 창틀 틈새의 묵은 먼지 등 생활 오염 흔적은 전용 약품과 장비로 분해하여 깨끗하게 제거합니다.'
         }
       },
       {
         '@type': 'Question',
-        'name': '짐이 있는 상태에서도 입주청소가 가능한가요?',
+        'name': '짐이 있는 상태에서도 청소가 가능한가요?',
         'acceptedAnswer': {
           '@type': 'Answer',
           'text': '가능은 하지만 빈집 상태보다 작업 범위가 제한될 수 있습니다. 가구나 짐이 많다면 상담 시 미리 알려주셔야 합니다.'
@@ -208,7 +215,7 @@ export default async function LandingPage({ params }: Props) {
   let description = '';
 
   let representativeArea = '';
-  if (isMoveIn) {
+  if (isMoveOrMoving) {
     const isIncheon = region.regionSlug === 'incheon';
 
     if (!isDistrictLevel) {
@@ -226,22 +233,22 @@ export default async function LandingPage({ params }: Props) {
         representativeArea = isConflictGyeonggi ? `${districtName.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
       }
 
-      title = `${representativeArea} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
-      description = `${representativeArea} 입주청소 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
+      title = `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
+      description = `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
     } else {
       // 구 / 시 단위 페이지
       if (requestedWithSuffix) {
         const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
         representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
         
-        title = `${representativeArea} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
-        description = `${representativeArea} 입주청소 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
+        title = `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
+        description = `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
       } else {
         const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
         representativeArea = cleanShortDistrict;
         
-        title = `${representativeArea} 입주청소 | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
-        description = `${representativeArea} 입주청소 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
+        title = `${representativeArea} ${workName} | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
+        description = `${representativeArea} ${workName} 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
       }
     }
   } else {
@@ -271,9 +278,9 @@ export default async function LandingPage({ params }: Props) {
   
   const articleJsonLd = getArticleJsonLd(title, description, url);
   
-  // 입주청소용 Breadcrumb 계층 구조 처리 (서울, 인천, 경기 다중 광역권 대응)
+  // 입주청소/이사청소용 Breadcrumb 계층 구조 처리 (서울, 인천, 경기 다중 광역권 대응)
   let breadcrumbJsonLd;
-  if (isMoveIn) {
+  if (isMoveOrMoving) {
     const parentDistrictName = region.district;
     
     // 대표지역명 바인딩 변수 재계산 (동 단위 충돌 방지 및 구/시 suffix 대응 완료)
@@ -328,7 +335,7 @@ export default async function LandingPage({ params }: Props) {
         {
           '@type': 'ListItem',
           'position': 4,
-          'name': `${cityMetaName} 입주청소`,
+          'name': `${cityMetaName} ${workName}`,
           'item': `${DOMAIN}/move-in-cleaning/seoul`
         },
         {
@@ -340,7 +347,7 @@ export default async function LandingPage({ params }: Props) {
         {
           '@type': 'ListItem',
           'position': 6,
-          'name': `${representativeArea} 입주청소`,
+          'name': `${representativeArea} ${workName}`,
           'item': url
         }
       ]
@@ -349,8 +356,8 @@ export default async function LandingPage({ params }: Props) {
     breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
   }
 
-  // 입주청소 전용 Service & Organization 통합 구조화 데이터 정의
-  const serviceJsonLd = isMoveIn ? {
+  // 입주청소/이사청소 전용 Service & Organization 통합 구조화 데이터 정의
+  const serviceJsonLd = isMoveOrMoving ? {
     '@context': 'https://schema.org',
     '@type': 'Service',
     'serviceType': 'CleaningService',
@@ -377,7 +384,7 @@ export default async function LandingPage({ params }: Props) {
           representativeArea = cleanShortDistrict;
         }
       }
-      return `${representativeArea} 입주청소`;
+      return `${representativeArea} ${workName}`;
     })(),
     'description': description,
     'provider': {
@@ -398,8 +405,8 @@ export default async function LandingPage({ params }: Props) {
     }
   } : null;
 
-  // 입주청소 서비스인 경우 전용 템플릿 반환
-  if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+  // 입주청소/이사청소 서비스인 경우 전용 템플릿 반환
+  if (isMoveOrMoving) {
     return (
       <>
         <script

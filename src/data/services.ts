@@ -440,5 +440,34 @@ export const services: CleaningService[] = [
     indexStatus: 'index',
     imageUrl: '/images/services/interior-completion.jpg',
     showOnMain: false,
+  },
+  {
+    id: 'moving',
+    serviceNameKo: '이사청소',
+    serviceSlug: 'moving-cleaning',
+    shortDescription: '전 거주자의 찌든 때와 생활 오염을 완벽히 지우고 새집처럼 케어',
+    mainDescription: '이전 거주자가 남긴 주방 기름때, 욕실 물때, 곰팡이, 수납장 찌든 오염 등을 전문 장비와 약품을 사용해 세정하여 쾌적한 주거 공간을 복원합니다.',
+    neededSituations: [
+      '구축 주택으로 이사하기 전 이전 세입자의 생활 오염 흔적이 심할 때',
+      '도배 및 장판 시공 후 미세한 도배풀과 공사 먼지 정리가 필요할 때',
+      '위생적인 공간에서 이삿짐을 바로 정리하고 거주하고 싶을 때',
+      '반려동물 흔적이나 묵은 냄새 등 특수 소독이 동반된 세정이 필요할 때'
+    ],
+    workingMethod: '환풍기, 배수구 부속, 수납 서랍 등 분리가 가능한 모든 구역을 탈거하여 내부 찌든 오염을 약품으로 녹여 세척하고, 친환경 약품과 스팀 장비로 마무리 살균을 진행합니다.',
+    preCheckItems: [
+      '청소 당일 수도 및 전기의 원활한 공급 여부',
+      '가구 수납장 등 수납공간 빌트인 여부',
+      '도배, 인테리어 등 동시 진행 공정 조율 유무'
+    ],
+    targetBuildings: ['아파트', '빌라', '오피스텔', '단독주택'],
+    commonProblems: ['생활 찌든 때', '주방 오염/기름때', '욕실 물때/배수구 냄새', '창틀 먼지'],
+    process: ['상담 및 예약', '현장 오염 진단', '부속 탈거 및 약품 세척', '스팀 살균 소독', '현장 최종 검수'],
+    faq: [
+      { question: '{{region}} 이사청소는 이사 며칠 전에 하는 게 좋나요?', answer: '가구나 짐이 들어오기 전 완전히 빈집 상태에서 진행하는 것이 이상적입니다. 보통 이삿날 1~3일 전 완료하는 것을 추천해 드립니다.' }
+    ],
+    priority: 13,
+    indexStatus: 'index',
+    imageUrl: '/images/services/interior-completion.jpg',
+    showOnMain: false,
   }
 ];

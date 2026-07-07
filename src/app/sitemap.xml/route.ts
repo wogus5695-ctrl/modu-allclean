@@ -50,12 +50,16 @@ export async function GET() {
 
       // 3-3. 구/시 단위 키워드 조합 (sitemap.xml에는 대표 index URL만 포함)
       activeServices.forEach(service => {
-        // 입주청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
-        if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+        const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+        const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
+        const isMoveOrMoving = isMoveIn || isMoving;
+
+        // 입주청소 및 이사청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
+        if (isMoveOrMoving) {
           if (!['seoul', 'incheon', 'gyeonggi'].includes(region.regionSlug)) return;
 
           if (region.regionSlug === 'incheon') {
-            // 인천 구 단위 입주청소 (인천은 접미사 없음)
+            // 인천 구 단위 입주/이사청소 (인천은 접미사 없음)
             urls.push({
               url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
               priority: 0.7,
@@ -63,7 +67,7 @@ export async function GET() {
               lastModified: currentDate
             });
           } else {
-            // 서울/경기 구/시 단위 입주청소 (canonical인 접미사 -gu/-si 포함 주소만 sitemap에 등록)
+            // 서울/경기 구/시 단위 입주/이사청소 (canonical인 접미사 -gu/-si 포함 주소만 sitemap에 등록)
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
             urls.push({
               url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
@@ -72,7 +76,7 @@ export async function GET() {
               lastModified: currentDate
             });
 
-            // 서울/경기 구 제거형 입주청소 (중구 제외)
+            // 서울/경기 구 제거형 입주/이사청소 (중구 제외)
             if (region.districtSlug !== 'jung-gu') {
               urls.push({
                 url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
@@ -114,8 +118,12 @@ export async function GET() {
       
       if (isParentIndexed) {
         activeServices.forEach(service => {
-          // 입주청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
-          if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
+          const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+          const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
+          const isMoveOrMoving = isMoveIn || isMoving;
+
+          // 입주청소/이사청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
+          if (isMoveOrMoving) {
             if (!['seoul', 'incheon', 'gyeonggi'].includes(dong.regionSlug)) return;
           }
 

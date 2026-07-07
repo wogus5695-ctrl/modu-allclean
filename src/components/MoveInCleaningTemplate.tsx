@@ -109,57 +109,68 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
     { title: "입주 일정 압박", desc: "이사 당일에는 짐이 들어오기 때문에 반드시 짐 반입 전에 완료할 수 있도록 일정을 확보합니다.", img: "/images/why/schedule.jpg" }
   ];
 
-  // 2. 입주청소 작업 범위 - 4카드
+  const isMoving = currentService.serviceSlug === 'moving-cleaning';
+  const workName = isMoving ? "이사청소" : "입주청소";
+
+  // 2. 입주청소/이사청소 작업 범위 - 4카드
   const serviceCards = [
     {
       title: "욕실 청소",
-      desc: "입주 후 가장 먼저 체감되는 공간입니다. 물때, 배수구 주변, 수전·거울 오염까지 확인합니다.",
-      details: ["물때", "배수구", "수전", "타일 틈"],
+      desc: isMoving 
+        ? "이사 전 찌든 오염 흔적을 지우는 가장 중요한 공간입니다. 물때, 배수구 냄새, 수전·변기 변색까지 확인합니다."
+        : "입주 후 가장 먼저 체감되는 공간입니다. 물때, 배수구 주변, 수전·거울 오염까지 확인합니다.",
+      details: ["물때 제거", "배수구 소독", "수전 광택", "곰팡이 제거"],
       moDesc: "물때·배수구·수전 오염"
     },
     {
       title: "주방 청소",
-      desc: "이전 사용 흔적이 가장 많이 남는 공간입니다. 싱크대, 상·하부장, 조리대 주변의 기름때와 생활오염을 정리합니다.",
-      details: ["싱크대", "수납장", "조리대", "기름때"],
+      desc: isMoving 
+        ? "이전 거주자의 흔적이 가장 짙게 남는 곳입니다. 싱크대, 상·하부장, 가스레인지/후드 주변의 기름때를 상태에 맞춰 세정합니다."
+        : "이전 사용 흔적이 가장 많이 남는 공간입니다. 싱크대, 상·하부장, 조리대 주변의 기름때와 생활오염을 정리합니다.",
+      details: ["싱크대 세정", "수납장 내부", "기름때 제거", "타일 벽면"],
       moDesc: "싱크대·수납장·기름때"
     },
     {
       title: "베란다·창틀 청소",
-      desc: "입주 후 직접 청소하기 가장 번거로운 구간입니다. 창틀 틈새, 배수구 주변, 베란다 바닥 먼지를 확인합니다.",
-      details: ["창틀", "베란다", "배수구", "방충망"],
+      desc: isMoving 
+        ? "바깥 먼지와 빗물 자국이 쌓이기 쉬운 구간입니다. 창틀 먼지 고착, 배수구 틈새, 베란다 물때를 말끔히 닦습니다."
+        : "입주 후 직접 청소하기 가장 번거로운 구간입니다. 창틀 틈새, 배수구 주변, 베란다 바닥 먼지를 확인합니다.",
+      details: ["창틀 틈새", "베란다 물세척", "배수구 탈거", "유리창 닦기"],
       moDesc: "틈새 먼지·배수구 주변"
     },
     {
-      title: "전체 오염·분진 청소",
-      desc: "신축 분진부터 구축 생활먼지까지 확인합니다. 바닥, 몰딩, 문틀, 수납장 내부의 잔먼지를 정리합니다.",
-      details: ["신축 분진", "바닥", "몰딩", "수납장"],
+      title: "전체 오염 케어",
+      desc: isMoving 
+        ? "생활 먼지와 보이지 않는 구석 찌든 오염을 잡습니다. 바닥 묵은 때, 문틀, 수납장 안쪽의 먼지를 닦아냅니다."
+        : "신축 분진부터 구축 생활먼지까지 확인합니다. 바닥, 몰딩, 문틀, 수납장 내부의 잔먼지를 정리합니다.",
+      details: ["바닥 정밀세척", "수납선반 분리", "몰딩/벽 먼지", "전등갓 세정"],
       moDesc: "바닥·몰딩·수납장 잔먼지"
     }
   ];
 
   // 3. 현장 유형별 대응
   const buildingTypes = [
-    { type: "신축 입주", desc: "공사 분진 · 창틀 먼지 · 수납장 내부" },
-    { type: "구축 입주", desc: "욕실 물때 · 주방 기름때 · 전 세입자 흔적" },
-    { type: "인테리어 후 입주", desc: "목공 분진 · 페인트 자국 · 바닥 잔먼지" }
+    { type: isMoving ? "구축 이사" : "신축 입주", desc: isMoving ? "전 거주자 흔적 · 주방 찌든 때 · 욕실 곰팡이" : "공사 분진 · 창틀 먼지 · 수납장 내부" },
+    { type: isMoving ? "리모델링 후 이사" : "구축 입주", desc: isMoving ? "공사 먼지 · 톱밥 가루 · 실리콘 자국 제거" : "욕실 물때 · 주방 기름때 · 전 세입자 흔적" },
+    { type: isMoving ? "부분 인테리어 이사" : "인테리어 후 입주", desc: isMoving ? "부분 공사 분진 · 보양지 제거 · 미세 먼지 케어" : "목공 분진 · 페인트 자국 · 바닥 잔먼지" }
   ];
 
-  // 4. 입주청소 진행 과정
+  // 4. 입주청소/이사청소 진행 과정
   const processSteps = [
-    { num: "01", title: "입주일·평수 확인", desc: "지역, 평수, 입주 예정일, 신축·구축 여부를 먼저 확인합니다." },
-    { num: "02", title: "작업 범위 정리", desc: "욕실, 주방, 베란다·창틀, 분진 오염 중 필요한 범위를 확인합니다." },
-    { num: "03", title: "견적·일정 안내", desc: "현장 상태와 입주일을 기준으로 가능 일정과 예상 견적을 안내합니다." },
-    { num: "04", title: "입주 전 청소·확인", desc: "작업 후 욕실, 주방, 베란다·창틀 등 주요 공간을 확인합니다." }
+    { num: "01", title: isMoving ? "이사 일정·평수 확인" : "입주일·평수 확인", desc: isMoving ? "지역, 평수, 이사 예정일, 현재 오염 상태를 먼저 확인합니다." : "지역, 평수, 입주 예정일, 신축·구축 여부를 먼저 확인합니다." },
+    { num: "02", title: "작업 범위 안내", desc: "욕실, 주방, 베란다·창틀, 생활 찌든 오염 중 상태별 필요한 범위를 확인합니다." },
+    { num: "03", title: "견적·일정 조율", desc: isMoving ? "현장 상태와 이사 일정을 기준으로 작업 일정과 상세 견적을 조율합니다." : "현장 상태와 입주일을 기준으로 가능 일정과 예상 견적을 안내합니다." },
+    { num: "04", title: isMoving ? "이사 전 청소 검수" : "입주 전 청소·확인", desc: isMoving ? "작업 완료 후 이사 전에 욕실, 주방, 베란다 등 주요 생활 공간의 청소 상태를 최종 확인합니다." : "작업 후 욕실, 주방, 베란다·창틀 등 주요 공간을 확인합니다." }
   ];
 
   // 5. 견적 기준
   const estimateFactors = [
     "평수",
     "방/욕실 개수",
-    "신축/구축 여부",
-    "오염도",
+    "구축 연식/오염 정도",
+    "주방 기름때/욕실 곰팡이 상태",
     "베란다·창틀 작업 범위",
-    "입주 예정일",
+    isMoving ? "이사 예정일" : "입주 예정일",
     "빈집 여부",
     "사진 확인 가능 여부"
   ];
@@ -167,18 +178,20 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   // 6. 상담 전 체크리스트
   const checkListItems = [
     "지역",
-    "입주일",
+    isMoving ? "이사 일정" : "입주일",
     "평수",
     "집 형태",
     "신축/구축 여부",
     "사진 2~3장"
   ];
 
-  // 7. 입주청소 전용 FAQ 데이터
+  // 7. FAQ 데이터
   const faqList = [
     {
-      q: `${regionName} 입주청소는 입주 며칠 전에 하는 게 좋나요?`,
-      a: "가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다."
+      q: `${regionName} ${workName}는 ${isMoving ? '이사' : '입주'} 며칠 전에 하는 게 좋나요?`,
+      a: isMoving 
+        ? "이삿짐이나 가구가 완전히 없는 공실(빈집) 상태에서 진행해야 구석구석 찌든 먼지까지 제거할 수 있습니다. 보통 이사 1~3일 전에 마치는 일정을 추천합니다."
+        : "가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다."
     },
     {
       q: "욕실과 주방 오염도 따로 확인하나요?",
@@ -186,19 +199,21 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
     },
     {
       q: "베란다와 창틀도 포함되나요?",
-      a: "베란다 바닥, 배수구 주변, 창틀 틈새 먼지는 입주 후 직접 정리하기 번거로운 구간입니다. 현장 상태와 견적 범위에 따라 상담 시 포함 범위를 확인합니다."
+      a: "베란다 바닥, 배수구 주변, 창틀 틈새 먼지는 청소 후 직접 정리하기 매우 힘든 구간입니다. 현장 상태와 견적 범위에 따라 상담 시 포함 범위를 확인합니다."
     },
     {
-      q: "신축 아파트 공사 분진도 청소 가능한가요?",
-      a: "신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다."
+      q: isMoving ? "기존 거주자의 흔적이나 곰팡이도 지워지나요?" : "신축 아파트 공사 분진도 청소 가능한가요?",
+      a: isMoving 
+        ? "욕실 타일 틈새의 곰팡이나 주방 후드/싱크대 주변의 찌든 기름때 등 전 거주자의 생활 오염 흔적은 전용 제거 약품과 스팀을 사용해 정밀 세정합니다."
+        : "신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다."
     },
     {
-      q: "짐이 있는 상태에서도 입주청소가 가능한가요?",
+      q: `짐이 있는 상태에서도 ${workName}가 가능한가요?`,
       a: "가능은 하지만 빈집 상태보다 작업 범위가 제한될 수 있습니다. 가구나 짐이 많다면 상담 시 미리 알려주셔야 합니다."
     },
     {
       q: "견적은 어떻게 확인하나요?",
-      a: "지역, 평수, 집 형태, 오염도, 작업 범위, 입주 예정일에 따라 달라집니다. 사진과 기본 정보를 알려주시면 상담이 빠릅니다."
+      a: "지역, 평수, 집 형태, 오염도, 작업 범위, 일정을 알려주시면 친절하게 기본 정보를 기반으로 견적 상담을 도와드립니다."
     }
   ];
 
@@ -894,30 +909,39 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             
             {/* 상단 배지 */}
             <div className="hero-badge" style={{ display: 'inline-block', backgroundColor: '#3b82f6', color: '#ffffff', padding: '6px 14px', borderRadius: '50px', fontSize: '14px', fontWeight: '700', marginBottom: '20px', letterSpacing: '-0.3px' }}>
-              입주 전 빈집 청소 전문
+              {isMoving ? '이사 전 빈집 청소 전문' : '입주 전 빈집 청소 전문'}
             </div>
 
             {/* H1 */}
             <h1 className={styles.heroTitle} style={{ fontSize: 'clamp(34px, 5.5vw, 54px)', lineHeight: '1.2', fontWeight: 800, color: '#ffffff', margin: '0 0 18px 0', letterSpacing: '-1px' }}>
-              {regionName} 입주청소
+              {regionName} {workName}
             </h1>
 
             {/* 메인 문구 */}
             <p style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#ffffff', lineHeight: '1.35', margin: '0 0 16px 0', letterSpacing: '-0.5px' }}>
-              <span style={{ color: '#fed7aa' }}>입주 전 마지막 점검</span>,<br />
+              <span style={{ color: '#fed7aa' }}>{isMoving ? '이사 전 마지막 점검' : '입주 전 마지막 점검'}</span>,<br />
               <span style={{ color: '#60a5fa' }}>욕실·주방·베란다</span>까지 확인합니다
             </p>
 
             {/* 보조 문구 */}
             <p style={{ fontSize: 'clamp(14px, 1.8vw, 17px)', color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 28px 0', letterSpacing: '-0.2px' }}>
-              <span style={{ color: '#ffffff', fontWeight: '600' }}>신축 분진</span>, 전 세입자 <span style={{ color: '#ffffff', fontWeight: '600' }}>생활오염</span>, 창틀 먼지처럼<br className="pc-br" />
-              입주 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.
+              {isMoving ? (
+                <>
+                  이전 거주자 <span style={{ color: '#ffffff', fontWeight: '600' }}>생활오염</span>, 묵은 때, 창틀 먼지처럼<br className="pc-br" />
+                  이사 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.
+                </>
+              ) : (
+                <>
+                  <span style={{ color: '#ffffff', fontWeight: '600' }}>신축 분진</span>, 전 세입자 <span style={{ color: '#ffffff', fontWeight: '600' }}>생활오염</span>, 창틀 먼지처럼<br className="pc-br" />
+                  입주 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.
+                </>
+              )}
             </p>
 
             {/* 체크포인트 */}
             <div className="hero-checkpoints" style={{ display: 'flex', flexWrap: 'wrap', gap: '15px 25px', marginBottom: '35px', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '20px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
-                <span style={{ color: '#60a5fa' }}>✓</span> 입주일 기준 상담
+                <span style={{ color: '#60a5fa' }}>✓</span> {isMoving ? '이사일' : '입주일'} 기준 상담
               </div>
               <div className="pc-checkpoint" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
                 <span style={{ color: '#60a5fa' }}>✓</span> 빈집 상태 작업 권장
@@ -997,17 +1021,17 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                   // 동 / 읍 / 면 단위 페이지
                   if (citySlug === 'seoul') {
                     // 1. 서울 동 단위
-                    return `${regionName} 입주청소는 입주일과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${district} ${regionName} 입주 전에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진처럼 짐이 들어온 뒤 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
+                    return `${regionName} ${workName}는 ${isMoving ? '이사' : '입주'}일과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${district} ${regionName} ${isMoving ? '이사' : '입주'} 전에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, ${isMoving ? '찌든 때' : '신축 분진'}처럼 짐이 들어온 뒤 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
                   } else if (citySlug === 'incheon') {
                     // 2. 인천 동 단위
-                    return `${district} ${regionName} 입주청소는 아파트, 오피스텔, 빌라 등 주거 형태와 입주 일정에 따라 확인해야 할 공간이 달라질 수 있습니다. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 중심으로 작업 범위를 상담합니다.`;
+                    return `${district} ${regionName} ${workName}는 아파트, 오피스텔, 빌라 등 주거 형태와 ${isMoving ? '이사' : '입주'} 일정에 따라 확인해야 할 공간이 달라질 수 있습니다. ${isMoving ? '이사' : '입주'} 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, ${isMoving ? '찌든 흔적' : '신축 분진'}을 중심으로 작업 범위를 상담합니다.`;
                   } else {
                     // 3. 경기 동/읍/면 단위
-                    return `${district} ${regionName} 입주청소는 입주일, 평수, 집 상태에 따라 작업 범위가 달라질 수 있습니다. 욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 입주 전에 먼저 확인하는 것이 좋습니다.`;
+                    return `${district} ${regionName} ${workName}는 ${isMoving ? '이사' : '입주'}일, 평수, 집 상태에 따라 작업 범위가 달라질 수 있습니다. 욕실·주방·베란다·창틀·${isMoving ? '찌든 오염' : '분진 오염'}처럼 ${isMoving ? '이사' : '입주'} 후 직접 정리하기 번거로운 구간을 ${isMoving ? '이사' : '입주'} 전에 먼저 확인하는 것이 좋습니다.`;
                   }
                 } else {
                   // 4. 시 / 군 / 구 단위
-                  return `${regionName} 입주청소는 신축·구축·인테리어 후 입주 여부에 따라 확인해야 할 공간이 달라질 수 있습니다. 입주 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 상태를 기준으로 작업 범위를 상담합니다.`;
+                  return `${regionName} ${workName}는 신축·구축·인테리어 후 ${isMoving ? '이사' : '입주'} 여부에 따라 확인해야 할 공간이 달라질 수 있습니다. ${isMoving ? '이사' : '입주'} 전 욕실, 주방, 베란다·창틀, ${isMoving ? '찌든 때' : '분진 오염'} 등 주요 공간의 상태를 기준으로 작업 범위를 상담합니다.`;
                 }
               })()}
             </p>
@@ -1015,12 +1039,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           
           {/* 섹션 상단 헤더 */}
           <div className={styles.sectionHeader}>
-            <span className="guide-section-badge">입주청소 검수 포인트</span>
+            <span className="guide-section-badge">{workName} 검수 포인트</span>
             <h2 className="guide-section-title">
-              {regionName} 입주청소 핵심 검수 범위
+              {regionName} {workName} 핵심 검수 범위
             </h2>
             <p className="guide-section-desc">
-              입주 전 가장 많이 확인하는 <span className="highlight-text">욕실·주방·베란다·분진 오염</span>을 중심으로 청소합니다.
+              {isMoving ? '이사' : '입주'} 전 가장 많이 확인하는 <span className="highlight-text">욕실·주방·베란다·생활 오염</span>을 중심으로 청소합니다.
             </p>
           </div>
 
@@ -1050,11 +1074,11 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           {/* 하단 설명 및 단일 CTA */}
           <div className="guide-bottom-content">
             <p className="guide-bottom-notice">
-              입주일, 평수, 오염 상태에 따라 작업 범위가 달라질 수 있습니다.
+              {isMoving ? '이사일' : '입주일'}, 평수, 오염 상태에 따라 작업 범위가 달라질 수 있습니다.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center', marginTop: '1.5rem' }}>
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '260px', textAlign: 'center', boxShadow: '0 4px 14px 0 rgba(0, 112, 243, 0.3)' }}>
-                입주청소 작업 범위 상담
+                {workName} 작업 범위 상담
               </a>
             </div>
           </div>
