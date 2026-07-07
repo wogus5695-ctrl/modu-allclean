@@ -810,79 +810,51 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             padding: 56px 0 !important;
           }
           .cleaning-grid {
-            display: none; /* 모바일에서는 정적 그리드 숨김 */
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 16px !important;
+            padding: 10px 16px 24px 16px !important;
+            margin-left: -20px !important;
+            margin-right: -20px !important;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+          }
+          /* 스크롤바 숨기기 */
+          .cleaning-grid::-webkit-scrollbar {
+            display: none;
+          }
+          .cleaning-grid {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
           }
           
-          /* 모바일 전용 카루셀 */
-          .cleaning-slider-viewport {
-            display: block;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-            box-sizing: border-box;
+          .cleaning-card {
+            flex-shrink: 0 !important;
+            width: 280px !important;
+            scroll-snap-align: center !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05) !important;
           }
-          .cleaning-slider-track {
-            display: flex;
-            transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
-            width: 100%;
-            box-sizing: border-box;
+          
+          .card-image-frame {
+            aspect-ratio: 4 / 3 !important;
           }
-          .cleaning-slider-item {
-            width: 100%;
-            flex-shrink: 0;
-            padding: 0 16px;
-            box-sizing: border-box;
+          
+          .card-body {
+            padding: 16px !important;
           }
-          .cleaning-slider-item .cleaning-card {
-            width: calc(100% - 32px);
-            max-width: 360px;
-            margin: 0 auto;
-            border-radius: 20px;
-            background: #ffffff;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-            box-sizing: border-box;
+          
+          .card-title {
+            font-size: 1.05rem !important;
           }
-          .cleaning-slider-item .card-image-frame {
-            aspect-ratio: 4 / 3; /* 모바일 aspect-ratio 4:3 고정 */
-            width: 100%;
-            overflow: hidden;
-            display: block;
-          }
-          .cleaning-slider-item .card-body {
-            padding: 20px;
-            box-sizing: border-box;
-          }
-          .cleaning-slider-item .card-title {
-            font-size: 1.05rem;
-          }
-          .cleaning-slider-item .card-desc {
-            font-size: 0.85rem;
-            margin-bottom: 12px;
+          
+          .card-desc {
+            font-size: 0.85rem !important;
+            margin-bottom: 12px !important;
             display: -webkit-box;
-            -webkit-line-clamp: 2; /* 2줄 제한 */
+            -webkit-line-clamp: 2;
             -webkit-box-orient: vertical;
             overflow: hidden;
-          }
-          .cleaning-dot-pagination {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 1.5rem;
-          }
-          .cleaning-dot-indicator {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: #cbd5e1;
-            border: none;
-            padding: 0;
-            cursor: pointer;
-            transition: all 0.2s ease;
-          }
-          .cleaning-dot-indicator.active {
-            background-color: #2563eb; /* 활성 도트 브랜드 블루 */
-            width: 20px;
-            border-radius: 4px;
           }
         }
       `}</style>
@@ -1042,12 +1014,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
               <div key={idx} className="cleaning-guide-card">
                 <div className="card-top-content">
                   <h3 className="card-title">
-                    <span className="pc-card-title-text">{card.title}</span>
-                    <span className="mo-card-title-text" style={{ display: 'none' }}>{card.title.replace(' 청소', '')}</span>
+                    <span>{card.title}</span>
                   </h3>
                   <p className="card-desc">
-                    <span className="pc-card-desc-text">{card.desc}</span>
-                    <span className="mo-card-desc-text" style={{ display: 'none' }}>{card.moDesc}</span>
+                    <span>{card.desc}</span>
                   </p>
                 </div>
                 <div className="card-tag-wrapper">
@@ -1210,7 +1180,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             </p>
           </div>
 
-          {/* PC & 태블릿용 정적 카드 그리드 영역 */}
+          {/* 단일 마크업 기반 카드 그리드 & 모바일 가로 스크롤 스냅 레이아웃 (CSS media query로 제어) */}
           <div className="cleaning-grid">
             {staticCleaningPoints.map((point, idx) => (
               <div key={idx} className="cleaning-card">
@@ -1232,57 +1202,6 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                 </div>
               </div>
             ))}
-          </div>
-
-          {/* 모바일 전용 카루셀 영역 */}
-          <div 
-            className="cleaning-slider-viewport"
-            onMouseEnter={() => setIsHovering(true)}
-            onMouseLeave={() => setIsHovering(false)}
-            onTouchStart={() => setIsHovering(true)}
-            onTouchEnd={() => setIsHovering(false)}
-          >
-            <div 
-              className="cleaning-slider-track"
-              style={{
-                transform: `translateX(-${currentSlide * 100}%)`
-              }}
-            >
-              {staticCleaningPoints.map((point, idx) => (
-                <div key={idx} className="cleaning-slider-item">
-                  <div className="cleaning-card">
-                    <div className="card-image-frame">
-                      <img src={point.img} alt={`${regionName} 입주청소 ${point.title} 상태 예시`} />
-                    </div>
-                    <div className="card-body">
-                      <div>
-                        <h3 className="card-title">{point.title}</h3>
-                        <p className="card-desc">{point.description}</p>
-                      </div>
-                      <div className="card-tags">
-                        {point.tags.slice(0, 3).map((tag, tIdx) => (
-                          <span key={tIdx} className="card-tag">
-                            #{tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* 모바일 카루셀 닷 페이지네이션 */}
-            <div className="cleaning-dot-pagination">
-              {staticCleaningPoints.map((_, idx) => (
-                <button
-                  key={idx}
-                  className={`cleaning-dot-indicator ${idx === currentSlide ? 'active' : ''}`}
-                  onClick={() => setCurrentSlide(idx)}
-                  aria-label={`${idx + 1}번째 작업 예시로 이동`}
-                ></button>
-              ))}
-            </div>
           </div>
 
           {/* 하단 안내 및 낮은 위계의 텍스트 CTA */}
