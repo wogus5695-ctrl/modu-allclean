@@ -35,12 +35,19 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
   
   // 정확히 매핑이 안 되었고 인천이 아닌 경우 정규화 적용 (서울/경기 접미사 제거형 대응)
   if (!region && city !== 'incheon') {
-    targetDistrictSlug = decodedDistrict.replace(/-gu$/, '').replace(/-si$/, '');
-    region = regions.find(r => 
-      r.regionSlug === city && 
-      r.districtSlug === targetDistrictSlug && 
-      r.subDistrictSlug === subDistrictSlug
-    );
+    // 만약 데이터베이스의 districtSlug가 gwangju-si 처럼 접미사가 붙어있는데 요청 URL이 gwangju 인 경우 대응
+    // 혹은 반대로 데이터베이스는 yangju 인데 요청 URL이 yangju-si 인 경우 대응
+    const cleanParam = decodedDistrict.replace(/-gu$/, '').replace(/-si$/, '');
+    
+    region = regions.find(r => {
+      if (r.regionSlug !== city || r.subDistrictSlug !== subDistrictSlug) return false;
+      const cleanDb = r.districtSlug.replace(/-gu$/, '').replace(/-si$/, '');
+      return cleanDb === cleanParam;
+    });
+
+    if (region) {
+      targetDistrictSlug = region.districtSlug;
+    }
   }
   
   // 신규 데이터 구조 매칭 (동 단위 매칭 우선)
