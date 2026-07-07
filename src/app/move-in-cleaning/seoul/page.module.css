@@ -137,3 +137,44 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* 앵커 버튼 바로가기 스타일 */
+.anchorWrapper {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.anchorBtn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.anchorBtn:hover {
+  background-color: #ffffff;
+  color: #1e3a8a;
+  border-color: #ffffff;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .anchorWrapper {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 20px;
+    gap: 8px;
+  }
+  .anchorBtn {
+    text-align: center;
+    padding: 12px;
+  }
+}

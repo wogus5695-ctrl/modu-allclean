@@ -7,8 +7,8 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: '수도권 입주청소 지역별 안내 | 모두종합환경',
-  description: '서울, 인천, 경기 전 지역의 구·동·시 단위 입주청소 페이지를 한눈에 볼 수 있는 통합 허브입니다. 각 지역별 욕실, 주방, 베란다·창틀, 분진 오염 등 입주 전 확인 공간을 안내합니다.',
+  title: '수도권 입주청소 지역별 키워드 통합 허브 | 모두종합환경',
+  description: '서울·인천·경기 지역별 입주청소 페이지를 한 곳에서 확인할 수 있습니다. 구·동·시·읍·면 단위 입주청소 키워드를 지역별로 정리했습니다.',
 };
 
 export default function MoveInCleaningUnifiedHubPage() {
@@ -24,9 +24,9 @@ export default function MoveInCleaningUnifiedHubPage() {
     if (districts.length === 0) return null;
 
     return (
-      <div style={{ marginTop: '50px' }}>
+      <div id={`section-${citySlug}`} style={{ marginTop: '50px', scrollMarginTop: '20px' }}>
         <h2 style={{ fontSize: '24px', fontWeight: '800', color: '#1e3a8a', borderLeft: '5px solid #2563eb', paddingLeft: '12px', marginBottom: '25px' }}>
-          {cityTitle} 입주청소 지역 안내
+          {cityTitle} 지역 안내
         </h2>
         <div className={styles.grid}>
           {districts.map(dSlug => {
@@ -98,12 +98,19 @@ export default function MoveInCleaningUnifiedHubPage() {
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <div className={styles.container}>
-          <span className={styles.badge}>CLEANING UNIFIED MAP</span>
+          <span className={styles.badge}>수도권 입주청소 통합 허브</span>
           <h1 className={styles.title}>수도권 입주청소 지역별 안내</h1>
           <p className={styles.subtitle}>
-            서울·인천·경기 전 지역의 구·동·시 단위 입주청소 세부 작업 페이지를 한눈에 확인하실 수 있습니다.<br />
-            입주 전 욕실 물때, 주방 기름때, 신축 분진, 창틀 먼지 등 맞춤 관리가 필요한 주거 구역의 정보와 예시를 제공합니다.
+            서울·인천·경기 입주청소 키워드를 한 곳에서 관리하는 통합 허브입니다.<br />
+            각 지역별 링크는 해당 지역 입주청소 전용 페이지로 연결됩니다.
           </p>
+          
+          {/* 상단 요약 / 지역 바로가기 앵커 버튼 */}
+          <div className={styles.anchorWrapper}>
+            <a href="#section-seoul" className={styles.anchorBtn}>서울특별시 바로가기</a>
+            <a href="#section-incheon" className={styles.anchorBtn}>인천광역시 바로가기</a>
+            <a href="#section-gyeonggi" className={styles.anchorBtn}>경기도 바로가기</a>
+          </div>
         </div>
       </header>
 

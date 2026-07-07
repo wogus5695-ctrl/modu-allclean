@@ -130,7 +130,7 @@ export async function GET() {
   <channel>
     <title>${BRAND_NAME}</title>
     <link>${DOMAIN}/</link>
-    <description>서울 주요 지역 종합청소 상담 안내</description>
+    <description>서울, 인천, 경기 수도권 주요 지역 종합청소 및 입주청소 전문 상담 안내</description>
     <language>ko-KR</language>
     <lastBuildDate>${buildDate}</lastBuildDate>
     ${items.join('')}
