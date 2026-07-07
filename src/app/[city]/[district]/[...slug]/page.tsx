@@ -484,6 +484,7 @@ export async function generateStaticParams() {
     });
   });
 
+  // 3. INDEXED_DONG_COMBINATIONS 수동 등록 처리
   INDEXED_DONG_COMBINATIONS.forEach(combo => {
     const service = services.find(s => combo.endsWith(s.id));
     if (service) {
@@ -507,6 +508,20 @@ export async function generateStaticParams() {
       }
     }
   });
+
+  // 4. 입주청소(move-in-cleaning) 및 이사청소(moving-cleaning)의 동 단위 자동 빌드 대상 추가
+  const moveOrMovingServices = services.filter(s => s.serviceSlug === 'move-in-cleaning' || s.serviceSlug === 'moving-cleaning');
+  regions
+    .filter(r => r.subDistrictSlug !== 'all' && ['seoul', 'incheon', 'gyeonggi'].includes(r.regionSlug))
+    .forEach(region => {
+      moveOrMovingServices.forEach(service => {
+        params.push({
+          city: region.regionSlug,
+          district: region.districtSlug,
+          slug: [region.subDistrictSlug, service.serviceSlug]
+        });
+      });
+    });
 
   return params;
 }
