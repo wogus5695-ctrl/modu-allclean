@@ -207,8 +207,8 @@ export default async function LandingPage({ params }: Props) {
   let title = '';
   let description = '';
 
+  let representativeArea = '';
   if (isMoveIn) {
-    let representativeArea = '';
     const isIncheon = region.regionSlug === 'incheon';
 
     if (!isDistrictLevel) {
@@ -421,7 +421,7 @@ export default async function LandingPage({ params }: Props) {
           />
         )}
         {seoRegion && (
-          <MoveInCleaningTemplate data={landingData || {} as any} regionObj={seoRegion} currentService={seoService} />
+          <MoveInCleaningTemplate data={landingData || {} as any} regionObj={{ ...seoRegion, displayNameKo: representativeArea }} currentService={seoService} />
         )}
       </>
     );

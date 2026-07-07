@@ -1301,11 +1301,26 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       </section>
 
       {/* 9. 하단 CTA 및 주변 지역 링크 안내 */}
-      <section style={{ padding: '40px 20px', backgroundColor: '#f9f9f9', borderTop: '1px solid #eaeaea', textAlign: 'center' }}>
+      <section style={{ padding: '50px 20px', backgroundColor: '#f0f7ff', borderTop: '1px solid #eaeaea', textAlign: 'center' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+          <h2 style={{ fontSize: '24px', fontWeight: '800', color: '#0f172a', marginBottom: '8px' }}>
+            {regionName} 입주청소가 필요하신가요?
+          </h2>
+          <p style={{ fontSize: '15px', color: '#475569', marginBottom: '25px' }}>
+            입주일, 평수, 오염 상태를 기준으로 작업 가능 여부를 확인해드립니다.
+          </p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '30px' }}>
+            <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '220px', textAlign: 'center' }}>
+              전화 견적 상담
+            </a>
+            <a href={CONTACT_KAKAOTALK} target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtn} ${styles.kakao}`} style={{ minWidth: '220px', textAlign: 'center' }}>
+              우리 집 상태도 상담하기
+            </a>
+          </div>
+
           <h3 style={{ fontSize: '15px', color: '#555', marginBottom: '15px', fontWeight: 'bold' }}>{parentRegion} 주변 지역 입주청소 및 이사청소 안내</h3>
           <p style={{ fontSize: '13px', color: '#777', lineHeight: '1.8', marginBottom: '20px', wordBreak: 'keep-all' }}>
-            {BRAND_NAME}은 {parentRegion} 지역의 일반 입주청소, 신축 아파트 준공청소, 원룸 이사청소, 인테리어 후 청소 등 주거 공간 맞춤 클리닝을 직접 제공합니다. 
+            {BRAND_NAME}은 {regionName} 지역의 일반 입주청소, 신축 아파트 준공청소, 원룸 이사청소, 인테리어 후 청소 등 주거 공간 맞춤 클리닝을 안내합니다. 
             인근 행정 구역의 세부 작업 내용이 필요하시다면 아래 링크를 참고하여 정밀한 상태별 솔루션을 안내받아 보세요.
           </p>
           {regionObj?.relatedAreaLinks && regionObj.relatedAreaLinks.length > 0 && (
