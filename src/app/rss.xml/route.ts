@@ -55,31 +55,58 @@ export async function GET() {
             // 인천 구 단위 입주/이사청소 (인천은 접미사 없음)
             const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
             const representativeArea = `인천 ${cleanDistrict}`;
-            addRssItem(
-              `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
-              `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
-              `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
-            );
+            
+            if (isMoving) {
+              addRssItem(
+                `${representativeArea} 이사청소 | 욕실·주방·베란다 정리 - ${BRAND_NAME}`,
+                `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+                `${representativeArea} 이사청소 상담. 이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.`
+              );
+            } else {
+              addRssItem(
+                `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
+                `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+                `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
+              );
+            }
           } else {
             // 서울/경기 구/시 단위 입주/이사청소 (canonical인 접미사 -gu/-si 포함 주소만 등록)
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
             const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
             const representativeArea = cleanDistrict;
-            addRssItem(
-              `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
-              `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
-              `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
-            );
+            
+            if (isMoving) {
+              addRssItem(
+                `${representativeArea} 이사청소 | 욕실·주방·베란다 정리 - ${BRAND_NAME}`,
+                `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
+                `${representativeArea} 이사청소 상담. 이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.`
+              );
+            } else {
+              addRssItem(
+                `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
+                `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
+                `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
+              );
+            }
 
             // 서울/경기 구 제거형 입주/이사청소
             if (region.districtSlug !== 'jung-gu') {
               const cleanShortDistrict = region.district.replace(/(구|시)$/, '').replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
               const representativeAreaShort = cleanShortDistrict;
-              addRssItem(
-                `${representativeAreaShort} ${workName} | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`,
-                `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
-                `${representativeAreaShort} ${workName} 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`
-              );
+              
+              if (isMoving) {
+                addRssItem(
+                  `${representativeAreaShort} 이사청소 | 이사 전후 욕실·주방 청소 - ${BRAND_NAME}`,
+                  `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+                  `${representativeAreaShort} 이사청소 상담. 이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.`
+                );
+              } else {
+                addRssItem(
+                  `${representativeAreaShort} ${workName} | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`,
+                  `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+                  `${representativeAreaShort} ${workName} 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`
+                );
+              }
             }
           }
           return;
@@ -137,11 +164,19 @@ export async function GET() {
               representativeArea = isConflictGyeonggi ? `${districtName.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
             }
 
-            addRssItem(
-              `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
-              `/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
-              `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
-            );
+            if (isMoving) {
+              addRssItem(
+                `${representativeArea} 이사청소 | 욕실·주방·베란다 정리 - ${BRAND_NAME}`,
+                `/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
+                `${representativeArea} 이사청소 상담. 이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.`
+              );
+            } else {
+              addRssItem(
+                `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
+                `/${dong.regionSlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${service.serviceSlug}`,
+                `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
+              );
+            }
             return;
           }
 
