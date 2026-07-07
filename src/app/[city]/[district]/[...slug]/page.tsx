@@ -16,23 +16,26 @@ type Props = {
 
 function getRegionAndService(city: string, district: string, slug: string[]) {
   if (!slug || slug.length === 0) return { region: null, service: null, seoRegion: null, seoService: null };
-  const serviceSlug = slug[slug.length - 1];
-  const subDistrictSlug = slug.length > 1 ? slug[0] : 'all';
+  const decodedDistrict = decodeURIComponent(district);
+  const decodedSlug = slug.map(s => decodeURIComponent(s));
+  
+  const serviceSlug = decodedSlug[decodedSlug.length - 1];
+  const subDistrictSlug = decodedSlug.length > 1 ? decodedSlug[0] : 'all';
 
   const service = services.find(s => s.serviceSlug === serviceSlug);
   
   // 1차적으로 정확히 일치하는 districtSlug 매칭 시도
   let region = regions.find(r => 
     r.regionSlug === city && 
-    r.districtSlug === district && 
+    r.districtSlug === decodedDistrict && 
     r.subDistrictSlug === subDistrictSlug
   );
   
-  let targetDistrictSlug = district;
+  let targetDistrictSlug = decodedDistrict;
   
   // 정확히 매핑이 안 되었고 인천이 아닌 경우 정규화 적용 (서울/경기 접미사 제거형 대응)
   if (!region && city !== 'incheon') {
-    targetDistrictSlug = district.replace(/-gu$/, '').replace(/-si$/, '');
+    targetDistrictSlug = decodedDistrict.replace(/-gu$/, '').replace(/-si$/, '');
     region = regions.find(r => 
       r.regionSlug === city && 
       r.districtSlug === targetDistrictSlug && 
