@@ -16,7 +16,34 @@ interface MoveInCleaningTemplateProps {
 }
 
 export default function MoveInCleaningTemplate({ data, regionObj, currentService }: MoveInCleaningTemplateProps) {
-  const regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
+  // 대표지역명(displayNameKo 등) 규칙 바인딩
+  const isDistrict = regionObj?.regionType === 'district' || regionObj?.subDistrict === '전지역';
+  const cityName = regionObj?.city || '';
+  
+  let regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
+  
+  if (!isDistrict) {
+    const neighborhood = regionObj?.subDistrict || '';
+    const district = regionObj?.district || '';
+    if (regionObj?.citySlug === 'seoul') {
+      regionName = neighborhood;
+    } else if (regionObj?.citySlug === 'incheon') {
+      const isConflict = ['논현동', '신흥동'].includes(neighborhood);
+      regionName = isConflict ? `인천 ${neighborhood}` : neighborhood;
+    } else {
+      const isConflict = ['문산읍', '신흥동', '중앙동', '역삼동', '신교동', '성남동', '태평동', '수진동', '단대동', '상대원동'].includes(neighborhood);
+      regionName = isConflict ? `${district.replace(/(시|군)$/, '')} ${neighborhood}` : neighborhood;
+    }
+  } else {
+    // 구 단위
+    const cleanDistrict = (regionObj?.districtNameKo || regionObj?.district || '').replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+    if (regionObj?.citySlug === 'incheon') {
+      regionName = `인천 ${cleanDistrict}`;
+    } else {
+      regionName = cleanDistrict;
+    }
+  }
+
   const parentRegion = regionObj?.district || '';
 
   // 입주청소 주요 작업 예시 정적 데이터 정의
