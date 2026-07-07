@@ -2702,56 +2702,56 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '김포시', subDistrict: '사우동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '사우-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'sau-dong',
     localDescription: '김포시 사우동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '풍무동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '풍무-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'pungmu-dong',
     localDescription: '김포시 풍무동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '장기동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '장기-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'janggi-dong',
     localDescription: '김포시 장기동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '운양동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '운양-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'unyang-dong',
     localDescription: '김포시 운양동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '구래동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '구래-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'gurae-dong',
     localDescription: '김포시 구래동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '마산동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '마산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'masan-dong',
     localDescription: '김포시 마산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '북변동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '북변-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'bukbyeon-dong',
     localDescription: '김포시 북변동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '김포시', subDistrict: '걸포동',
-    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: '걸포-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gimpo', subDistrictSlug: 'geolpo-dong',
     localDescription: '김포시 걸포동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -2765,70 +2765,70 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '고양시', subDistrict: '식사동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '식사-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'siksa-dong',
     localDescription: '고양시 식사동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '중산동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '중산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'jungsan-dong',
     localDescription: '고양시 중산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '정발산동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '정발산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'jeongbalsan-dong',
     localDescription: '고양시 정발산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '장항동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '장항-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'janghang-dong',
     localDescription: '고양시 장항동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '마두동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '마두-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'madu-dong',
     localDescription: '고양시 마두동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '백석동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '백석-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'baekseok-dong',
     localDescription: '고양시 백석동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '화정동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '화정-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'hwajeong-dong',
     localDescription: '고양시 화정동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '행신동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '행신-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'haengsin-dong',
     localDescription: '고양시 행신동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '삼송동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '삼송-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'samsong-dong',
     localDescription: '고양시 삼송동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '고양시', subDistrict: '원흥동',
-    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: '원흥-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'goyang', subDistrictSlug: 'wonheung-dong',
     localDescription: '고양시 원흥동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -2842,49 +2842,49 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '파주시', subDistrict: '금촌동',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '금촌-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'geumchon-dong',
     localDescription: '파주시 금촌동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '파주시', subDistrict: '야당동',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '야당-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'yadang-dong',
     localDescription: '파주시 야당동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '파주시', subDistrict: '다율동',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '다율-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'dayul-dong',
     localDescription: '파주시 다율동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '파주시', subDistrict: '목동동',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '목-dong동',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'mokdong-dong',
     localDescription: '파주시 목동동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '파주시', subDistrict: '와동동',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '와-dong동',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'wadong-dong',
     localDescription: '파주시 와동동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '파주시', subDistrict: '문산읍',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '문산-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'munsan-eup',
     localDescription: '파주시 문산읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '파주시', subDistrict: '조리읍',
-    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: '조리-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'paju', subDistrictSlug: 'jori-eup',
     localDescription: '파주시 조리읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -2898,42 +2898,42 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '양주시', subDistrict: '삼숭동',
-    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: '삼숭-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: 'samsung-dong',
     localDescription: '양주시 삼숭동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '양주시', subDistrict: '고읍동',
-    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: '고-eup-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: 'goeup-dong',
     localDescription: '양주시 고읍동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '양주시', subDistrict: '덕정동',
-    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: '덕정-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: 'deokjeong-dong',
     localDescription: '양주시 덕정동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '양주시', subDistrict: '옥정동',
-    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: '옥정-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: 'okjeong-dong',
     localDescription: '양주시 옥정동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '양주시', subDistrict: '광사동',
-    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: '광사-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: 'gwangsa-dong',
     localDescription: '양주시 광사동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '양주시', subDistrict: '백석읍',
-    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: '백석-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'yangju', subDistrictSlug: 'baekseok-eup',
     localDescription: '양주시 백석읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -2947,56 +2947,56 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '의정부시', subDistrict: '의정부동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '의정부-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'uijeongbu-dong',
     localDescription: '의정부시 의정부동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '호원동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '호원-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'howon-dong',
     localDescription: '의정부시 호원동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '장암동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '장암-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'jangam-dong',
     localDescription: '의정부시 장암동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '신곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '신곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'singok-dong',
     localDescription: '의정부시 신곡동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '송산동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '송산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'songsan-dong',
     localDescription: '의정부시 송산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '자금동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '자금-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'jageum-dong',
     localDescription: '의정부시 자금동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '가능동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '가능-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'ganeung-dong',
     localDescription: '의정부시 가능동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의정부시', subDistrict: '녹양동',
-    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: '녹양-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uijeongbu', subDistrictSlug: 'nogyang-dong',
     localDescription: '의정부시 녹양동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3010,70 +3010,70 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '남양주시', subDistrict: '와부읍',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '와부-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'wabu-eup',
     localDescription: '남양주시 와부읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '진접읍',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '진접-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'jinjeop-eup',
     localDescription: '남양주시 진접읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '화도읍',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '화도-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'hwado-eup',
     localDescription: '남양주시 화도읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '진건읍',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '진건-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'jingeon-eup',
     localDescription: '남양주시 진건읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '오남읍',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '오남-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'onam-eup',
     localDescription: '남양주시 오남읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '별내면',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '별내-myeon',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'byeollae-myeon',
     localDescription: '남양주시 별내면의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '다산동',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '다산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'dasan-dong',
     localDescription: '남양주시 다산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '별내동',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '별내-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'byeollae-dong',
     localDescription: '남양주시 별내동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '호평동',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '호평-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'hopyeong-dong',
     localDescription: '남양주시 호평동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '남양주시', subDistrict: '평내동',
-    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: '평내-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'namyangju', subDistrictSlug: 'pyeongnae-dong',
     localDescription: '남양주시 평내동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3087,56 +3087,56 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '광주시', subDistrict: '경안동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '경안-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'gyeongan-dong',
     localDescription: '광주시 경안동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '쌍령동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '쌍령-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'ssangryeong-dong',
     localDescription: '광주시 쌍령동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '송정동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '송정-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'songjeong-dong',
     localDescription: '광주시 송정동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '탄벌동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '탄벌-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'tanbeol-dong',
     localDescription: '광주시 탄벌동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '광남동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '광남-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'gwangnam-dong',
     localDescription: '광주시 광남동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '오포읍',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '오포-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'opo-eup',
     localDescription: '광주시 오포읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '초월읍',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '초월-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'chowol-eup',
     localDescription: '광주시 초월읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '광주시', subDistrict: '곤지암읍',
-    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: '곤지암-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'gwangju-si', subDistrictSlug: 'gonjiam-eup',
     localDescription: '광주시 곤지암읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3150,42 +3150,42 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '이천시', subDistrict: '창전동',
-    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: '창전-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: 'changjeon-dong',
     localDescription: '이천시 창전동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '이천시', subDistrict: '관고동',
-    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: '관고-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: 'gwango-dong',
     localDescription: '이천시 관고동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '이천시', subDistrict: '중리동',
-    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: '중리-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: 'jungni-dong',
     localDescription: '이천시 중리동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '이천시', subDistrict: '증포동',
-    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: '증포-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: 'jeungpo-dong',
     localDescription: '이천시 증포동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '이천시', subDistrict: '마장면',
-    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: '마장-myeon',
+    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: 'majang-myeon',
     localDescription: '이천시 마장면의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '이천시', subDistrict: '부발읍',
-    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: '부발-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'icheon', subDistrictSlug: 'bubal-eup',
     localDescription: '이천시 부발읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3199,77 +3199,77 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '용인시', subDistrict: '신갈동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '신갈-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'singal-dong',
     localDescription: '용인시 신갈동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '구갈동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '구갈-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'gugal-dong',
     localDescription: '용인시 구갈동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '상갈동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '상갈-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'sanggal-dong',
     localDescription: '용인시 상갈동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '기흥동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '기흥-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'giheung-dong',
     localDescription: '용인시 기흥동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '서농동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '서농-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'seonong-dong',
     localDescription: '용인시 서농동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '구성동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '구성-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'guseong-dong',
     localDescription: '용인시 구성동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '마북동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '마북-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'mabuk-dong',
     localDescription: '용인시 마북동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '동백동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '-dong백동',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'dongbaek-dong',
     localDescription: '용인시 동백동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '상현동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '상현-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'sanghyeon-dong',
     localDescription: '용인시 상현동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '풍덕천동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '풍덕천-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'pungdeokcheon-dong',
     localDescription: '용인시 풍덕천동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '용인시', subDistrict: '죽전동',
-    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: '죽전-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'yongin', subDistrictSlug: 'jukjeon-dong',
     localDescription: '용인시 죽전동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3283,42 +3283,42 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '오산시', subDistrict: '중앙동',
-    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: '중앙-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: 'jungang-dong',
     localDescription: '오산시 중앙동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '오산시', subDistrict: '남촌동',
-    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: '남촌-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: 'namchon-dong',
     localDescription: '오산시 남촌동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '오산시', subDistrict: '신장동',
-    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: '신장-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: 'sinjang-dong',
     localDescription: '오산시 신장동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '오산시', subDistrict: '세마동',
-    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: '세마-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: 'sema-dong',
     localDescription: '오산시 세마동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '오산시', subDistrict: '초평동',
-    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: '초평-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: 'chopyeong-dong',
     localDescription: '오산시 초평동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '오산시', subDistrict: '대원동',
-    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: '대원-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'osan', subDistrictSlug: 'daewon-dong',
     localDescription: '오산시 대원동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3332,154 +3332,154 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '수원시', subDistrict: '파장동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '파장-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'pajang-dong',
     localDescription: '수원시 파장동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '율천동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '율천-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'yulcheon-dong',
     localDescription: '수원시 율천동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '정자동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '정자-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'jeongja-dong',
     localDescription: '수원시 정자동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '영화동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '영화-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'yeonghwa-dong',
     localDescription: '수원시 영화동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '송죽동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '송죽-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'songjuk-dong',
     localDescription: '수원시 송죽동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '조원동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '조원-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'jowon-dong',
     localDescription: '수원시 조원동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '연무동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '연무-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'yeonmu-dong',
     localDescription: '수원시 연무동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '세류동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '세류-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'seryu-dong',
     localDescription: '수원시 세류동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '평동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '평-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'pyeong-dong',
     localDescription: '수원시 평동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '서둔동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '서둔-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'seodun-dong',
     localDescription: '수원시 서둔동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '구운동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '구운-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'guun-dong',
     localDescription: '수원시 구운동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '금곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '금곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'geumgok-dong',
     localDescription: '수원시 금곡동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '호매실동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '호매실-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'homaesil-dong',
     localDescription: '수원시 호매실동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '권선동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '권선-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'gwonseon-dong',
     localDescription: '수원시 권선동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '곡선동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '곡선-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'gokseon-dong',
     localDescription: '수원시 곡선동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '지동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '지-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'ji-dong',
     localDescription: '수원시 지동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '우만동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '우만-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'uman-dong',
     localDescription: '수원시 우만동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '인계동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '인계-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'ingye-dong',
     localDescription: '수원시 인계동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '매탄동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '매탄-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'maetan-dong',
     localDescription: '수원시 매탄동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '원천동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '원천-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'woncheon-dong',
     localDescription: '수원시 원천동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '영통동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '영통-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'yeongtong-dong',
     localDescription: '수원시 영통동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '수원시', subDistrict: '태장동',
-    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: '태장-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'suwon', subDistrictSlug: 'taejang-dong',
     localDescription: '수원시 태장동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3493,63 +3493,63 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '군포시', subDistrict: '군포동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '군포-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'gunpo-dong',
     localDescription: '군포시 군포동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '산본동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '산본-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'sanbon-dong',
     localDescription: '군포시 산본동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '금정동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '금정-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'geumjeong-dong',
     localDescription: '군포시 금정동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '재궁동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '재궁-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'jaegung-dong',
     localDescription: '군포시 재궁동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '오금동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '오금-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'ogeum-dong',
     localDescription: '군포시 오금동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '수리동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '수리-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'suri-dong',
     localDescription: '군포시 수리동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '궁내동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '궁내-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'gungnae-dong',
     localDescription: '군포시 궁내동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '대야동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '대야-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'daeya-dong',
     localDescription: '군포시 대야동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '군포시', subDistrict: '송부동',
-    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: '송부-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gunpo', subDistrictSlug: 'songbu-dong',
     localDescription: '군포시 송부동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3563,35 +3563,35 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '의왕시', subDistrict: '고천동',
-    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: '고천-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: 'gocheon-dong',
     localDescription: '의왕시 고천동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의왕시', subDistrict: '부곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: '부곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: 'bugok-dong',
     localDescription: '의왕시 부곡동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의왕시', subDistrict: '오전동',
-    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: '오전-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: 'ojeon-dong',
     localDescription: '의왕시 오전동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의왕시', subDistrict: '내손동',
-    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: '내손-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: 'naeson-dong',
     localDescription: '의왕시 내손동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '의왕시', subDistrict: '청계동',
-    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: '청계-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'uiwang', subDistrictSlug: 'cheonggye-dong',
     localDescription: '의왕시 청계동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3605,42 +3605,42 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '과천시', subDistrict: '중앙동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: '중앙-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: 'jungang-dong',
     localDescription: '과천시 중앙동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '과천시', subDistrict: '갈현동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: '갈현-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: 'galhyeon-dong',
     localDescription: '과천시 갈현동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '과천시', subDistrict: '별양동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: '별양-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: 'byeolyang-dong',
     localDescription: '과천시 별양동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '과천시', subDistrict: '부림동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: '부림-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: 'burim-dong',
     localDescription: '과천시 부림동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '과천시', subDistrict: '과천동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: '과천-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: 'gwacheon-dong',
     localDescription: '과천시 과천동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '과천시', subDistrict: '문원동',
-    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: '문원-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'gwacheon', subDistrictSlug: 'munwon-dong',
     localDescription: '과천시 문원동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3654,70 +3654,70 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '안양시', subDistrict: '안양동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '안양-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'anyang-dong',
     localDescription: '안양시 안양동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '석수동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '석수-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'seoksu-dong',
     localDescription: '안양시 석수동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '박달동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '박달-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'bakdal-dong',
     localDescription: '안양시 박달동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '비산동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '비산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'bisan-dong',
     localDescription: '안양시 비산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '관양동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '관양-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'gwanyang-dong',
     localDescription: '안양시 관양동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '평촌동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '평촌-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'pyeongchon-dong',
     localDescription: '안양시 평촌동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '평안동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '평안-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'pyeongan-dong',
     localDescription: '안양시 평안동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '귀인동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '귀인-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'gwiin-dong',
     localDescription: '안양시 귀인동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '호계동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '호계-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'hogye-dong',
     localDescription: '안양시 호계동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안양시', subDistrict: '신촌동',
-    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: '신촌-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'anyang', subDistrictSlug: 'sinchon-dong',
     localDescription: '안양시 신촌동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3731,70 +3731,70 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '시흥시', subDistrict: '대야동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '대야-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'daeya-dong',
     localDescription: '시흥시 대야동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '신천동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '신천-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'sincheon-dong',
     localDescription: '시흥시 신천동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '은행동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '은행-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'eunhaeng-dong',
     localDescription: '시흥시 은행동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '매화동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '매화-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'maehwa-dong',
     localDescription: '시흥시 매화동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '목감동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '목감-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'mokgam-dong',
     localDescription: '시흥시 목감동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '군자동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '군자-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'gunja-dong',
     localDescription: '시흥시 군자동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '월곶동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '월곶-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'wolgot-dong',
     localDescription: '시흥시 월곶동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '정왕동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '정왕-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'jeongwang-dong',
     localDescription: '시흥시 정왕동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '배곧동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '배곧-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'baegot-dong',
     localDescription: '시흥시 배곧동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '시흥시', subDistrict: '능곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: '능곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'siheung', subDistrictSlug: 'neunggok-dong',
     localDescription: '시흥시 능곡동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3808,98 +3808,98 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '안산시', subDistrict: '일동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '일-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'il-dong',
     localDescription: '안산시 일동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '이동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '이-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'i-dong',
     localDescription: '안산시 이동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '사동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '사-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'sa-dong',
     localDescription: '안산시 사동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '본오동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '본오-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'bono-dong',
     localDescription: '안산시 본오동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '부곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '부곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'bugok-dong',
     localDescription: '안산시 부곡동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '월피동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '월피-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'wolpi-dong',
     localDescription: '안산시 월피동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '성포동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '성포-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'seongpo-dong',
     localDescription: '안산시 성포동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '와동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '와-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'wa-dong',
     localDescription: '안산시 와동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '고잔동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '고잔-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'gojan-dong',
     localDescription: '안산시 고잔동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '중앙동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '중앙-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'jungang-dong',
     localDescription: '안산시 중앙동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '호수동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '호수-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'hosu-dong',
     localDescription: '안산시 호수동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '원곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '원곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'wongok-dong',
     localDescription: '안산시 원곡동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '초지동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '초지-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'choji-dong',
     localDescription: '안산시 초지동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '안산시', subDistrict: '선부동',
-    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: '선부-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'ansan', subDistrictSlug: 'seonbu-dong',
     localDescription: '안산시 선부동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
@@ -3913,77 +3913,77 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '화성시', subDistrict: '봉담읍',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '봉담-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'bongdam-eup',
     localDescription: '화성시 봉담읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '우정읍',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '우정-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'ujeong-eup',
     localDescription: '화성시 우정읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '향남읍',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '향남-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'hyangnam-eup',
     localDescription: '화성시 향남읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '남양읍',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '남양-eup',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'namyang-eup',
     localDescription: '화성시 남양읍의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '새솔동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '새솔-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'saesol-dong',
     localDescription: '화성시 새솔동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '동탄동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '-dong탄동',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'dongtan-dong',
     localDescription: '화성시 동탄동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '진안동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '진안-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'jinan-dong',
     localDescription: '화성시 진안동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '병점동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '병점-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'byeongjeom-dong',
     localDescription: '화성시 병점동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '반월동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '반월-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'banwol-dong',
     localDescription: '화성시 반월동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '기배동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '기배-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'gibae-dong',
     localDescription: '화성시 기배동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
   },
   {
     city: '경기', district: '화성시', subDistrict: '화산동',
-    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: '화산-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'hwaseong', subDistrictSlug: 'hwasan-dong',
     localDescription: '화성시 화산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
