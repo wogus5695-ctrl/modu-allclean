@@ -122,6 +122,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       heroCheckDate: "입주일 기준 상담",
       whySectionTitle: "겉으로 깨끗해 보여도\n입주 전 확인해야 할 곳이 있습니다",
       whySectionDesc: "신축 분진, 전 세입자 흔적, 욕실 물때, 주방 기름때, 창틀 먼지, 수납장 내부 먼지는 입주 후 직접 정리하기 번거로운 경우가 많습니다.",
+      guideSectionTitle: `${regionName} 입주청소 핵심 검수 범위`,
       processTitle: "입주일에 맞춰\n범위·일정·견적을 먼저 정리합니다",
       processDesc: `${regionName} 입주청소는 입주일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.`,
       processDateText: "입주일이 가까운 경우, 먼저 가능 일정부터 확인하는 것이 좋습니다.",
@@ -140,8 +141,9 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       heroCheckDate: "이사일 기준 상담",
       whySectionTitle: "겉으로 깨끗해 보여도\n이사 전 확인해야 할 곳이 있습니다",
       whySectionDesc: "이전 세입자의 찌든 때 흔적, 주방 기름때, 욕실 물때 및 곰팡이, 창틀 고착 먼지는 이사 전에 전문 약품과 장비로 세정해야 쾌적하게 거주할 수 있습니다.",
+      guideSectionTitle: `${regionName} 이사청소 핵심 정리 범위`,
       processTitle: "이사일에 맞춰\n범위·일정·견적을 먼저 정리합니다",
-      processDesc: `${regionName} 이사청소는 이사 예정일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.`,
+      processDesc: `${regionName} 이사청소는 이사일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.`,
       processDateText: "이사일이 가까운 경우, 먼저 가능 일정부터 확인하는 것이 좋습니다.",
       processCtaLinkText: "이사일 전 일정 확인",
       portfolioTitle: "이사 전 확인이 필요한 공간,\n사진으로 먼저 확인하세요",
@@ -1049,6 +1051,16 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                 const neighborhood = regionObj?.subDistrict || '';
                 const district = regionObj?.district || '';
 
+                if (isMoving) {
+                  // 이사청소 전용 상단 안내 문단
+                  if (!isDistrictLevel) {
+                    const parentCity = citySlug === 'seoul' ? '' : (citySlug === 'incheon' ? '인천 ' : `${district.replace(/(시|군)$/, '')} `);
+                    return `${regionName} 이사청소는 이사 일정과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${parentCity}${regionName} 이사 전후에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지처럼 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
+                  } else {
+                    return `${regionName} 이사청소는 이사 일정과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${regionName} 이사 전후에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지처럼 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
+                  }
+                }
+
                 if (!isDistrictLevel) {
                   // 동 / 읍 / 면 단위 페이지
                   if (citySlug === 'seoul') {
@@ -1073,10 +1085,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           <div className={styles.sectionHeader}>
             <span className="guide-section-badge">{workName} 검수 포인트</span>
             <h2 className="guide-section-title">
-              {regionName} {workName} 핵심 검수 범위
+              {activeConfig.guideSectionTitle}
             </h2>
             <p className="guide-section-desc">
-              {isMoving ? '이사' : '입주'} 전 가장 많이 확인하는 <span className="highlight-text">욕실·주방·베란다·생활 오염</span>을 중심으로 청소합니다.
+              {isMoving ? '이사' : '입주'} 전후 가장 많이 확인하는 <span className="highlight-text">욕실·주방·베란다·생활 오염</span>을 중심으로 청소합니다.
             </p>
           </div>
 
