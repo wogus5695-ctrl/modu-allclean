@@ -22,7 +22,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   
   let regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
   
-  if (!isDistrict) {
+  // displayNameKo가 존재하고 유효한 경우, 상세 재파싱 로직을 우회하여 동적 지명이 유지되도록 조치
+  if (regionObj?.displayNameKo) {
+    regionName = regionObj.displayNameKo;
+  } else if (!isDistrict) {
     const neighborhood = regionObj?.subDistrict || '';
     const district = regionObj?.district || '';
     if (regionObj?.citySlug === 'seoul') {
