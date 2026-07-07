@@ -217,19 +217,19 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   if (isMoveIn) {
     if (!isDistrictLevel) {
       // 1. 동 단위 페이지
-      const neighborhoodName = region.subDistrict.replace(/^서울(특별)?시?\s*/, '');
-      const districtName = region.district.replace(/^서울(특별)?시?\s*/, '');
+      const neighborhoodName = region.subDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+      const districtName = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
       finalTitle = `${neighborhoodName} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
       finalDescription = `${neighborhoodName} 입주청소 상담. ${districtName} ${neighborhoodName} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
     } else {
       if (requestedDistrictParam && !requestedWithSuffix) {
         // 3. 구 제거형 페이지
-        const cleanShortDistrict = shortDistrict.replace(/^서울(특별)?시?\s*/, '');
+        const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
         finalTitle = `${cleanShortDistrict} 입주청소 | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
         finalDescription = `${cleanShortDistrict} 입주청소 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
       } else {
         // 2. 구 단위 페이지
-        const cleanDistrict = region.district.replace(/^서울(특별)?시?\s*/, '');
+        const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
         finalTitle = `${cleanDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
         finalDescription = `${cleanDistrict} 입주청소 상담. 신축 분진, 전 세입자 생활오염, 욕실 물때, 주방 기름때, 베란다·창틀 먼지를 입주 전 확인합니다.`;
       }
