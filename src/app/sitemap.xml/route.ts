@@ -14,6 +14,8 @@ export async function GET() {
   urls.push({ url: DOMAIN, priority: 1.0, changeFrequency: 'daily', lastModified: currentDate });
   urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
   urls.push({ url: `${DOMAIN}/move-in-cleaning/seoul`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
+  urls.push({ url: `${DOMAIN}/move-in-cleaning/incheon`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
+  urls.push({ url: `${DOMAIN}/move-in-cleaning/gyeonggi`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
 
   // 2. 서비스 기본 안내 페이지
   services.filter(s => s.indexStatus === 'index').forEach(service => {
@@ -49,29 +51,37 @@ export async function GET() {
 
       // 3-3. 구/시 단위 키워드 조합 (sitemap.xml에는 대표 index URL만 포함)
       activeServices.forEach(service => {
-        // 입주청소는 오직 서울(seoul) 지역만 생성
+        // 입주청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
         if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-          if (region.regionSlug !== 'seoul') return;
+          if (!['seoul', 'incheon', 'gyeonggi'].includes(region.regionSlug)) return;
 
-          const shortDistrict = region.district.replace(/(구|시)$/, '');
-          const suffix = '-gu';
-
-          // 서울 구 단위 입주청소
-          urls.push({
-            url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
-            priority: 0.7,
-            changeFrequency: 'weekly',
-            lastModified: currentDate
-          });
-
-          // 서울 구 제거형 입주청소 (중구 제외)
-          if (region.districtSlug !== 'jung-gu') {
+          if (region.regionSlug === 'incheon') {
+            // 인천 구 단위 입주청소 (인천은 접미사 없음)
             urls.push({
               url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
               priority: 0.7,
               changeFrequency: 'weekly',
               lastModified: currentDate
             });
+          } else {
+            // 서울/경기 구/시 단위 입주청소 (canonical인 접미사 -gu/-si 포함 주소만 sitemap에 등록)
+            const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+            urls.push({
+              url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
+              priority: 0.7,
+              changeFrequency: 'weekly',
+              lastModified: currentDate
+            });
+
+            // 서울/경기 구 제거형 입주청소 (중구 제외)
+            if (region.districtSlug !== 'jung-gu') {
+              urls.push({
+                url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+                priority: 0.7,
+                changeFrequency: 'weekly',
+                lastModified: currentDate
+              });
+            }
           }
           return;
         }
@@ -105,9 +115,9 @@ export async function GET() {
       
       if (isParentIndexed) {
         activeServices.forEach(service => {
-          // 입주청소는 오직 서울(seoul) 지역만 생성
+          // 입주청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
           if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-            if (dong.regionSlug !== 'seoul') return;
+            if (!['seoul', 'incheon', 'gyeonggi'].includes(dong.regionSlug)) return;
           }
 
           urls.push({

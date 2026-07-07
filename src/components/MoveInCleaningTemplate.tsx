@@ -983,7 +983,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
         <div className={styles.inner}>
 
           {/* 지역별 고유 설명 문단 배치 (Hero 바로 아래이자 작업 범위 섹션 상단) */}
-          <div className="region-specific-intro" style={{ marginBottom: '3.5rem', background: '#f8fafc', padding: '1.8rem 2.2rem', borderRadius: '16px', border: '1px solid #e2e8f0', textAlign: 'left', display: regionObj?.citySlug === 'seoul' ? 'block' : 'none' }}>
+          <div className="region-specific-intro" style={{ marginBottom: '3.5rem', background: '#f8fafc', padding: '1.8rem 2.2rem', borderRadius: '16px', border: '1px solid #e2e8f0', textAlign: 'left', display: ['seoul', 'incheon', 'gyeonggi'].includes(regionObj?.citySlug) ? 'block' : 'none' }}>
             <p style={{ fontSize: '1.025rem', lineHeight: '1.7', color: '#334155', margin: 0, fontWeight: '500', wordBreak: 'keep-all' }}>
               {regionObj?.regionType === 'neighborhood' ? (
                 // 1. 동 단위 페이지

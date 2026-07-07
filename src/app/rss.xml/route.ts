@@ -25,6 +25,8 @@ export async function GET() {
   addRssItem(BRAND_NAME, '/', '서울, 인천, 경기 주요 지역 종합청소 상담 및 견적 안내.');
   addRssItem(`${BRAND_NAME} 서비스 키워드 맵`, '/sitemap-seoul', `${BRAND_NAME}이 제공하는 서울, 인천, 경기 전역의 지역별 맞춤 청소 솔루션 한눈에 보기.`);
   addRssItem('서울권 입주청소 지역별 안내 | 모두종합환경', '/move-in-cleaning/seoul', '서울권 구·동 단위 입주청소 세부 작업 범위 및 상태별 맞춤 피드백 안내 페이지 모음.');
+  addRssItem('인천권 입주청소 지역별 안내 | 모두종합환경', '/move-in-cleaning/incheon', '인천권 구·동 단위 입주청소 세부 작업 범위 및 상태별 맞춤 피드백 안내 페이지 모음.');
+  addRssItem('경기권 입주청소 지역별 안내 | 모두종합환경', '/move-in-cleaning/gyeonggi', '경기권 구·동 단위 입주청소 세부 작업 범위 및 상태별 맞춤 피드백 안내 페이지 모음.');
 
   // 2. 서비스 기본 안내 페이지
   services.filter(s => s.indexStatus === 'index').forEach(service => {
@@ -42,27 +44,35 @@ export async function GET() {
     .filter(r => r.subDistrictSlug === 'all' && r.indexStatus === 'index')
     .forEach(region => {
       activeServices.forEach(service => {
-        // 입주청소는 오직 서울(seoul) 지역만 생성
+        // 입주청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
         if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-          if (region.regionSlug !== 'seoul') return;
+          if (!['seoul', 'incheon', 'gyeonggi'].includes(region.regionSlug)) return;
 
-          const shortDistrict = region.district.replace(/(구|시)$/, '');
-          const suffix = '-gu';
-
-          // 구 단위 입주청소
-          addRssItem(
-            `${region.district} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
-            `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
-            `${region.district} 입주청소 상담. ${region.district} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
-          );
-
-          // 구 제거형 입주청소
-          if (region.districtSlug !== 'jung-gu') {
+          if (region.regionSlug === 'incheon') {
+            // 인천 구 단위 입주청소 (인천은 접미사 없음)
             addRssItem(
-              `${shortDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
+              `${region.district} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
               `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
-              `${shortDistrict} 입주청소 상담. ${region.district} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
+              `${region.district} 입주청소 상담. ${region.district} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
             );
+          } else {
+            // 서울/경기 구/시 단위 입주청소 (canonical인 접미사 -gu/-si 포함 주소만 등록)
+            const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+            addRssItem(
+              `${region.district} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
+              `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`,
+              `${region.district} 입주청소 상담. ${region.district} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
+            );
+
+            // 서울/경기 구 제거형 입주청소
+            if (region.districtSlug !== 'jung-gu') {
+              const shortDistrict = region.district.replace(/(구|시)$/, '');
+              addRssItem(
+                `${shortDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,
+                `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
+                `${shortDistrict} 입주청소 상담. ${region.district} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`
+              );
+            }
           }
           return;
         }
@@ -96,9 +106,9 @@ export async function GET() {
       
       if (isParentIndexed) {
         activeServices.forEach(service => {
-          // 입주청소는 오직 서울(seoul) 지역만 생성
+          // 입주청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
           if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-            if (dong.regionSlug !== 'seoul') return;
+            if (!['seoul', 'incheon', 'gyeonggi'].includes(dong.regionSlug)) return;
 
             addRssItem(
               `${dong.subDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`,

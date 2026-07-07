@@ -198,21 +198,22 @@ export default async function LandingPage({ params }: Props) {
   let description = '';
 
   if (isMoveIn) {
+    const cityName = region.city === '서울' ? '서울권' : region.city === '인천' ? '인천권' : '경기권';
     if (!isDistrictLevel) {
       // 1. 동 단위 페이지
-      const neighborhoodName = region.subDistrict.replace(/^서울(특별)?시?\s*/, '');
-      const districtName = region.district.replace(/^서울(특별)?시?\s*/, '');
+      const neighborhoodName = region.subDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+      const districtName = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
       title = `${neighborhoodName} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
       description = `${neighborhoodName} 입주청소 상담. ${districtName} ${neighborhoodName} 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
     } else {
       if (requestedWithSuffix) {
         // 2. 구 단위 페이지
-        const cleanDistrict = region.district.replace(/^서울(특별)?시?\s*/, '');
+        const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
         title = `${cleanDistrict} 입주청소 | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
         description = `${cleanDistrict} 입주청소 상담. 신축 분진, 전 세입자 생활오염, 욕실 물때, 주방 기름때, 베란다·창틀 먼지를 입주 전 확인합니다.`;
       } else {
         // 3. 구 제거형 페이지
-        const cleanShortDistrict = shortDistrict.replace(/^서울(특별)?시?\s*/, '');
+        const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
         title = `${cleanShortDistrict} 입주청소 | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
         description = `${cleanShortDistrict} 입주청소 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
       }
@@ -244,9 +245,10 @@ export default async function LandingPage({ params }: Props) {
   
   const articleJsonLd = getArticleJsonLd(title, description, url);
   
-  // 입주청소용 Breadcrumb 계층 구조 처리
+  // 입주청소용 Breadcrumb 계층 구조 처리 (서울, 인천, 경기 다중 광역권 대응)
   let breadcrumbJsonLd;
-  if (isMoveIn && region.regionSlug === 'seoul') {
+  if (isMoveIn) {
+    const cityName = region.city === '서울' ? '서울권' : region.city === '인천' ? '인천권' : '경기권';
     const parentDistrictName = region.district;
     breadcrumbJsonLd = {
       '@context': 'https://schema.org',
@@ -261,14 +263,14 @@ export default async function LandingPage({ params }: Props) {
         {
           '@type': 'ListItem',
           'position': 2,
-          'name': '서울권 입주청소',
-          'item': `${DOMAIN}/move-in-cleaning/seoul`
+          'name': `${cityName} 입주청소`,
+          'item': `${DOMAIN}/move-in-cleaning/${region.regionSlug}`
         },
         {
           '@type': 'ListItem',
           'position': 3,
           'name': parentDistrictName,
-          'item': `${DOMAIN}/keyword-hub/seoul-${region.districtSlug}`
+          'item': `${DOMAIN}/keyword-hub/${region.regionSlug}-${region.districtSlug}`
         },
         {
           '@type': 'ListItem',
