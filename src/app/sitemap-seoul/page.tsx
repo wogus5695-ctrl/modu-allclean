@@ -196,15 +196,10 @@ export default function SitemapSeoulPage() {
       <section className={styles.content}>
         <div className={styles.container}>
           {/* 입주청소 전용 허브 이동 안내 배너 */}
-          <div style={{ marginBottom: '30px', padding: '20px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+          <div style={{ marginBottom: '30px', padding: '20px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
             <span style={{ fontSize: '15px', color: '#1e3a8a', fontWeight: '700' }}>
-              💡 입주청소 키워드만 따로 확인하려면 아래의 전용 페이지를 확인하세요.
+              💡 입주청소 키워드만 따로 확인하려면 <Link href="/move-in-cleaning/seoul" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800' }}>[수도권 입주청소 지역별 안내]</Link> 페이지를 확인하세요.
             </span>
-            <div style={{ display: 'flex', gap: '15px', flexWrap: 'wrap', marginTop: '5px' }}>
-              <Link href="/move-in-cleaning/seoul" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800', fontSize: '14px' }}>[서울권 입주청소 바로가기]</Link>
-              <Link href="/move-in-cleaning/incheon" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800', fontSize: '14px' }}>[인천권 입주청소 바로가기]</Link>
-              <Link href="/move-in-cleaning/gyeonggi" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800', fontSize: '14px' }}>[경기권 입주청소 바로가기]</Link>
-            </div>
           </div>
 
           {/* 1. 입주청소 전용 추가 섹션 (최상단 구분) */}

@@ -264,7 +264,7 @@ export default async function LandingPage({ params }: Props) {
           '@type': 'ListItem',
           'position': 2,
           'name': `${cityName} 입주청소`,
-          'item': `${DOMAIN}/move-in-cleaning/${region.regionSlug}`
+          'item': `${DOMAIN}/move-in-cleaning/seoul`
         },
         {
           '@type': 'ListItem',

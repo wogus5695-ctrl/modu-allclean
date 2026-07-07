@@ -14,8 +14,7 @@ export async function GET() {
   urls.push({ url: DOMAIN, priority: 1.0, changeFrequency: 'daily', lastModified: currentDate });
   urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
   urls.push({ url: `${DOMAIN}/move-in-cleaning/seoul`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
-  urls.push({ url: `${DOMAIN}/move-in-cleaning/incheon`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
-  urls.push({ url: `${DOMAIN}/move-in-cleaning/gyeonggi`, priority: 0.9, changeFrequency: 'weekly', lastModified: currentDate });
+
 
   // 2. 서비스 기본 안내 페이지
   services.filter(s => s.indexStatus === 'index').forEach(service => {
