@@ -1141,8 +1141,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
               입주일에 맞춰<br />범위·일정·견적을 먼저 정리합니다
             </h2>
             <p className="process-desc" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.65', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px' }}>
-              입주 전 청소는 작업 범위보다 일정 조율이 먼저입니다.<br className="pc-br-only" />
-              입주일, 평수, 집 상태를 기준으로 필요한 청소 범위와 가능 일정을 안내합니다.
+              {regionName} 입주청소는 입주일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.
             </p>
           </div>
 
