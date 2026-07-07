@@ -112,6 +112,48 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   const isMoving = currentService.serviceSlug === 'moving-cleaning';
   const workName = isMoving ? "이사청소" : "입주청소";
 
+  // serviceConfig 변수 선언
+  const serviceConfig = {
+    moveIn: {
+      heroBadge: "입주 전 빈집 청소 전문",
+      heroTitle: `${regionName} 입주청소`,
+      heroMainText: "입주 전 마지막 점검",
+      heroSubText: "신축 분진, 전 세입자 생활오염, 창틀 먼지처럼 입주 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.",
+      heroCheckDate: "입주일 기준 상담",
+      whySectionTitle: "겉으로 깨끗해 보여도\n입주 전 확인해야 할 곳이 있습니다",
+      whySectionDesc: "신축 분진, 전 세입자 흔적, 욕실 물때, 주방 기름때, 창틀 먼지, 수납장 내부 먼지는 입주 후 직접 정리하기 번거로운 경우가 많습니다.",
+      processTitle: "입주일에 맞춰\n범위·일정·견적을 먼저 정리합니다",
+      processDesc: `${regionName} 입주청소는 입주일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.`,
+      processDateText: "입주일이 가까운 경우, 먼저 가능 일정부터 확인하는 것이 좋습니다.",
+      processCtaLinkText: "입주일 전 일정 확인",
+      portfolioTitle: "입주 전 확인이 필요한 공간,\n사진으로 먼저 확인하세요",
+      portfolioDesc: "욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.",
+      estimateTitle: "입주청소 견적은\n평수만으로 정해지지 않습니다",
+      footerCtaTitle: `${regionName} 입주청소가 필요하신가요?`,
+      footerCtaDesc: "입주일, 평수, 오염 상태를 기준으로 작업 가능 여부를 확인해드립니다."
+    },
+    moving: {
+      heroBadge: "이사 전 빈집 청소 전문",
+      heroTitle: `${regionName} 이사청소`,
+      heroMainText: "이사 전후 정리",
+      heroSubText: "이사 전후 남기 쉬운 생활오염, 주방 기름때, 욕실 물때, 베란다·창틀 먼지를 중심으로 확인합니다.",
+      heroCheckDate: "이사일 기준 상담",
+      whySectionTitle: "겉으로 깨끗해 보여도\n이사 전 확인해야 할 곳이 있습니다",
+      whySectionDesc: "이전 세입자의 찌든 때 흔적, 주방 기름때, 욕실 물때 및 곰팡이, 창틀 고착 먼지는 이사 전에 전문 약품과 장비로 세정해야 쾌적하게 거주할 수 있습니다.",
+      processTitle: "이사일에 맞춰\n범위·일정·견적을 먼저 정리합니다",
+      processDesc: `${regionName} 이사청소는 이사 예정일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.`,
+      processDateText: "이사일이 가까운 경우, 먼저 가능 일정부터 확인하는 것이 좋습니다.",
+      processCtaLinkText: "이사일 전 일정 확인",
+      portfolioTitle: "이사 전 확인이 필요한 공간,\n사진으로 먼저 확인하세요",
+      portfolioDesc: "욕실 물때, 주방 기름때, 창틀 찌든 먼지 등 이사 후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.",
+      estimateTitle: "이사청소 견적은\n평수만으로 정해지지 않습니다",
+      footerCtaTitle: `${regionName} 이사청소가 필요하신가요?`,
+      footerCtaDesc: "이사일, 평수, 오염 상태를 기준으로 작업 가능 여부를 확인해드립니다."
+    }
+  };
+
+  const activeConfig = isMoving ? serviceConfig.moving : serviceConfig.moveIn;
+
   // 2. 입주청소/이사청소 작업 범위 - 4카드
   const serviceCards = [
     {
@@ -909,39 +951,29 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             
             {/* 상단 배지 */}
             <div className="hero-badge" style={{ display: 'inline-block', backgroundColor: '#3b82f6', color: '#ffffff', padding: '6px 14px', borderRadius: '50px', fontSize: '14px', fontWeight: '700', marginBottom: '20px', letterSpacing: '-0.3px' }}>
-              {isMoving ? '이사 전 빈집 청소 전문' : '입주 전 빈집 청소 전문'}
+              {activeConfig.heroBadge}
             </div>
 
             {/* H1 */}
             <h1 className={styles.heroTitle} style={{ fontSize: 'clamp(34px, 5.5vw, 54px)', lineHeight: '1.2', fontWeight: 800, color: '#ffffff', margin: '0 0 18px 0', letterSpacing: '-1px' }}>
-              {regionName} {workName}
+              {activeConfig.heroTitle}
             </h1>
 
             {/* 메인 문구 */}
             <p style={{ fontSize: 'clamp(20px, 3vw, 28px)', fontWeight: 700, color: '#ffffff', lineHeight: '1.35', margin: '0 0 16px 0', letterSpacing: '-0.5px' }}>
-              <span style={{ color: '#fed7aa' }}>{isMoving ? '이사 전 마지막 점검' : '입주 전 마지막 점검'}</span>,<br />
+              <span style={{ color: '#fed7aa' }}>{activeConfig.heroMainText}</span>,<br />
               <span style={{ color: '#60a5fa' }}>욕실·주방·베란다</span>까지 확인합니다
             </p>
 
             {/* 보조 문구 */}
             <p style={{ fontSize: 'clamp(14px, 1.8vw, 17px)', color: '#cbd5e1', lineHeight: '1.6', margin: '0 0 28px 0', letterSpacing: '-0.2px' }}>
-              {isMoving ? (
-                <>
-                  이전 거주자 <span style={{ color: '#ffffff', fontWeight: '600' }}>생활오염</span>, 묵은 때, 창틀 먼지처럼<br className="pc-br" />
-                  이사 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.
-                </>
-              ) : (
-                <>
-                  <span style={{ color: '#ffffff', fontWeight: '600' }}>신축 분진</span>, 전 세입자 <span style={{ color: '#ffffff', fontWeight: '600' }}>생활오염</span>, 창틀 먼지처럼<br className="pc-br" />
-                  입주 후 직접 처리하기 번거로운 구간을 중심으로 청소합니다.
-                </>
-              )}
+              {activeConfig.heroSubText}
             </p>
 
             {/* 체크포인트 */}
             <div className="hero-checkpoints" style={{ display: 'flex', flexWrap: 'wrap', gap: '15px 25px', marginBottom: '35px', borderTop: '1px solid rgba(255,255,255,0.15)', paddingTop: '20px' }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
-                <span style={{ color: '#60a5fa' }}>✓</span> {isMoving ? '이사일' : '입주일'} 기준 상담
+                <span style={{ color: '#60a5fa' }}>✓</span> {activeConfig.heroCheckDate}
               </div>
               <div className="pc-checkpoint" style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#e2e8f0', fontWeight: '500' }}>
                 <span style={{ color: '#60a5fa' }}>✓</span> 빈집 상태 작업 권장
@@ -957,7 +989,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                 전화 견적 상담
               </a>
               <a href={CONTACT_KAKAOTALK} target="_blank" rel="noopener noreferrer" className="cta-secondary-btn">
-                입주일 전 일정 확인
+                {activeConfig.processCtaLinkText}
               </a>
             </div>
 
@@ -969,12 +1001,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       <section style={{ padding: '5rem 0', background: '#fff' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
-            <span className={styles.subTitle}>Why Move-in Cleaning?</span>
-            <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(22px, 4vw, 32px)', lineHeight: '1.3' }}>
-              겉으로 깨끗해 보여도<br />입주 전 확인해야 할 곳이 있습니다
+            <span className={styles.subTitle}>{isMoving ? 'Why Moving Cleaning?' : 'Why Move-in Cleaning?'}</span>
+            <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(22px, 4vw, 32px)', lineHeight: '1.3', whiteSpace: 'pre-line' }}>
+              {activeConfig.whySectionTitle}
             </h2>
             <p className={styles.sectionDesc} style={{ marginTop: '1rem', color: '#475569', fontSize: '1.025rem', lineHeight: '1.6', maxWidth: '800px', margin: '1rem auto 0 auto' }}>
-              신축 분진, 전 세입자 흔적, 욕실 물때, 주방 기름때, 창틀 먼지, 수납장 내부 먼지는 입주 후 직접 정리하기 번거로운 경우가 많습니다.
+              {activeConfig.whySectionDesc}
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
@@ -982,7 +1014,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
               <div key={idx} style={{ background: '#f8fafc', overflow: 'hidden', borderRadius: '12px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
                 {item.img ? (
                   <div style={{ width: '100%', height: '180px', overflow: 'hidden', position: 'relative' }}>
-                    <img src={item.img} alt={`${regionName} 입주청소 ${item.title}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <img src={item.img} alt={`${regionName} ${workName} ${item.title}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                   </div>
                 ) : (
                   <div style={{ width: '100%', height: '180px', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: '#94a3b8' }}>
@@ -1164,11 +1196,11 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             <span className="process-badge" style={{ display: 'inline-block', backgroundColor: '#f1f5f9', color: '#475569', border: '1px solid #e2e8f0', padding: '5px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: '700', marginBottom: '12px', letterSpacing: '0.5px' }}>
               PROCESS FLOW
             </span>
-            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a' }}>
-              입주일에 맞춰<br />범위·일정·견적을 먼저 정리합니다
+            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a', whiteSpace: 'pre-line' }}>
+              {activeConfig.processTitle}
             </h2>
             <p className="process-desc" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.65', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px' }}>
-              {regionName} 입주청소는 입주일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.
+              {activeConfig.processDesc}
             </p>
           </div>
 
@@ -1191,7 +1223,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           {/* 하단 안내 문구 및 텍스트 링크 */}
           <div style={{ marginTop: '3.5rem', textAlign: 'center' }}>
             <p style={{ fontSize: '14px', color: '#64748b', fontWeight: '500', margin: '0 0 10px 0' }}>
-              입주일이 가까운 경우, 먼저 가능 일정부터 확인하는 것이 좋습니다.
+              {activeConfig.processDateText}
             </p>
             <a href={`tel:${CONTACT_PHONE}`} style={{ fontSize: '14px', color: '#2563eb', fontWeight: '700', textDecoration: 'underline' }}>
               실시간 예약 가능 일정 문의하기 ➔
@@ -1210,12 +1242,12 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             <span className="portfolio-section-badge" style={{ display: 'inline-block', backgroundColor: '#ffffff', color: '#1d4ed8', border: '1px solid #bfdbfe', padding: '5px 12px', borderRadius: '4px', fontSize: '13px', fontWeight: '700', marginBottom: '12px', boxShadow: '0 2px 4px rgba(0,0,0,0.02)' }}>
               CLEANING POINT
             </span>
-            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a' }}>
-              입주 전 확인이 필요한 공간,<br />사진으로 먼저 확인하세요
+            <h2 className="guide-section-title" style={{ fontSize: 'clamp(24px, 4.5vw, 32px)', fontWeight: 800, color: '#0f172a', whiteSpace: 'pre-line' }}>
+              {activeConfig.portfolioTitle}
             </h2>
             
             <p className="portfolio-desc" style={{ fontSize: '1.025rem', color: '#475569', lineHeight: '1.6', maxWidth: '800px', margin: '10px auto 0 auto', letterSpacing: '-0.3px', wordBreak: 'keep-all' }}>
-              욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.
+              {activeConfig.portfolioDesc}
             </p>
           </div>
 
@@ -1224,7 +1256,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             {staticCleaningPoints.map((point, idx) => (
               <div key={idx} className="cleaning-card">
                 <div className="card-image-frame">
-                  <img src={point.img} alt={`${regionName} 입주청소 ${point.title} 상태 예시`} />
+                  <img src={point.img} alt={`${regionName} ${workName} ${point.title} 상태 예시`} />
                 </div>
                 <div className="card-body">
                   <div>
@@ -1246,7 +1278,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           {/* 하단 안내 및 낮은 위계의 텍스트 CTA */}
           <div className="cleaning-bottom-cta">
             <p style={{ fontSize: '14px', color: '#64748b', fontWeight: '500', margin: '0 0 12px 0' }}>
-              입주일, 평수, 오염 상태에 따라 작업 범위와 견적이 달라질 수 있습니다.
+              {isMoving ? '이사일' : '입주일'}, 평수, 오염 상태에 따라 작업 범위와 견적이 달라질 수 있습니다.
             </p>
             <div style={{ display: 'flex', justifyContent: 'center' }}>
               <a href={`tel:${CONTACT_PHONE}`} className="cleaning-sub-cta">
@@ -1331,10 +1363,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       <section style={{ padding: '50px 20px', backgroundColor: '#f0f7ff', borderTop: '1px solid #eaeaea', textAlign: 'center' }}>
         <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
           <h2 style={{ fontSize: '24px', fontWeight: '800', color: '#0f172a', marginBottom: '8px' }}>
-            {regionName} 입주청소가 필요하신가요?
+            {activeConfig.footerCtaTitle}
           </h2>
           <p style={{ fontSize: '15px', color: '#475569', marginBottom: '25px' }}>
-            입주일, 평수, 오염 상태를 기준으로 작업 가능 여부를 확인해드립니다.
+            {activeConfig.footerCtaDesc}
           </p>
           <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', marginBottom: '30px' }}>
             <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '220px', textAlign: 'center' }}>
@@ -1353,15 +1385,17 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           {regionObj?.relatedAreaLinks && regionObj.relatedAreaLinks.length > 0 && (
             <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
               {regionObj.relatedAreaLinks.map((link: any, index: number) => {
-                // 입주청소 허브이므로 링크 주소 끝에 /move-in-cleaning 을 붙여 입주청소 간 상호 링킹 유도
-                const moveInUrl = link.url.includes('/move-in-cleaning') ? link.url : `${link.url}/move-in-cleaning`;
+                const targetSlug = isMoving ? 'moving-cleaning' : 'move-in-cleaning';
+                const relatedUrl = link.url.includes('/move-in-cleaning') || link.url.includes('/moving-cleaning')
+                  ? link.url.replace(/move-in-cleaning|moving-cleaning/, targetSlug)
+                  : `${link.url}/${targetSlug}`;
                 return (
                   <Link 
                     key={index} 
-                    href={moveInUrl} 
+                    href={relatedUrl} 
                     style={{ fontSize: '12px', padding: '6px 12px', border: '1px solid #ddd', borderRadius: '4px', backgroundColor: '#fff', color: '#555', textDecoration: 'none' }}
                   >
-                    {link.name.replace('청소', '입주청소')}
+                    {link.name.replace('청소', workName)}
                   </Link>
                 );
               })}
