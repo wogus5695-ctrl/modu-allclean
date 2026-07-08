@@ -7,8 +7,19 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: '수도권 입주청소 지역별 키워드 통합 허브 | 모두종합환경',
-  description: '서울·인천·경기 지역별 입주청소 페이지를 한 곳에서 확인할 수 있습니다. 구·동·시·읍·면 단위 입주청소 키워드를 지역별로 정리했습니다.',
+  title: '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
+  description: '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 지역의 입주청소 또는 이사청소 전용 페이지로 연결됩니다.',
+  openGraph: {
+    title: '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
+    description: '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 작업별 전용 페이지로 연결됩니다.',
+    url: 'https://www.moduclean.co.kr/move-in-cleaning/seoul',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
+    description: '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 작업별 전용 페이지로 연결됩니다.',
+  }
 };
 
 export default function MoveInCleaningUnifiedHubPage() {
@@ -18,6 +29,19 @@ export default function MoveInCleaningUnifiedHubPage() {
 
   const movingService = services.find(s => s.id === 'moving' || s.serviceSlug === 'moving-cleaning');
   const movingSlug = movingService?.serviceSlug || 'moving-cleaning';
+
+  // JSON-LD 구조화 데이터 정의
+  const hubJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    'name': '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
+    'description': '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다.',
+    'url': 'https://www.moduclean.co.kr/move-in-cleaning/seoul',
+    'publisher': {
+      '@type': 'Organization',
+      'name': '모두종합환경'
+    }
+  };
 
   // 광역자치단체별 렌더링 헬퍼 함수
   const renderCitySection = (cityTitle: string, citySlug: string) => {
@@ -134,17 +158,24 @@ export default function MoveInCleaningUnifiedHubPage() {
 
   return (
     <div className={styles.wrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(hubJsonLd) }}
+      />
       <header className={styles.header}>
         <div className={styles.container}>
-          <span className={styles.badge}>수도권 입주청소 통합 허브</span>
-          <h1 className={styles.title}>수도권 입주청소 지역별 안내</h1>
-          <p className={styles.subtitle}>
-            서울·인천·경기 입주청소 키워드를 한 곳에서 관리하는 통합 허브입니다.<br />
-            각 지역별 링크는 해당 지역 입주청소 전용 페이지로 연결됩니다.
+          <span className={styles.badge}>수도권 입주·이사청소 통합 허브</span>
+          <h1 className={styles.title}>수도권 입주·이사청소 지역별 안내</h1>
+          <p className={styles.subtitle} style={{ marginBottom: '1.2rem' }}>
+            서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다.<br />
+            각 지역별 링크는 해당 지역의 입주청소 또는 이사청소 전용 페이지로 연결됩니다.
+          </p>
+          <p className={styles.subtitle} style={{ fontSize: '14px', color: '#94a3b8' }}>
+            서울·인천·경기 지역별로 구·동·시·읍·면 단위 키워드를 정리했으며, 각 지역명 아래에서 입주청소와 이사청소 페이지를 함께 확인할 수 있습니다.
           </p>
           
           {/* 상단 요약 / 지역 바로가기 앵커 버튼 */}
-          <div className={styles.anchorWrapper}>
+          <div className={styles.anchorWrapper} style={{ marginTop: '2rem' }}>
             <a href="#section-seoul" className={styles.anchorBtn}>서울특별시 바로가기</a>
             <a href="#section-incheon" className={styles.anchorBtn}>인천광역시 바로가기</a>
             <a href="#section-gyeonggi" className={styles.anchorBtn}>경기도 바로가기</a>
