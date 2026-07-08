@@ -10,6 +10,8 @@ import LandingTemplate from '@/components/LandingTemplate';
 import MainTemplate from '@/components/MainTemplate';
 import MoveInCleaningTemplate from '@/components/MoveInCleaningTemplate';
 
+export const dynamicParams = false;
+
 type Props = {
   params: Promise<{ city: string; district: string; slug: string[] }>;
 };
@@ -383,7 +385,7 @@ export default async function LandingPage({ params }: Props) {
     'description': description,
     'provider': {
       '@type': 'LocalBusiness',
-      'name': '모두종합환경',
+      'name': BRAND_NAME,
       'telephone': CONTACT_PHONE,
       'priceRange': '₩₩',
       'image': DEFAULT_OG_IMAGE,

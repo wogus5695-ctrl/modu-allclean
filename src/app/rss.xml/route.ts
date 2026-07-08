@@ -24,7 +24,7 @@ export async function GET() {
   // 1. 메인 및 허브 페이지
   addRssItem(BRAND_NAME, '/', '서울, 인천, 경기 주요 지역 종합청소 상담 및 견적 안내.');
   addRssItem(`${BRAND_NAME} 서비스 키워드 맵`, '/sitemap-seoul', `${BRAND_NAME}이 제공하는 서울, 인천, 경기 전역의 지역별 맞춤 청소 솔루션 한눈에 보기.`);
-  addRssItem('수도권 입주청소 지역별 안내 | 모두종합환경', '/move-in-cleaning/seoul', '서울, 인천, 경기 구·동·시 단위 입주청소 페이지를 정리했습니다. 각 지역별 욕실, 주방, 베란다·창틀, 분진 오염 등 입주 전 확인이 필요한 공간을 안내합니다.');
+  addRssItem(`수도권 입주청소 지역별 안내 | ${BRAND_NAME}`, '/move-in-cleaning/seoul', '서울, 인천, 경기 구·동·시 단위 입주청소 페이지를 정리했습니다. 각 지역별 욕실, 주방, 베란다·창틀, 분진 오염 등 입주 전 확인이 필요한 공간을 안내합니다.');
 
   // 2. 서비스 기본 안내 페이지
   services.filter(s => s.indexStatus === 'index').forEach(service => {

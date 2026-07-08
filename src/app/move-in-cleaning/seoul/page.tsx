@@ -7,18 +7,18 @@ import Link from 'next/link';
 import styles from './page.module.css';
 
 export const metadata: Metadata = {
-  title: '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
-  description: '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 지역의 입주청소 또는 이사청소 전용 페이지로 연결됩니다.',
+  title: `수도권 입주·이사청소 지역별 키워드 통합 허브 | ${BRAND_NAME}`,
+  description: `서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 지역의 입주청소 또는 이사청소 전용 페이지로 연결됩니다.`,
   openGraph: {
-    title: '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
-    description: '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 작업별 전용 페이지로 연결됩니다.',
+    title: `수도권 입주·이사청소 지역별 키워드 통합 허브 | ${BRAND_NAME}`,
+    description: `서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 작업별 전용 페이지로 연결됩니다.`,
     url: 'https://www.moduclean.co.kr/move-in-cleaning/seoul',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
-    description: '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 작업별 전용 페이지로 연결됩니다.',
+    title: `수도권 입주·이사청소 지역별 키워드 통합 허브 | ${BRAND_NAME}`,
+    description: `서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다. 각 지역별 링크는 해당 작업별 전용 페이지로 연결됩니다.`,
   }
 };
 
@@ -34,12 +34,12 @@ export default function MoveInCleaningUnifiedHubPage() {
   const hubJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
-    'name': '수도권 입주·이사청소 지역별 키워드 통합 허브 | 모두종합환경',
-    'description': '서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다.',
+    'name': `수도권 입주·이사청소 지역별 키워드 통합 허브 | ${BRAND_NAME}`,
+    'description': `서울·인천·경기 입주청소와 이사청소 키워드를 한 곳에서 관리하는 통합 허브입니다.`,
     'url': 'https://www.moduclean.co.kr/move-in-cleaning/seoul',
     'publisher': {
       '@type': 'Organization',
-      'name': '모두종합환경'
+      'name': BRAND_NAME
     }
   };
 

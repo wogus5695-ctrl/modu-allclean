@@ -298,7 +298,7 @@ export const seoServices: SeoService[] = [
       { q: '견적은 어떻게 확인하나요?', a: '지역, 평수, 집 형태, 오염도, 작업 범위, 입주 예정일에 따라 달라집니다. 사진과 기본 정보를 알려주시면 상담이 빠릅니다.' }
     ],
     relatedServices: ['바닥청소'],
-    heroDescriptionTemplate: '{{displayNameKo}} 입주청소 욕실·주방·베란다 청소 - 모두종합환경',
+    heroDescriptionTemplate: '{{displayNameKo}} 입주청소 욕실·주방·베란다 청소 - 올케어 서비스',
     ctaHook: '입주청소 견적 받기',
     thumbnailImage: '/images/services/move-in-cleaning.jpg',
     ogImage: '/images/services/move-in-cleaning.jpg',
@@ -320,7 +320,7 @@ export const seoServices: SeoService[] = [
       { q: '가전 내부 필터나 빌트인 세정도 가능한가요?', a: '기본 빌트인 가전의 외부 청소는 포함되나 냉장고, 오븐 등 가전 내부의 정밀 세척은 별도 추가 옵션으로 상담 시 포함 여부를 확인합니다.' }
     ],
     relatedServices: ['바닥청소'],
-    heroDescriptionTemplate: '{{displayNameKo}} 이사청소 생활오염 제거 및 고온 스팀 소독 - 모두종합환경',
+    heroDescriptionTemplate: '{{displayNameKo}} 이사청소 생활오염 제거 및 고온 스팀 소독 - 올케어 서비스',
     ctaHook: '이사청소 견적 받기',
     thumbnailImage: '/images/services/move-in-cleaning.jpg',
     ogImage: '/images/services/move-in-cleaning.jpg',

@@ -147,11 +147,9 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   };
 
   const getCard2Description = () => {
+    const regionName = regionObj?.displayNameKo || '서울·인천';
     const serviceName = currentService?.serviceNameKo || '청소';
-    if (serviceName === '바닥왁스코팅' || serviceName === '바닥청소') {
-      return '바닥 상태에 맞는 장비와 세정 방식을 검토합니다.';
-    }
-    return `${serviceName} 상태에 맞는 전문 장비와 작업 방식을 검토합니다.`;
+    return `${regionName} ${serviceName} 현장 상태에 맞는 전문 장비와 작업 방식을 검토합니다.`;
   };
 
   const getEstimateFactors = () => {
@@ -289,7 +287,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
-      {/* 2. WHY 모두종합환경? Section */}
+      {/* 2. WHY 올케어 서비스? Section */}
       <section className={`${styles.solution} ${styles.landingSolution}`} style={{ background: '#fff', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
@@ -337,7 +335,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
-      {/* 3. Detailed Services Section (모두종합환경의 청소 서비스 안내) */}
+      {/* 3. Detailed Services Section (올케어 서비스의 청소 서비스 안내) */}
       <section className={styles.services} style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>

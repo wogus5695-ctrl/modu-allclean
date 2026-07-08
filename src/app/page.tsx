@@ -221,154 +221,26 @@ export default async function Home({ searchParams }: Props) {
     const parsed = parseK(k);
     if (parsed) {
       const { region, service } = parsed;
-      
-      // 1. 입주청소 서비스인 경우, 중복 색인 방지를 위해 301성 리다이렉트 수행 (slug URL 고정)
-      if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-        const isDistrictLevel = region.subDistrict === '전지역';
-        const path = region.subDistrictSlug === 'all'
-          ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
-          : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
-        
-        let redirectPath = path;
-        // 구 단위 처리 시 접미사 교정 규칙 반영
-        if (region.regionSlug !== 'incheon' && isDistrictLevel) {
-          const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-          redirectPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
-        }
-        
-        // Next.js redirect 호출
-        const { redirect } = require('next/navigation');
-        redirect(redirectPath);
-      }
-
-      const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
-
-      // Naver SEO를 위한 FAQ 스키마 생성
-      const faqJsonLd = {
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        'mainEntity': service.faq.map(item => ({
-          '@type': 'Question',
-          'name': item.question.replace('{service}', service.serviceNameKo).replace('{region}', regionName),
-          'acceptedAnswer': {
-            '@type': 'Answer',
-            'text': item.answer.replace('{service}', service.serviceNameKo).replace('{region}', regionName)
-          }
-        }))
-      };
-
       const isDistrictLevel = region.subDistrict === '전지역';
-      const shortDistrict = region.district.replace(/(구|시)$/, '');
-      const titleRegion = isDistrictLevel ? `${region.district} ${shortDistrict}` : region.subDistrict;
-      const descRegion = isDistrictLevel ? `${region.district}(${shortDistrict})` : region.subDistrict;
-
-      // 서울 입주청소 단어 매칭 방지
-      let cleanTitleRegion = titleRegion;
-      let cleanDescRegion = descRegion;
-      if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-        cleanTitleRegion = titleRegion.replace(/^서울(특별)?시?\s*/, '');
-        cleanDescRegion = descRegion.replace(/^서울(특별)?시?\s*/, '');
-      }
-
-      // SEO 최적화 메타데이터 생성 (동일 로직 재사용)
-      const title = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
-        ? `${cleanTitleRegion} 입주청소 | 욕실·주방·베란다 청소 - ${BRAND_NAME}`
-        : `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-
-      const description = (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning')
-        ? `${cleanDescRegion} 입주청소 상담. 입주 전 욕실, 주방, 베란다·창틀, 전체 오염·분진까지 현장 상태에 맞춰 작업 범위를 안내합니다.`
-        : `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+      const path = region.subDistrictSlug === 'all'
+        ? `/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`
+        : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
       
-      const url = `${DOMAIN}/?k=${k}`;
-      
-      const articleJsonLd = getArticleJsonLd(title, description, url);
-      const breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
-
-      // 입주청소 서비스 템플릿 분기
-      if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-        // region 임시 매칭 데이터 생성
-        const seoRegion = {
-          cityNameKo: region.city,
-          citySlug: region.regionSlug,
-          districtNameKo: region.district,
-          districtSlug: region.districtSlug,
-          neighborhoodNameKo: region.subDistrict,
-          neighborhoodSlug: region.subDistrictSlug,
-          displayNameKo: region.subDistrict === '전지역' ? region.district : region.subDistrict,
-          regionType: region.subDistrict === '전지역' ? 'district' : 'neighborhood',
-          localCharacteristics: region.localDescription,
-          commonBuildingTypes: region.buildingCharacteristics,
-          commercialCharacteristics: '혼합형',
-          cleaningDemandContext: '일반적인 청소 수요',
-          nearbyAreas: [],
-          relatedAreaLinks: region.subDistrict === '전지역' 
-            ? regions
-                .filter(r => r.districtSlug === region.districtSlug && r.subDistrictSlug !== 'all')
-                .slice(0, 5)
-                .map(r => ({ name: `${r.subDistrict} 청소`, url: `/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}` }))
-            : regions
-                .filter(r => r.districtSlug === region.districtSlug && r.subDistrictSlug !== 'all' && r.subDistrictSlug !== region.subDistrictSlug)
-                .slice(0, 3)
-                .map(r => ({ name: `${r.subDistrict} 청소`, url: `/${r.regionSlug}/${r.districtSlug}/${r.subDistrictSlug}` }))
-        };
-
-        const seoService = {
-          serviceNameKo: service.serviceNameKo,
-          serviceSlug: service.serviceSlug,
-          mainProblem: service.commonProblems.join(', '),
-          targetPlaces: service.targetBuildings,
-          contaminationTypes: service.commonProblems,
-          preCheckItems: service.preCheckItems,
-          estimateFactors: ['현장 오염도', '면적', '작업 난이도'],
-          faqSet: service.faq.map(f => ({ q: f.question, a: f.answer })),
-          relatedServices: [],
-          heroDescriptionTemplate: '{{displayNameKo}}의 {{commonBuildingTypes}}에 최적화된 청소 서비스',
-          ctaHook: '빠른 견적 상담',
-          thumbnailImage: service.imageUrl || '',
-          ogImage: service.imageUrl || '',
-          altBase: service.serviceNameKo
-        };
-
-        const landingData = generateLandingPageData(seoRegion as any, seoService as any);
-
-        return (
-          <>
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-            />
-            <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-            />
-            <MoveInCleaningTemplate data={landingData} regionObj={seoRegion} currentService={seoService} />
-          </>
-        );
+      let redirectPath = path;
+      if (region.regionSlug !== 'incheon' && isDistrictLevel) {
+        const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+        redirectPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
       }
-
-      return (
-        <>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-          />
-          <MainTemplate region={regionName} service={service.serviceNameKo} regionObj={region} />
-        </>
-      );
+      
+      const { redirect } = require('next/navigation');
+      redirect(redirectPath);
+    } else {
+      const { notFound } = require('next/navigation');
+      notFound();
     }
   }
+
+
 
   const region = (params.region as string) || '서울·경기';
   const service = (params.service as string) || '종합청소';
