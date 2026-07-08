@@ -75,16 +75,6 @@ export async function GET() {
               changeFrequency: 'weekly',
               lastModified: currentDate
             });
-
-            // 서울/경기 구 제거형 입주/이사청소 (중구 제외)
-            if (region.districtSlug !== 'jung-gu') {
-              urls.push({
-                url: `${DOMAIN}/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`,
-                priority: 0.7,
-                changeFrequency: 'weekly',
-                lastModified: currentDate
-              });
-            }
           }
           return;
         }
