@@ -21,47 +21,68 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
   const decodedDistrict = decodeURIComponent(district);
   const decodedSlug = slug.map(s => decodeURIComponent(s));
   
-  const serviceSlug = decodedSlug[decodedSlug.length - 1];
-  const subDistrictSlug = decodedSlug.length > 1 ? decodedSlug[0] : 'all';
+  if (decodedSlug.length !== 1 && decodedSlug.length !== 2) {
+    return { region: null, service: null, seoRegion: null, seoService: null };
+  }
 
-  const service = services.find(s => s.serviceSlug === serviceSlug);
-  
-  // 1차적으로 정확히 일치하는 districtSlug 매칭 시도
-  let region = regions.find(r => 
-    r.regionSlug === city && 
-    r.districtSlug === decodedDistrict && 
-    r.subDistrictSlug === subDistrictSlug
-  );
-  
-  let targetDistrictSlug = decodedDistrict;
-  
-  // 정확히 매핑이 안 되었고 인천이 아닌 경우 정규화 적용 (서울/경기 접미사 제거형 대응)
-  if (!region && city !== 'incheon') {
-    // 만약 데이터베이스의 districtSlug가 gwangju-si 처럼 접미사가 붙어있는데 요청 URL이 gwangju 인 경우 대응
-    // 혹은 반대로 데이터베이스는 yangju 인데 요청 URL이 yangju-si 인 경우 대응
-    const cleanParam = decodedDistrict.replace(/-gu$/, '').replace(/-si$/, '');
+  let service = null;
+  let region = null;
+
+  if (decodedSlug.length === 1) {
+    const serviceSlug = decodedSlug[0];
+    service = services.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
+    if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
     region = regions.find(r => {
-      if (r.regionSlug !== city || r.subDistrictSlug !== subDistrictSlug) return false;
-      const cleanDb = r.districtSlug.replace(/-gu$/, '').replace(/-si$/, '');
-      return cleanDb === cleanParam;
+      if (r.regionSlug !== city || r.subDistrictSlug !== 'all' || r.indexStatus !== 'index') return false;
+      const suffix = r.district.endsWith('시') ? '-si' : '-gu';
+      return (
+        r.districtSlug === decodedDistrict ||
+        (city !== 'incheon' && `${r.districtSlug}${suffix}` === decodedDistrict)
+      );
     });
-
-    if (region) {
-      targetDistrictSlug = region.districtSlug;
+    if (!region) return { region: null, service: null, seoRegion: null, seoService: null };
+  } else {
+    const subDistrictSlug = decodedSlug[0];
+    const serviceSlug = decodedSlug[1];
+    service = services.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
+    if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
+    
+    region = regions.find(r => 
+      r.regionSlug === city && 
+      r.districtSlug === decodedDistrict && 
+      r.subDistrictSlug === subDistrictSlug &&
+      r.indexStatus === 'index'
+    );
+    if (!region) return { region: null, service: null, seoRegion: null, seoService: null };
+    
+    const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+    const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
+    const isMoveOrMoving = isMoveIn || isMoving;
+    
+    if (isMoveOrMoving) {
+      if (!['seoul', 'incheon', 'gyeonggi'].includes(city)) {
+        return { region: null, service: null, seoRegion: null, seoService: null };
+      }
+    } else {
+      const combo = `${decodedDistrict}-${subDistrictSlug}-${service.id}`;
+      if (!INDEXED_DONG_COMBINATIONS.includes(combo)) {
+        return { region: null, service: null, seoRegion: null, seoService: null };
+      }
     }
   }
-  
-  // 신규 데이터 구조 매칭 (동 단위 매칭 우선)
+
+  const targetDistrictSlug = region.districtSlug;
+  const subDistrictSlug = decodedSlug.length > 1 ? decodedSlug[0] : 'all';
+
   let seoRegion = seoRegions.find(r => 
     r.citySlug === city && 
     r.districtSlug === targetDistrictSlug && 
     r.neighborhoodSlug === subDistrictSlug
   );
   
-  const seoService = seoServices.find(s => s.serviceSlug === serviceSlug);
+  const seoService = seoServices.find(s => s.serviceSlug === service.serviceSlug);
   
-  // Nếu chưa có seoRegion (추가 안된 지역), 임시 변환
   if (!seoRegion && region) {
       seoRegion = {
           cityNameKo: region.city,
@@ -89,7 +110,6 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
       };
   }
 
-  // Nếu chưa có seoService (추가 안된 서비스), 임시 변환
   let finalSeoService = seoService;
   if (!finalSeoService && service) {
       finalSeoService = {
