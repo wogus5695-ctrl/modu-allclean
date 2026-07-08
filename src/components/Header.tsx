@@ -15,7 +15,7 @@ export default function Header({ isMoveInOnly = false }: HeaderProps) {
       <header className={styles.header}>
         <div className={styles.container}>
           <Link href="/" className={styles.logo}>
-            올케어<span>서비스</span>
+            모두종합환경
           </Link>
           
           {/* PC 전용 헤더 메뉴 (모바일에서는 display: none 처리 등으로 숨김) */}
@@ -58,7 +58,7 @@ export default function Header({ isMoveInOnly = false }: HeaderProps) {
     <header className={styles.header}>
       <div className={styles.container}>
         <Link href="/" className={styles.logo}>
-          올케어<span>서비스</span>
+          모두종합환경
         </Link>
         <nav className={styles.nav}>
           <ul className={styles.menu}>

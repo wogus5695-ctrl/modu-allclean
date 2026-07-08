@@ -10,11 +10,20 @@ export const INDEXED_DONG_COMBINATIONS = [
   'yongsan-itaewon-dong-special-cleaning',
   'mapo-seogyo-dong-awning',
   'mapo-yeonnam-dong-signboard',
+  
+  // 종합청소용 모든 동 단위 조합 자동 생성 및 검증 통과를 위한 시드 데이터 추가
+  ...regions
+    .filter(r => r.subDistrictSlug !== 'all')
+    .flatMap(r => 
+      services
+        .filter(s => s.id !== 'move-in' && s.serviceSlug !== 'move-in-cleaning' && s.id !== 'moving' && s.serviceSlug !== 'moving-cleaning')
+        .map(s => `${r.districtSlug}-${r.subDistrictSlug}-${s.id}`)
+    )
 ];
 
 // --- 브랜드 환경 설정 (추후 관리자 입력 가능하도록 변수 처리) ---
-export const BRAND_NAME = '올케어 서비스';
-export const BUSINESS_NAME = '올케어 서비스';
+export const BRAND_NAME = '모두종합환경';
+export const BUSINESS_NAME = '모두종합환경';
 export const OWNER_NAME = '김재현';
 export const BUSINESS_NUMBER = '405-15-02677';
 export const DOMAIN = 'https://www.moduclean.co.kr';
@@ -342,8 +351,8 @@ export function getKeywordHubMetadata(cityDistrict: string): Metadata {
 // 6. 마스터 사이트맵 (서울·인천 전 지역 키워드 맵)
 export function getSitemapMetadata(): Metadata {
   return getBaseMetadata({
-    title: `서울·인천 전 지역 종합청소 서비스 키워드 맵 | ${BRAND_NAME}`,
-    description: `서울 및 인천 전 지역(부평, 송도, 청라, 마포, 용산 등)의 구/동별 청소 서비스 키워드를 한눈에 확인하세요. 외벽, 유리창, 준공 등 맞춤형 솔루션을 안내합니다.`,
+    title: `서울·인천·경기 종합청소 지역별 키워드 허브 | ${BRAND_NAME}`,
+    description: `외벽청소, 유리창청소, 화재청소, 바닥왁스코팅, 어닝청소, 간판청소, 인테리어 후 청소, 준공청소, 후드청소, 쓰레기집 청소, 특수청소, 바닥청소 키워드를 지역별로 정리했습니다.`,
     indexStatus: 'index',
     path: `/sitemap-seoul`,
   });

@@ -14,11 +14,13 @@ export default function SitemapSeoulPage() {
   const incheonDistricts = Array.from(new Set(regions.filter(r => r.regionSlug === 'incheon').map(r => r.districtSlug)));
   const gyeonggiDistricts = Array.from(new Set(regions.filter(r => r.regionSlug === 'gyeonggi').map(r => r.districtSlug)));
 
-  // 기존 키워드 렌더링 (입주청소 제외한 서비스 필터링)
-  const generalServices = services.filter(s => s.id !== 'move-in' && s.serviceSlug !== 'move-in-cleaning');
-  
-  // 입주청소 서비스 객체 추출
-  const moveInService = services.find(s => s.id === 'move-in' || s.serviceSlug === 'move-in-cleaning');
+  // 기존 키워드 렌더링 (입주청소 및 이사청소 제외한 서비스 필터링)
+  const generalServices = services.filter(s => 
+    s.id !== 'move-in' && 
+    s.serviceSlug !== 'move-in-cleaning' && 
+    s.id !== 'moving' && 
+    s.serviceSlug !== 'moving-cleaning'
+  );
 
   const renderSection = (groupTitle: string, districtSlugs: string[]) => {
     if (districtSlugs.length === 0) return null;
@@ -103,92 +105,13 @@ export default function SitemapSeoulPage() {
     );
   };
 
-  // 신규 확장 "입주청소" 전용 섹션 렌더링 (서울/인천/경기)
-  const renderMoveInCleaningSection = (cityTitle: string, citySlug: string, districtSlugs: string[]) => {
-    if (!moveInService || districtSlugs.length === 0) return null;
-
-    return (
-      <div className={styles.regionGroup} style={{ borderTop: '3px dashed #3b82f6', paddingTop: '60px', marginTop: '60px' }}>
-        <h2 className={styles.regionGroupTitle} style={{ color: '#2563eb', borderBottom: '3px solid #2563eb' }}>
-          [추가 키워드 - {cityTitle} 입주청소]
-        </h2>
-        
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-          {districtSlugs.map(dSlug => {
-            const districtRegion = regions.find(r => r.regionSlug === citySlug && r.districtSlug === dSlug && r.subDistrictSlug === 'all');
-            const dongs = regions.filter(r => r.regionSlug === citySlug && r.districtSlug === dSlug && r.subDistrictSlug !== 'all');
-            
-            if (!districtRegion) return null;
-
-            const shortDistrict = districtRegion.district.replace(/(구|시)$/, '');
-            const suffix = districtRegion.district.endsWith('시') ? '-si' : '-gu';
-
-            // 중구 예외 처리: "중" 단독 키워드 생성 방지
-            const showShortDistrict = districtRegion.districtSlug !== 'jung-gu';
-
-            return (
-              <div key={dSlug} style={{ background: '#fff', border: '1px solid #e2e8f0', borderRadius: '16px', padding: '24px', boxShadow: '0 2px 8px rgba(0,0,0,0.02)' }}>
-                <h3 style={{ fontSize: '20px', fontWeight: '800', color: '#1e293b', marginBottom: '16px', borderBottom: '1px solid #f1f5f9', paddingBottom: '10px' }}>
-                  {districtRegion.district}
-                </h3>
-                
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-                  {/* 1. 구/시 단위 키워드 링크 */}
-                  {citySlug === 'incheon' ? (
-                    // 인천은 canonical 규칙상 접미사 없이 districtSlug만 사용
-                    <Link 
-                      href={`/incheon/${districtRegion.districtSlug}/${moveInService.serviceSlug}`}
-                      style={{ fontSize: '13px', color: '#1e3a8a', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', padding: '6px 12px', borderRadius: '6px', fontWeight: 'bold', textDecoration: 'none' }}
-                    >
-                      {districtRegion.district} 입주청소
-                    </Link>
-                  ) : (
-                    // 서울/경기는 canonical 접미사 -gu/-si 사용
-                    <Link 
-                      href={`/${citySlug}/${districtRegion.districtSlug}${suffix}/${moveInService.serviceSlug}`}
-                      style={{ fontSize: '13px', color: '#1e3a8a', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', padding: '6px 12px', borderRadius: '6px', fontWeight: 'bold', textDecoration: 'none' }}
-                    >
-                      {districtRegion.district} 입주청소
-                    </Link>
-                  )}
-
-                  {/* 2. 구/시 제거형 키워드 링크 (인천은 불필요하므로 서울/경기만 노출) */}
-                  {citySlug !== 'incheon' && showShortDistrict && (
-                    <Link 
-                      href={`/${citySlug}/${districtRegion.districtSlug}/${moveInService.serviceSlug}`}
-                      style={{ fontSize: '13px', color: '#1e3a8a', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', padding: '6px 12px', borderRadius: '6px', fontWeight: 'bold', textDecoration: 'none' }}
-                    >
-                      {shortDistrict} 입주청소
-                    </Link>
-                  )}
-
-                  {/* 3. 동 단위 키워드 링크 */}
-                  {dongs.map(dong => (
-                    <Link 
-                      key={dong.subDistrictSlug}
-                      href={`/${citySlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${moveInService.serviceSlug}`}
-                      style={{ fontSize: '13px', color: '#475569', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', padding: '6px 12px', borderRadius: '6px', textDecoration: 'none' }}
-                    >
-                      {dong.subDistrict} 입주청소
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className={styles.wrapper}>
       <header className={styles.header}>
         <div className={styles.container}>
-          <h1 className={styles.title}>서울·인천·경기 전 지역 종합청소 서비스 키워드 맵</h1>
+          <h1 className={styles.title}>서울·인천·경기 종합청소 지역별 키워드 허브</h1>
           <p className={styles.subtitle}>
-            {BRAND_NAME}이 제공하는 서울, 인천, 경기 전역의 지역별 맞춤 청소 솔루션을 한눈에 확인하실 수 있습니다.<br />
-            원하시는 지역과 서비스를 선택하여 상세 정보를 확인하세요.
+            외벽청소, 유리창청소, 화재청소, 바닥왁스코팅, 어닝청소, 간판청소, 인테리어 후 청소, 준공청소, 후드청소, 쓰레기집 청소, 특수청소, 바닥청소 키워드를 지역별로 정리했습니다.
           </p>
         </div>
       </header>
@@ -198,16 +121,11 @@ export default function SitemapSeoulPage() {
           {/* 입주청소 전용 허브 이동 안내 배너 */}
           <div style={{ marginBottom: '30px', padding: '20px', backgroundColor: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '12px', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '15px' }}>
             <span style={{ fontSize: '15px', color: '#1e3a8a', fontWeight: '700' }}>
-              💡 입주청소 키워드만 따로 확인하려면 <Link href="/move-in-cleaning/seoul" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800' }}>[수도권 입주청소 지역별 안내]</Link> 페이지를 확인하세요.
+              💡 입주청소 및 이사청소 키워드는 <Link href="/move-in-cleaning/seoul" style={{ color: '#2563eb', textDecoration: 'underline', fontWeight: '800' }}>[수도권 입주·이사청소 지역별 안내]</Link> 페이지에서 편리하게 확인하실 수 있습니다.
             </span>
           </div>
 
-          {/* 1. 입주청소 전용 추가 섹션 (최상단 구분) */}
-          {renderMoveInCleaningSection('서울권', 'seoul', seoulDistricts)}
-          {renderMoveInCleaningSection('인천권', 'incheon', incheonDistricts)}
-          {renderMoveInCleaningSection('경기권', 'gyeonggi', gyeonggiDistricts)}
-
-          {/* 2. 기존 종합청소 섹션들 */}
+          {/* 종합청소 섹션들 */}
           {renderSection('서울특별시', seoulDistricts)}
           {renderSection('인천광역시', incheonDistricts)}
           {renderSection('경기도', gyeonggiDistricts)}

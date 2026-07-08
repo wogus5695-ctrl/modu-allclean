@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { DOMAIN, BRAND_NAME } from '@/lib/seo';
+import { DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { regions } from '@/data/regions';
 import { services } from '@/data/services';
 
@@ -159,6 +159,10 @@ export async function GET() {
             }
             return;
           }
+
+          // 일반 서비스인 경우 INDEXED_DONG_COMBINATIONS 수동 등록 처리 필터링 적용
+          const combo = `${dong.districtSlug}-${dong.subDistrictSlug}-${service.id}`;
+          if (!INDEXED_DONG_COMBINATIONS.includes(combo)) return;
 
           addRssItem(
             `${dong.district} ${dong.subDistrict} ${service.serviceNameKo} 전문 업체 | ${BRAND_NAME}`,

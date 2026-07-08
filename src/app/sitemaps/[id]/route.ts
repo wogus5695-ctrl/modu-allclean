@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
-import { DOMAIN } from '@/lib/seo';
+import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
 
 type Props = {
@@ -17,6 +17,7 @@ export async function GET(request: Request, { params }: Props) {
   if (fileName === 'static') {
     urls.push({ url: DOMAIN, priority: 1.0, changeFrequency: 'daily' });
     urls.push({ url: `${DOMAIN}/sitemap-seoul`, priority: 0.9, changeFrequency: 'weekly' });
+    urls.push({ url: `${DOMAIN}/move-in-cleaning/seoul`, priority: 0.9, changeFrequency: 'weekly' });
     
     // 서비스 기본 안내 페이지
     services.filter(s => s.indexStatus === 'index').forEach(service => {
@@ -57,9 +58,13 @@ export async function GET(request: Request, { params }: Props) {
       .filter(r => r.regionSlug === targetRegionSlug && r.subDistrictSlug === 'all' && r.indexStatus === 'index')
       .forEach(region => {
         services.filter(s => s.indexStatus === 'index').forEach(service => {
-          // 입주청소는 오직 서울(seoul) 지역만 생성
-          if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-            if (region.regionSlug !== 'seoul') return;
+          const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+          const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
+          const isMoveOrMoving = isMoveIn || isMoving;
+
+          // 입주청소 및 이사청소는 수도권 전체(seoul, incheon, gyeonggi) 생성
+          if (isMoveOrMoving) {
+            if (!['seoul', 'incheon', 'gyeonggi'].includes(region.regionSlug)) return;
           }
 
           if (region.regionSlug === 'incheon') {
@@ -90,9 +95,17 @@ export async function GET(request: Request, { params }: Props) {
         
         if (isParentIndexed) {
           services.filter(s => s.indexStatus === 'index').forEach(service => {
-            // 입주청소는 오직 서울(seoul) 지역만 생성
-            if (service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning') {
-              if (dong.regionSlug !== 'seoul') return;
+            const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
+            const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
+            const isMoveOrMoving = isMoveIn || isMoving;
+
+            // 입주청소/이사청소는 수도권 전체(seoul, incheon, gyeonggi) 생성
+            if (isMoveOrMoving) {
+              if (!['seoul', 'incheon', 'gyeonggi'].includes(dong.regionSlug)) return;
+            } else {
+              // 일반 서비스의 동 단위 조합은 INDEXED_DONG_COMBINATIONS만 생성
+              const combo = `${dong.districtSlug}-${dong.subDistrictSlug}-${service.id}`;
+              if (!INDEXED_DONG_COMBINATIONS.includes(combo)) return;
             }
 
             urls.push({

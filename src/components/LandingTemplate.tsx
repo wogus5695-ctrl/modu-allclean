@@ -287,7 +287,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
-      {/* 2. WHY 올케어 서비스? Section */}
+      {/* 2. WHY 모두종합환경? Section */}
       <section className={`${styles.solution} ${styles.landingSolution}`} style={{ background: '#fff', padding: '5rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
@@ -335,7 +335,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </div>
       </section>
 
-      {/* 3. Detailed Services Section (올케어 서비스의 청소 서비스 안내) */}
+      {/* 3. Detailed Services Section (모두종합환경의 청소 서비스 안내) */}
       <section className={styles.services} style={{ padding: '5rem 0', background: '#f8fafc', borderTop: '1px solid #f1f5f9', borderBottom: '1px solid #f1f5f9' }}>
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>

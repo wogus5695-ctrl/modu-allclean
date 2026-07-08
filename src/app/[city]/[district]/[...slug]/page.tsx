@@ -25,11 +25,35 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     return { region: null, service: null, seoRegion: null, seoService: null };
   }
 
+  const GENERAL_CLEANING_SLUGS = [
+    'exterior-cleaning',
+    'window-cleaning',
+    'fire-cleaning',
+    'floor-wax-coating',
+    'awning-cleaning',
+    'signboard-cleaning',
+    'interior-post-cleaning',
+    'construction-completion-cleaning', // services.ts의 준공청소 실제 슬러그
+    'hood-cleaning',
+    'hoarder-house-cleaning',          // services.ts의 쓰레기집 실제 슬러그
+    'special-cleaning',
+    'floor-cleaning'
+  ];
+
+  const MOVE_IN_OUT_SLUGS = [
+    'move-in-cleaning',
+    'moving-cleaning'
+  ];
+
   let service = null;
   let region = null;
 
   if (decodedSlug.length === 1) {
     const serviceSlug = decodedSlug[0];
+    if (!GENERAL_CLEANING_SLUGS.includes(serviceSlug) && !MOVE_IN_OUT_SLUGS.includes(serviceSlug)) {
+      return { region: null, service: null, seoRegion: null, seoService: null };
+    }
+
     service = services.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
@@ -45,6 +69,10 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
   } else {
     const subDistrictSlug = decodedSlug[0];
     const serviceSlug = decodedSlug[1];
+    if (!GENERAL_CLEANING_SLUGS.includes(serviceSlug) && !MOVE_IN_OUT_SLUGS.includes(serviceSlug)) {
+      return { region: null, service: null, seoRegion: null, seoService: null };
+    }
+
     service = services.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
@@ -56,9 +84,7 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     );
     if (!region) return { region: null, service: null, seoRegion: null, seoService: null };
     
-    const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
-    const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
-    const isMoveOrMoving = isMoveIn || isMoving;
+    const isMoveOrMoving = MOVE_IN_OUT_SLUGS.includes(serviceSlug);
     
     if (isMoveOrMoving) {
       if (!['seoul', 'incheon', 'gyeonggi'].includes(city)) {
@@ -506,21 +532,20 @@ export async function generateStaticParams() {
     if (service) {
       const regionPart = combo.slice(0, -(service.id.length + 1));
       const regionParts = regionPart.split('-');
-      if (regionParts.length >= 2) {
-        const districtSlug = regionParts[0];
-        const subDistrictSlug = regionParts.slice(1).join('-');
-
-        const region = regions.find(r => 
-          r.districtSlug === districtSlug && 
-          r.subDistrictSlug === subDistrictSlug
-        );
-        if (region) {
-          params.push({
-            city: region.regionSlug,
-            district: region.districtSlug,
-            slug: [region.subDistrictSlug, service.serviceSlug]
-          });
-        }
+      // gwangju-si 처럼 districtSlug에 하이픈이 포함되어 있는 특수 케이스 대응
+      // INDEXED_DONG_COMBINATIONS 형식은 `[구슬러그]-[동슬러그]-[서비스Id]`
+      // regions 데이터에서 해당 combo와 일치하는 region을 바로 찾습니다.
+      const region = regions.find(r => {
+        if (r.subDistrictSlug === 'all') return false;
+        const potentialComboPrefix = `${r.districtSlug}-${r.subDistrictSlug}`;
+        return regionPart === potentialComboPrefix;
+      });
+      if (region) {
+        params.push({
+          city: region.regionSlug,
+          district: region.districtSlug,
+          slug: [region.subDistrictSlug, service.serviceSlug]
+        });
       }
     }
   });
