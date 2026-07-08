@@ -308,7 +308,7 @@ export default async function LandingPage({ params }: Props) {
       }
     }
 
-    const cityMetaName = region.regionSlug === 'seoul' ? '서울' : region.regionSlug === 'incheon' ? '인천' : '경기';
+    const cityMetaName = region.regionSlug === 'seoul' ? '서울권' : region.regionSlug === 'incheon' ? '인천' : '경기';
 
     breadcrumbJsonLd = {
       '@context': 'https://schema.org',
@@ -323,30 +323,24 @@ export default async function LandingPage({ params }: Props) {
         {
           '@type': 'ListItem',
           'position': 2,
-          'name': '입주청소',
+          'name': '수도권 입주·이사청소 통합 허브',
           'item': `${DOMAIN}/move-in-cleaning/seoul`
         },
         {
           '@type': 'ListItem',
           'position': 3,
-          'name': '수도권 통합 허브',
+          'name': cityMetaName,
           'item': `${DOMAIN}/move-in-cleaning/seoul`
         },
         {
           '@type': 'ListItem',
           'position': 4,
-          'name': `${cityMetaName} ${workName}`,
-          'item': `${DOMAIN}/move-in-cleaning/seoul`
-        },
-        {
-          '@type': 'ListItem',
-          'position': 5,
           'name': parentDistrictName,
           'item': `${DOMAIN}/keyword-hub/${region.regionSlug}-${region.districtSlug}`
         },
         {
           '@type': 'ListItem',
-          'position': 6,
+          'position': 5,
           'name': `${representativeArea} ${workName}`,
           'item': url
         }
