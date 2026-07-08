@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "audit:seo-urls": "npx tsx scripts/audit-seo-urls.ts"
   },
   "dependencies": {
     "next": "16.2.5",
