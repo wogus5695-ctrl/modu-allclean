@@ -35,8 +35,8 @@ const SERVICE_NAME_MAP: { [key: string]: string } = {
   '인테리어 후 청소': 'interior-post',
   '입주': 'move-in',
   '입주청소': 'move-in',
-  '이사': 'move-in',
-  '이사청소': 'move-in',
+  '이사': 'moving',
+  '이사청소': 'moving',
   '준공': 'completion',
   '준공청소': 'completion',
   '후드': 'hood',
@@ -188,10 +188,10 @@ function parseK(k: string) {
   return null;
 }
 
-// 쿼리 파라미터 k가 존재할 시 타겟화된 키워드 메타데이터 생성
+// 쿼리 파라미터 k 또는 keyword가 존재할 시 타겟화된 키워드 메타데이터 생성
 export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   const params = await searchParams;
-  const k = params.k as string;
+  const k = (params.k as string) || (params.keyword as string);
 
   if (k) {
     const parsed = parseK(k);
@@ -215,7 +215,7 @@ export async function generateMetadata({ searchParams }: Props): Promise<Metadat
 
 export default async function Home({ searchParams }: Props) {
   const params = await searchParams;
-  const k = params.k as string;
+  const k = (params.k as string) || (params.keyword as string);
 
   if (k) {
     const parsed = parseK(k);
