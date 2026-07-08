@@ -12,9 +12,12 @@ export const metadata: Metadata = {
 };
 
 export default function MoveInCleaningUnifiedHubPage() {
-  // 입주청소 서비스 slug 추출
+  // 입주청소 및 이사청소 서비스 slug 추출
   const moveInService = services.find(s => s.id === 'move-in' || s.serviceSlug === 'move-in-cleaning');
   const moveInSlug = moveInService?.serviceSlug || 'move-in-cleaning';
+
+  const movingService = services.find(s => s.id === 'moving' || s.serviceSlug === 'moving-cleaning');
+  const movingSlug = movingService?.serviceSlug || 'moving-cleaning';
 
   // 광역자치단체별 렌더링 헬퍼 함수
   const renderCitySection = (cityTitle: string, citySlug: string) => {
@@ -49,41 +52,76 @@ export default function MoveInCleaningUnifiedHubPage() {
                   {/* 1. 구/시 단위 키워드 */}
                   {citySlug === 'incheon' ? (
                     // 인천은 canonical 규칙상 접미사 없이 districtSlug만 사용
-                    <Link 
-                      href={`/incheon/${districtRegion.districtSlug}/${moveInSlug}`}
-                      className={styles.primaryLink}
-                    >
-                      {districtRegion.district} 입주청소
-                    </Link>
+                    <>
+                      <Link 
+                        href={`/incheon/${districtRegion.districtSlug}/${moveInSlug}`}
+                        className={styles.primaryLink}
+                      >
+                        {districtRegion.district} 입주청소
+                      </Link>
+                      <Link 
+                        href={`/incheon/${districtRegion.districtSlug}/${movingSlug}`}
+                        className={styles.primaryLink}
+                        style={{ backgroundColor: '#f0fdf4', color: '#166534', borderColor: '#bbf7d0' }}
+                      >
+                        {districtRegion.district} 이사청소
+                      </Link>
+                    </>
                   ) : (
                     // 서울/경기는 canonical 접미사 -gu/-si 사용
-                    <Link 
-                      href={`/${citySlug}/${districtRegion.districtSlug}${suffix}/${moveInSlug}`}
-                      className={styles.primaryLink}
-                    >
-                      {districtRegion.district} 입주청소
-                    </Link>
+                    <>
+                      <Link 
+                        href={`/${citySlug}/${districtRegion.districtSlug}${suffix}/${moveInSlug}`}
+                        className={styles.primaryLink}
+                      >
+                        {districtRegion.district} 입주청소
+                      </Link>
+                      <Link 
+                        href={`/${citySlug}/${districtRegion.districtSlug}${suffix}/${movingSlug}`}
+                        className={styles.primaryLink}
+                        style={{ backgroundColor: '#f0fdf4', color: '#166534', borderColor: '#bbf7d0' }}
+                      >
+                        {districtRegion.district} 이사청소
+                      </Link>
+                    </>
                   )}
 
                   {/* 2. 구/시 제거형 키워드 (인천은 불필요하므로 서울/경기만 노출) */}
                   {citySlug !== 'incheon' && showShortDistrict && (
-                    <Link 
-                      href={`/${citySlug}/${districtRegion.districtSlug}/${moveInSlug}`}
-                      className={styles.secondaryLink}
-                    >
-                      {shortDistrict} 입주청소
-                    </Link>
+                    <>
+                      <Link 
+                        href={`/${citySlug}/${districtRegion.districtSlug}/${moveInSlug}`}
+                        className={styles.secondaryLink}
+                      >
+                        {shortDistrict} 입주청소
+                      </Link>
+                      <Link 
+                        href={`/${citySlug}/${districtRegion.districtSlug}/${movingSlug}`}
+                        className={styles.secondaryLink}
+                        style={{ backgroundColor: '#fdf8f6', color: '#9a3412', borderColor: '#ffedd5' }}
+                      >
+                        {shortDistrict} 이사청소
+                      </Link>
+                    </>
                   )}
 
                   {/* 3. 동 단위 키워드 */}
                   {dongs.map(dong => (
-                    <Link 
-                      key={dong.subDistrictSlug}
-                      href={`/${citySlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${moveInSlug}`}
-                      className={styles.dongLink}
-                    >
-                      {dong.subDistrict} 입주청소
-                    </Link>
+                    <React.Fragment key={dong.subDistrictSlug}>
+                      <Link 
+                        href={`/${citySlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${moveInSlug}`}
+                        className={styles.dongLink}
+                      >
+                        {dong.subDistrict} 입주청소
+                      </Link>
+                      <Link 
+                        href={`/${citySlug}/${dong.districtSlug}/${dong.subDistrictSlug}/${movingSlug}`}
+                        className={styles.dongLink}
+                        style={{ backgroundColor: '#f8fafc', color: '#334155', borderColor: '#cbd5e1' }}
+                      >
+                        {dong.subDistrict} 이사청소
+                      </Link>
+                    </React.Fragment>
                   ))}
                 </div>
               </div>
