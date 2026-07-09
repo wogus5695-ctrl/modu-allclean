@@ -8,6 +8,7 @@ import styles from '@/app/page.module.css';
 import SectionCTA from '@/components/SectionCTA';
 import FloatingContact from '@/components/FloatingContact';
 import Link from 'next/link';
+import { serviceContentMap } from '@/data/seo/serviceContentMap';
 
 interface LandingTemplateProps {
   data: LandingPageData;
@@ -573,17 +574,97 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         </section>
       )}
 
+      {/* 6.5. Related Services Section - FAQ 아래 배치 */}
+       <section style={{ padding: '4rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+         <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', padding: '0 20px' }}>
+           <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1.5rem' }}>
+             {((regionObj?.displayNameKo) || '서울·인천')} 다른 청소 서비스
+           </h3>
+           <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem 1.2rem', flexWrap: 'wrap' }}>
+             {(() => {
+               const citySlug = regionObj?.citySlug || regionObj?.regionSlug || 'seoul';
+               const districtSlug = regionObj?.districtSlug || 'all';
+               const subDistrictSlug = regionObj?.subDistrictSlug || 'all';
+
+               const pathPrefix = subDistrictSlug && subDistrictSlug !== 'all'
+                 ? `/${citySlug}/${districtSlug}/${subDistrictSlug}`
+                 : `/${citySlug}/${districtSlug}`;
+
+               // 작업명별 관련 서비스 매핑
+               let relatedSlugs: string[] = [];
+               const currentSlug = currentService.serviceSlug;
+               if (currentSlug === 'signboard-cleaning') {
+                 relatedSlugs = ['window-cleaning', 'exterior-cleaning', 'awning-cleaning', 'floor-cleaning'];
+               } else if (currentSlug === 'window-cleaning') {
+                 relatedSlugs = ['exterior-cleaning', 'signboard-cleaning', 'awning-cleaning', 'floor-cleaning'];
+               } else if (currentSlug === 'exterior-cleaning') {
+                 relatedSlugs = ['window-cleaning', 'signboard-cleaning', 'awning-cleaning', 'floor-cleaning'];
+               } else if (currentSlug === 'interior-post-cleaning') {
+                 relatedSlugs = ['floor-wax-coating', 'window-cleaning', 'floor-cleaning', 'construction-completion-cleaning'];
+               } else if (currentSlug === 'construction-completion-cleaning') {
+                 relatedSlugs = ['exterior-cleaning', 'floor-wax-coating', 'window-cleaning', 'floor-cleaning'];
+               } else if (currentSlug === 'floor-cleaning') {
+                 relatedSlugs = ['floor-wax-coating', 'interior-post-cleaning', 'window-cleaning', 'signboard-cleaning'];
+               } else if (currentSlug === 'floor-wax-coating') {
+                 relatedSlugs = ['floor-cleaning', 'interior-post-cleaning', 'window-cleaning', 'construction-completion-cleaning'];
+               } else if (currentSlug === 'awning-cleaning') {
+                 relatedSlugs = ['signboard-cleaning', 'window-cleaning', 'exterior-cleaning', 'floor-cleaning'];
+               } else if (currentSlug === 'hood-cleaning') {
+                 relatedSlugs = ['floor-cleaning', 'special-cleaning', 'window-cleaning', 'interior-post-cleaning'];
+               } else if (currentSlug === 'hoarder-house-cleaning' || currentSlug === 'hoarding-cleaning') {
+                 relatedSlugs = ['special-cleaning', 'floor-cleaning', 'window-cleaning', 'interior-post-cleaning'];
+               } else if (currentSlug === 'special-cleaning') {
+                 relatedSlugs = ['hoarder-house-cleaning', 'fire-cleaning', 'floor-cleaning', 'window-cleaning'];
+               } else if (currentSlug === 'fire-cleaning') {
+                 relatedSlugs = ['special-cleaning', 'floor-cleaning', 'window-cleaning', 'interior-post-cleaning'];
+               }
+
+               const relatedList = relatedSlugs.map(slug => {
+                 const mapped = serviceContentMap[slug];
+                 return { name: mapped?.serviceName || slug, slug };
+               });
+
+               return relatedList.map((item, idx) => {
+                 const linkHref = `${pathPrefix}/${item.slug}`;
+                 return (
+                   <Link 
+                     key={idx} 
+                     href={linkHref}
+                     style={{ padding: '6px 14px', borderRadius: '30px', background: '#ffffff', color: '#0070f3', fontSize: '0.9rem', fontWeight: 'bold', border: '1px solid #0070f3', textDecoration: 'none', transition: 'all 0.2s' }}
+                   >
+                     {((regionObj?.displayNameKo) || '서울·인천')} {item.name}
+                   </Link>
+                 );
+               });
+             })()}
+           </div>
+         </div>
+       </section>
+
       {/* 8. Contact Section */}
       <section className={styles.contact} style={{ padding: '6rem 0' }}>
         <div className={styles.inner}>
           <div className={styles.contactCard}>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: 'white', marginBottom: '16px', lineHeight: '1.3' }}>
-              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'},<br />
-              상담으로 확인하세요
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'}가 필요하신가요?
             </h2>
-            <p style={{ color: 'var(--gray-300)', marginBottom: '30px', fontSize: 'clamp(14px, 2vw, 18px)' }}>
-              사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다.
-            </p>
+             <p style={{ color: 'var(--gray-300)', marginBottom: '30px', fontSize: 'clamp(14px, 2vw, 18px)' }}>
+               {currentService.serviceSlug === 'exterior-cleaning' && '건물 높이, 외벽 면적, 오염 정도를 기준으로 작업 가능 여부와 장비 사용 여부를 안내합니다.'}
+               {currentService.serviceSlug === 'window-cleaning' && '유리창 높이, 면적, 오염 상태를 기준으로 작업 범위를 안내합니다.'}
+               {currentService.serviceSlug === 'signboard-cleaning' && '간판 크기, 설치 높이, 오염 상태를 기준으로 작업 가능 여부를 안내합니다.'}
+               {currentService.serviceSlug === 'interior-post-cleaning' && '공사 범위, 평수, 분진 오염 정도를 기준으로 일정 조율과 작업 범위를 안내합니다.'}
+               {currentService.serviceSlug === 'construction-completion-cleaning' && '건물 면적, 층수, 시멘트 잔해 등 현장 오염도를 기준으로 1차 대형 잔재 정리 견적을 안내합니다.'}
+               {currentService.serviceSlug === 'floor-cleaning' && '바닥 면적, 재질, 오염 상태를 기준으로 정밀 기계 솔질 및 잔오염 흡입 견적을 안내합니다.'}
+               {currentService.serviceSlug === 'floor-wax-coating' && '바닥 면적, 기존 왁스 박리 필요 여부, 타일 재질에 따른 광택 왁스코팅 범위를 확인해 드립니다.'}
+               {currentService.serviceSlug === 'hood-cleaning' && '주방 후드 크기, 기름때 고착 상태, 거름망 필터 끈끈이 상태를 확인하여 견적을 제안합니다.'}
+               {currentService.serviceSlug === 'move-in-cleaning' && '입주일, 평수, 오염 상태를 기준으로 작업 가능 여부를 확인해드립니다.'}
+               {currentService.serviceSlug === 'moving-cleaning' && '이사일, 짐 유무, 집 상태를 기준으로 가능 일정과 작업 범위를 안내합니다.'}
+               {currentService.serviceSlug === 'fire-cleaning' && '화재 그을음 피해 면적, 탄 냄새 악취 정도를 고려하여 오존 탈취 및 그을음 박리 작업 가능 여부를 상담합니다.'}
+               {currentService.serviceSlug === 'awning-cleaning' && '천막 어닝 너비, 설치 높이, 곰팡이 오염 상태를 고려하여 고압수 세정 및 발수 관리 여부를 안내합니다.'}
+               {currentService.serviceSlug === 'hoarder-house-cleaning' && '방치된 대량의 폐기물량, 음식물 부패 상태, 악취 정도를 기준으로 작업 가능 일정과 견적을 안내합니다.'}
+               {currentService.serviceSlug === 'special-cleaning' && '혈흔이나 체액 오염 면적, 잔류 유품 폐기량, 방치 기간을 고려한 정밀 약품 소독 견적을 안내합니다.'}
+               {!['exterior-cleaning', 'window-cleaning', 'signboard-cleaning', 'interior-post-cleaning', 'construction-completion-cleaning', 'floor-cleaning', 'floor-wax-coating', 'hood-cleaning', 'move-in-cleaning', 'moving-cleaning', 'fire-cleaning', 'awning-cleaning', 'hoarder-house-cleaning', 'special-cleaning'].includes(currentService.serviceSlug) && '현장 상태, 오염도, 작업 범위를 기준으로 맞춤형 견적 상담을 진행해 드립니다.'}
+             </p>
             <div style={{ display: 'flex', justifyContent: 'center', gap: '16px', flexWrap: 'wrap', marginTop: '2rem' }}>
               <a 
                 href={`tel:${CONTACT_PHONE}`} 

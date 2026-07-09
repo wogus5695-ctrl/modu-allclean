@@ -30,28 +30,6 @@ export async function GET(request: Request, { params }: Props) {
   } 
   else if (fileName === 'seoul' || fileName === 'incheon' || fileName === 'gyeonggi') {
     const targetRegionSlug = fileName;
-    
-    // 1. 구 단위 허브 (area)
-    regions
-      .filter(r => r.regionSlug === targetRegionSlug && r.subDistrictSlug === 'all' && r.indexStatus === 'index')
-      .forEach(region => {
-        urls.push({
-          url: `${DOMAIN}/area/${region.regionSlug}/${region.districtSlug}`,
-          priority: 0.8,
-          changeFrequency: 'weekly'
-        });
-      });
-
-    // 2. 구 단위 키워드 허브 (keyword-hub)
-    regions
-      .filter(r => r.regionSlug === targetRegionSlug && r.subDistrictSlug === 'all' && r.indexStatus === 'index')
-      .forEach(region => {
-        urls.push({
-          url: `${DOMAIN}/keyword-hub/${region.regionSlug}-${region.districtSlug}`,
-          priority: 0.6,
-          changeFrequency: 'weekly'
-        });
-      });
 
     // 3. 구 단위 + 작업명 조합 (sitemap.xml 에는 index 대표 URL만 포함)
     regions

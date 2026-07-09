@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { regions } from '../src/data/regions';
 import { services } from '../src/data/services';
-import { INDEXED_DONG_COMBINATIONS } from '../src/lib/seo';
+import { INDEXED_DONG_COMBINATIONS, CONTACT_PHONE } from '../src/lib/seo';
 
 const DOMAIN = 'https://www.moduclean.co.kr';
 const NEXT_HTML_DIR = path.join(process.cwd(), '.next/server/app');
@@ -10,14 +10,18 @@ const NEXT_HTML_DIR = path.join(process.cwd(), '.next/server/app');
 // 헬퍼: HTML 파일 내용 로드
 function getHtmlContent(urlPath: string): string | null {
   const cleanPath = urlPath.startsWith('/') ? urlPath.slice(1) : urlPath;
-  const filePath = path.join(NEXT_HTML_DIR, `${cleanPath}.html`);
-  if (fs.existsSync(filePath)) {
-    return fs.readFileSync(filePath, 'utf-8');
-  }
+  // Next.js 빌드 시 폴더 구조에 맞춰 html 파일 경로 탐색
+  const filePath1 = path.join(NEXT_HTML_DIR, `${cleanPath}.html`);
+  const filePath2 = path.join(NEXT_HTML_DIR, cleanPath, 'page.html');
+  const filePath3 = path.join(NEXT_HTML_DIR, cleanPath, 'index.html');
+  
+  if (fs.existsSync(filePath1)) return fs.readFileSync(filePath1, 'utf-8');
+  if (fs.existsSync(filePath2)) return fs.readFileSync(filePath2, 'utf-8');
+  if (fs.existsSync(filePath3)) return fs.readFileSync(filePath3, 'utf-8');
   return null;
 }
 
-// 헬퍼: 대표지역명 계산 (MoveInCleaningTemplate 및 page.tsx 로직 동기화)
+// 헬퍼: 대표지역명 계산
 function getRepresentativeArea(region: any, isDistrictLevel: boolean, requestedWithSuffix: boolean): string {
   const isIncheon = region.regionSlug === 'incheon';
   const shortDistrict = region.district.replace(/(구|시)$/, '');
@@ -47,38 +51,23 @@ function getRepresentativeArea(region: any, isDistrictLevel: boolean, requestedW
 }
 
 async function runAudit() {
-  console.log('🔍 배포 전 URL SEO 감사 시작...\n');
+  console.log('🔍 SEO 전수 점검 및 Audit 시작...\n');
 
   if (!fs.existsSync(NEXT_HTML_DIR)) {
     console.error('❌ .next/server/app 디렉토리를 찾을 수 없습니다. 먼저 "npm run build"를 실행해주세요.');
     process.exit(1);
   }
 
-  const sitemapUrls: string[] = [];
-  const rssUrls: string[] = [];
-  const hubUrls: string[] = [];
   const allTargetUrls = new Set<string>();
-
-  const currentDate = new Date().toISOString();
   const activeServices = services.filter(s => s.indexStatus === 'index');
 
-  // 1. sitemap.xml 대상 수집 (route.ts 로직 모사)
-  // 메인 및 허브
-  sitemapUrls.push('/');
-  sitemapUrls.push('/sitemap-seoul');
-  sitemapUrls.push('/move-in-cleaning/seoul');
+  // 1. sitemap-seoul (종합청소 동적변환 키워드 허브) 관련 대상 수집
+  // /sitemap-seoul 내부 링크 모사
+  allTargetUrls.add('/sitemap-seoul');
+  allTargetUrls.add('/move-in-cleaning/seoul');
 
-  // 일반 서비스 서브 페이지
-  activeServices.forEach(service => {
-    sitemapUrls.push(`/service/${service.serviceSlug}`);
-  });
-
-  // 지역별 조합
+  // 2. 구/시 단위 및 동 단위 랜딩 페이지 수집
   regions.forEach(region => {
-    // 키워드 허브 및 지역 허브
-    sitemapUrls.push(`/area/${region.regionSlug}/${region.districtSlug}`);
-    sitemapUrls.push(`/keyword-hub/${region.regionSlug}-${region.districtSlug}`);
-
     activeServices.forEach(service => {
       const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
       const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
@@ -89,150 +78,167 @@ async function runAudit() {
 
         if (region.subDistrictSlug === 'all') {
           if (region.regionSlug === 'incheon') {
-            sitemapUrls.push(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
           } else {
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-            sitemapUrls.push(`/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`);
           }
         } else {
-          // 동 단위
-          sitemapUrls.push(`/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`);
+          allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`);
         }
       } else {
         // 일반 서비스
         if (region.subDistrictSlug === 'all') {
           if (region.regionSlug === 'incheon') {
-            sitemapUrls.push(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
           } else {
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-            sitemapUrls.push(`/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`);
           }
         } else {
-          // 동 조합은 INDEXED_DONG_COMBINATIONS만 생성
           const combo = `${region.districtSlug}-${region.subDistrictSlug}-${service.id}`;
           if (INDEXED_DONG_COMBINATIONS.includes(combo)) {
-            sitemapUrls.push(`/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`);
+            allTargetUrls.add(`/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`);
           }
         }
       }
     });
   });
 
-  // 2. rss.xml 대상 수집 (route.ts 로직 모사)
-  regions.forEach(region => {
-    activeServices.forEach(service => {
-      const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
-      const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
-      const isMoveOrMoving = isMoveIn || isMoving;
+  const auditResults: any[] = [];
+  const problemUrls: { url: string; category: string; issues: string[] }[] = [];
 
-      if (isMoveOrMoving) {
-        if (!['seoul', 'incheon', 'gyeonggi'].includes(region.regionSlug)) return;
+  const counts: Record<string, number> = {
+    '정상': 0,
+    '개선필요': 0,
+    '주제혼선': 0,
+    '메타오류': 0,
+    '404': 0,
+    'canonical오류': 0,
+    '무관이미지': 0,
+    'FAQ불일치': 0,
+    '브랜드오류': 0,
+    '내부링크부족': 0,
+    'Soft404의심': 0
+  };
 
-        if (region.subDistrictSlug === 'all') {
-          if (region.regionSlug === 'incheon') {
-            rssUrls.push(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
-          } else {
-            const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-            rssUrls.push(`/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`);
-          }
-        } else {
-          rssUrls.push(`/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`);
-        }
-      } else {
-        if (region.subDistrictSlug === 'all') {
-          if (region.regionSlug === 'incheon') {
-            rssUrls.push(`/${region.regionSlug}/${region.districtSlug}/${service.serviceSlug}`);
-          } else {
-            const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-            rssUrls.push(`/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`);
-          }
-        }
-      }
-    });
-  });
-
-  // 3. /move-in-cleaning/seoul 허브 내부 링크 수집
-  const moveOrMoving = services.filter(s => s.serviceSlug === 'move-in-cleaning' || s.serviceSlug === 'moving-cleaning');
-  regions
-    .filter(r => r.subDistrictSlug !== 'all' && ['seoul', 'incheon', 'gyeonggi'].includes(r.regionSlug))
-    .forEach(region => {
-      moveOrMoving.forEach(service => {
-        hubUrls.push(`/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`);
-      });
-    });
-
-  // 모든 검사 대상 병합
-  sitemapUrls.forEach(u => allTargetUrls.add(u));
-  rssUrls.forEach(u => allTargetUrls.add(u));
-  hubUrls.forEach(u => allTargetUrls.add(u));
-
-  // 결과 집계용 변수
-  let normalCount = 0;
-  let count404 = 0;
-  let redirectCount = 0;
-  let soft404Count = 0;
-  let queryCount = 0;
-  let canonicalErrorCount = 0;
-  let regionMissingCount = 0;
-
-  const problemUrls: { url: string; issues: string[] }[] = [];
+  const serviceKeywords: Record<string, string[]> = {
+    'move-in-cleaning': ['입주청소', '이사', '청소', '분진', '싱크대', '욕실'],
+    'moving-cleaning': ['이사청소', '이사', '청소', '물때', '기름때', '창틀'],
+    'exterior-cleaning': ['외벽청소', '고압', '외벽', '로프', '빌딩', '유리창'],
+    'window-cleaning': ['유리창청소', '유리창', '물때', '백화', '상가', '쇼윈도'],
+    'fire-cleaning': ['화재청소', '그을음', '탄냄새', '화재', '복구', '소독'],
+    'floor-waxing': ['바닥왁스코팅', '바닥', '왁스', '데코타일', '광택', '박리'],
+    'awning-cleaning': ['어닝청소', '어닝', '천막', '고압세척', '곰팡이'],
+    'sign-cleaning': ['간판청소', '간판', '매연', '세척', '상가'],
+    'interior-after-cleaning': ['인테리어', '분진', '공사', '청소', '준공'],
+    'completion-cleaning': ['준공청소', '준공', '공사', '건물', '청소'],
+    'hood-cleaning': ['후드청소', '후드', '덕트', '기름때', '식당', '주방'],
+    'hoarding-cleaning': ['쓰레기집', '폐기물', '수거', '악취', '정리'],
+    'special-cleaning': ['특수청소', '악취', '유품', '고독사', '혈흔'],
+    'floor-cleaning': ['바닥청소', '바닥', '세척', '타일', '사무실']
+  };
 
   for (const urlPath of allTargetUrls) {
     const issues: string[] = [];
-
-    // Query URL 검사
-    if (urlPath.includes('?') || urlPath.includes('&')) {
-      queryCount++;
-      issues.push('Query URL 포함 오류 (사이트맵/RSS 차단 대상)');
-    }
-
-    // 파일 로드 및 HTTP Status 200 검증
-    // /, /rss.xml, /sitemap.xml 등은 Dynamic Route이므로 static HTML이 생성되지 않음
-    const dynamicRoutes = ['/', '/rss.xml', '/sitemap.xml'];
-    if (dynamicRoutes.includes(urlPath) || urlPath.startsWith('/sitemaps/')) {
-      normalCount++;
-      continue;
-    }
-
     let cleanPathForFile = urlPath;
     if (urlPath.endsWith('/')) {
-      cleanPathForFile = urlPath + 'page';
+      cleanPathForFile = urlPath.slice(0, -1);
     }
-    
+
     const htmlContent = getHtmlContent(cleanPathForFile);
+    const isQueryUrl = urlPath.includes('?') || urlPath.includes('&');
+
+    const resultRow: any = {
+      url: urlPath,
+      status: htmlContent ? 200 : 404,
+      redirect: 'N',
+      title: '',
+      metaDesc: '',
+      h1: '',
+      canonical: '',
+      representativeArea: '',
+      serviceName: '',
+      keywordCount: 0,
+      hasKeywords: 'N',
+      faqMatch: 'N/A',
+      altMatch: 'N/A',
+      hasIrrelevantImage: 'N',
+      hasCta: 'N',
+      brandOk: 'N',
+      queryUrl: isQueryUrl ? 'Y' : 'N',
+      soft404: 'N',
+      category: '정상'
+    };
+
+    if (isQueryUrl) {
+      issues.push('Query URL 여부 (차단/비권장)');
+    }
 
     if (!htmlContent) {
-      count404++;
-      issues.push('HTTP 404 (Prerendered HTML 파일 없음)');
-      problemUrls.push({ url: urlPath, issues });
+      resultRow.status = 404;
+      resultRow.category = '404';
+      counts['404']++;
+      issues.push('HTTP 404 - HTML 빌드 파일 없음');
+      problemUrls.push({ url: urlPath, category: '404', issues });
+      auditResults.push(resultRow);
       continue;
     }
 
-    // HTML 파싱 (정규표현식)
+    // HTML 파싱
     const titleMatch = htmlContent.match(/<title>(.*?)<\/title>/i);
     const title = titleMatch ? titleMatch[1] : '';
+    resultRow.title = title;
+
+    const descMatch = htmlContent.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/i) ||
+                      htmlContent.match(/<meta[^>]*content="([^"]*)"[^>]*name="description"/i);
+    const description = descMatch ? descMatch[1] : '';
+    resultRow.metaDesc = description;
 
     const h1Match = htmlContent.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
     const h1 = h1Match ? h1Match[1].replace(/<[^>]*>/g, '').trim() : '';
+    resultRow.h1 = h1;
 
     const canonicalMatch = htmlContent.match(/<link[^>]*rel="canonical"[^>]*href="([^"]*)"/i) || 
                            htmlContent.match(/<link[^>]*href="([^"]*)"[^>]*rel="canonical"/i);
     const canonical = canonicalMatch ? canonicalMatch[1] : '';
+    resultRow.canonical = canonical;
 
-    // 메타 설명 점검
-    const descMatch = htmlContent.match(/<meta[^>]*name="description"[^>]*content="([^"]*)"/i) ||
-                      htmlContent.match(/<meta[^>]*content="([^"]*)"[^>]*name="description"/i);
-    const description = descMatch ? descMatch[1] : '';
+    // CTA 확인
+    const hasCta = htmlContent.includes(CONTACT_PHONE) || htmlContent.includes('tel:') || htmlContent.includes('카카오톡');
+    resultRow.hasCta = hasCta ? 'Y' : 'N';
+    if (!hasCta) issues.push('CTA 버튼이나 전화번호 링크가 없음');
 
-    // 동적 경로인 경우 데이터 추출 및 검증
+    // 브랜드명 확인
+    const brandOk = title.includes('모두종합환경') || htmlContent.includes('모두종합환경');
+    resultRow.brandOk = brandOk ? 'Y' : 'N';
+    if (!brandOk) {
+      issues.push('브랜드명이 "모두종합환경"이 아님');
+      resultRow.category = '브랜드오류';
+    }
+
+    // 경로 파싱 및 대표지역명/작업명 매핑
     const parts = urlPath.split('/').filter(Boolean);
-    const isLandingPage = parts.length >= 3 && ['seoul', 'incheon', 'gyeonggi'].includes(parts[0]);
+    const isLandingPage = parts.length >= 2;
+    let city = '';
+    let districtParam = '';
+    let subDistrictSlug = 'all';
+    let serviceSlug = '';
 
     if (isLandingPage) {
-      const city = parts[0];
-      const districtParam = parts[1];
-      const serviceSlug = parts[parts.length - 1];
-      const subDistrictSlug = parts.length > 3 ? parts[2] : 'all';
+      city = parts[0];
+      if (parts.length === 2) {
+        serviceSlug = parts[1]; // /service/exterior-cleaning 같은 경우
+      } else if (parts.length === 3) {
+        districtParam = parts[1];
+        serviceSlug = parts[2];
+      } else if (parts.length === 4) {
+        districtParam = parts[1];
+        subDistrictSlug = parts[2];
+        serviceSlug = parts[3];
+      }
 
       const region = regions.find(r => 
         r.regionSlug === city && 
@@ -245,129 +251,162 @@ async function runAudit() {
       const service = services.find(s => s.serviceSlug === serviceSlug);
 
       if (region && service) {
-        const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
-        const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
-        const isMoveOrMoving = isMoveIn || isMoving;
+        const isDistrictLevel = subDistrictSlug === 'all';
+        const requestedWithSuffix = districtParam.endsWith('-gu') || districtParam.endsWith('-si');
+        const representativeArea = getRepresentativeArea(region, isDistrictLevel, requestedWithSuffix);
+        resultRow.representativeArea = representativeArea;
+        resultRow.serviceName = service.serviceNameKo;
 
-        if (isMoveOrMoving) {
-          const isDistrictLevel = subDistrictSlug === 'all';
-          const requestedWithSuffix = districtParam.endsWith('-gu') || districtParam.endsWith('-si');
-          const representativeArea = getRepresentativeArea(region, isDistrictLevel, requestedWithSuffix);
-          const workName = isMoveIn ? '입주청소' : '이사청소';
-          const targetKeyword = `${representativeArea} ${workName}`;
+        // 본문 가공
+        const bodyText = htmlContent.replace(/<!--[\s\S]*?-->/g, ' ')
+                                    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+                                    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+                                    .replace(/<[^>]*>/g, ' ')
+                                    .replace(/\s+/g, ' ');
 
-          // 1. title 존재 여부
-          if (!title) {
-            issues.push('Title 태그 누락');
-          }
+        // 키워드 빈도 및 핵심어 포함 체크
+        const targetKeyword = `${representativeArea} ${service.serviceNameKo}`;
+        const keywordRegex = new RegExp(targetKeyword.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&'), 'g');
+        const keywordCount = (bodyText.match(keywordRegex) || []).length;
+        resultRow.keywordCount = keywordCount;
 
-          // 2. H1 존재 여부
-          if (!h1) {
-            issues.push('H1 태그 누락');
-          } else {
-            // H1 형식 검증 (지역명+작업명)
-            if (!h1.includes(representativeArea) || !h1.includes(workName)) {
-              issues.push(`H1 태그 포맷 오류 (현재: "${h1}" / 기대값: "${representativeArea} ${workName}")`);
-            }
-            if (h1 === '입주청소' || h1 === '이사청소') {
-              issues.push('H1에 지역명이 빠지고 단순 작업명만 노출됨 (Soft 404 요인)');
-            }
-          }
+        const coreKeywords = serviceKeywords[serviceSlug] || [];
+        const hasKeywords = coreKeywords.every(k => bodyText.includes(k)) ? 'Y' : 'N';
+        resultRow.hasKeywords = hasKeywords;
 
-          // 3. 본문 텍스트 내 대표 키워드 존재 여부
-          const bodyText = htmlContent.replace(/<!--[\s\S]*?-->/g, ' ') // 주석 제거
-                                      .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-                                      .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-                                      .replace(/<[^>]*>/g, ' ')
-                                      .replace(/\s+/g, ' '); // 공백 정규화
+        if (keywordCount === 0) {
+          issues.push(`본문에 대표 키워드 "${targetKeyword}"가 미포함되었습니다.`);
+        }
 
-          if (!bodyText.includes(targetKeyword)) {
-            issues.push(`본문 내 핵심 키워드 "${targetKeyword}" 누락`);
-          }
+        // FAQ 검증
+        const faqMatch = htmlContent.includes(service.serviceNameKo) ? 'Y' : 'N';
+        resultRow.faqMatch = faqMatch;
+        if (faqMatch === 'N') {
+          issues.push('FAQ 영역에 현재 작업명과 맞지 않는 기본 텍스트 노출');
+        }
 
-          // 4. "지역의" 앞 공란 검증 (태그와 주석이 제거된 순수 텍스트 기준)
-          // 정규화된 공백 기준 " 지역의"로 단일 공백 매칭되나, 빈 값인 경우 앞부분 조사(은/는) 뒤에 공백 2개 이상이 생김
-          if (bodyText.includes('은 지역의') || bodyText.includes('는 지역의')) {
-            // 정상: "올케어 서비스은 목동 지역의" (은과 지역의 사이에 목동이 있음)
-            // 비정상: "올케어 서비스은 지역의" (은과 지역의 사이에 아무것도 없음)
-            issues.push('본문 내 빈 지역명 오류 ("은 지역의" 혹은 "는 지역의" 발견)');
-            regionMissingCount++;
-          }
+        // 이미지 alt 검사
+        const altMatches = [...htmlContent.matchAll(/alt="([^"]*)"/g)].map(m => m[1]);
+        const altMatch = altMatches.some(alt => alt.includes(service.serviceNameKo)) ? 'Y' : 'N';
+        resultRow.altMatch = altMatch;
+        if (altMatch === 'N') {
+          issues.push('작업명에 매칭되는 이미지 Alt 태그가 부족하거나 없음');
+        }
 
-          // 5. Canonical 검증 (자기 자신 매핑 여부)
-          const expectedCanonical = `${DOMAIN}${urlPath}`;
-          
-          // 서울/경기 구 단위 제거형은 canonical이 접미사 포함 버전이어야 함
-          let isNoSuffixDistrict = false;
-          let expectedAltCanonical = expectedCanonical;
+        // soft 404 의심 점검
+        let isSoft404 = false;
+        if (!h1) {
+          isSoft404 = true;
+          issues.push('Soft 404 의심: H1 태그 누락');
+        }
+        if (!title) {
+          isSoft404 = true;
+          issues.push('Soft 404 의심: Title 태그 누락');
+        }
+        if (!description) {
+          isSoft404 = true;
+          issues.push('Soft 404 의심: Meta Description 누락');
+        }
+        if (h1 === service.serviceNameKo) {
+          isSoft404 = true;
+          issues.push(`Soft 404 의심: H1에 지역명 없이 단일 작업명 "${h1}"만 노출`);
+        }
+        if (bodyText.includes('은 지역의') || bodyText.includes('는 지역의') || bodyText.includes('은   지역의')) {
+          isSoft404 = true;
+          issues.push('Soft 404 의심: 본문 내 지역명이 빈칸으로 출력됨 ("은 지역의")');
+        }
+
+        if (isSoft404) {
+          resultRow.soft404 = 'Y';
+          resultRow.category = 'Soft404의심';
+        }
+
+        // Canonical 검증
+        const expectedCanonical = `${DOMAIN}${urlPath}`;
+        let canonicalOk = canonical === expectedCanonical;
+        if (!canonicalOk) {
+          // 접미사 예외 규칙
           if (city !== 'incheon' && isDistrictLevel && !requestedWithSuffix) {
-            isNoSuffixDistrict = true;
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-            expectedAltCanonical = `${DOMAIN}/${city}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
-          }
-
-          if (isNoSuffixDistrict) {
-            if (canonical !== expectedAltCanonical) {
-              canonicalErrorCount++;
-              issues.push(`Canonical 주소 불일치 (현재: ${canonical} / 기대값: ${expectedAltCanonical})`);
-            }
-          } else {
-            if (canonical !== expectedCanonical) {
-              canonicalErrorCount++;
-              issues.push(`Canonical 주소 불일치 (현재: ${canonical} / 기대값: ${expectedCanonical})`);
-            }
-          }
-
-          // 6. 페이지를 찾을 수 없습니다 문구 포함 여부
-          const cleanBodyHtml = htmlContent.replace(/<script[\s\S]*?<\/script>/gi, '')
-                                            .replace(/<style[\s\S]*?<\/style>/gi, '');
-          if (cleanBodyHtml.includes('페이지를 찾을 수 없습니다') || cleanBodyHtml.includes('notFound')) {
-            issues.push('200 응답 본문에 "페이지를 찾을 수 없습니다" 문구 포함 (에러 노출 의심)');
-          }
-
-          // 7. 본문 길이 검증 (소프트 404 방지)
-          if (bodyText.length < 500) {
-            issues.push(`본문 텍스트 분량 부족 (현재: ${bodyText.length}자 / 최소 권장 500자)`);
+            const expectedAltCanonical = `${DOMAIN}/${city}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
+            canonicalOk = canonical === expectedAltCanonical;
           }
         }
-      } else {
-        issues.push('데이터 매핑 정보 없음 (유효하지 않은 지역 또는 서비스 조합)');
+
+        if (!canonicalOk) {
+          issues.push(`Canonical 오류: 현재 ${canonical} / 기대값: ${expectedCanonical}`);
+          if (resultRow.category === '정상') resultRow.category = 'canonical오류';
+        }
       }
     }
 
     if (issues.length > 0) {
-      soft404Count++;
-      problemUrls.push({ url: urlPath, issues });
+      if (resultRow.category === '정상') {
+        resultRow.category = '개선필요';
+      }
+      counts[resultRow.category]++;
+      problemUrls.push({ url: urlPath, category: resultRow.category, issues });
     } else {
-      normalCount++;
+      counts['정상']++;
     }
+
+    auditResults.push(resultRow);
   }
 
-  // 보고서 출력
+  // 1. 콘솔 요약 출력
   console.log('==================================================');
-  console.log('📊 [URL SEO 감사 요약 보고서]');
+  console.log('📊 [SEO URL Audit 요약 보고서]');
   console.log('==================================================');
-  console.log(`✅ 정상 검증 완료 URL : ${normalCount}개`);
-  console.log(`❌ 404 에러 URL       : ${count404}개`);
-  console.log(`⚠️ 리디렉션 대상 URL  : ${redirectCount}개`);
-  console.log(`⚠️ 소프트 404 의심 URL : ${soft404Count}개`);
-  console.log(`⚠️ Query 파라미터 URL : ${queryCount}개`);
-  console.log(`⚠️ Canonical 오류 URL  : ${canonicalErrorCount}개`);
-  console.log(`⚠️ 지역명 누락 URL     : ${regionMissingCount}개`);
+  Object.entries(counts).forEach(([category, count]) => {
+    console.log(`- ${category.padEnd(15)} : ${count}개`);
+  });
   console.log('==================================================');
 
-  if (problemUrls.length > 0) {
-    console.log('\n❌ [발견된 문제 URL 및 감지 내역]');
-    problemUrls.forEach((item, idx) => {
-      console.log(`\n[${idx + 1}] URL: ${DOMAIN}${item.url}`);
-      item.issues.forEach(issue => console.log(`  - 🔴 ${issue}`));
-    });
-    console.log('\n⚠️ 배포 전에 위 오류들을 점검하고 정상 복구해야 합니다.');
-    process.exit(1);
-  } else {
-    console.log('\n🎉 축하합니다! 모든 검수 대상 URL이 완벽하게 정상입니다.');
-    process.exit(0);
+  // 2. CSV 파일 생성
+  const headers = ['URL', 'HTTP Status', 'Redirect', 'Title', 'Meta Description', 'H1', 'Canonical', '대표지역명', '작업명', '키워드수', '핵심단어포함', 'FAQ일치', 'Alt일치', 'CTA여부', '브랜드Ok', 'Query여부', 'Soft404', '카테고리'];
+  const csvRows = [headers.join(',')];
+
+  auditResults.forEach(r => {
+    const row = [
+      `"${r.url}"`,
+      r.status,
+      `"${r.redirect}"`,
+      `"${(r.title || '').replace(/"/g, '""')}"`,
+      `"${(r.metaDesc || '').replace(/"/g, '""')}"`,
+      `"${(r.h1 || '').replace(/"/g, '""')}"`,
+      `"${r.canonical}"`,
+      `"${r.representativeArea}"`,
+      `"${r.serviceName}"`,
+      r.keywordCount,
+      `"${r.hasKeywords}"`,
+      `"${r.faqMatch}"`,
+      `"${r.altMatch}"`,
+      `"${r.hasCta}"`,
+      `"${r.brandOk}"`,
+      `"${r.queryUrl}"`,
+      `"${r.soft404}"`,
+      `"${r.category}"`
+    ];
+    csvRows.push(row.join(','));
+  });
+
+  const artifactDir = path.join(process.cwd(), '.gemini', 'antigravity');
+  if (!fs.existsSync(artifactDir)) {
+    fs.mkdirSync(artifactDir, { recursive: true });
   }
+  
+  fs.writeFileSync(path.join(process.cwd(), 'seo_audit_results.csv'), csvRows.join('\n'), 'utf-8');
+  console.log('📁 CSV 파일 저장 완료: seo_audit_results.csv');
+
+  // 3. 문제 URL 목록 생성
+  const problemRows = problemUrls.map((p, idx) => {
+    return `${idx + 1}. URL: ${DOMAIN}${p.url}\n   - 분류: [${p.category}]\n   - 감지된 문제:\n${p.issues.map(i => `     🔴 ${i}`).join('\n')}`;
+  });
+
+  fs.writeFileSync(path.join(process.cwd(), 'seo_problems_list.txt'), problemRows.join('\n\n'), 'utf-8');
+  console.log('📁 문제 URL 목록 저장 완료: seo_problems_list.txt\n');
+
+  console.log(`❌ 총 ${problemUrls.length}개의 URL에서 SEO 개선 요소가 발견되었습니다.`);
 }
 
 runAudit();

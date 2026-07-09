@@ -9,6 +9,7 @@ import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAN
 import LandingTemplate from '@/components/LandingTemplate';
 import MainTemplate from '@/components/MainTemplate';
 import MoveInCleaningTemplate from '@/components/MoveInCleaningTemplate';
+import { serviceContentMap } from '@/data/seo/serviceContentMap';
 
 export const dynamicParams = false;
 
@@ -183,132 +184,121 @@ export default async function LandingPage({ params }: Props) {
   // 신규 랜딩 페이지 데이터 생성
   const landingData = (seoRegion && seoService) ? generateLandingPageData(seoRegion, seoService) : null;
 
-  // FAQPage JSON-LD 처리 (화면과 100% 동일하게 일원화)
   const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
   const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
   const isMoveOrMoving = isMoveIn || isMoving;
-  const workName = isMoveIn ? '입주청소' : '이사청소';
+  const pageFaqWorkName = isMoveIn ? '입주청소' : '이사청소';
+
+  // 작업명별로 serviceContentMap의 FAQ 연계
+  const serviceContent = serviceContentMap[service.serviceSlug] || {
+    serviceName: service.serviceNameKo,
+    faqItems: service.faq.map(f => ({
+      q: f.question.replace('{service}', service.serviceNameKo).replace('{region}', regionName),
+      a: f.answer.replace('{service}', service.serviceNameKo).replace('{region}', regionName)
+    }))
+  };
+
+  const faqList = serviceContent.faqItems.map((item, idx) => {
+    let questionText = item.q.replace(/\{\{지역명\}\}/g, regionName).replace(/\{\{작업명\}\}/g, service.serviceNameKo);
+    let answerText = item.a.replace(/\{\{지역명\}\}/g, regionName).replace(/\{\{작업명\}\}/g, service.serviceNameKo);
+    
+    // 첫 번째 FAQ 질문에 지역명과 작업명이 자연스럽게 포함되도록 조절
+    if (idx === 0) {
+      if (!questionText.includes(regionName)) {
+        questionText = `${regionName} ${questionText}`;
+      }
+      if (!questionText.includes(service.serviceNameKo)) {
+        questionText = questionText.replace('청소', service.serviceNameKo);
+      }
+    }
+    return { q: questionText, a: answerText };
+  });
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    'mainEntity': isMoveOrMoving ? [
-      {
-        '@type': 'Question',
-        'name': `${regionName} ${workName}는 ${isMoveIn ? '입주' : '이사'} 며칠 전에 하는 게 좋나요?`,
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': isMoveIn 
-            ? '가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다.'
-            : '가구나 짐이 없는 완전히 비어있는 집 상태에서 구석구석 정밀 클리닝이 진행되도록 이사일 기준 1~3일 전 일정을 잡고 완료하시는 것을 추천합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': '욕실과 주방 오염도 따로 확인하나요?',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': '욕실은 물때, 배수구, 수전 주변을 중심으로 확인하고, 주방은 싱크대, 수납장, 조리대 주변의 생활오염을 중심으로 확인합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': '베란다와 창틀도 포함되나요?',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': '베란다 바닥, 배수구 주변, 창틀 틈새 먼지는 입주 후 직접 정리하기 번거로운 구간입니다. 현장 상태와 견적 범위에 따라 상담 시 포함 범위를 확인합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': isMoveIn ? '신축 아파트 공사 분진도 청소 가능한가요?' : '기존 세입자가 남긴 생활 찌든 때도 제거되나요?',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': isMoveIn 
-            ? '신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다.'
-            : '주방의 찌든 기름때, 욕실 배수구 주변 및 변기/세면대 물때, 창틀 틈새의 묵은 먼지 등 생활 오염 흔적은 전용 약품과 장비로 분해하여 깨끗하게 제거합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': '짐이 있는 상태에서도 청소가 가능한가요?',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': '가능은 하지만 빈집 상태보다 작업 범위가 제한될 수 있습니다. 가구나 짐이 많다면 상담 시 미리 알려주셔야 합니다.'
-        }
-      },
-      {
-        '@type': 'Question',
-        'name': '견적은 어떻게 확인하나요?',
-        'acceptedAnswer': {
-          '@type': 'Answer',
-          'text': '지역, 평수, 집 형태, 오염도, 작업 범위, 입주 예정일에 따라 달라집니다. 사진과 기본 정보를 알려주시면 상담이 빠릅니다.'
-        }
-      }
-    ] : service.faq.map(item => ({
+    'mainEntity': faqList.map(item => ({
       '@type': 'Question',
-      'name': item.question.replace('{service}', service.serviceNameKo).replace('{region}', regionName),
+      'name': item.q,
       'acceptedAnswer': {
         '@type': 'Answer',
-        'text': item.answer.replace('{service}', service.serviceNameKo).replace('{region}', regionName)
+        'text': item.a
       }
     }))
   };
 
+  // 작업명별 title 후킹 문구 및 meta description 템플릿
+  const HOOK_PHRASES: Record<string, string> = {
+    'exterior-cleaning': '건물 외벽 오염·빗물자국 정리',
+    'window-cleaning': '상가·건물 유리창 오염 정리',
+    'fire-cleaning': '그을음·냄새·오염 복구 청소',
+    'floor-wax-coating': '바닥 세척·코팅 관리',
+    'floor-waxing': '바닥 세척·코팅 관리',
+    'awning-cleaning': '매장 어닝 먼지·오염 정리',
+    'signboard-cleaning': '상가 간판·전면유리 정리',
+    'sign-cleaning': '상가 간판·전면유리 정리',
+    'interior-post-cleaning': '공사분진·잔먼지 정리',
+    'interior-after-cleaning': '공사분진·잔먼지 정리',
+    'construction-completion-cleaning': '신축·리모델링 현장 분진 정리',
+    'completion-cleaning': '신축·리모델링 현장 분진 정리',
+    'hood-cleaning': '주방 후드 기름때 정리',
+    'hoarder-house-cleaning': '생활폐기물·악취 정리',
+    'hoarding-cleaning': '생활폐기물·악취 정리',
+    'special-cleaning': '일반 청소로 어려운 오염 정리',
+    'floor-cleaning': '바닥 오염·잔먼지 정리',
+    'move-in-cleaning': '욕실·주방·베란다 검수',
+    'moving-cleaning': '욕실·주방·베란다 정리'
+  };
+
+  const DESC_TEMPLATES: Record<string, string> = {
+    'signboard-cleaning': '상가 간판, 전면 유리, 어닝의 먼지·빗물 자국·매연 때를 현장 상태에 맞춰 안내합니다.',
+    'sign-cleaning': '상가 간판, 전면 유리, 어닝의 먼지·빗물 자국·매연 때를 현장 상태에 맞춰 안내합니다.',
+    'window-cleaning': '상가, 사무실, 건물 유리창의 먼지, 물때, 유막, 외부 오염 상태를 기준으로 청소 범위를 안내합니다.',
+    'interior-post-cleaning': '공사 분진, 바닥 잔먼지, 창틀 먼지, 수납장 내부 오염 등 인테리어 후 남기 쉬운 오염을 정리합니다.',
+    'interior-after-cleaning': '공사 분진, 바닥 잔먼지, 창틀 먼지, 수납장 내부 오염 등 인테리어 후 남기 쉬운 오염을 정리합니다.',
+    'move-in-cleaning': '입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.',
+    'moving-cleaning': '이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.'
+  };
+
   const isDistrictLevel = region.subDistrict === '전지역';
   const shortDistrict = region.district.replace(/(구|시)$/, '');
+  const isIncheon = region.regionSlug === 'incheon';
   const requestedWithSuffix = district.endsWith('-gu') || district.endsWith('-si');
-
-  let title = '';
-  let description = '';
-
   let representativeArea = '';
-  if (isMoveOrMoving) {
-    const isIncheon = region.regionSlug === 'incheon';
+  if (!isDistrictLevel) {
+    // 동/읍/면 단위 페이지
+    const neighborhoodName = region.subDistrict;
+    const districtName = region.district;
 
-    if (!isDistrictLevel) {
-      // 동/읍/면 단위 페이지
-      const neighborhoodName = region.subDistrict;
-      const districtName = region.district;
-
-      if (region.regionSlug === 'seoul') {
-        representativeArea = neighborhoodName;
-      } else if (region.regionSlug === 'incheon') {
-        const isConflictIncheon = ['논현동', '신흥동'].includes(neighborhoodName);
-        representativeArea = isConflictIncheon ? `인천 ${neighborhoodName}` : neighborhoodName;
-      } else {
-        const isConflictGyeonggi = ['문산읍', '신흥동', '중앙동', '역삼동', '신교동', '성남동', '태평동', '수진동', '단대동', '상대원동'].includes(neighborhoodName);
-        representativeArea = isConflictGyeonggi ? `${districtName.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
-      }
-
-      title = `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
-      description = `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
+    if (region.regionSlug === 'seoul') {
+      representativeArea = neighborhoodName;
+    } else if (region.regionSlug === 'incheon') {
+      const isConflictIncheon = ['논현동', '신흥동'].includes(neighborhoodName);
+      representativeArea = isConflictIncheon ? `인천 ${neighborhoodName}` : neighborhoodName;
     } else {
-      // 구 / 시 단위 페이지
-      if (requestedWithSuffix) {
-        const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-        representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
-        
-        title = `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
-        description = `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
-      } else {
-        const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-        representativeArea = cleanShortDistrict;
-        
-        title = `${representativeArea} ${workName} | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
-        description = `${representativeArea} ${workName} 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
-      }
+      const isConflictGyeonggi = ['문산읍', '신흥동', '중앙동', '역삼동', '신교동', '성남동', '태평동', '수진동', '단대동', '상대원동'].includes(neighborhoodName);
+      representativeArea = isConflictGyeonggi ? `${districtName.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
     }
   } else {
-    const titleRegion = isDistrictLevel 
-      ? (requestedWithSuffix ? region.district : shortDistrict) 
-      : region.subDistrict;
-    const descRegion = isDistrictLevel 
-      ? (requestedWithSuffix ? region.district : shortDistrict) 
-      : region.subDistrict;
-    title = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-    description = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+    // 구 / 시 단위 페이지
+    if (requestedWithSuffix) {
+      const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+      representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
+    } else {
+      const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
+      representativeArea = cleanShortDistrict;
+    }
   }
+
+  const workName = service.serviceNameKo;
+  const hookPhrase = HOOK_PHRASES[service.serviceSlug] || '청소 전문 서비스';
+  const title = `${representativeArea} ${workName} | ${hookPhrase} - ${BRAND_NAME}`;
+
+  let descDetail = DESC_TEMPLATES[service.serviceSlug];
+  if (!descDetail) {
+    descDetail = `${service.shortDescription}를`;
+  }
+  const description = `${representativeArea} ${workName} 상담. ${descDetail} 현장 상태에 맞춰 안내합니다.`;
   
   const path = region.subDistrictSlug === 'all'
     ? `/${region.regionSlug}/${district}/${service.serviceSlug}`
@@ -426,7 +416,7 @@ export default async function LandingPage({ params }: Props) {
           representativeArea = cleanShortDistrict;
         }
       }
-      return `${representativeArea} ${workName}`;
+      return `${representativeArea} ${pageFaqWorkName}`;
     })(),
     'description': description,
     'provider': {
@@ -491,7 +481,14 @@ export default async function LandingPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {landingData ? (
-        <LandingTemplate data={landingData} regionObj={seoRegion} currentService={seoService} />
+        <LandingTemplate 
+          data={{
+            ...landingData,
+            faqBlock: faqList.map(item => ({ q: item.q, a: item.a }))
+          }} 
+          regionObj={{ ...seoRegion, displayNameKo: representativeArea }} 
+          currentService={seoService} 
+        />
       ) : (
         <MainTemplate region={regionName} service={service.serviceNameKo} regionObj={region} />
       )}

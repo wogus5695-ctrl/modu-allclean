@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from 'react';
 import { LandingPageData } from '@/lib/seo-builder';
 import { CONTACT_PHONE, BRAND_NAME, CONTACT_KAKAOTALK } from '@/lib/seo';
 import { SeoService } from '@/data/seo/services';
+import { serviceContentMap } from '@/data/seo/serviceContentMap';
 import styles from '@/app/page.module.css';
 import FloatingContact from '@/components/FloatingContact';
 import Header from '@/components/Header';
@@ -112,13 +113,35 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   const isMoving = currentService.serviceSlug === 'moving-cleaning';
   const workName = isMoving ? "이사청소" : "입주청소";
 
+  const content = serviceContentMap[currentService.serviceSlug] || {
+    serviceName: workName,
+    heroSubcopy: `${regionName} ${workName} 전문 서비스로서 신축 분진, 전 세입자 생활오염, 창틀 먼지처럼 입주 후 직접 처리하기 번거로운 구간을 중심으로 깨끗하게 청소합니다.`,
+    targets: ['아파트', '빌라', '오피스텔', '주거공간'],
+    pollutionTypes: ['생활오염', '분진', '물때', '기름때'],
+    scopeCards: [
+      { title: "욕실 청소", desc: "물때, 배수구 주변, 수전·거울 오염까지 확인합니다." },
+      { title: "주방 청소", desc: "싱크대, 상·하부장, 조리대 주변의 기름때와 생활오염을 정리합니다." },
+      { title: "베란다·창틀 청소", desc: "창틀 틈새, 배수구 주변, 베란다 바닥 먼지를 확인합니다." },
+      { title: "전체 오염 케어", desc: "바닥, 몰딩, 문틀, 수납장 내부의 잔먼지를 정리합니다." }
+    ],
+    estimateFactors: ["평수", "방/욕실 개수", "구축 연식/오염 정도", "주방 기름때/욕실 곰팡이 상태", "베란다·창틀 작업 범위", isMoving ? "이사 예정일" : "입주 예정일", "빈집 여부", "사진 확인 가능 여부"],
+    faqItems: [
+      { q: `${regionName} ${workName}는 ${isMoving ? '이사' : '입주'} 며칠 전에 하는 게 좋나요?`, a: isMoving ? "이삿짐이나 가구가 완전히 없는 공실(빈집) 상태에서 진행해야 구석구석 찌든 먼지까지 제거할 수 있습니다. 보통 이사 1~3일 전에 마치는 일정을 추천합니다." : "가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다." }
+    ],
+    relatedServices: [],
+    imageKeywords: [],
+    altTextPatterns: [],
+    ctaTitle: `${regionName} ${workName}가 필요하신가요?`,
+    ctaDescription: `${regionName} ${workName} 상세 견적과 ${isMoving ? '이사일' : '입주일'}, 평수, 오염 상태를 기준으로 작업 가능 여부 및 일정을 신속히 확인해드립니다.`
+  };
+
   // serviceConfig 변수 선언
   const serviceConfig = {
     moveIn: {
       heroBadge: "입주 전 빈집 청소 전문",
       heroTitle: `${regionName} 입주청소`,
       heroMainText: "입주 전 마지막 점검",
-      heroSubText: `${regionName} 입주청소 전문 서비스로서 신축 분진, 전 세입자 생활오염, 창틀 먼지처럼 입주 후 직접 처리하기 번거로운 구간을 중심으로 깨끗하게 청소합니다.`,
+      heroSubText: content.heroSubcopy.replace(/\{\{지역명\}\}/g, regionName),
       heroCheckDate: "입주일 기준 상담",
       whySectionTitle: "겉으로 깨끗해 보여도\n입주 전 확인해야 할 곳이 있습니다",
       whySectionDesc: `${regionName} 입주청소 진행 시 신축 분진, 전 세입자 흔적, 욕실 물때, 주방 기름때, 창틀 먼지, 수납장 내부 먼지는 입주 후 직접 정리하기 번거로운 경우가 많으므로 전문 검수와 클리닝이 꼭 필요합니다.`,
@@ -130,14 +153,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       portfolioTitle: "입주 전 확인이 필요한 공간,\n사진으로 먼저 확인하세요",
       portfolioDesc: `${regionName} 입주청소 전후 상태를 사진으로 확인해 보세요. 욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 꼼꼼하게 확인합니다.`,
       estimateTitle: `${regionName} 입주청소 견적 안내`,
-      footerCtaTitle: `${regionName} 입주청소가 필요하신가요?`,
-      footerCtaDesc: `${regionName} 입주청소 상세 견적과 입주일, 평수, 오염 상태를 기준으로 작업 가능 여부 및 일정을 신속히 확인해드립니다.`
+      footerCtaTitle: content.ctaTitle.replace(/\{\{지역명\}\}/g, regionName),
+      footerCtaDesc: content.ctaDescription.replace(/\{\{지역명\}\}/g, regionName)
     },
     moving: {
       heroBadge: "이사 전 빈집 청소 전문",
       heroTitle: `${regionName} 이사청소`,
       heroMainText: "이사 전후 정리",
-      heroSubText: `${regionName} 이사청소 전문 서비스로서 이사 전후 남기 쉬운 생활오염, 주방 기름때, 욕실 물때, 베란다·창틀 먼지를 구석구석 깨끗하게 케어합니다.`,
+      heroSubText: content.heroSubcopy.replace(/\{\{지역명\}\}/g, regionName),
       heroCheckDate: "이사일 기준 상담",
       whySectionTitle: "겉으로 깨끗해 보여도\n이사 전 확인해야 할 곳이 있습니다",
       whySectionDesc: `${regionName} 이사청소는 이전 세입자의 찌든 때 흔적, 주방 기름때, 욕실 물때 및 곰팡이, 창틀 고착 먼지 등 이사 전에 전문 약품과 장비로 완벽히 세정해야만 이사 후 쾌적하게 거주하실 수 있습니다.`,
@@ -149,48 +172,28 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       portfolioTitle: "이사 전 확인이 필요한 공간,\n사진으로 먼저 확인하세요",
       portfolioDesc: `${regionName} 이사청소 작업 전후 비교 사진입니다. 욕실 물때, 주방 기름때, 창틀 찌든 먼지 등 이사 후 직접 정리하기 번거로운 구간을 집중 케어합니다.`,
       estimateTitle: `${regionName} 이사청소 견적 안내`,
-      footerCtaTitle: `${regionName} 이사청소가 필요하신가요?`,
-      footerCtaDesc: `${regionName} 이사청소 상세 견적과 이사일, 평수, 오염 상태를 기준으로 작업 가능 여부 및 일정을 신속히 확인해드립니다.`
+      footerCtaTitle: content.ctaTitle.replace(/\{\{지역명\}\}/g, regionName),
+      footerCtaDesc: content.ctaDescription.replace(/\{\{지역명\}\}/g, regionName)
     }
   };
 
   const activeConfig = isMoving ? serviceConfig.moving : serviceConfig.moveIn;
 
   // 2. 입주청소/이사청소 작업 범위 - 4카드
-  const serviceCards = [
-    {
-      title: "욕실 청소",
-      desc: isMoving 
-        ? "이사 전 찌든 오염 흔적을 지우는 가장 중요한 공간입니다. 물때, 배수구 냄새, 수전·변기 변색까지 확인합니다."
-        : "입주 후 가장 먼저 체감되는 공간입니다. 물때, 배수구 주변, 수전·거울 오염까지 확인합니다.",
-      details: ["물때 제거", "배수구 소독", "수전 광택", "곰팡이 제거"],
-      moDesc: "물때·배수구·수전 오염"
-    },
-    {
-      title: "주방 청소",
-      desc: isMoving 
-        ? "이전 거주자의 흔적이 가장 짙게 남는 곳입니다. 싱크대, 상·하부장, 가스레인지/후드 주변의 기름때를 상태에 맞춰 세정합니다."
-        : "이전 사용 흔적이 가장 많이 남는 공간입니다. 싱크대, 상·하부장, 조리대 주변의 기름때와 생활오염을 정리합니다.",
-      details: ["싱크대 세정", "수납장 내부", "기름때 제거", "타일 벽면"],
-      moDesc: "싱크대·수납장·기름때"
-    },
-    {
-      title: "베란다·창틀 청소",
-      desc: isMoving 
-        ? "바깥 먼지와 빗물 자국이 쌓이기 쉬운 구간입니다. 창틀 먼지 고착, 배수구 틈새, 베란다 물때를 말끔히 닦습니다."
-        : "입주 후 직접 청소하기 가장 번거로운 구간입니다. 창틀 틈새, 배수구 주변, 베란다 바닥 먼지를 확인합니다.",
-      details: ["창틀 틈새", "베란다 물세척", "배수구 탈거", "유리창 닦기"],
-      moDesc: "틈새 먼지·배수구 주변"
-    },
-    {
-      title: "전체 오염 케어",
-      desc: isMoving 
-        ? "생활 먼지와 보이지 않는 구석 찌든 오염을 잡습니다. 바닥 묵은 때, 문틀, 수납장 안쪽의 먼지를 닦아냅니다."
-        : "신축 분진부터 구축 생활먼지까지 확인합니다. 바닥, 몰딩, 문틀, 수납장 내부의 잔먼지를 정리합니다.",
-      details: ["바닥 정밀세척", "수납선반 분리", "몰딩/벽 먼지", "전등갓 세정"],
-      moDesc: "바닥·몰딩·수납장 잔먼지"
-    }
-  ];
+  const serviceCards = content.scopeCards.map((card, idx) => {
+    const detailsMap: Record<number, string[]> = {
+      0: ["물때 제거", "배수구 소독", "수전 광택", "곰팡이 제거"],
+      1: ["싱크대 세정", "수납장 내부", "기름때 제거", "타일 벽면"],
+      2: ["창틀 틈새", "베란다 물세척", "배수구 탈거", "유리창 닦기"],
+      3: ["바닥 정밀세척", "수납선반 분리", "몰딩/벽 먼지", "전등갓 세정"]
+    };
+    return {
+      title: card.title,
+      desc: card.desc,
+      details: detailsMap[idx] || ["정밀 세정", "오염 제거", "살균 소독"],
+      moDesc: card.desc.slice(0, 15)
+    };
+  });
 
   // 3. 현장 유형별 대응
   const buildingTypes = [
@@ -208,16 +211,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
   ];
 
   // 5. 견적 기준
-  const estimateFactors = [
-    "평수",
-    "방/욕실 개수",
-    "구축 연식/오염 정도",
-    "주방 기름때/욕실 곰팡이 상태",
-    "베란다·창틀 작업 범위",
-    isMoving ? "이사 예정일" : "입주 예정일",
-    "빈집 여부",
-    "사진 확인 가능 여부"
-  ];
+  const estimateFactors = content.estimateFactors;
 
   // 6. 상담 전 체크리스트
   const checkListItems = [
@@ -229,37 +223,22 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
     "사진 2~3장"
   ];
 
-  // 7. FAQ 데이터
-  const faqList = [
-    {
-      q: `${regionName} ${workName}는 ${isMoving ? '이사' : '입주'} 며칠 전에 하는 게 좋나요?`,
-      a: isMoving 
-        ? "이삿짐이나 가구가 완전히 없는 공실(빈집) 상태에서 진행해야 구석구석 찌든 먼지까지 제거할 수 있습니다. 보통 이사 1~3일 전에 마치는 일정을 추천합니다."
-        : "가구가 들어오기 전 빈집 상태에서 진행하는 것이 가장 좋습니다. 보통 입주일 1~3일 전 작업을 권장하며, 일정이 촉박한 경우 상담 시 가능 여부를 확인합니다."
-    },
-    {
-      q: "욕실과 주방 오염도 따로 확인하나요?",
-      a: "욕실은 물때, 배수구, 수전 주변을 중심으로 확인하고, 주방은 싱크대, 수납장, 조리대 주변의 생활오염을 중심으로 확인합니다."
-    },
-    {
-      q: "베란다와 창틀도 포함되나요?",
-      a: "베란다 바닥, 배수구 주변, 창틀 틈새 먼지는 청소 후 직접 정리하기 매우 힘든 구간입니다. 현장 상태와 견적 범위에 따라 상담 시 포함 범위를 확인합니다."
-    },
-    {
-      q: isMoving ? "기존 거주자의 흔적이나 곰팡이도 지워지나요?" : "신축 아파트 공사 분진도 청소 가능한가요?",
-      a: isMoving 
-        ? "욕실 타일 틈새의 곰팡이나 주방 후드/싱크대 주변의 찌든 기름때 등 전 거주자의 생활 오염 흔적은 전용 제거 약품과 스팀을 사용해 정밀 세정합니다."
-        : "신축 현장은 겉으로 깨끗해 보여도 창틀, 바닥, 몰딩, 수납장 내부에 공사 분진이 남아 있는 경우가 많습니다."
-    },
-    {
-      q: `짐이 있는 상태에서도 ${workName}가 가능한가요?`,
-      a: "가능은 하지만 빈집 상태보다 작업 범위가 제한될 수 있습니다. 가구나 짐이 많다면 상담 시 미리 알려주셔야 합니다."
-    },
-    {
-      q: "견적은 어떻게 확인하나요?",
-      a: "지역, 평수, 집 형태, 오염도, 작업 범위, 일정을 알려주시면 친절하게 기본 정보를 기반으로 견적 상담을 도와드립니다."
+  // 7. FAQ 데이터 - 첫 번째 FAQ에 지역명 및 작업명이 포함되도록 조율
+  const faqList = content.faqItems.map((faq, idx) => {
+    let questionText = faq.q.replace(/\{\{지역명\}\}/g, regionName);
+    let answerText = faq.a.replace(/\{\{지역명\}\}/g, regionName);
+
+    if (idx === 0) {
+      if (!questionText.includes(regionName)) {
+        questionText = `${regionName} ${questionText}`;
+      }
+      if (!questionText.includes(workName)) {
+        questionText = questionText.replace('청소', workName);
+      }
     }
-  ];
+
+    return { q: questionText, a: answerText };
+  });
 
   return (
     <div className={styles.wrapper}>
@@ -1012,25 +991,28 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
-            {whyReasons.map((item, idx) => (
-              <div key={idx} style={{ background: '#f8fafc', overflow: 'hidden', borderRadius: '12px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
-                {item.img ? (
-                  <div style={{ width: '100%', height: '180px', overflow: 'hidden', position: 'relative' }}>
-                    <img src={item.img} alt={`${regionName} ${workName} ${item.title}`} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            {whyReasons.map((item, idx) => {
+              const cleanWhyAlt = `${regionName} ${workName} ${item.title}`;
+              return (
+                <div key={idx} style={{ background: '#f8fafc', overflow: 'hidden', borderRadius: '12px', border: '1px solid #e2e8f0', display: 'flex', flexDirection: 'column' }}>
+                  {item.img ? (
+                    <div style={{ width: '100%', height: '180px', overflow: 'hidden', position: 'relative' }}>
+                      <img src={item.img} alt={cleanWhyAlt} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </div>
+                  ) : (
+                    <div style={{ width: '100%', height: '180px', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: '#94a3b8' }}>
+                      📅
+                    </div>
+                  )}
+                  <div style={{ padding: '1.5rem' }}>
+                    <h3 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                      <span style={{ color: '#0070f3' }}>✔</span> {item.title}
+                    </h3>
+                    <p style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', margin: 0 }}>{item.desc}</p>
                   </div>
-                ) : (
-                  <div style={{ width: '100%', height: '180px', background: '#f1f5f9', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '3rem', color: '#94a3b8' }}>
-                    📅
-                  </div>
-                )}
-                <div style={{ padding: '1.5rem' }}>
-                  <h3 style={{ fontSize: '1.15rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '0.6rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                    <span style={{ color: '#0070f3' }}>✔</span> {item.title}
-                  </h3>
-                  <p style={{ color: '#475569', fontSize: '0.925rem', lineHeight: '1.6', margin: 0 }}>{item.desc}</p>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -1047,35 +1029,13 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
             <p style={{ fontSize: '1.025rem', lineHeight: '1.7', color: '#334155', margin: 0, fontWeight: '500', wordBreak: 'keep-all' }}>
               {(() => {
                 const isDistrictLevel = regionObj?.regionType === 'district' || regionObj?.subDistrict === '전지역';
-                const citySlug = regionObj?.citySlug || '';
-                const neighborhood = regionObj?.subDistrict || '';
-                const district = regionObj?.district || '';
 
                 if (isMoving) {
-                  // 이사청소 전용 상단 안내 문단
-                  if (!isDistrictLevel) {
-                    const parentCity = citySlug === 'seoul' ? '' : (citySlug === 'incheon' ? '인천 ' : `${district.replace(/(시|군)$/, '')} `);
-                    return `${regionName} 이사청소는 이사 일정과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${parentCity}${regionName} 이사 전후에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지처럼 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
-                  } else {
-                    return `${regionName} 이사청소는 이사 일정과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${regionName} 이사 전후에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지처럼 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
-                  }
-                }
-
-                if (!isDistrictLevel) {
-                  // 동 / 읍 / 면 단위 페이지
-                  if (citySlug === 'seoul') {
-                    // 1. 서울 동 단위
-                    return `${regionName} ${workName}는 ${isMoving ? '이사' : '입주'}일과 집 상태에 따라 작업 범위가 달라질 수 있습니다. ${district} ${regionName} ${isMoving ? '이사' : '입주'} 전에는 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, ${isMoving ? '찌든 때' : '신축 분진'}처럼 짐이 들어온 뒤 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
-                  } else if (citySlug === 'incheon') {
-                    // 2. 인천 동 단위
-                    return `${district} ${regionName} ${workName}는 아파트, 오피스텔, 빌라 등 주거 형태와 ${isMoving ? '이사' : '입주'} 일정에 따라 확인해야 할 공간이 달라질 수 있습니다. ${isMoving ? '이사' : '입주'} 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, ${isMoving ? '찌든 흔적' : '신축 분진'}을 중심으로 작업 범위를 상담합니다.`;
-                  } else {
-                    // 3. 경기 동/읍/면 단위
-                    return `${district} ${regionName} ${workName}는 ${isMoving ? '이사' : '입주'}일, 평수, 집 상태에 따라 작업 범위가 달라질 수 있습니다. 욕실·주방·베란다·창틀·${isMoving ? '찌든 오염' : '분진 오염'}처럼 ${isMoving ? '이사' : '입주'} 후 직접 정리하기 번거로운 구간을 ${isMoving ? '이사' : '입주'} 전에 먼저 확인하는 것이 좋습니다.`;
-                  }
+                  // 이사청소 문단
+                  return `${regionName} 이사청소는 이사일, 짐 유무, 오염 상태에 따라 작업 범위가 달라질 수 있습니다. 욕실 물때, 주방 생활오염, 바닥 잔먼지, 베란다·창틀 먼지처럼 이사 전후 확인이 필요한 구간을 먼저 점검하는 것이 좋습니다.`;
                 } else {
-                  // 4. 시 / 군 / 구 단위
-                  return `${regionName} ${workName}는 신축·구축·인테리어 후 ${isMoving ? '이사' : '입주'} 여부에 따라 확인해야 할 공간이 달라질 수 있습니다. ${isMoving ? '이사' : '입주'} 전 욕실, 주방, 베란다·창틀, ${isMoving ? '찌든 때' : '분진 오염'} 등 주요 공간의 상태를 기준으로 작업 범위를 상담합니다.`;
+                  // 입주청소 문단
+                  return `${regionName} 입주청소는 입주일과 집 상태에 따라 작업 범위가 달라질 수 있습니다. 입주 전 욕실, 주방, 베란다·창틀, 신축 분진처럼 짐이 들어온 뒤 직접 정리하기 번거로운 구간을 먼저 확인하는 것이 좋습니다.`;
                 }
               })()}
             </p>
@@ -1265,26 +1225,32 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
           {/* 단일 마크업 기반 카드 그리드 & 모바일 가로 스크롤 스냅 레이아웃 (CSS media query로 제어) */}
           <div className="cleaning-grid">
-            {staticCleaningPoints.map((point, idx) => (
-              <div key={idx} className="cleaning-card">
-                <div className="card-image-frame">
-                  <img src={point.img} alt={`${regionName} ${workName} ${point.title} 상태 예시`} />
-                </div>
-                <div className="card-body">
-                  <div>
-                    <h3 className="card-title">{point.title}</h3>
-                    <p className="card-desc">{point.description}</p>
+            {staticCleaningPoints.map((point, idx) => {
+              // alt 규칙: {{지역명}} {{작업명}} {{이미지 내용}}
+              const imageContent = point.title.includes('확인') ? '확인 상태 예시' : `${point.title} 상태 예시`;
+              const cleanAlt = `${regionName} ${workName} ${imageContent}`;
+
+              return (
+                <div key={idx} className="cleaning-card">
+                  <div className="card-image-frame">
+                    <img src={point.img} alt={cleanAlt} />
                   </div>
-                  <div className="card-tags">
-                    {point.tags.slice(0, 3).map((tag, tIdx) => (
-                      <span key={tIdx} className="card-tag">
-                        #{tag}
-                      </span>
-                    ))}
+                  <div className="card-body">
+                    <div>
+                      <h3 className="card-title">{point.title}</h3>
+                      <p className="card-desc">{point.description}</p>
+                    </div>
+                    <div className="card-tags">
+                      {point.tags.slice(0, 3).map((tag, tIdx) => (
+                        <span key={tIdx} className="card-tag">
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           {/* 하단 안내 및 낮은 위계의 텍스트 CTA */}
@@ -1308,8 +1274,14 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
           <div className={styles.sectionHeader}>
             <span className={styles.subTitle}>Estimate & Check</span>
             <h2 className={styles.sectionTitle} style={{ fontSize: 'clamp(22px, 4vw, 32px)', lineHeight: '1.3' }}>
-              입주청소 견적은<br />평수만으로 정해지지 않습니다
+              {regionName} {workName}가 필요하신가요?
             </h2>
+            <p style={{ color: '#64748b', marginTop: '1rem', fontSize: '1.05rem', fontWeight: '500' }}>
+              {isMoving 
+                ? '이사일, 짐 유무, 집 상태를 기준으로 가능 일정과 작업 범위를 안내합니다.'
+                : '입주일, 평수, 오염 상태를 기준으로 작업 가능 여부를 확인해드립니다.'
+              }
+            </p>
           </div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', marginTop: '3rem' }}>
             {/* 견적 기준 */}
@@ -1345,10 +1317,10 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
 
           <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '3.5rem', flexWrap: 'wrap' }}>
             <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`} style={{ minWidth: '240px', textAlign: 'center' }}>
-              전화로 빠르게 확인하기
+              📞 사진 보내고 견적 확인
             </a>
             <a href={CONTACT_KAKAOTALK} target="_blank" rel="noopener noreferrer" className={`${styles.ctaBtn} ${styles.kakao}`} style={{ minWidth: '240px', textAlign: 'center' }}>
-              카카오톡 문의하기
+              💬 오염 상태 기준 견적 문의
             </a>
           </div>
         </div>
@@ -1367,6 +1339,94 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                 <p style={{ color: '#475569', margin: 0 }}>A. {faq.a}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 8.5. Related Services Section - FAQ 아래, 하단 CTA 위에 배치 */}
+      <section style={{ padding: '4rem 0', background: '#f8fafc', borderTop: '1px solid #e2e8f0', borderBottom: '1px solid #e2e8f0' }}>
+        <div style={{ maxWidth: '800px', margin: '0 auto', textAlign: 'center', padding: '0 20px' }}>
+          <h3 style={{ fontSize: '1.25rem', fontWeight: 'bold', color: '#0f172a', marginBottom: '1.5rem' }}>
+            {regionName} 함께 확인하면 좋은 청소
+          </h3>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '0.8rem 1.2rem', flexWrap: 'wrap', marginBottom: '2rem' }}>
+            {(() => {
+              const citySlug = regionObj?.citySlug || regionObj?.regionSlug || 'seoul';
+              const districtSlug = regionObj?.districtSlug || 'all';
+              const subDistrictSlug = regionObj?.subDistrictSlug || 'all';
+
+              const pathPrefix = subDistrictSlug && subDistrictSlug !== 'all'
+                ? `/${citySlug}/${districtSlug}/${subDistrictSlug}`
+                : `/${citySlug}/${districtSlug}`;
+
+              // 입주청소 페이지 -> 이사청소, 인테리어 후 청소, 준공청소, 바닥청소
+              // 이사청소 페이지 -> 입주청소, 바닥청소, 유리창청소, 인테리어 후 청소
+              const relatedList = isMoving
+                ? [
+                    { name: '입주청소', slug: 'move-in-cleaning' },
+                    { name: '바닥청소', slug: 'floor-cleaning' },
+                    { name: '유리창청소', slug: 'window-cleaning' },
+                    { name: '인테리어 후 청소', slug: 'interior-post-cleaning' }
+                  ]
+                : [
+                    { name: '이사청소', slug: 'moving-cleaning' },
+                    { name: '인테리어 후 청소', slug: 'interior-post-cleaning' },
+                    { name: '준공청소', slug: 'construction-completion-cleaning' },
+                    { name: '바닥청소', slug: 'floor-cleaning' }
+                  ];
+
+              return relatedList.map((item, idx) => {
+                const isActive = item.slug === currentService.serviceSlug;
+                const linkHref = `${pathPrefix}/${item.slug}`;
+
+                if (isActive) {
+                  return (
+                    <span 
+                      key={idx} 
+                      style={{ padding: '6px 14px', borderRadius: '30px', background: '#e2e8f0', color: '#64748b', fontSize: '0.9rem', fontWeight: 'bold', border: '1px solid #cbd5e1', cursor: 'default' }}
+                    >
+                      {regionName} {item.name}
+                    </span>
+                  );
+                }
+
+                return (
+                  <Link 
+                    key={idx} 
+                    href={linkHref}
+                    style={{ padding: '6px 14px', borderRadius: '30px', background: '#ffffff', color: '#0070f3', fontSize: '0.9rem', fontWeight: 'bold', border: '1px solid #0070f3', textDecoration: 'none', transition: 'all 0.2s' }}
+                  >
+                    {regionName} {item.name}
+                  </Link>
+                );
+              });
+            })()}
+          </div>
+          
+          {/* 입주/이사청소 상호 보완 하단 텍스트 링크 보강 */}
+          <div style={{ marginTop: '1.5rem', paddingTop: '1.5rem', borderTop: '1px dashed #e2e8f0' }}>
+            {(() => {
+              const citySlug = regionObj?.citySlug || regionObj?.regionSlug || 'seoul';
+              const districtSlug = regionObj?.districtSlug || 'all';
+              const subDistrictSlug = regionObj?.subDistrictSlug || 'all';
+
+              const pathPrefix = subDistrictSlug && subDistrictSlug !== 'all'
+                ? `/${citySlug}/${districtSlug}/${subDistrictSlug}`
+                : `/${citySlug}/${districtSlug}`;
+
+              const crossSlug = isMoving ? 'move-in-cleaning' : 'moving-cleaning';
+              const crossName = isMoving ? '입주청소' : '이사청소';
+              const crossUrl = `${pathPrefix}/${crossSlug}`;
+
+              return (
+                <Link 
+                  href={crossUrl}
+                  style={{ fontSize: '1.05rem', color: '#0070f3', fontWeight: 'bold', textDecoration: 'underline' }}
+                >
+                  {regionName} {crossName}도 함께 확인하세요.
+                </Link>
+              );
+            })()}
           </div>
         </div>
       </section>

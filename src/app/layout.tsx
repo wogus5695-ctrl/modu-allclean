@@ -60,8 +60,12 @@ export default function RootLayout({
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>상담 안내</h4>
                 <p style={{ fontSize: '15px', fontWeight: '700', marginBottom: '5px' }}>대표번호: {CONTACT_PHONE}</p>
-                <p style={{ fontSize: '14px' }}>연중무휴 24시간 상담 가능</p>
-
+                <p style={{ fontSize: '14px', marginBottom: '15px' }}>연중무휴 24시간 상담 가능</p>
+                <p style={{ fontSize: '14px', margin: '10px 0 0 0' }}>
+                  <a href="https://www.moduclean.co.kr/move-in-cleaning/seoul" style={{ color: '#0055aa', textDecoration: 'underline', fontWeight: 'bold' }}>
+                    수도권 입주·이사청소 지역별 안내
+                  </a>
+                </p>
               </div>
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>

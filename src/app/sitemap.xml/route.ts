@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import { services } from '@/data/services';
 import { regions } from '@/data/regions';
-import { DOMAIN } from '@/lib/seo';
+import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
 
 export const dynamic = 'force-dynamic';
@@ -32,22 +32,6 @@ export async function GET() {
   regions
     .filter(r => r.subDistrictSlug === 'all' && r.indexStatus === 'index')
     .forEach(region => {
-      // 3-1. 구 단위 허브 (area)
-      urls.push({
-        url: `${DOMAIN}/area/${region.regionSlug}/${region.districtSlug}`,
-        priority: 0.8,
-        changeFrequency: 'weekly',
-        lastModified: currentDate
-      });
-
-      // 3-2. 구 단위 키워드 허브 (keyword-hub)
-      urls.push({
-        url: `${DOMAIN}/keyword-hub/${region.regionSlug}-${region.districtSlug}`,
-        priority: 0.6,
-        changeFrequency: 'weekly',
-        lastModified: currentDate
-      });
-
       // 3-3. 구/시 단위 키워드 조합 (sitemap.xml에는 대표 index URL만 포함)
       activeServices.forEach(service => {
         const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
@@ -115,6 +99,10 @@ export async function GET() {
           // 입주청소/이사청소는 수도권 전체(seoul, incheon, gyeonggi) 생성 지원
           if (isMoveOrMoving) {
             if (!['seoul', 'incheon', 'gyeonggi'].includes(dong.regionSlug)) return;
+          } else {
+            // 일반 서비스의 동 단위 조합은 INDEXED_DONG_COMBINATIONS만 sitemap.xml에 포함
+            const combo = `${dong.districtSlug}-${dong.subDistrictSlug}-${service.id}`;
+            if (!INDEXED_DONG_COMBINATIONS.includes(combo)) return;
           }
 
           urls.push({

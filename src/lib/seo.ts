@@ -177,6 +177,39 @@ export function getRegionMetadata(districtSlug: string): Metadata {
   });
 }
 
+// 작업명별 title 후킹 문구 및 meta description 맵 정의
+export const HOOK_PHRASES: Record<string, string> = {
+  'exterior-cleaning': '건물 외벽 오염·빗물자국 정리',
+  'window-cleaning': '상가·건물 유리창 오염 정리',
+  'fire-cleaning': '그을음·냄새·오염 복구 청소',
+  'floor-wax-coating': '바닥 세척·코팅 관리',
+  'floor-waxing': '바닥 세척·코팅 관리',
+  'awning-cleaning': '매장 어닝 먼지·오염 정리',
+  'signboard-cleaning': '상가 간판·전면유리 정리',
+  'sign-cleaning': '상가 간판·전면유리 정리',
+  'interior-post-cleaning': '공사분진·잔먼지 정리',
+  'interior-after-cleaning': '공사분진·잔먼지 정리',
+  'construction-completion-cleaning': '신축·리모델링 현장 분진 정리',
+  'completion-cleaning': '신축·리모델링 현장 분진 정리',
+  'hood-cleaning': '주방 후드 기름때 정리',
+  'hoarder-house-cleaning': '생활폐기물·악취 정리',
+  'hoarding-cleaning': '생활폐기물·악취 정리',
+  'special-cleaning': '일반 청소로 어려운 오염 정리',
+  'floor-cleaning': '바닥 오염·잔먼지 정리',
+  'move-in-cleaning': '욕실·주방·베란다 검수',
+  'moving-cleaning': '욕실·주방·베란다 정리'
+};
+
+export const DESC_TEMPLATES: Record<string, string> = {
+  'signboard-cleaning': '상가 간판, 전면 유리, 어닝의 먼지·빗물 자국·매연 때를 현장 상태에 맞춰 안내합니다.',
+  'sign-cleaning': '상가 간판, 전면 유리, 어닝의 먼지·빗물 자국·매연 때를 현장 상태에 맞춰 안내합니다.',
+  'window-cleaning': '상가, 사무실, 건물 유리창의 먼지, 물때, 유막, 외부 오염 상태를 기준으로 청소 범위를 안내합니다.',
+  'interior-post-cleaning': '공사 분진, 바닥 잔먼지, 창틀 먼지, 수납장 내부 오염 등 인테리어 후 남기 쉬운 오염을 정리합니다.',
+  'interior-after-cleaning': '공사 분진, 바닥 잔먼지, 창틀 먼지, 수납장 내부 오염 등 인테리어 후 남기 쉬운 오염을 정리합니다.',
+  'move-in-cleaning': '입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.',
+  'moving-cleaning': '이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.'
+};
+
 // 4. 지역+작업명 통합 랜딩 페이지 (구/동 공통)
 export function getLandingMetadata(districtSlug: string, subDistrictSlug: string, serviceId: string, requestedDistrictParam?: string): Metadata {
   const region = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
@@ -184,8 +217,6 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   if (!region || !service) return { title: BRAND_NAME };
 
-  const regionName = region.subDistrict === '전지역' ? region.district : `${region.district} ${region.subDistrict}`;
-  
   // 인덱싱 로직 (구 및 동 단위 모든 유효 페이지는 index 상태로 지정)
   const parentRegion = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
   const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
@@ -219,104 +250,43 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   const shortDistrict = isIncheon ? region.district : region.district.replace(/(구|시)$/, '');
   
-  let finalTitle = '';
-  let finalDescription = '';
-  const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
-  const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
-  const isMoveOrMoving = isMoveIn || isMoving;
-
   // 동 단위 및 구/시 단위 대표지역명(representativeArea) 추출 로직 통합
   let representativeArea = '';
   if (!isDistrictLevel) {
-    // 동/읍/면 단위 페이지
     const neighborhoodName = region.subDistrict;
     const districtName = region.district;
 
     if (region.regionSlug === 'seoul') {
-      // 서울 동 단위: 앞에 "서울"을 붙이지 않음
-      representativeArea = neighborhoodName; // 예: 북아현동, 마곡동, 목동
+      representativeArea = neighborhoodName;
     } else if (region.regionSlug === 'incheon') {
-      // 인천 동 단위: 충돌 가능성 있는 논현동 등 검사
       const isConflictIncheon = ['논현동', '신흥동'].includes(neighborhoodName);
       representativeArea = isConflictIncheon ? `인천 ${neighborhoodName}` : neighborhoodName;
     } else {
-      // 경기 동/읍/면 단위: 중복 충돌 가능성 검사
       const isConflictGyeonggi = ['문산읍', '신흥동', '중앙동', '역삼동', '신교동', '성남동', '태평동', '수진동', '단대동', '상대원동'].includes(neighborhoodName);
       representativeArea = isConflictGyeonggi ? `${districtName.replace(/(시|군)$/, '')} ${neighborhoodName}` : neighborhoodName;
     }
   } else {
-    // 구 / 시 단위 페이지
     if (requestedDistrictParam && !requestedWithSuffix) {
-      // 구/시 제거형 버전 (예: 서대문 입주청소, 광명 입주청소)
       const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
       representativeArea = cleanShortDistrict;
     } else {
-      // 일반 구/시 단위 버전 (인천 연수구, 서대문구, 광명시)
       const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-      // 인천 구 단위는 "인천 연수구"로 처리
       representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
     }
   }
 
-  if (isMoveOrMoving) {
-    const workName = isMoveIn ? '입주청소' : '이사청소';
+  const workName = service.serviceNameKo;
+  const hookPhrase = HOOK_PHRASES[service.serviceSlug] || '청소 전문 서비스';
+  
+  const finalTitle = `${representativeArea} ${workName} | ${hookPhrase} - ${BRAND_NAME}`;
 
-    if (isMoving) {
-      // 이사청소 전용 SEO 룰 적용
-      if (isDistrictLevel && requestedDistrictParam && !requestedWithSuffix) {
-        // 서울 구 제거형, 경기 시 제거형 등 (예: 강서 이사청소, 광명 이사청소)
-        finalTitle = `${representativeArea} 이사청소 | 이사 전후 욕실·주방 청소 - ${BRAND_NAME}`;
-      } else {
-        // 공통 title
-        finalTitle = `${representativeArea} 이사청소 | 욕실·주방·베란다 정리 - ${BRAND_NAME}`;
-      }
-      finalDescription = `${representativeArea} 이사청소 상담. 이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.`;
-    } else {
-      // 기존 입주청소 규칙 유지
-      if (isDistrictLevel && requestedDistrictParam && !requestedWithSuffix) {
-        finalTitle = `${representativeArea} ${workName} | 입주 전 욕실·주방 청소 - ${BRAND_NAME}`;
-        finalDescription = `${representativeArea} ${workName} 상담. 입주일 전 욕실, 주방, 베란다·창틀, 분진 오염 등 주요 공간의 청소 범위를 확인합니다.`;
-      } else {
-        finalTitle = `${representativeArea} ${workName} | 욕실·주방·베란다 검수 - ${BRAND_NAME}`;
-        finalDescription = `${representativeArea} ${workName} 상담. 입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.`;
-      }
-    }
-  } else {
-    let titleRegion = '';
-    let descRegion = '';
-    if (isDistrictLevel) {
-      if (requestedDistrictParam) {
-        titleRegion = requestedWithSuffix ? region.district : shortDistrict;
-        descRegion = requestedWithSuffix ? region.district : shortDistrict;
-      } else {
-        titleRegion = isIncheon ? region.district : `${region.district} ${shortDistrict}`;
-        descRegion = isIncheon ? region.district : `${region.district}(${shortDistrict})`;
-      }
-    } else {
-      titleRegion = `${region.district} ${region.subDistrict}`;
-      descRegion = `${region.district} ${region.subDistrict}`;
-    }
-    finalTitle = `${titleRegion} ${service.serviceNameKo} 전문업체 | ${BRAND_NAME}`;
-    finalDescription = `${descRegion} ${service.serviceNameKo} 고민 해결! ${BRAND_NAME}은 ${service.serviceNameKo} 전문 업체로서 ${service.shortDescription}을 위해 24시간 친절 상담 및 견적 안내를 제공합니다.`;
+  // Description 템플릿 처리
+  let descDetail = DESC_TEMPLATES[service.serviceSlug];
+  if (!descDetail) {
+    // 템플릿이 정의되지 않은 일반 종합청소 처리
+    descDetail = `${service.shortDescription}를`;
   }
-
-  // OG custom 속성
-  let customOgTitle = undefined;
-  let customOgDesc = undefined;
-  if (isMoveOrMoving) {
-    if (isMoving) {
-      // 이사청소 OG title / description 적용
-      customOgTitle = `${representativeArea} 이사청소 | 이사 전후 청소 상담`;
-      customOgDesc = `욕실·주방·베란다·창틀·생활오염처럼 이사 전후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.`;
-    } else {
-      // 기존 입주청소 OG rules (동 단위일 때만 설정)
-      if (!isDistrictLevel) {
-        const neighborhoodName = region.subDistrict.replace(/^서울(특별)?시?\s*/, '');
-        customOgTitle = `${neighborhoodName} 입주청소 | 입주 전 마지막 점검`;
-        customOgDesc = `욕실·주방·베란다·창틀·분진 오염처럼 입주 후 직접 정리하기 번거로운 구간을 중심으로 확인합니다.`;
-      }
-    }
-  }
+  const finalDescription = `${representativeArea} ${workName} 상담. ${descDetail} 현장 상태에 맞춰 안내합니다.`;
 
   return getBaseMetadata({
     title: finalTitle,
@@ -327,8 +297,8 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     publishedTime: new Date().toISOString(),
     modifiedTime: new Date().toISOString(),
     ogImage: service.imageUrl,
-    customOgTitle,
-    customOgDesc
+    customOgTitle: `${representativeArea} ${workName} | ${BRAND_NAME}`,
+    customOgDesc: finalDescription
   });
 }
 
