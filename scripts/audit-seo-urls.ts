@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { regions } from '../src/data/regions';
-import { services } from '../src/data/services';
+import { services, seoServiceKeywords } from '../src/data/services';
 import { INDEXED_DONG_COMBINATIONS, CONTACT_PHONE } from '../src/lib/seo';
 import * as XLSX from 'xlsx';
 
@@ -60,7 +60,7 @@ async function runAudit() {
   }
 
   const allTargetUrls = new Set<string>();
-  const activeServices = services.filter(s => s.indexStatus === 'index');
+  const activeServices = seoServiceKeywords.filter(s => s.indexStatus === 'index');
 
   // 1. sitemap-seoul (종합청소 동적변환 키워드 허브) 관련 대상 수집
   // /sitemap-seoul 내부 링크 모사

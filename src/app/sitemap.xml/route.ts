@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { services } from '@/data/services';
+import { services, seoServiceKeywords } from '@/data/services';
 import { regions } from '@/data/regions';
 import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
@@ -17,7 +17,7 @@ export async function GET() {
 
 
   // 2. 서비스 기본 안내 페이지
-  services.filter(s => s.indexStatus === 'index').forEach(service => {
+  seoServiceKeywords.filter(s => s.indexStatus === 'index').forEach(service => {
     urls.push({
       url: `${DOMAIN}/service/${service.serviceSlug}`,
       priority: 0.9,
@@ -27,7 +27,7 @@ export async function GET() {
   });
 
   // 3. 지역별 키워드 및 랜딩 조합 수집 (구/시 단위 대표 URL만)
-  const activeServices = services.filter(s => s.indexStatus === 'index');
+  const activeServices = seoServiceKeywords.filter(s => s.indexStatus === 'index');
 
   regions
     .filter(r => r.subDistrictSlug === 'all' && r.indexStatus === 'index')

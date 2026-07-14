@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { services } from '@/data/services';
+import { services, seoServiceKeywords } from '@/data/services';
 import { regions } from '@/data/regions';
 
 // 초기 인덱싱 권장 동 단위 조합 (구Slug-동Slug-서비스Id)
@@ -15,7 +15,7 @@ export const INDEXED_DONG_COMBINATIONS = [
   ...regions
     .filter(r => r.subDistrictSlug !== 'all')
     .flatMap(r => 
-      services
+      seoServiceKeywords
         .filter(s => s.id !== 'move-in' && s.serviceSlug !== 'move-in-cleaning' && s.id !== 'moving' && s.serviceSlug !== 'moving-cleaning')
         .map(s => `${r.districtSlug}-${r.subDistrictSlug}-${s.id}`)
     )
@@ -152,7 +152,7 @@ export function getMainMetadata(): Metadata {
 
 // 2. 서비스 상세 페이지
 export function getServiceMetadata(serviceId: string): Metadata {
-  const service = services.find((s) => s.id === serviceId);
+  const service = seoServiceKeywords.find((s) => s.id === serviceId);
   if (!service) return { title: BRAND_NAME };
 
   return getBaseMetadata({
@@ -227,7 +227,7 @@ export const DESC_TEMPLATES: Record<string, string> = {
 // 4. 지역+작업명 통합 랜딩 페이지 (구/동 공통)
 export function getLandingMetadata(districtSlug: string, subDistrictSlug: string, serviceId: string, requestedDistrictParam?: string): Metadata {
   const region = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
-  const service = services.find((s) => s.id === serviceId);
+  const service = seoServiceKeywords.find((s) => s.id === serviceId);
 
   if (!region || !service) return { title: BRAND_NAME };
 

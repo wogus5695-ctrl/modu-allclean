@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { regions } from '@/data/regions';
-import { services } from '@/data/services';
+import { services, seoServiceKeywords } from '@/data/services';
 import { seoRegions, SeoRegion } from '@/data/seo/regions';
 import { seoServices, SeoService } from '@/data/seo/services';
 import { generateLandingPageData } from '@/lib/seo-builder';
@@ -11,7 +11,7 @@ import MainTemplate from '@/components/MainTemplate';
 import MoveInCleaningTemplate from '@/components/MoveInCleaningTemplate';
 import { serviceContentMap } from '@/data/seo/serviceContentMap';
 
-export const dynamicParams = false;
+export const dynamicParams = true;
 
 type Props = {
   params: Promise<{ city: string; district: string; slug: string[] }>;
@@ -62,7 +62,7 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
       return { region: null, service: null, seoRegion: null, seoService: null };
     }
 
-    service = services.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
+    service = seoServiceKeywords.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
     region = regions.find(r => {
@@ -81,7 +81,7 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
       return { region: null, service: null, seoRegion: null, seoService: null };
     }
 
-    service = services.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
+    service = seoServiceKeywords.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
     region = regions.find(r => 
@@ -537,7 +537,7 @@ export async function generateStaticParams() {
   const params: { city: string; district: string; slug: string[] }[] = [];
 
   const guRegions = regions.filter(r => r.subDistrictSlug === 'all');
-  const activeServices = services.filter(s => s.indexStatus === 'index');
+  const activeServices = seoServiceKeywords.filter(s => s.indexStatus === 'index');
 
   guRegions.forEach(region => {
     activeServices.forEach(service => {
@@ -560,43 +560,8 @@ export async function generateStaticParams() {
     });
   });
 
-  // 3. INDEXED_DONG_COMBINATIONS 수동 등록 처리
-  INDEXED_DONG_COMBINATIONS.forEach(combo => {
-    const service = services.find(s => combo.endsWith(s.id));
-    if (service) {
-      const regionPart = combo.slice(0, -(service.id.length + 1));
-      const regionParts = regionPart.split('-');
-      // gwangju-si 처럼 districtSlug에 하이픈이 포함되어 있는 특수 케이스 대응
-      // INDEXED_DONG_COMBINATIONS 형식은 `[구슬러그]-[동슬러그]-[서비스Id]`
-      // regions 데이터에서 해당 combo와 일치하는 region을 바로 찾습니다.
-      const region = regions.find(r => {
-        if (r.subDistrictSlug === 'all') return false;
-        const potentialComboPrefix = `${r.districtSlug}-${r.subDistrictSlug}`;
-        return regionPart === potentialComboPrefix;
-      });
-      if (region) {
-        params.push({
-          city: region.regionSlug,
-          district: region.districtSlug,
-          slug: [region.subDistrictSlug, service.serviceSlug]
-        });
-      }
-    }
-  });
-
-  // 4. 입주청소(move-in-cleaning) 및 이사청소(moving-cleaning)의 동 단위 자동 빌드 대상 추가
-  const moveOrMovingServices = services.filter(s => s.serviceSlug === 'move-in-cleaning' || s.serviceSlug === 'moving-cleaning');
-  regions
-    .filter(r => r.subDistrictSlug !== 'all' && ['seoul', 'incheon', 'gyeonggi'].includes(r.regionSlug))
-    .forEach(region => {
-      moveOrMovingServices.forEach(service => {
-        params.push({
-          city: region.regionSlug,
-          district: region.districtSlug,
-          slug: [region.subDistrictSlug, service.serviceSlug]
-        });
-      });
-    });
+  // 동 단위 조합(INDEXED_DONG_COMBINATIONS 및 이사/입주 동 단위)은 빌드 타임 메모리/스택 오버플로우 방지를 위해
+  // generateStaticParams에서 제외하며, dynamicParams = true 설정에 따라 최초 사용자 접속 시 온디맨드로 실시간 정적 렌더링(ISG)됩니다.
 
   return params;
 }

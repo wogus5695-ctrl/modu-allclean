@@ -1,7 +1,7 @@
 import React from 'react';
 import { Metadata } from 'next';
 import { regions } from '@/data/regions';
-import { services } from '@/data/services';
+import { services, seoServiceKeywords } from '@/data/services';
 import { getSitemapMetadata, BRAND_NAME } from '@/lib/seo';
 import Link from 'next/link';
 import styles from './page.module.css';
@@ -15,7 +15,7 @@ export default function SitemapSeoulPage() {
   const gyeonggiDistricts = Array.from(new Set(regions.filter(r => r.regionSlug === 'gyeonggi').map(r => r.districtSlug)));
 
   // 기존 키워드 렌더링 (입주청소 및 이사청소 제외한 서비스 필터링)
-  const generalServices = services.filter(s => 
+  const generalServices = seoServiceKeywords.filter(s => 
     s.id !== 'move-in' && 
     s.serviceSlug !== 'move-in-cleaning' && 
     s.id !== 'moving' && 

@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { services } from '@/data/services';
+import { services, seoServiceKeywords } from '@/data/services';
 import { regions } from '@/data/regions';
 import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
@@ -20,7 +20,7 @@ export async function GET(request: Request, { params }: Props) {
     urls.push({ url: `${DOMAIN}/move-in-cleaning/seoul`, priority: 0.9, changeFrequency: 'weekly' });
     
     // 서비스 기본 안내 페이지
-    services.filter(s => s.indexStatus === 'index').forEach(service => {
+    seoServiceKeywords.filter(s => s.indexStatus === 'index').forEach(service => {
       urls.push({
         url: `${DOMAIN}/service/${service.serviceSlug}`,
         priority: 0.9,
@@ -35,7 +35,7 @@ export async function GET(request: Request, { params }: Props) {
     regions
       .filter(r => r.regionSlug === targetRegionSlug && r.subDistrictSlug === 'all' && r.indexStatus === 'index')
       .forEach(region => {
-        services.filter(s => s.indexStatus === 'index').forEach(service => {
+        seoServiceKeywords.filter(s => s.indexStatus === 'index').forEach(service => {
           const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
           const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
           const isMoveOrMoving = isMoveIn || isMoving;
@@ -72,7 +72,7 @@ export async function GET(request: Request, { params }: Props) {
         const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
         
         if (isParentIndexed) {
-          services.filter(s => s.indexStatus === 'index').forEach(service => {
+          seoServiceKeywords.filter(s => s.indexStatus === 'index').forEach(service => {
             const isMoveIn = service.id === 'move-in' || service.serviceSlug === 'move-in-cleaning';
             const isMoving = service.id === 'moving' || service.serviceSlug === 'moving-cleaning';
             const isMoveOrMoving = isMoveIn || isMoving;
