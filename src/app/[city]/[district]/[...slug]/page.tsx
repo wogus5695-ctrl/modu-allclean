@@ -38,7 +38,14 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     'hood-cleaning',
     'hoarder-house-cleaning',          // services.ts의 쓰레기집 실제 슬러그
     'special-cleaning',
-    'floor-cleaning'
+    'floor-cleaning',
+    'office-cleaning',
+    'store-cleaning',
+    'factory-cleaning',
+    'building-cleaning',
+    'flood-cleaning',
+    'warehouse-cleaning',
+    'hospital-cleaning'
   ];
 
   const MOVE_IN_OUT_SLUGS = [
@@ -247,7 +254,14 @@ export default async function LandingPage({ params }: Props) {
     'special-cleaning': '일반 청소로 어려운 오염 정리',
     'floor-cleaning': '바닥 오염·잔먼지 정리',
     'move-in-cleaning': '욕실·주방·베란다 검수',
-    'moving-cleaning': '욕실·주방·베란다 정리'
+    'moving-cleaning': '욕실·주방·베란다 정리',
+    'office-cleaning': '업무 공간 분진 및 바닥 오염 정리',
+    'store-cleaning': '매장 바닥 및 유리창 오염 정리',
+    'factory-cleaning': '작업장 바닥 분진 및 기름때 정리',
+    'building-cleaning': '로비·계단 등 공용부 외부 오염 정리',
+    'flood-cleaning': '물 유입 피해 복구 및 오염수 정리',
+    'warehouse-cleaning': '적재 공간 먼지 및 바닥 오염 정리',
+    'hospital-cleaning': '진료실·대기실 위생 및 바닥 오염 정리'
   };
 
   const DESC_TEMPLATES: Record<string, string> = {
@@ -257,7 +271,14 @@ export default async function LandingPage({ params }: Props) {
     'interior-post-cleaning': '공사 분진, 바닥 잔먼지, 창틀 먼지, 수납장 내부 오염 등 인테리어 후 남기 쉬운 오염을 정리합니다.',
     'interior-after-cleaning': '공사 분진, 바닥 잔먼지, 창틀 먼지, 수납장 내부 오염 등 인테리어 후 남기 쉬운 오염을 정리합니다.',
     'move-in-cleaning': '입주 전 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 신축 분진을 입주일 기준으로 확인합니다.',
-    'moving-cleaning': '이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.'
+    'moving-cleaning': '이사 전후 욕실 물때, 주방 생활오염, 베란다·창틀 먼지, 바닥 잔먼지를 집 상태에 맞춰 확인합니다.',
+    'office-cleaning': '사무실 업무 공간, 회의실, 탕비실의 바닥 찌든 때와 누적된 먼지를 현장 상태에 맞춰 정리합니다.',
+    'store-cleaning': '상가 매장의 첫인상을 결정하는 바닥 오염, 전면 유리, 출입구 및 집기 주변의 먼지를 청결하게 관리합니다.',
+    'factory-cleaning': '공장 작업장의 찌든 기름때, 설비 주변 분진, 대형 공간의 오염 상태를 고려해 맞춤 세척을 진행합니다.',
+    'building-cleaning': '건물 로비, 계단, 복도 등 공용부의 유동 오염과 외부 먼지를 체계적으로 관리하여 청결함을 유지합니다.',
+    'flood-cleaning': '갑작스러운 침수로 인한 잔여 물기 제거, 바닥 오염 세정, 오염수 및 폐기물 정리와 악취 제거를 지원합니다.',
+    'warehouse-cleaning': '물류 창고 적재 공간의 묵은 먼지, 분진, 바닥 오염을 정리하고 장기 보관 공간의 환경을 쾌적하게 개선합니다.',
+    'hospital-cleaning': '병원 진료실, 대기실, 복도 등 공용부의 위생 상태를 점검하고 멸균 및 바닥 오염 정밀 세정을 실시합니다.'
   };
 
   const isDistrictLevel = region.subDistrict === '전지역';
@@ -292,13 +313,29 @@ export default async function LandingPage({ params }: Props) {
 
   const workName = service.serviceNameKo;
   const hookPhrase = HOOK_PHRASES[service.serviceSlug] || '청소 전문 서비스';
-  const title = `${representativeArea} ${workName} | ${hookPhrase} - ${BRAND_NAME}`;
+  
+  const isNewService = [
+    'office-cleaning',
+    'store-cleaning',
+    'factory-cleaning',
+    'building-cleaning',
+    'flood-cleaning',
+    'warehouse-cleaning',
+    'hospital-cleaning'
+  ].includes(service.serviceSlug);
+
+  const title = isNewService
+    ? `${representativeArea} ${workName} 전문 | ${BRAND_NAME}`
+    : `${representativeArea} ${workName} | ${hookPhrase} - ${BRAND_NAME}`;
 
   let descDetail = DESC_TEMPLATES[service.serviceSlug];
   if (!descDetail) {
     descDetail = `${service.shortDescription}를`;
   }
-  const description = `${representativeArea} ${workName} 상담. ${descDetail} 현장 상태에 맞춰 안내합니다.`;
+  
+  const description = isNewService
+    ? `${representativeArea} ${workName}가 필요한 현장의 오염 상태, 작업 범위, 공간 특성을 확인해 상담 방향을 안내합니다. 사진과 위치를 보내주시면 작업 가능 여부를 확인합니다.`
+    : `${representativeArea} ${workName} 상담. ${descDetail} 현장 상태에 맞춰 안내합니다.`;
   
   const path = region.subDistrictSlug === 'all'
     ? `/${region.regionSlug}/${district}/${service.serviceSlug}`

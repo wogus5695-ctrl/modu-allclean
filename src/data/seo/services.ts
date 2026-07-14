@@ -325,5 +325,131 @@ export const seoServices: SeoService[] = [
     thumbnailImage: '/images/services/move-in-cleaning.jpg',
     ogImage: '/images/services/move-in-cleaning.jpg',
     altBase: '이사청소'
+  },
+  {
+    serviceNameKo: '사무실청소',
+    serviceSlug: 'office-cleaning',
+    mainProblem: '업무 공간 내 쌓이는 미세 먼지, 탕비실 오염 및 바닥 찌든 때',
+    targetPlaces: ['개인 사무실', '회의실', '탕비실', '임원실', '공용 복도'],
+    contaminationTypes: ['책상 먼지', '탕비실 악취', '바닥 카펫 얼룩', '데코타일 찌든 오염'],
+    preCheckItems: ['작업 중 PC 전원 종료 가능 여부', '탕비실 배수 상태', '수납 가구 내부 정리 수준'],
+    estimateFactors: ['사무실 면적', '책상/집기 배치 상태', '바닥 오염도', '탕비실/화장실 포함 여부', '정기/일회성 여부'],
+    faqSet: [
+      { q: '{{지역명}} 사무실청소는 업무 시간 외에도 상담 가능한가요?', a: '사무실 면적, 집기 배치, 바닥 오염 상태를 확인해 청소 범위와 일정 상담을 안내합니다.' }
+    ],
+    relatedServices: ['바닥왁스코팅', '유리창청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 비즈니스 공간의 업무 효율을 높이는 쾌적하고 꼼꼼한 사무실청소 솔루션입니다.',
+    ctaHook: '사무실 상태 상담받기',
+    thumbnailImage: '/images/services/floor-wax.jpg',
+    ogImage: '/images/services/floor-wax.jpg',
+    altBase: '사무실청소 전문'
+  },
+  {
+    serviceNameKo: '상가청소',
+    serviceSlug: 'store-cleaning',
+    mainProblem: '매장 통행로 바닥의 묵은 얼룩 및 쇼윈도 유리 물때',
+    targetPlaces: ['로드숍 매장', '상업용 상가', '식당 홀', '의류점', '카페'],
+    contaminationTypes: ['바닥 찌든 때', '유리 손자국', '출입구 먼지 얼룩', '영업 공간 내 기름기'],
+    preCheckItems: ['진열 집기 이동 및 보양 요건', '작업 시간 내 매장 폐점 상태 여부', '유리창 스티커 제거 여부'],
+    estimateFactors: ['매장 면적', '업종 특성', '바닥/유리 오염도', '집기 이동 여부', '영업시간 외 작업 가능 여부'],
+    faqSet: [
+      { q: '{{지역명}} 상가청소는 영업 중인 매장도 상담 가능한가요?', a: '영업 시간, 집기 배치, 바닥과 유리 오염 상태를 확인한 뒤 작업 가능 범위를 안내합니다.' }
+    ],
+    relatedServices: ['유리창청소', '어닝청소', '간판청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 매장의 호감도를 높여 고객의 발길을 이끄는 청결한 상가청소 서비스입니다.',
+    ctaHook: '상가 청소 상태 문의',
+    thumbnailImage: '/images/services/window.jpg',
+    ogImage: '/images/services/window.jpg',
+    altBase: '상가청소 전문'
+  },
+  {
+    serviceNameKo: '공장청소',
+    serviceSlug: 'factory-cleaning',
+    mainProblem: '작업장 바닥의 거친 기름때, 미세 분진 및 산업 폐기물 누적',
+    targetPlaces: ['제조 공장', '가공 작업장', '부품 창고', '산업 단지 사옥'],
+    contaminationTypes: ['찌든 기름때', '설비 미세 분진', '바닥 석고 가루', '금속 철가루 오염'],
+    preCheckItems: ['기계 설비 보양 요구 조건', '고출력 기계용 전력 공급 상태', '용수 및 배수로 위치'],
+    estimateFactors: ['공장 면적', '바닥 오염 정도', '분진/기름때 여부', '설비 주변 작업 가능 여부', '작업 시간대'],
+    faqSet: [
+      { q: '{{지역명}} 공장청소는 분진이나 기름때가 많은 현장도 상담 가능한가요?', a: '작업장 바닥, 설비 주변, 오염 범위와 안전 조건을 확인해 청소 가능 여부를 안내합니다.' }
+    ],
+    relatedServices: ['바닥청소', '외벽청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 산업 현장의 근로 환경 개선과 안전 사고를 예방하는 정밀 공장청소입니다.',
+    ctaHook: '공장 상태 점검 상담',
+    thumbnailImage: '/images/services/outer-wall.jpg',
+    ogImage: '/images/services/outer-wall.jpg',
+    altBase: '공장청소 전문'
+  },
+  {
+    serviceNameKo: '건물청소',
+    serviceSlug: 'building-cleaning',
+    mainProblem: '로비, 복도, 계단 등 다수가 이용하는 공용 구역의 오염 누적',
+    targetPlaces: ['빌딩 로비', '계단실', '공동 복도', '엘리베이터 내부', '건물 외부 통로'],
+    contaminationTypes: ['계단 논슬립 때', '로비 대리석 얼룩', '외부 대기 오염 먼지', '빗물 얼룩'],
+    preCheckItems: ['승강기 내부 보양 필요 확인', '소방 설비 오작동 예방 조치', '보행 통제 협조 안내문 부착'],
+    estimateFactors: ['건물 규모', '층수', '공용부 범위', '외부/내부 포함 여부', '정기 관리 여부'],
+    faqSet: [
+      { q: '{{지역명}} 건물청소는 공용부만 따로 상담할 수 있나요?', a: '로비, 복도, 계단, 공용 화장실 등 필요한 구역을 기준으로 상담할 수 있습니다.' }
+    ],
+    relatedServices: ['바닥청소', '외벽청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 건물의 청결 상태를 복원하여 시설 가치를 보존하는 공용부 건물청소 솔루션입니다.',
+    ctaHook: '건물 대청소 상담',
+    thumbnailImage: '/images/services/floor-wax.jpg',
+    ogImage: '/images/services/floor-wax.jpg',
+    altBase: '건물청소 전문'
+  },
+  {
+    serviceNameKo: '침수청소',
+    serviceSlug: 'flood-cleaning',
+    mainProblem: '누수 또는 폭우 침수로 인한 잔여 물기 고임, 앙금 침착 및 악취 발생',
+    targetPlaces: ['지하 상가 매장', '침수 사무실', '지하 주차장', '단독 주택 지하'],
+    contaminationTypes: ['역류 오염수', '흙탕물 앙금', '습기/곰팡이 얼룩', '부패 오염원'],
+    preCheckItems: ['누전 위험 차단을 위한 전기 차단 확인', '침수 집기의 폐기 대상 목록 작성', '용수 공급 시설 가동 상태'],
+    estimateFactors: ['침수 면적', '물 유입 깊이', '오염수 여부', '바닥재 상태', '폐기물 발생 여부', '건조 필요 여부'],
+    faqSet: [
+      { q: '{{지역명}} 침수청소는 바로 상담해야 하나요?', a: '물 유입 범위와 바닥 상태에 따라 정리 범위가 달라질 수 있어 현장 사진을 먼저 보내주시면 상담이 빠릅니다.' }
+    ],
+    relatedServices: ['특수청소', '바닥청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 지역 침수 수해 현장, 신속한 잔수 제거와 정밀 소독으로 안전 복구를 지원합니다.',
+    ctaHook: '침수 긴급 상담 요청',
+    thumbnailImage: '/images/services/special-cleaning.jpg',
+    ogImage: '/images/services/special-cleaning.jpg',
+    altBase: '침수청소 및 복구'
+  },
+  {
+    serviceNameKo: '창고청소',
+    serviceSlug: 'warehouse-cleaning',
+    mainProblem: '보관 공간 내 누적된 대량의 먼지 분진 및 바닥 타이어 자국 얼룩',
+    targetPlaces: ['물류 창고', '원자재 보관고', '출고 하역장', '개인 보관 창고'],
+    contaminationTypes: ['적재 랙 미세 먼지', '지게차 스키드 마크', '오일 누출 얼룩', '장기 고착 오염'],
+    preCheckItems: ['랙에 보관 중인 잔여 물품 보양 처리', '대형 장비 진입로 확보', '작업 구역 전원 위치 확인'],
+    estimateFactors: ['창고 면적', '적재물 이동 여부', '먼지/분진 정도', '바닥 오염 상태', '작업 가능 시간대'],
+    faqSet: [
+      { q: '{{지역명}} 창고청소는 적재물이 있는 상태에서도 상담 가능한가요?', a: '적재물 이동 여부, 바닥 오염 상태, 작업 공간 확보 여부를 확인해 청소 가능 범위를 안내합니다.' }
+    ],
+    relatedServices: ['바닥청소', '공장청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 물류 공간의 위생 상태를 개선하고 적재 효율을 높이는 창고청소 서비스입니다.',
+    ctaHook: '창고 상태 확인 상담',
+    thumbnailImage: '/images/services/outer-wall.jpg',
+    ogImage: '/images/services/outer-wall.jpg',
+    altBase: '창고청소 전문'
+  },
+  {
+    serviceNameKo: '병원청소',
+    serviceSlug: 'hospital-cleaning',
+    mainProblem: '교차 감염 방지를 위한 엄격한 공간 살균 및 대기실 바닥 발자국 오염 제거',
+    targetPlaces: ['진료실', '환자 대기실', '입원실', '물리치료실', '내부 화장실'],
+    contaminationTypes: ['발자국 생활 오염', '의료용 냄새 흔적', '창틀 미세 먼지', '세균성 잔여 얼룩'],
+    preCheckItems: ['의료 장비 및 특수 약품 보양 기준 협의', '작업 도중 출입 통제 필요 여부', '비영업일/비진료 일정 조율'],
+    estimateFactors: ['병원 면적', '진료실/대기실/공용부 범위', '바닥 오염 상태', '작업 가능 시간대', '위생 관리 필요 범위'],
+    faqSet: [
+      { q: '{{지역명}} 병원청소는 진료 시간이 끝난 뒤에도 상담 가능한가요?', a: '병원 운영 시간, 청소 구역, 오염 상태를 확인해 작업 가능 일정과 범위를 안내합니다.' }
+    ],
+    relatedServices: ['바닥청소', '유리창청소'],
+    heroDescriptionTemplate: '{{displayNameKo}} 의료 공간의 청결함과 감염 안심 위생을 지키는 꼼꼼한 병원청소 서비스입니다.',
+    ctaHook: '위생 상태 점검 상담',
+    thumbnailImage: '/images/services/floor-wax.jpg',
+    ogImage: '/images/services/floor-wax.jpg',
+    altBase: '병원청소 전문'
   }
 ];

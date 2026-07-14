@@ -163,7 +163,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
       heroSubText: content.heroSubcopy.replace(/\{\{지역명\}\}/g, regionName),
       heroCheckDate: "이사일 기준 상담",
       whySectionTitle: "겉으로 깨끗해 보여도\n이사 전 확인해야 할 곳이 있습니다",
-      whySectionDesc: `${regionName} 이사청소는 이전 세입자의 찌든 때 흔적, 주방 기름때, 욕실 물때 및 곰팡이, 창틀 고착 먼지 등 이사 전에 전문 약품과 장비로 완벽히 세정해야만 이사 후 쾌적하게 거주하실 수 있습니다.`,
+      whySectionDesc: `${regionName} 이사청소는 이전 세입자의 찌든 때 흔적, 주방 기름때, 욕실 물때 및 곰팡이, 창틀 고착 먼지 등 이사 전에 전문 약품과 장비로 정밀하게 세정해야만 이사 후 쾌적하게 거주하실 수 있습니다.`,
       guideSectionTitle: `${regionName} 이사청소 핵심 정리 범위`,
       processTitle: "이사일에 맞춰\n범위·일정·견적을 먼저 정리합니다",
       processDesc: `${regionName} 이사청소는 이사일, 평수, 집 상태를 먼저 확인한 뒤 필요한 청소 범위와 가능 일정을 안내합니다.`,

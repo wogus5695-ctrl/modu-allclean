@@ -3,6 +3,7 @@ import path from 'path';
 import { regions } from '../src/data/regions';
 import { services } from '../src/data/services';
 import { INDEXED_DONG_COMBINATIONS, CONTACT_PHONE } from '../src/lib/seo';
+import * as XLSX from 'xlsx';
 
 const DOMAIN = 'https://www.moduclean.co.kr';
 const NEXT_HTML_DIR = path.join(process.cwd(), '.next/server/app');
@@ -138,7 +139,14 @@ async function runAudit() {
     'hood-cleaning': ['후드청소', '후드', '덕트', '기름때', '식당', '주방'],
     'hoarding-cleaning': ['쓰레기집', '폐기물', '수거', '악취', '정리'],
     'special-cleaning': ['특수청소', '악취', '유품', '고독사', '혈흔'],
-    'floor-cleaning': ['바닥청소', '바닥', '세척', '타일', '사무실']
+    'floor-cleaning': ['바닥청소', '바닥', '세척', '타일', '사무실'],
+    'office-cleaning': ['사무실청소', '사무실', '바닥', '탕비실', '회의실', '먼지'],
+    'store-cleaning': ['상가청소', '상가', '매장', '바닥', '유리', '먼지'],
+    'factory-cleaning': ['공장청소', '공장', '작업장', '바닥', '기름때', '분진'],
+    'building-cleaning': ['건물청소', '건물', '로비', '계단', '복도', '공용부'],
+    'flood-cleaning': ['침수청소', '침수', '물', '바닥', '오염수', '소독'],
+    'warehouse-cleaning': ['창고청소', '창고', '적재', '바닥', '먼지', '분진'],
+    'hospital-cleaning': ['병원청소', '병원', '진료실', '대기실', '바닥', '위생']
   };
 
   for (const urlPath of allTargetUrls) {
@@ -206,6 +214,13 @@ async function runAudit() {
     const canonical = canonicalMatch ? canonicalMatch[1] : '';
     resultRow.canonical = canonical;
 
+    // 본문 가공 (태그 및 스크립트 제거)
+    const bodyText = htmlContent.replace(/<!--[\s\S]*?-->/g, ' ')
+                                .replace(/<script[\s\S]*?<\/script>/gi, ' ')
+                                .replace(/<style[\s\S]*?<\/style>/gi, ' ')
+                                .replace(/<[^>]*>/g, ' ')
+                                .replace(/\s+/g, ' ');
+
     // CTA 확인
     const hasCta = htmlContent.includes(CONTACT_PHONE) || htmlContent.includes('tel:') || htmlContent.includes('카카오톡');
     resultRow.hasCta = hasCta ? 'Y' : 'N';
@@ -218,6 +233,25 @@ async function runAudit() {
       issues.push('브랜드명이 "모두종합환경"이 아님');
       resultRow.category = '브랜드오류';
     }
+
+    // 금지어 유출 확인 (사용자 본문 영역 기준)
+    const forbiddenWords = ['undefined', 'null', 'NaN', '무료 방문견적', '무료 견적', '완벽', '최저가', '무조건 저렴'];
+    const foundForbidden = forbiddenWords.filter(word => bodyText.includes(word));
+    if (foundForbidden.length > 0) {
+      issues.push(`금지어 포함: ${foundForbidden.join(', ')}`);
+      resultRow.category = '메타오류';
+    }
+
+    // 서비스 카드 유출 확인 (대표 서비스 섹션 카드 수 및 신규 7개 카드 노출 여부)
+    const newServiceSlugs = ['office-cleaning', 'store-cleaning', 'factory-cleaning', 'building-cleaning', 'flood-cleaning', 'warehouse-cleaning', 'hospital-cleaning'];
+    newServiceSlugs.forEach(slug => {
+      const occurrences = (htmlContent.match(new RegExp(`/service/${slug}`, 'g')) || []).length;
+      // 관련 추천(relatedServices) 영역이나 브레드크럼 등 합쳐서 보통 1~2회는 노출 가능하나, 메인/카드 섹션 유출 시 occurrences가 비정상적으로 높아짐
+      if (occurrences > 2) {
+        issues.push(`서비스 카드 유출 의심: ${slug} (${occurrences}회 노출)`);
+        resultRow.category = '개선필요';
+      }
+    });
 
     // 경로 파싱 및 대표지역명/작업명 매핑
     const parts = urlPath.split('/').filter(Boolean);
@@ -256,13 +290,6 @@ async function runAudit() {
         const representativeArea = getRepresentativeArea(region, isDistrictLevel, requestedWithSuffix);
         resultRow.representativeArea = representativeArea;
         resultRow.serviceName = service.serviceNameKo;
-
-        // 본문 가공
-        const bodyText = htmlContent.replace(/<!--[\s\S]*?-->/g, ' ')
-                                    .replace(/<script[\s\S]*?<\/script>/gi, ' ')
-                                    .replace(/<style[\s\S]*?<\/style>/gi, ' ')
-                                    .replace(/<[^>]*>/g, ' ')
-                                    .replace(/\s+/g, ' ');
 
         // 키워드 빈도 및 핵심어 포함 체크
         const targetKeyword = `${representativeArea} ${service.serviceNameKo}`;
@@ -405,6 +432,68 @@ async function runAudit() {
 
   fs.writeFileSync(path.join(process.cwd(), 'seo_problems_list.txt'), problemRows.join('\n\n'), 'utf-8');
   console.log('📁 문제 URL 목록 저장 완료: seo_problems_list.txt\n');
+
+  // 4. XLSX (SheetJS) 엑셀 파일 생성
+  const summaryData = [
+    { '구분': '신규 작업명 수', '값': 7 },
+    { '구분': '전체 생성 URL 수', '값': allTargetUrls.size },
+    { '구분': '정상 200 URL 수', '값': auditResults.filter(r => r.status === 200).length },
+    { '구분': 'sitemap 포함 URL 수', '값': auditResults.filter(r => r.status === 200 && r.category === '정상').length },
+    { '구분': '오류 URL 수', '값': problemUrls.length }
+  ];
+
+  const submissionData: any[] = [];
+  const errorData: any[] = [];
+  const newServiceSlugs = ['office-cleaning', 'store-cleaning', 'factory-cleaning', 'building-cleaning', 'flood-cleaning', 'warehouse-cleaning', 'hospital-cleaning'];
+
+  auditResults.forEach(r => {
+    const isNew = newServiceSlugs.some(slug => r.url.includes(slug));
+    if (!isNew) return;
+
+    const keyword = `${r.representativeArea} ${r.serviceName}`.trim();
+
+    if (r.status === 200 && r.category === '정상') {
+      submissionData.push({
+        keyword: keyword,
+        regionName: r.representativeArea,
+        serviceName: r.serviceName,
+        url: `${DOMAIN}${r.url}`,
+        status: r.status,
+        canonical: r.canonical
+      });
+    } else {
+      errorData.push({
+        keyword: keyword,
+        url: `${DOMAIN}${r.url}`,
+        statusCode: r.status,
+        issueType: r.category,
+        suggestedFix: (() => {
+          if (r.status === 404) return '빌드 정상 완료 여부 확인 및 슬러그 허용 리스트 등록 점검';
+          if (r.category === 'canonical오류') return 'Canonical 태그가 현재 URL과 1:1 대응되는지 검토';
+          if (r.category === 'Soft404의심') return 'H1, Title, Meta Description 누락 여부 확인';
+          if (r.category === '메타오류') return '본문에 undefined, null, NaN 혹은 금지 문안 포함 여부 필터링';
+          return '상세 본문 에러 체크 및 템플릿 바인딩 교정';
+        })()
+      });
+    }
+  });
+
+  const wb = XLSX.utils.book_new();
+
+  // 요약 시트
+  const wsSummary = XLSX.utils.json_to_sheet(summaryData);
+  XLSX.utils.book_append_sheet(wb, wsSummary, '요약');
+
+  // 제출용_URL 시트
+  const wsSubmission = XLSX.utils.json_to_sheet(submissionData);
+  XLSX.utils.book_append_sheet(wb, wsSubmission, '제출용_URL');
+
+  // 오류_URL 시트
+  const wsError = XLSX.utils.json_to_sheet(errorData);
+  XLSX.utils.book_append_sheet(wb, wsError, '오류_URL');
+
+  XLSX.writeFile(wb, path.join(process.cwd(), 'moduclean_new_service_keyword_urls.xlsx'));
+  console.log('📁 엑셀 파일 저장 완료: moduclean_new_service_keyword_urls.xlsx');
 
   console.log(`❌ 총 ${problemUrls.length}개의 URL에서 SEO 개선 요소가 발견되었습니다.`);
 }

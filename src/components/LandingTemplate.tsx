@@ -100,6 +100,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       case '쓰레기집 청소':
       case '쓰레기집청소':
         return `${regionName} 원룸, 오피스텔, 빌라 등 생활폐기물이 쌓인 공간의 상태를 확인하고 정리 범위와 청소 가능 여부를 안내합니다.`;
+      case '사무실청소':
+        return `${regionName} 사무실청소는 업무 공간의 바닥, 책상 주변, 회의실, 탕비실 등 사용 빈도가 높은 공간의 오염 상태를 확인해 청소 범위를 안내합니다.`;
+      case '상가청소':
+        return `${regionName} 상가청소는 매장 바닥, 유리, 출입구, 집기 주변 오염 상태를 확인해 영업 환경에 맞는 청소 범위를 안내합니다.`;
+      case '공장청소':
+        return `${regionName} 공장청소는 작업장 바닥, 설비 주변, 분진, 기름때 등 현장 오염 상태를 확인해 청소 가능 범위와 작업 방식을 안내합니다.`;
+      case '건물청소':
+        return `${regionName} 건물청소는 로비, 계단, 복도, 공용부, 외부 오염 상태를 확인해 건물 관리에 필요한 청소 범위를 안내합니다.`;
+      case '침수청소':
+        return `${regionName} 침수청소는 물 유입 범위, 바닥 오염, 잔여 물기, 악취 발생 가능성을 확인해 정리 범위와 작업 가능 여부를 안내합니다.`;
+      case '창고청소':
+        return `${regionName} 창고청소는 적재 공간, 바닥 먼지, 분진, 장기 보관으로 생긴 오염 상태를 확인해 청소 범위를 안내합니다.`;
+      case '병원청소':
+        return `${regionName} 병원청소는 대기실, 진료실, 공용부, 바닥 오염 상태를 확인해 위생 관리에 필요한 청소 범위를 안내합니다.`;
       default:
         return `${regionName}의 ${serviceName}가 필요한 현장 상태와 작업 범위를 확인해 상담을 안내합니다.`;
     }
@@ -121,6 +135,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       case '쓰레기집 청소':
       case '쓰레기집청소':
         return `${regionName} 생활폐기물이 쌓인 공간의 상태와 정리 범위를 확인해 작업 가능 여부를 안내합니다.`;
+      case '사무실청소':
+        return `${regionName} 사무실의 바닥 찌든 때, 카펫 얼룩, 탕비실 오염 상태를 확인해 쾌적한 비즈니스 환경 조성을 돕습니다.`;
+      case '상가청소':
+        return `${regionName} 매장 홀 바닥, 출입구, 쇼윈도 유리의 찌든 얼룩을 제거하여 청결한 영업 공간을 완성합니다.`;
+      case '공장청소':
+        return `${regionName} 공장 바닥의 거친 기름때, 설비 주변의 미세 분진을 특수 세척하여 안전한 작업 현장을 만듭니다.`;
+      case '건물청소':
+        return `${regionName} 빌딩 로비, 복도, 계단 등 공동 공용 공간의 통행 먼지와 논슬립 오염을 기계 세정하여 자산 가치를 높입니다.`;
+      case '침수청소':
+        return `${regionName} 침수로 유입된 오염 잔수 진공 흡입, 흙탕물 앙금 정리, 멸균 소독으로 빠른 피해 복구를 지원합니다.`;
+      case '창고청소':
+        return `${regionName} 물류 창고 내부의 장기 누적 먼지, 지게차 스키드 마크를 대형 기계 장비로 정밀 세척합니다.`;
+      case '병원청소':
+        return `${regionName} 병원의 진료실, 환자 대기실, 공용부 바닥의 묵은 오염 제거와 소독 닦기로 안심 원내 위생을 확립합니다.`;
       default:
         return `${regionName} ${serviceName}의 오염 상태와 작업 범위를 확인해 필요한 청소 방향을 안내합니다.`;
     }
@@ -142,6 +170,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       case '쓰레기집 청소':
       case '쓰레기집청소':
         return `${regionName} 쓰레기집청소 견적은 생활폐기물 양, 악취 정도, 공간 형태, 정리 범위에 따라 달라질 수 있습니다. 현장 사진을 보내주시면 작업 가능 여부를 안내합니다.`;
+      case '사무실청소':
+        return `${regionName} 사무실청소 견적은 사무실 실평수, 집기 이동 범위, 바닥 카펫 세척 여부, 탕비실 유무에 따라 결정됩니다. 현장 사진을 보내주시면 상세 상담을 안내합니다.`;
+      case '상가청소':
+        return `${regionName} 상가청소 견적은 홀 면적, 쇼윈도 수량, 업종별 오염 특성, 야간 작업 여부에 따라 결정됩니다. 매장 전체 사진을 공유해 주시면 상담이 원활합니다.`;
+      case '공장청소':
+        return `${regionName} 공장청소 견적은 작업장 면적, 층고, 기름때 및 분진 수준, 설비 주변 보양 요건에 따라 결정됩니다. 현장 사진과 요청 사항을 접수해주시면 안내가 빠릅니다.`;
+      case '건물청소':
+        return `${regionName} 건물청소 견적은 건물 규모(층수), 공용부 범위, 계단 자재 종류, 외부 포함 여부에 따라 결정됩니다. 빌딩 전경과 공용부 사진을 보내주시면 상담을 안내합니다.`;
+      case '침수청소':
+        return `${regionName} 침수청소 견적은 물 유입 면적 및 깊이, 수해 폐기물 반출량, 탈취/살균 규모에 따라 결정됩니다. 현장 사진을 먼저 보내주시면 빠른 복구 상담을 도와드립니다.`;
+      case '창고청소':
+        return `${regionName} 창고청소 견적은 창고 실평수, 내부 랙 구조, 지게차 스키드 자국 수준, 작업 가능 시간에 따라 결정됩니다. 창고 내부 사진을 제공해 주시면 상담 방향을 안내합니다.`;
+      case '병원청소':
+        return `${regionName} 병원청소 견적은 원내 공급 평수, 진료 영역 개수, 위생 살균 범위, 작업 시간대에 따라 결정됩니다. 원내 구조 사진을 공유해 주시면 상세히 상담해 드립니다.`;
       default:
         return `${regionName} ${serviceName} 견적은 작업 범위, 오염 상태, 면적, 장비 사용 여부에 따라 달라질 수 있습니다. 사진과 위치를 보내주시면 작업 가능 여부와 상담 방향을 안내합니다.`;
     }
@@ -242,6 +284,63 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           '오염 누적 정도',
           '작업 가능 시간대'
         ];
+      case '사무실청소':
+        return [
+          '사무실 면적',
+          '책상/집기 배치 상태',
+          '바닥 오염도',
+          '탕비실/화장실 포함 여부',
+          '정기/일회성 여부'
+        ];
+      case '상가청소':
+        return [
+          '매장 면적',
+          '업종 특성',
+          '바닥/유리 오염도',
+          '집기 이동 여부',
+          '영업시간 외 작업 가능 여부'
+        ];
+      case '공장청소':
+        return [
+          '공장 면적',
+          '바닥 오염 정도',
+          '분진/기름때 여부',
+          '설비 주변 작업 가능 여부',
+          '작업 시간대'
+        ];
+      case '건물청소':
+        return [
+          '건물 규모',
+          '층수',
+          '공용부 범위',
+          '외부/내부 포함 여부',
+          '정기 관리 여부'
+        ];
+      case '침수청소':
+        return [
+          '침수 면적',
+          '물 유입 깊이',
+          '오염수 여부',
+          '바닥재 상태',
+          '폐기물 발생 여부',
+          '건조 필요 여부'
+        ];
+      case '창고청소':
+        return [
+          '창고 면적',
+          '적재물 이동 여부',
+          '먼지/분진 정도',
+          '바닥 오염 상태',
+          '작업 가능 시간대'
+        ];
+      case '병원청소':
+        return [
+          '병원 면적',
+          '진료실/대기실/공용부 범위',
+          '바닥 오염 상태',
+          '작업 가능 시간대',
+          '위생 관리 필요 범위'
+        ];
       default:
         return currentService.estimateFactors;
     }
@@ -257,7 +356,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             <span className={styles.badge}>서울 주요 지역 청소 상담</span>
             <h1 className={styles.heroTitle} style={{ lineHeight: '1.4' }}>
               <span className="pc-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문</span>
-              <span className="mo-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'}</span>
+              <span className="mo-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문</span>
               <br />
               <span className={styles.highlight}>{BRAND_NAME}</span>
             </h1>
