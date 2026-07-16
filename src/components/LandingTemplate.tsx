@@ -17,6 +17,34 @@ interface LandingTemplateProps {
 }
 
 export default function LandingTemplate({ data, regionObj, currentService }: LandingTemplateProps) {
+  const getFilteredPortfolios = (serviceName: string) => {
+    let matchedIds: string[] = [];
+    if (serviceName.includes('화재')) {
+      matchedIds = ['fire', 'floor', 'parking', 'construction'];
+    } else if (serviceName.includes('왁스') || serviceName.includes('코팅')) {
+      matchedIds = ['wax', 'floor', 'parking', 'interior'];
+    } else if (serviceName.includes('준공')) {
+      matchedIds = ['construction', 'interior', 'parking', 'floor'];
+    } else if (serviceName.includes('인테리어')) {
+      matchedIds = ['interior', 'construction', 'floor', 'wax'];
+    } else if (serviceName.includes('바닥')) {
+      matchedIds = ['floor', 'wax', 'parking', 'construction'];
+    } else if (serviceName.includes('사무실')) {
+      matchedIds = ['wax', 'interior', 'floor', 'parking'];
+    } else if (serviceName.includes('상가') || serviceName.includes('매장')) {
+      matchedIds = ['wax', 'interior', 'floor', 'construction'];
+    } else if (serviceName.includes('공장') || serviceName.includes('창고')) {
+      matchedIds = ['parking', 'floor', 'construction', 'fire'];
+    } else if (serviceName.includes('병원')) {
+      matchedIds = ['floor', 'interior', 'wax', 'construction'];
+    } else if (serviceName.includes('침수')) {
+      matchedIds = ['parking', 'floor', 'fire', 'construction'];
+    } else {
+      matchedIds = ['construction', 'interior', 'wax', 'floor'];
+    }
+    return portfolioItems.filter(item => matchedIds.includes(item.id)).slice(0, 4);
+  };
+
   const getDisplayServices = () => {
     return [
       {
@@ -360,12 +388,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
               <span className={styles.highlight}>{BRAND_NAME}</span>
             </h1>
             <p className={styles.heroDesc}>
-              {getHeroDescription()}<br />
-              {regionObj?.displayNameKo && (
-                <span style={{ fontSize: '0.9rem', opacity: 0.85, display: 'block', marginTop: '0.8rem' }}>
-                  {regionObj.displayNameKo} 지역은 {regionObj.commercialCharacteristics || '주요 상업/주거'} 특성을 띄고 있어 {currentService?.serviceNameKo || '청소'}의 전문적인 접근이 필요합니다.
-                </span>
-              )}
+              {getHeroDescription()}
             </p>
             <div className={styles.heroCta}>
               <a href={`tel:${CONTACT_PHONE}`} className={`${styles.ctaBtn} ${styles.primary}`}>
@@ -497,24 +520,22 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </h2>
             <p className={styles.sectionDesc} style={{ whiteSpace: 'nowrap' }}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
-          <div className={styles.sliderContainer}>
-            <div className={styles.sliderTrack}>
-              {[...portfolioItems, ...portfolioItems].map((item, idx) => (
-                <div key={`${item.id}-${idx}`} className={styles.portfolioCard}>
-                  <div className={styles.portfolioCategory}>{item.category}</div>
-                  <div className={styles.comparisonGrid}>
-                    <div className={styles.imageBox}>
-                      <img src={item.beforeImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 전 상태`} />
-                      <span className={styles.tagBefore}>BEFORE</span>
-                    </div>
-                    <div className={styles.imageBox}>
-                      <img src={item.afterImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 후 완료`} />
-                      <span className={styles.tagAfter}>AFTER</span>
-                    </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
+            {getFilteredPortfolios(currentService?.serviceNameKo || '청소').map((item) => (
+              <div key={item.id} className={styles.portfolioCard} style={{ margin: 0, width: '100%' }}>
+                <div className={styles.portfolioCategory}>{item.category}</div>
+                <div className={styles.comparisonGrid}>
+                  <div className={styles.imageBox}>
+                    <img src={item.beforeImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 전 상태`} />
+                    <span className={styles.tagBefore}>BEFORE</span>
+                  </div>
+                  <div className={styles.imageBox}>
+                    <img src={item.afterImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 후 완료`} />
+                    <span className={styles.tagAfter}>AFTER</span>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

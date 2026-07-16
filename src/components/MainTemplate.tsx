@@ -22,47 +22,74 @@ export default function MainTemplate({
   service = '종합청소',
   regionObj
 }: MainTemplateProps) {
+  const getFilteredPortfolios = (serviceName: string) => {
+    let matchedIds: string[] = [];
+    if (serviceName.includes('화재')) {
+      matchedIds = ['fire', 'floor', 'parking', 'construction'];
+    } else if (serviceName.includes('왁스') || serviceName.includes('코팅')) {
+      matchedIds = ['wax', 'floor', 'parking', 'interior'];
+    } else if (serviceName.includes('준공')) {
+      matchedIds = ['construction', 'interior', 'parking', 'floor'];
+    } else if (serviceName.includes('인테리어')) {
+      matchedIds = ['interior', 'construction', 'floor', 'wax'];
+    } else if (serviceName.includes('바닥')) {
+      matchedIds = ['floor', 'wax', 'parking', 'construction'];
+    } else if (serviceName.includes('사무실')) {
+      matchedIds = ['wax', 'interior', 'floor', 'parking'];
+    } else if (serviceName.includes('상가') || serviceName.includes('매장')) {
+      matchedIds = ['wax', 'interior', 'floor', 'construction'];
+    } else if (serviceName.includes('공장') || serviceName.includes('창고')) {
+      matchedIds = ['parking', 'floor', 'construction', 'fire'];
+    } else if (serviceName.includes('병원')) {
+      matchedIds = ['floor', 'interior', 'wax', 'construction'];
+    } else if (serviceName.includes('침수')) {
+      matchedIds = ['parking', 'floor', 'fire', 'construction'];
+    } else {
+      matchedIds = ['construction', 'interior', 'wax', 'floor'];
+    }
+    return portfolioItems.filter(item => matchedIds.includes(item.id)).slice(0, 4);
+  };
   
   // 메인 페이지용 서비스 그룹화 로직 (Sitemap-Seoul에는 영향을 주지 않음)
   const getDisplayServices = () => {
     const items = [];
     let hasAddedAwningGroup = false;
     let hasAddedInteriorGroup = false;
-
+ 
     for (const s of services) {
       // showOnMain 속성이 false인 서비스는 메인 페이지에서 제외
       if (!s.showOnMain) {
         continue;
       }
-
+ 
       // 어닝 또는 간판 서비스인 경우
       if (s.id === 'awning' || s.id === 'signboard') {
         if (!hasAddedAwningGroup) {
           items.push({
             id: 'group-awning-sign',
             name: '어닝/간판 청소',
-            desc: '매장의 얼굴인 어닝의 곰팡이와 간판의 오염을 동시에 해결하여 가독성을 높입니다.',
+            desc: '매장의 얼굴인 어닝의 곰팡이와 간판의 오염을 고압 세척과 현장 상태에 맞는 세정제로 정리합니다.',
             image: '/images/services/awning-sign.jpg'
           });
           hasAddedAwningGroup = true;
         }
         continue; // 개별 항목은 건너뜀
       }
-
+ 
       // 인테리어 후 또는 준공 청소인 경우
       if (s.id === 'interior-post' || s.id === 'completion') {
         if (!hasAddedInteriorGroup) {
           items.push({
             id: 'group-interior-completion',
             name: '인테리어 후/준공 청소',
-            desc: '공사 분진과 시멘트 가루를 상태에 맞춰 정리하여 즉시 입주 가능한 쾌적한 상태를 만듭니다.',
+            desc: '공사 후 남은 분진, 창틀 먼지, 바닥 오염, 접착 자국 등을 입주 전 사용할 수 있는 상태로 정리합니다.',
             image: '/images/services/interior-completion.jpg'
           });
           hasAddedInteriorGroup = true;
         }
         continue; // 개별 항목은 건너뜀
       }
-
+ 
       // 그 외 일반 서비스
       items.push({
         id: s.id,
@@ -73,11 +100,11 @@ export default function MainTemplate({
     }
     return items;
   };
-
+ 
   const displayServices = getDisplayServices();
-
+ 
   const [isExpanded, setIsExpanded] = useState(false);
-
+ 
   // 1. Find matching service from the service prop
   const getHighlightedServiceId = (serviceName: string) => {
     if (!serviceName) return null;
@@ -92,9 +119,9 @@ export default function MainTemplate({
     if (name === '후드청소') return 'hood';
     return null;
   };
-
+ 
   const highlightedServiceId = getHighlightedServiceId(service);
-
+ 
   // 2. Related services mapping
   const relatedServiceMap: Record<string, string[]> = {
     'outer-wall': ['window', 'group-awning-sign', 'group-interior-completion'],
@@ -106,7 +133,7 @@ export default function MainTemplate({
     'hood': ['group-awning-sign', 'floor-wax', 'special-cleaning'],
     'special-cleaning': ['fire', 'floor-wax', 'outer-wall']
   };
-
+ 
   // 3. Descriptions for highlighted card
   const highlightDescMap: Record<string, string> = {
     'window': '외부 유리, 상가 유리, 건물 유리창, 고소 유리창 등 현장 상태에 맞춰 장비와 작업 방식을 안내드립니다.',
@@ -114,9 +141,9 @@ export default function MainTemplate({
     'group-interior-completion': '공사 후 남은 분진, 창틀 먼지, 바닥 오염, 접착 자국 등을 입주 전 사용할 수 있는 상태로 정리합니다.',
     'outer-wall': '고층 빌딩, 아파트, 상가 건물의 외부 벽면 오염물과 그을음, 이끼를 전문 로프 장비 및 고압 세척으로 제거합니다.',
     'fire': '그을음 제거, 유독성 분진 청소, 탄 냄새 제거 탈취 공정 등 화재 피해 현장의 신속하고 상태에 맞춘 복구를 지원합니다.',
-    'floor-wax': '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 프리미엄 코팅으로 광택을 회복하고 바닥을 보호합니다.',
-    'group-awning-sign': '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 특수 약품으로 깨끗하게 지워냅니다.',
-    'hood': '식당 주방 후드와 덕트 내부에 고착된 치명적인 기름때를 고온 스팀과 특수 세제로 정밀 제거하여 화재를 예방합니다.'
+    'floor-wax': '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 바닥 상태에 맞춘 코팅 관리로 광택을 회복하고 바닥을 보호합니다.',
+    'group-awning-sign': '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 현장 상태에 맞는 세정제로 정리합니다.',
+    'hood': '식당 주방 후드와 덕트 내부에 고착되어 주방 후드에 쌓인 기름때를 고온 스팀과 현장 상태에 맞는 세정제로 제거하여 화재를 예방합니다.'
   };
 
   // 4. CTA Text Map
@@ -252,17 +279,17 @@ export default function MainTemplate({
             <p className={styles.sectionDesc}>{BRAND_NAME}은 서울·경기 전 지역 모든 현장에 대응합니다.</p>
           </div>
 
-          {/* Desktop view (only visible on desktop via page.module.css) */}
-          <div className={`${styles.serviceCards} ${styles.desktopOnly}`}>
+          {/* Desktop & Mobile Responsive view (HTML 중복 제거 및 단일 카드 리스트 적용) */}
+          <div className={styles.serviceCards} style={{ marginTop: '3rem' }}>
             {displayServices.map((item) => (
               <div key={item.id} className={styles.serviceItem}>
                 <div className={styles.serviceInfo}>
                   <h3>{item.name}</h3>
                   <p>{item.desc}</p>
                   <ul className={styles.serviceList}>
-                    <li>✔ 현장 정밀 진단 및 견적</li>
-                    <li>✔ 전문 인력 투입</li>
-                    <li>✔ 사후 관리(A/S) 보장</li>
+                    <li>✔ 현장 상태 확인</li>
+                    <li>✔ 작업 범위에 맞춘 인력 배치</li>
+                    <li>✔ 작업 후 상태 확인</li>
                   </ul>
                 </div>
                 {item.image && (
@@ -272,91 +299,6 @@ export default function MainTemplate({
                 )}
               </div>
             ))}
-          </div>
-
-          {/* Mobile view (only visible on mobile via page.module.css) */}
-          <div className={styles.mobileServiceContainer}>
-            {highlightedService ? (
-              // 1. When a specific service is highlighted (e.g. from keyword landing page)
-              <>
-                {/* Highlighted Card */}
-                <div className={styles.highlightedCard}>
-                  <div className={styles.highlightedBadge}>현재 추천 작업</div>
-                  <h3 className={styles.highlightedTitle}>
-                    {region} <span className={styles.textAccent}>{highlightedService.name}</span> 작업 안내
-                  </h3>
-                  <p className={styles.highlightedDesc}>
-                    {highlightDescMap[highlightedService.id] || highlightedService.desc}
-                  </p>
-                </div>
-
-                {/* Related Services Title */}
-                <h4 className={styles.mobileSubTitle}>추천 연관 서비스</h4>
-                <div className={styles.mobileServiceCards}>
-                  {relatedServices.map((item) => (
-                    <div key={item.id} className={styles.serviceItem}>
-                      <div className={styles.serviceInfo}>
-                        <h3>{item.name}</h3>
-                        <p>{item.desc}</p>
-                      </div>
-                      {item.image && (
-                        <div className={styles.serviceImage}>
-                          <img src={item.image} alt={item.name} />
-                        </div>
-                      )}
-                    </div>
-                  ))}
-                </div>
-
-                {/* Collapsible Others Section */}
-                {otherServices.length > 0 && (
-                  <>
-                    <div className={`${styles.mobileCollapsible} ${isExpanded ? styles.expanded : ''}`}>
-                      <h4 className={styles.mobileSubTitle} style={{ marginTop: '24px', marginBottom: '16px' }}>전체 서비스 목록</h4>
-                      <div className={styles.mobileServiceCards}>
-                        {otherServices.map((item) => (
-                          <div key={item.id} className={styles.serviceItem}>
-                            <div className={styles.serviceInfo}>
-                              <h3>{item.name}</h3>
-                              <p>{item.desc}</p>
-                            </div>
-                            {item.image && (
-                              <div className={styles.serviceImage}>
-                                <img src={item.image} alt={item.name} />
-                              </div>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                    <button 
-                      onClick={() => setIsExpanded(!isExpanded)} 
-                      className={styles.expandBtn}
-                      aria-expanded={isExpanded}
-                    >
-                      {isExpanded ? '청소 서비스 목록 접기 ▲' : '다른 청소 서비스 보기 ▼'}
-                    </button>
-                  </>
-                )}
-              </>
-            ) : (
-              // 2. Fallback for main page (no highlighted service) - show all services directly
-              <div className={styles.mobileServiceCards}>
-                {displayServices.map((item) => (
-                  <div key={item.id} className={styles.serviceItem}>
-                    <div className={styles.serviceInfo}>
-                      <h3>{item.name}</h3>
-                      <p>{item.desc}</p>
-                    </div>
-                    {item.image && (
-                      <div className={styles.serviceImage}>
-                        <img src={item.image} alt={item.name} />
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       </section>
@@ -371,24 +313,22 @@ export default function MainTemplate({
             </h2>
             <p className={styles.sectionDesc} style={{ whiteSpace: 'nowrap' }}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
-          <div className={styles.sliderContainer}>
-            <div className={styles.sliderTrack}>
-              {[...portfolioItems, ...portfolioItems].map((item, idx) => (
-                <div key={`${item.id}-${idx}`} className={styles.portfolioCard}>
-                  <div className={styles.portfolioCategory}>{item.category}</div>
-                  <div className={styles.comparisonGrid}>
-                    <div className={styles.imageBox}>
-                      <img src={item.beforeImg} alt={`${item.category} 전`} />
-                      <span className={styles.tagBefore}>BEFORE</span>
-                    </div>
-                    <div className={styles.imageBox}>
-                      <img src={item.afterImg} alt={`${item.category} 후`} />
-                      <span className={styles.tagAfter}>AFTER</span>
-                    </div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
+            {getFilteredPortfolios(service).map((item) => (
+              <div key={item.id} className={styles.portfolioCard} style={{ margin: 0, width: '100%' }}>
+                <div className={styles.portfolioCategory}>{item.category}</div>
+                <div className={styles.comparisonGrid}>
+                  <div className={styles.imageBox}>
+                    <img src={item.beforeImg} alt={`${item.category} 전`} />
+                    <span className={styles.tagBefore}>BEFORE</span>
+                  </div>
+                  <div className={styles.imageBox}>
+                    <img src={item.afterImg} alt={`${item.category} 후`} />
+                    <span className={styles.tagAfter}>AFTER</span>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </section>
