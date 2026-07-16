@@ -107,6 +107,15 @@ export default function MainTemplate({
       return () => clearTimeout(timer);
     }
   }, [currentIndex, N]);
+
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
   
   // 메인 페이지용 서비스 그룹화 로직 (Sitemap-Seoul에는 영향을 주지 않음)
   const getDisplayServices = () => {

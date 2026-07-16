@@ -104,6 +104,15 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     }
   }, [currentIndex, N]);
 
+  useEffect(() => {
+    if (!isTransitioning) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(true);
+      }, 50);
+      return () => clearTimeout(timer);
+    }
+  }, [isTransitioning]);
+
   const getDisplayServices = () => {
     return [
       {
