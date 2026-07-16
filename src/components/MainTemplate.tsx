@@ -206,7 +206,7 @@ export default function MainTemplate({
             <span className={styles.subTitle}>Why {BRAND_NAME}?</span>
             <h2 className={styles.sectionTitle}>
               {region} {service},<br />
-              왜 <span className={styles.highlight}>{BRAND_NAME}</span> 이어야 할까요?
+              왜 <span className={styles.highlight}>{BRAND_NAME}</span>이어야 할까요?
             </h2>
           </div>
           <div className={styles.featureGrid}>

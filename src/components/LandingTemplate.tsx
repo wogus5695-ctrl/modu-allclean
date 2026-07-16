@@ -40,13 +40,13 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       {
         id: 'floor-wax',
         name: '바닥왁스코팅',
-        desc: '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 프리미엄 코팅으로 광택을 회복하고 바닥을 보호합니다.',
+        desc: '데코타일, 아스타일 등 바닥 찌든 때 기계 박리 세척 후 바닥 상태에 맞춘 코팅 관리로 광택을 회복하고 바닥을 보호합니다.',
         image: '/images/services/floor-wax.jpg'
       },
       {
         id: 'group-awning-sign',
         name: '어닝/간판 청소',
-        desc: '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 특수 약품으로 깨끗하게 지워냅니다.',
+        desc: '매장의 얼굴인 어닝의 곰팡이와 간판 표면의 매연 오염을 고압 세척과 현장 상태에 맞는 세정제로 정리합니다.',
         image: '/images/services/awning-sign.jpg'
       },
       {
@@ -58,7 +58,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
       {
         id: 'hood',
         name: '후드청소',
-        desc: '식당 주방 후드와 덕트 내부에 고착된 치명적인 기름때를 고온 스팀과 특수 세제로 정밀 제거하여 화재를 예방합니다.',
+        desc: '식당 주방 후드와 덕트 내부에 고착되어 주방 후드에 쌓인 기름때를 고온 스팀과 현장 상태에 맞는 세정제로 제거하여 화재를 예방합니다.',
         image: '/images/services/hood.jpg'
       },
       {
@@ -355,8 +355,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
           <div className="animate-fade-up">
             <span className={styles.badge}>서울 주요 지역 청소 상담</span>
             <h1 className={styles.heroTitle} style={{ lineHeight: '1.4' }}>
-              <span className="pc-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문</span>
-              <span className="mo-only">{(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문</span>
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문
               <br />
               <span className={styles.highlight}>{BRAND_NAME}</span>
             </h1>
@@ -443,8 +442,8 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             <p className={styles.sectionDesc}>{BRAND_NAME}는 서울 주요 지역의 다양한 청소 현장에 맞춰 상담을 안내합니다.</p>
           </div>
 
-          {/* Desktop view (only visible on desktop via page.module.css) */}
-          <div className={`${styles.serviceCards} ${styles.desktopOnly}`} style={{ marginTop: '3rem' }}>
+          {/* Desktop & Mobile Responsive view (HTML 중복 제거 및 단일 카드 리스트 적용) */}
+          <div className={styles.serviceCards} style={{ marginTop: '3rem' }}>
             {getDisplayServices().map((item) => {
               const isMatched = 
                 (item.id === 'outer-wall' && currentService?.serviceNameKo === '외벽청소') ||
@@ -471,9 +470,9 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
                     <h3>{item.name}</h3>
                     <p>{item.desc}</p>
                     <ul className={styles.serviceList}>
-                      <li>✔ 현장 정밀 진단 및 견적</li>
-                      <li>✔ 전문 인력 투입</li>
-                      <li>✔ 사후 관리(A/S) 보장</li>
+                      <li>✔ 현장 상태 확인</li>
+                      <li>✔ 작업 범위에 맞춘 인력 배치</li>
+                      <li>✔ 작업 후 상태 확인</li>
                     </ul>
                   </div>
                   {item.image && (
@@ -484,46 +483,6 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
                 </div>
               );
             })}
-          </div>
-
-          {/* Mobile view (only visible on mobile via page.module.css) */}
-          <div className={styles.mobileServiceContainer} style={{ marginTop: '2rem' }}>
-            <div className={styles.mobileServiceCards}>
-              {getDisplayServices().map((item) => {
-                const isMatched = 
-                  (item.id === 'outer-wall' && currentService?.serviceNameKo === '외벽청소') ||
-                  (item.id === 'window' && currentService?.serviceNameKo === '유리창청소') ||
-                  (item.id === 'fire' && currentService?.serviceNameKo === '화재청소') ||
-                  (item.id === 'floor-wax' && currentService?.serviceNameKo === '바닥왁스코팅') ||
-                  (item.id === 'group-awning-sign' && (currentService?.serviceNameKo === '어닝청소' || currentService?.serviceNameKo === '간판청소')) ||
-                  (item.id === 'group-interior-completion' && (currentService?.serviceNameKo === '인테리어 후 청소' || currentService?.serviceNameKo === '준공청소')) ||
-                  (item.id === 'hood' && currentService?.serviceNameKo === '후드청소') ||
-                  (item.id === 'special-cleaning' && (currentService?.serviceNameKo === '특수청소' || currentService?.serviceNameKo === '쓰레기집 청소' || currentService?.serviceNameKo === '쓰레기집청소'));
-
-                return (
-                  <div 
-                    key={item.id} 
-                    className={styles.serviceItem}
-                    style={isMatched ? { border: '2px solid var(--accent)', position: 'relative', background: '#fff' } : { background: '#fff' }}
-                  >
-                    {isMatched && (
-                      <div style={{ position: 'absolute', top: '8px', right: '8px', background: 'var(--accent)', color: '#fff', padding: '2px 8px', borderRadius: '20px', fontSize: '0.7rem', fontWeight: 'bold', zIndex: 10 }}>
-                        현재 추천
-                      </div>
-                    )}
-                    <div className={styles.serviceInfo}>
-                      <h3 style={{ margin: '0 0 6px 0', fontSize: '1.1rem' }}>{item.name}</h3>
-                      <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--gray-600)', lineHeight: '1.4' }}>{item.desc}</p>
-                    </div>
-                    {item.image && (
-                      <div className={styles.serviceImage} style={{ width: '80px', height: '80px', flexShrink: 0, borderRadius: '6px', overflow: 'hidden' }}>
-                        <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
           </div>
         </div>
       </section>
@@ -745,7 +704,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.inner}>
           <div className={styles.contactCard}>
             <h2 style={{ fontSize: 'clamp(28px, 4vw, 42px)', color: 'white', marginBottom: '16px', lineHeight: '1.3' }}>
-              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'}가 필요하신가요?
+              {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 상담이 필요하신가요?
             </h2>
              <p style={{ color: 'var(--gray-300)', marginBottom: '30px', fontSize: 'clamp(14px, 2vw, 18px)' }}>
                {currentService.serviceSlug === 'exterior-cleaning' && '건물 높이, 외벽 면적, 오염 정도를 기준으로 작업 가능 여부와 장비 사용 여부를 안내합니다.'}
