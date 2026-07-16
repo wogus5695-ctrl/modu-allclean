@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useEffect, useRef } from 'react';
 import { LandingPageData } from '@/lib/seo-builder';
 import { CONTACT_PHONE, BRAND_NAME, CONTACT_KAKAOTALK } from '@/lib/seo';
 import { seoServices, SeoService } from '@/data/seo/services';
@@ -44,6 +45,64 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     }
     return portfolioItems.filter(item => matchedIds.includes(item.id)).slice(0, 4);
   };
+
+  // 무한 롤링 슬라이더 상태 및 훅 정의
+  const displayItems = getFilteredPortfolios(currentService?.serviceNameKo || '청소');
+  const N = displayItems.length;
+  const cloneCount = 3;
+  const [currentIndex, setCurrentIndex] = useState(cloneCount);
+  const [cardWidth, setCardWidth] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(true);
+  const viewportRef = useRef<HTMLDivElement>(null);
+
+  const slides = [
+    ...displayItems.slice(-cloneCount),
+    ...displayItems,
+    ...displayItems.slice(0, cloneCount)
+  ];
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (!viewportRef.current) return;
+      const W = viewportRef.current.clientWidth;
+      const isMobile = window.innerWidth < 768;
+      const gapValue = 30;
+      if (isMobile) {
+        setCardWidth(W);
+      } else {
+        setCardWidth((W - 2 * gapValue) / 3);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [viewportRef.current, N]);
+
+  useEffect(() => {
+    if (N === 0) return;
+    const interval = setInterval(() => {
+      setIsTransitioning(true);
+      setCurrentIndex((prev) => prev + 1);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [N]);
+
+  useEffect(() => {
+    if (currentIndex === cloneCount + N) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(cloneCount);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+    if (currentIndex === cloneCount - 1) {
+      const timer = setTimeout(() => {
+        setIsTransitioning(false);
+        setCurrentIndex(cloneCount - 1 + N);
+      }, 500);
+      return () => clearTimeout(timer);
+    }
+  }, [currentIndex, N]);
 
   const getDisplayServices = () => {
     return [
@@ -520,22 +579,32 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
             </h2>
             <p className={styles.sectionDesc} style={{ whiteSpace: 'nowrap' }}>작업 전후 상태를 사진으로 확인할 수 있습니다.</p>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', marginTop: '3rem' }}>
-            {getFilteredPortfolios(currentService?.serviceNameKo || '청소').map((item) => (
-              <div key={item.id} className={styles.portfolioCard} style={{ margin: 0, width: '100%' }}>
-                <div className={styles.portfolioCategory}>{item.category}</div>
-                <div className={styles.comparisonGrid}>
-                  <div className={styles.imageBox}>
-                    <img src={item.beforeImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 전 상태`} />
-                    <span className={styles.tagBefore}>BEFORE</span>
-                  </div>
-                  <div className={styles.imageBox}>
-                    <img src={item.afterImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 후 완료`} />
-                    <span className={styles.tagAfter}>AFTER</span>
+          <div ref={viewportRef} style={{ width: '100%', overflow: 'hidden', position: 'relative', padding: '20px 0', marginTop: '3rem' }}>
+            <div style={{
+              display: 'flex',
+              flexDirection: 'row',
+              flexWrap: 'nowrap',
+              gap: '30px',
+              width: 'max-content',
+              transform: `translateX(${-(currentIndex * (cardWidth + 30))}px)`,
+              transition: isTransitioning ? 'transform 500ms ease' : 'none'
+            }}>
+              {slides.map((item, idx) => (
+                <div key={`${item.id}-${idx}`} className={styles.portfolioCard} style={{ flexShrink: 0, width: `${cardWidth}px`, margin: 0 }}>
+                  <div className={styles.portfolioCategory}>{item.category}</div>
+                  <div className={styles.comparisonGrid}>
+                    <div className={styles.imageBox}>
+                      <img src={item.beforeImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 전 상태`} />
+                      <span className={styles.tagBefore}>BEFORE</span>
+                    </div>
+                    <div className={styles.imageBox}>
+                      <img src={item.afterImg} alt={`${regionObj?.displayNameKo || '서울·인천'} ${currentService?.serviceNameKo || '청소'} ${item.category} 청소 작업 후 완료`} />
+                      <span className={styles.tagAfter}>AFTER</span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
