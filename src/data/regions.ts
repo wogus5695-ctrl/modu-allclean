@@ -2667,7 +2667,7 @@ export const regions: Region[] = [
   },
   {
     city: '경기', district: '성남시', subDistrict: '금곡동',
-    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'geum곡-dong',
+    regionSlug: 'gyeonggi', districtSlug: 'seongnam', subDistrictSlug: 'geumgok-dong',
     localDescription: '성남시 금곡동의 빌딩, 상가 및 매장 맞춤 위생 클리닝 서비스를 책임지고 진행합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 주거밀착 상권, 소상공인 매장',
     priority: 1, indexStatus: 'index'

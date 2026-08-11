@@ -34,7 +34,7 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     'awning-cleaning',
     'signboard-cleaning',
     'interior-post-cleaning',
-    'construction-completion-cleaning', // services.ts의 준공청소 실제 슬러그
+    'completion-cleaning', // services.ts의 준공청소 실제 슬러그
     'hood-cleaning',
     'hoarder-house-cleaning',          // services.ts의 쓰레기집 실제 슬러그
     'special-cleaning',
@@ -172,7 +172,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { region, service } = getRegionAndService(city, district, slug);
 
   if (!region || !service) {
-    return {};
+    notFound();
   }
 
   return getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.id, district);
