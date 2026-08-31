@@ -170,6 +170,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     const regionName = regionObj?.displayNameKo || regionObj?.subDistrict || regionObj?.district || '';
     const serviceName = currentService?.serviceNameKo || '청소';
     
+    const factoryHeroDescs: Record<string, string> = {
+      '식품공장청소': `${regionName} 식품공장의 생산 설비와 제조 라인 주변의 기름때 및 잔여물을 고온 스팀 위주로 위생 세척합니다.`,
+      '해썹공장청소': `${regionName} 식품 공장의 HACCP(해썹) 지정 기준 충족과 실사 대비를 위해 구역별 정밀 위생 청소를 시공합니다.`,
+      '공장위생청소': `${regionName} 제조 공장 및 가공 구역 내부의 천장 배관 먼지, 바닥 누적 분진을 특수 세척하여 위생도를 높입니다.`,
+      '공장곰팡이제거': `${regionName} 공장 벽면, 천장, 빔 구조물 주변의 고착된 곰팡이 포자를 친환경 멸균 약품으로 제거합니다.`,
+      '물류창고곰팡이청소': `${regionName} 물류 창고 내부 습기로 인해 적재 공간이나 벽면에 발생한 곰팡이 오염을 정밀 세정합니다.`,
+      '공장디퓨저청소': `${regionName} 천장 공조 토출구(디퓨저) 주변의 검은 그을음 먼지와 유동 분진을 고사다리 작업으로 세척합니다.`,
+      '환기구청소': `${regionName} 공장 및 대형 주방 환기구 그릴의 고밀도 매연 오염과 유입 먼지를 친환경 세정 처리합니다.`,
+      '공장바닥청소': `${regionName} 작업장 바닥의 미끄러운 윤활유, 타이어 자국, 페인트 및 에폭시 오염을 스크러버 기계로 세척합니다.`,
+      '공장이전청소': `${regionName} 공장 이전 전후의 대형 설비 철거 자국, 바닥 기름때, 벽면 분진을 지워내어 공실 상태를 정리합니다.`,
+      '공장외벽판넬청소': `${regionName} 공장 건물 외장재인 판넬 벽면의 묵은 때와 대기 오염 고착물을 고압 살수 세척합니다.`
+    };
+    if (factoryHeroDescs[serviceName]) return factoryHeroDescs[serviceName];
+
     switch (serviceName) {
       case '외벽청소':
         return `${regionName} 건물 외벽에 쌓인 먼지, 빗물 자국, 매연 오염을 확인하고 현장 조건에 맞춰 작업 가능 여부를 안내합니다.`;
@@ -219,6 +233,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     const regionName = regionObj?.displayNameKo || '서울·인천';
     const serviceName = currentService?.serviceNameKo || '청소';
     
+    const factoryWhyDescs: Record<string, string> = {
+      '식품공장청소': `${regionName} 식품공장 제조 시설에 적합한 살균 세제를 투입하여 유기물 잔사 및 위생 위협 요소를 박멸합니다.`,
+      '해썹공장청소': `${regionName} 해썹 표준 가이드라인에 기초하여 오염 구역과 비오염 구역의 경계에 맞춘 고밀도 위생 세정을 진행합니다.`,
+      '공장위생청소': `${regionName} 제조 공간에 누적되는 유해 분진과 유독 가루를 건식·습식 복합 흡입 기술로 정화하여 근무 환경을 개선합니다.`,
+      '공장곰팡이제거': `${regionName} 곰팡이 오염원을 단순 물 닦기가 아닌 뿌리까지 사멸시키는 침투형 소독제로 처리하여 재발을 억제합니다.`,
+      '물류창고곰팡이청소': `${regionName} 습도가 높은 물류 보관 시설의 내벽 곰팡이를 제거하고, 방균 코팅을 병행하여 자재 보관 안전을 지킵니다.`,
+      '공장디퓨저청소': `${regionName} 천장에 배치된 디퓨저 커버를 완전 탈거 분해 물세척하여 바람을 통해 나오는 분진 낙하를 예방합니다.`,
+      '환기구청소': `${regionName} 기계실 및 주방 배기 통로인 환기망 내부의 매연 고무질 먼지까지 긁어내어 원활한 대기 순환을 완성합니다.`,
+      '공장바닥청소': `${regionName} 에폭시나 하드너 바닥 손상 없이 타이어 흔적과 굳은 윤활 오일을 특수 분해 세척하여 바닥 안전을 확보합니다.`,
+      '공장이전청소': `${regionName} 기계 철거 후 남은 유압 오일 얼룩, 앙커 볼트 홀 주변 분진을 정리하여 깔끔한 원상복구를 선사합니다.`,
+      '공장외벽판넬청소': `${regionName} 샌드위치 판넬 재질의 부식을 예방하기 위해 도장막 손상 없이 고압 온수 살수로 외벽 매연을 제거합니다.`
+    };
+    if (factoryWhyDescs[serviceName]) return factoryWhyDescs[serviceName];
+
     switch (serviceName) {
       case '바닥왁스코팅':
         return `${regionName} 상가·사무실·매장 바닥의 오염도와 기존 왁스 상태를 확인해 필요한 작업 범위를 안내합니다.`;
@@ -254,6 +282,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
     const regionName = regionObj?.displayNameKo || '서울·인천';
     const serviceName = currentService?.serviceNameKo || '청소';
     
+    const factoryPricingDescs: Record<string, string> = {
+      '식품공장청소': `${regionName} 식품공장청소 비용은 제조 라인 규모, 스팀 보양 대상 설비 수, 위생 등급 수준 및 작업 시간대에 따라 결정됩니다. 현장 사진을 보내주시면 상세 상담을 제공합니다.`,
+      '해썹공장청소': `${regionName} 해썹공장청소 견적은 보양 대상 계측기 수량, 고도 위생 구역 평수, 야간 분리 시공 필요 여부에 따라 조정됩니다. 상담 신청 시 안내해 드립니다.`,
+      '공장위생청소': `${regionName} 공장위생청소 단가는 천장 층고, 배관 도트 수량, 분진의 위해성 수준에 따라 달라질 수 있습니다. 현장 도면과 사진을 통해 빠르게 상담해 드립니다.`,
+      '공장곰팡이제거': `${regionName} 공장곰팡이제거 견적은 오염 면적, 층고(비계 설치 여부), 곰팡이 침투 깊이에 따라 산정됩니다. 사진을 보내주시면 대략적인 작업 플랜을 안내합니다.`,
+      '물류창고곰팡이청소': `${regionName} 물류창고곰팡이청소 비용은 랙 철거 상태, 물품 보양 분량, 전체 보관 공간 평수에 따라 상일합니다. 현장 전경 사진을 보내주시면 확인해 드립니다.`,
+      '공장디퓨저청소': `${regionName} 공장디퓨저청소 견적은 탈거 대상 디퓨저 수량, 천장 설치 높이, 비영업 시간대 작업 여부에 따라 상이합니다. 사진과 위치를 기반으로 조율 가능합니다.`,
+      '환기구청소': `${regionName} 환기구청소 비용은 배기 덕트 규격, 흡입 환기구 수량, 유분 고착 상태에 따라 결정됩니다. 환기구 그릴 사진을 공유해주시면 안내가 수월합니다.`,
+      '공장바닥청소': `${regionName} 공장바닥청소 단가는 스키드 마크 누적도, 유압 오일 도포 면적, 에폭시 박리 필요성에 따라 책정됩니다. 바닥면 전경 사진을 보내주시면 빠른 확인이 가능합니다.`,
+      '공장이전청소': `${regionName} 공장이전청소 견적은 기계 탈거 흔적 부위 면적, 잔류 폐기물 처리 용량, 바닥 세척 면적을 토대로 결정됩니다. 설비 이동 전후 현장 사진을 제공해 주세요.`,
+      '공장외벽판넬청소': `${regionName} 공장외벽판넬청소 비용은 아웃라인 외벽 층수, 스카이 차량 진입 진입로 폭, 고압 온수 살수 범위에 따라 상이하므로, 외벽 전체 사진 공유 시 상세 견적이 가능합니다.`
+    };
+    if (factoryPricingDescs[serviceName]) return factoryPricingDescs[serviceName];
+
     switch (serviceName) {
       case '바닥왁스코팅':
         return `${regionName} 바닥왁스코팅 견적은 바닥 면적, 기존 왁스 상태, 오염 누적 정도, 작업 가능 시간에 따라 달라질 수 있습니다. 사진과 위치를 보내주시면 상담 방향을 안내합니다.`;
@@ -757,13 +799,13 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
                } else if (currentSlug === 'exterior-cleaning') {
                  relatedSlugs = ['window-cleaning', 'signboard-cleaning', 'awning-cleaning', 'floor-cleaning'];
                } else if (currentSlug === 'interior-post-cleaning') {
-                 relatedSlugs = ['floor-wax-coating', 'window-cleaning', 'floor-cleaning', 'construction-completion-cleaning'];
-               } else if (currentSlug === 'construction-completion-cleaning') {
+                 relatedSlugs = ['floor-wax-coating', 'window-cleaning', 'floor-cleaning', 'completion-cleaning'];
+               } else if (currentSlug === 'completion-cleaning') {
                  relatedSlugs = ['exterior-cleaning', 'floor-wax-coating', 'window-cleaning', 'floor-cleaning'];
                } else if (currentSlug === 'floor-cleaning') {
                  relatedSlugs = ['floor-wax-coating', 'interior-post-cleaning', 'window-cleaning', 'signboard-cleaning'];
                } else if (currentSlug === 'floor-wax-coating') {
-                 relatedSlugs = ['floor-cleaning', 'interior-post-cleaning', 'window-cleaning', 'construction-completion-cleaning'];
+                 relatedSlugs = ['floor-cleaning', 'interior-post-cleaning', 'window-cleaning', 'completion-cleaning'];
                } else if (currentSlug === 'awning-cleaning') {
                  relatedSlugs = ['signboard-cleaning', 'window-cleaning', 'exterior-cleaning', 'floor-cleaning'];
                } else if (currentSlug === 'hood-cleaning') {

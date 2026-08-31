@@ -3,7 +3,9 @@ import { notFound } from 'next/navigation';
 import { regions } from '@/data/regions';
 import { services, seoServiceKeywords } from '@/data/services';
 import { seoRegions, SeoRegion } from '@/data/seo/regions';
-import { seoServices, SeoService } from '@/data/seo/services';
+import { seoServices, ALL_SEO_SERVICES, SeoService } from '@/data/seo/services';
+import { isFactoryComboEnabled } from '@/data/seo/factoryActiveCombinations';
+import { factoryServices } from '@/data/seo/factoryServices';
 import { generateLandingPageData } from '@/lib/seo-builder';
 import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS, CONTACT_PHONE, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import LandingTemplate from '@/components/LandingTemplate';
@@ -26,32 +28,14 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     return { region: null, service: null, seoRegion: null, seoService: null };
   }
 
-  const GENERAL_CLEANING_SLUGS = [
-    'exterior-cleaning',
-    'window-cleaning',
-    'fire-cleaning',
-    'floor-wax-coating',
-    'awning-cleaning',
-    'signboard-cleaning',
-    'interior-post-cleaning',
-    'completion-cleaning', // services.ts의 준공청소 실제 슬러그
-    'hood-cleaning',
-    'hoarder-house-cleaning',          // services.ts의 쓰레기집 실제 슬러그
-    'special-cleaning',
-    'floor-cleaning',
-    'office-cleaning',
-    'store-cleaning',
-    'factory-cleaning',
-    'building-cleaning',
-    'flood-cleaning',
-    'warehouse-cleaning',
-    'hospital-cleaning'
-  ];
-
   const MOVE_IN_OUT_SLUGS = [
     'move-in-cleaning',
     'moving-cleaning'
   ];
+
+  const GENERAL_CLEANING_SLUGS = ALL_SEO_SERVICES
+    .map(s => s.serviceSlug)
+    .filter(slug => !MOVE_IN_OUT_SLUGS.includes(slug));
 
   let service = null;
   let region = null;
@@ -63,6 +47,18 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     }
 
     service = seoServiceKeywords.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
+    if (!service) {
+      const fs = ALL_SEO_SERVICES.find(s => s.serviceSlug === serviceSlug);
+      if (fs) {
+        service = {
+          id: fs.serviceSlug,
+          serviceNameKo: fs.serviceNameKo,
+          serviceSlug: fs.serviceSlug,
+          indexStatus: 'noindex',
+          faq: fs.faqSet.map(f => ({ question: f.q, answer: f.a }))
+        } as any;
+      }
+    }
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
     region = regions.find(r => {
@@ -82,6 +78,18 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     }
 
     service = seoServiceKeywords.find(s => s.serviceSlug === serviceSlug && s.indexStatus === 'index');
+    if (!service) {
+      const fs = ALL_SEO_SERVICES.find(s => s.serviceSlug === serviceSlug);
+      if (fs) {
+        service = {
+          id: fs.serviceSlug,
+          serviceNameKo: fs.serviceNameKo,
+          serviceSlug: fs.serviceSlug,
+          indexStatus: 'noindex',
+          faq: fs.faqSet.map(f => ({ question: f.q, answer: f.a }))
+        } as any;
+      }
+    }
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
     region = regions.find(r => 
@@ -115,7 +123,7 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     r.neighborhoodSlug === subDistrictSlug
   );
   
-  const seoService = seoServices.find(s => s.serviceSlug === service.serviceSlug);
+  const seoService = ALL_SEO_SERVICES.find(s => s.serviceSlug === service.serviceSlug);
   
   if (!seoRegion && region) {
       seoRegion = {
@@ -154,7 +162,7 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
           contaminationTypes: service.commonProblems,
           preCheckItems: service.preCheckItems,
           estimateFactors: ['현장 오염도', '면적', '작업 난이도'],
-          faqSet: service.faq.map(f => ({ q: f.question, a: f.answer })),
+          faqSet: service.faq.map((f: any) => ({ q: f.question, a: f.answer })),
           relatedServices: [],
           heroDescriptionTemplate: '{{displayNameKo}}의 {{commonBuildingTypes}}에 최적화된 청소 서비스',
           ctaHook: '빠른 견적 상담',
@@ -162,6 +170,14 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
           ogImage: service.imageUrl || '',
           altBase: service.serviceNameKo
       };
+  }
+
+  if (region && service) {
+      const isFactory = factoryServices.some(fs => fs.serviceSlug === service.serviceSlug);
+      if (isFactory) {
+          const isEnabled = isFactoryComboEnabled(region.regionSlug, region.districtSlug, service.serviceSlug);
+          service.indexStatus = isEnabled ? 'index' : 'noindex';
+      }
   }
 
   return { region, service, seoRegion, seoService: finalSeoService };
@@ -199,7 +215,7 @@ export default async function LandingPage({ params }: Props) {
   // 작업명별로 serviceContentMap의 FAQ 연계
   const serviceContent = serviceContentMap[service.serviceSlug] || {
     serviceName: service.serviceNameKo,
-    faqItems: service.faq.map(f => ({
+    faqItems: service.faq.map((f: any) => ({
       q: f.question.replace('{service}', service.serviceNameKo).replace('{region}', regionName),
       a: f.answer.replace('{service}', service.serviceNameKo).replace('{region}', regionName)
     }))
@@ -304,10 +320,10 @@ export default async function LandingPage({ params }: Props) {
     // 구 / 시 단위 페이지
     if (requestedWithSuffix) {
       const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-      representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
+      representativeArea = region.districtSlug === 'gwangju-si' ? '경기 광주시' : (isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict);
     } else {
       const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-      representativeArea = cleanShortDistrict;
+      representativeArea = region.districtSlug === 'gwangju-si' ? '경기 광주' : cleanShortDistrict;
     }
   }
 

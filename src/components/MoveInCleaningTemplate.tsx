@@ -1371,7 +1371,7 @@ export default function MoveInCleaningTemplate({ data, regionObj, currentService
                 : [
                     { name: '이사청소', slug: 'moving-cleaning' },
                     { name: '인테리어 후 청소', slug: 'interior-post-cleaning' },
-                    { name: '준공청소', slug: 'construction-completion-cleaning' },
+                    { name: '준공청소', slug: 'completion-cleaning' },
                     { name: '바닥청소', slug: 'floor-cleaning' }
                   ];
 

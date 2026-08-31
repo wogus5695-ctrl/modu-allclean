@@ -3,6 +3,8 @@ import { services, seoServiceKeywords } from '@/data/services';
 import { regions } from '@/data/regions';
 import { DOMAIN, INDEXED_DONG_COMBINATIONS } from '@/lib/seo';
 import { generateSitemapXml } from '@/lib/sitemap-utils';
+import { factoryEnabledCombinations, factoryTargetRegions } from '@/data/seo/factoryActiveCombinations';
+import { factoryServices } from '@/data/seo/factoryServices';
 
 type Props = {
   params: Promise<{ id: string }>;
@@ -94,6 +96,26 @@ export async function GET(request: Request, { params }: Props) {
           });
         }
       });
+  } else if (fileName === 'factory-cleaning') {
+    // Factory 전용 사이트맵 생성 (활성화된 조합 factoryEnabledCombinations 만 포함)
+    factoryEnabledCombinations.forEach(combo => {
+      const [city, district, serviceSlug] = combo.split('/');
+      const region = factoryTargetRegions.find(r => r.regionSlug === city && r.districtSlug === district);
+      const service = factoryServices.find(s => s.serviceSlug === serviceSlug);
+
+      if (region && service) {
+        const suffix = region.district.endsWith('시') ? '-si' : '-gu';
+        const urlPath = city === 'incheon'
+          ? `${DOMAIN}/${city}/${district}/${serviceSlug}`
+          : `${DOMAIN}/${city}/${district}${suffix}/${serviceSlug}`;
+
+        urls.push({
+          url: urlPath,
+          priority: 0.7,
+          changeFrequency: 'weekly'
+        });
+      }
+    });
   }
 
   if (urls.length === 0) {

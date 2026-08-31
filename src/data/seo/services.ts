@@ -1,3 +1,5 @@
+import { factoryServices } from './factoryServices';
+
 export interface SeoService {
   serviceNameKo: string;
   serviceSlug: string;
@@ -198,7 +200,7 @@ export const seoServices: SeoService[] = [
   },
   {
     serviceNameKo: '쓰레기집청소',
-    serviceSlug: 'hoarding-cleaning',
+    serviceSlug: 'hoarder-house-cleaning',
     mainProblem: '방치 폐기물 적체 및 심각한 악취 발생',
     targetPlaces: ['1인 가구 원룸', '오피스텔 방치 거주지', '단독주택 내 방치 룸'],
     contaminationTypes: ['일회용 쓰레기 더미', '썩은 음식물 오물', '해충 및 초파리', '바닥 습기 찌든 때'],
@@ -437,3 +439,5 @@ export const seoServices: SeoService[] = [
     altBase: '병원청소 전문'
   }
 ];
+
+export const ALL_SEO_SERVICES: SeoService[] = [...seoServices, ...factoryServices];

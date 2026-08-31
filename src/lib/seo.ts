@@ -1,6 +1,9 @@
 import { Metadata } from 'next';
 import { services, seoServiceKeywords } from '@/data/services';
 import { regions } from '@/data/regions';
+import { ALL_SEO_SERVICES } from '@/data/seo/services';
+import { isFactoryComboEnabled } from '@/data/seo/factoryActiveCombinations';
+import { factoryServices } from '@/data/seo/factoryServices';
 
 // 초기 인덱싱 권장 동 단위 조합 (구Slug-동Slug-서비스Id)
 export const INDEXED_DONG_COMBINATIONS = [
@@ -204,7 +207,17 @@ export const HOOK_PHRASES: Record<string, string> = {
   'building-cleaning': '로비·계단 등 공용부 외부 오염 정리',
   'flood-cleaning': '물 유입 피해 복구 및 오염수 정리',
   'warehouse-cleaning': '적재 공간 먼지 및 바닥 오염 정리',
-  'hospital-cleaning': '진료실·대기실 위생 및 바닥 오염 정리'
+  'hospital-cleaning': '진료실·대기실 위생 및 바닥 오염 정리',
+  'food-factory-cleaning': '식품공장 고온 스팀 위생 세척',
+  'haccp-factory-cleaning': 'HACCP 지정 규격 위생 살균 청소',
+  'factory-hygiene-cleaning': '제조 현장 분진 및 고착 먼지 제거',
+  'factory-mold-removal': '공장 벽면 및 구조물 곰팡이 박멸',
+  'warehouse-mold-cleaning': '물류창고 랙 및 벽체 곰팡이 살균',
+  'factory-diffuser-cleaning': '천장 디퓨저 그릴 탈거 분해 세척',
+  'vent-cleaning': '환기 그릴 및 루버창 고압 물 청소',
+  'factory-floor-cleaning': '바닥 기름때 및 스키드 마크 기계 박리',
+  'factory-move-cleaning': '공장 이전 전후 설비 흔적 및 오일 세정',
+  'factory-exterior-panel-cleaning': '공장 외벽 샌드위치 판넬 고압 세정'
 };
 
 export const DESC_TEMPLATES: Record<string, string> = {
@@ -221,13 +234,24 @@ export const DESC_TEMPLATES: Record<string, string> = {
   'building-cleaning': '건물 로비, 계단, 복도 등 공용부의 유동 오염과 외부 먼지를 체계적으로 관리하여 청결함을 유지합니다.',
   'flood-cleaning': '갑작스러운 침수로 인한 잔여 물기 제거, 바닥 오염 세정, 오염수 및 폐기물 정리와 악취 제거를 지원합니다.',
   'warehouse-cleaning': '물류 창고 적재 공간의 묵은 먼지, 분진, 바닥 오염을 정리하고 장기 보관 공간의 환경을 쾌적하게 개선합니다.',
-  'hospital-cleaning': '병원 진료실, 대기실, 복도 등 공용부의 위생 상태를 점검하고 멸균 및 바닥 오염 정밀 세정을 실시합니다.'
+  'hospital-cleaning': '병원 진료실, 대기실, 복도 등 공용부의 위생 상태를 점검하고 멸균 및 바닥 오염 정밀 세정을 실시합니다.',
+  'food-factory-cleaning': '식품 가공실 및 육가공 생산 라인의 잔여 부산물, 찌든 기름 슬러지, 트렌치 악취 요소를 고온 온수 스팀 공정으로 세척합니다.',
+  'haccp-factory-cleaning': 'HACCP 위생 인증 기준에 부합하도록 교차 오염 요소를 사전 차단하고, 천장 빔 구조체 먼지 진공 포집 및 린스를 진행합니다.',
+  'factory-hygiene-cleaning': '부품 제조 및 사출 가공 구역에 누적되는 정밀 유해 철가루와 원료 분말을 특수 필터 집진기로 남김없이 소인합니다.',
+  'factory-mold-removal': '다습한 공장 벽체와 철골조 틈새에 고착된 검은 곰팡이를 침투형 약품으로 사멸시키고 방균 코팅으로 예방합니다.',
+  'warehouse-mold-cleaning': '의류 및 자재 창고 결로 지역 벽면의 곰팡이를 정밀 소독 닦기하고, 공간 전체 오존 살포로 묵은 악취를 제거합니다.',
+  'factory-diffuser-cleaning': '급배기용 천장 디퓨저 커버를 완전 탈거하여 바닥에서 고압 온수 세척하고 주변 변색 텍스 표면을 정밀 소인합니다.',
+  'vent-cleaning': '대형 환기창 루버창 날개 틈새에 고착된 고밀도 매연 기름 먼지를 스카이 고소 장비와 고압 살수 공정으로 세정합니다.',
+  'factory-floor-cleaning': '작업장 에폭시 바닥의 미끄러운 유압 오일막과 지게차 검은 스키드 마크를 전용 유화제와 대형 회전 스크러버로 박리합니다.',
+  'factory-move-cleaning': '공장 이전 완료 후 기계 반출 자리에 남은 묵은 볼트 홀 먼지, 오일 찌꺼기, 원상 복구를 위한 실내 폐기물 처리를 도맡습니다.',
+  'factory-exterior-panel-cleaning': '조립식 샌드위치 판넬 외벽의 눈물 자국 얼룩과 매연 먼지를 판넬 도장 부식 없이 외부 스카이차에서 고압 살수합니다.'
 };
 
 // 4. 지역+작업명 통합 랜딩 페이지 (구/동 공통)
 export function getLandingMetadata(districtSlug: string, subDistrictSlug: string, serviceId: string, requestedDistrictParam?: string): Metadata {
   const region = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
-  const service = seoServiceKeywords.find((s) => s.id === serviceId);
+  const service = seoServiceKeywords.find((s) => s.id === serviceId) || 
+                  ALL_SEO_SERVICES.find((s) => s.serviceSlug === serviceId);
 
   if (!region || !service) return { title: BRAND_NAME };
 
@@ -246,7 +270,14 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
 
   let canonicalPath = path;
-  let finalIndexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && service.indexStatus === 'index') ? 'index' : 'noindex';
+  
+  let serviceIndexed = ('indexStatus' in service) ? (service as any).indexStatus === 'index' : false;
+  const isFactory = factoryServices.some(fs => fs.serviceSlug === service.serviceSlug);
+  if (isFactory) {
+    serviceIndexed = isFactoryComboEnabled(region.regionSlug, region.districtSlug, service.serviceSlug);
+  }
+
+  let finalIndexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && serviceIndexed) ? 'index' : 'noindex';
 
   if (!isIncheon && isDistrictLevel) {
     const suffix = region.district.endsWith('시') ? '-si' : '-gu';
@@ -258,7 +289,11 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     } else {
       // 구/시 포함 버전: index
       canonicalPath = path;
-      finalIndexStatus = 'index';
+      if (isFactory) {
+        finalIndexStatus = isFactoryComboEnabled(region.regionSlug, region.districtSlug, service.serviceSlug) ? 'index' : 'noindex';
+      } else {
+        finalIndexStatus = 'index';
+      }
     }
   }
 
@@ -282,10 +317,10 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   } else {
     if (requestedDistrictParam && !requestedWithSuffix) {
       const cleanShortDistrict = shortDistrict.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-      representativeArea = cleanShortDistrict;
+      representativeArea = region.districtSlug === 'gwangju-si' ? '경기 광주' : cleanShortDistrict;
     } else {
       const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-      representativeArea = isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict;
+      representativeArea = region.districtSlug === 'gwangju-si' ? '경기 광주시' : (isIncheon ? `인천 ${cleanDistrict}` : cleanDistrict);
     }
   }
 
@@ -310,7 +345,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   let descDetail = DESC_TEMPLATES[service.serviceSlug];
   if (!descDetail) {
     // 템플릿이 정의되지 않은 일반 종합청소 처리
-    descDetail = `${service.shortDescription}를`;
+    descDetail = ('shortDescription' in service) ? `${(service as any).shortDescription}를` : `${service.serviceNameKo} 작업을`;
   }
   
   const finalDescription = isNewService
@@ -325,7 +360,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     ogType: 'article',
     publishedTime: new Date().toISOString(),
     modifiedTime: new Date().toISOString(),
-    ogImage: service.imageUrl,
+    ogImage: ('imageUrl' in service) ? (service as any).imageUrl : ((service as any).ogImage || (service as any).thumbnailImage),
     customOgTitle: `${representativeArea} ${workName} | ${BRAND_NAME}`,
     customOgDesc: finalDescription
   });

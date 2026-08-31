@@ -3987,5 +3987,61 @@ export const regions: Region[] = [
     localDescription: '화성시 화산동의 빌딩, 상가, 오피스텔 및 주거 시설 위생 청소를 맞춤 시공합니다.',
     buildingCharacteristics: '근린 빌딩 상가, 소형 오피스텔, 주거밀착 상권',
     priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '평택시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'pyeongtaek', subDistrictSlug: 'all',
+    localDescription: '평택시 전역의 주거 밀집 단지, 신도시 상가 및 주요 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '아파트 단지 상가, 프라자 빌딩, 신축 주거 타운',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '안성시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'anseong', subDistrictSlug: 'all',
+    localDescription: '안성시 전역의 주거 밀집 단지, 신도시 상가 및 주요 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '아파트 단지 상가, 프라자 빌딩, 신축 주거 타운',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '경기', district: '포천시', subDistrict: '전지역',
+    regionSlug: 'gyeonggi', districtSlug: 'pocheon', subDistrictSlug: 'all',
+    localDescription: '포천시 전역의 주거 밀집 단지, 신도시 상가 및 주요 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '아파트 단지 상가, 프라자 빌딩, 신축 주거 타운',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '충북', district: '음성군', subDistrict: '전지역',
+    regionSlug: 'chungbuk', districtSlug: 'eumseong', subDistrictSlug: 'all',
+    localDescription: '음성군 전역의 상가, 공장 및 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '상가 빌딩, 소규모 공장, 상업 시설',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '충북', district: '진천군', subDistrict: '전지역',
+    regionSlug: 'chungbuk', districtSlug: 'jincheon', subDistrictSlug: 'all',
+    localDescription: '진천군 전역의 상가, 공장 및 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '상가 빌딩, 소규모 공장, 상업 시설',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '충북', district: '청주시', subDistrict: '전지역',
+    regionSlug: 'chungbuk', districtSlug: 'cheongju', subDistrictSlug: 'all',
+    localDescription: '청주시 전역의 주거 밀집 단지, 상가 및 주요 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '아파트 단지 상가, 프라자 빌딩, 신축 주거 타운',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '충남', district: '천안시', subDistrict: '전지역',
+    regionSlug: 'chungnam', districtSlug: 'cheonan', subDistrictSlug: 'all',
+    localDescription: '천안시 전역의 주거 밀집 단지, 상가 및 주요 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '아파트 단지 상가, 프라자 빌딩, 신축 주거 타운',
+    priority: 1, indexStatus: 'index'
+  },
+  {
+    city: '충남', district: '아산시', subDistrict: '전지역',
+    regionSlug: 'chungnam', districtSlug: 'asan', subDistrictSlug: 'all',
+    localDescription: '아산시 전역의 주거 밀집 단지, 상가 및 주요 비즈니스 빌딩 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '아파트 단지 상가, 프라자 빌딩, 신축 주거 타운',
+    priority: 1, indexStatus: 'index'
   }
 ];

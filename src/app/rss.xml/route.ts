@@ -73,7 +73,7 @@ export async function GET() {
             // 서울/경기 구/시 단위 입주/이사청소 (canonical인 접미사 -gu/-si 포함 주소만 등록)
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
             const cleanDistrict = region.district.replace(/^(서울|인천|경기)(특별|광역)?시?\s*/, '');
-            const representativeArea = cleanDistrict;
+            const representativeArea = region.districtSlug === 'gwangju-si' ? '경기 광주시' : cleanDistrict;
             
             if (isMoving) {
               addRssItem(
