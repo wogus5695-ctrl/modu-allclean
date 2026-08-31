@@ -10,6 +10,7 @@ import SectionCTA from '@/components/SectionCTA';
 import FloatingContact from '@/components/FloatingContact';
 import Link from 'next/link';
 import { serviceContentMap } from '@/data/seo/serviceContentMap';
+import { factoryUiConfig } from '@/data/seo/factoryUiConfig';
 
 interface LandingTemplateProps {
   data: LandingPageData;
@@ -18,18 +19,7 @@ interface LandingTemplateProps {
 }
 
 export default function LandingTemplate({ data, regionObj, currentService }: LandingTemplateProps) {
-  const isFactory = currentService && [
-    'food-factory-cleaning',
-    'haccp-factory-cleaning',
-    'factory-hygiene-cleaning',
-    'factory-mold-removal',
-    'warehouse-mold-cleaning',
-    'factory-diffuser-cleaning',
-    'vent-cleaning',
-    'factory-floor-cleaning',
-    'factory-move-cleaning',
-    'factory-exterior-panel-cleaning'
-  ].includes(currentService.serviceSlug);
+  const isFactory = currentService && (currentService as any).serviceGroup === 'factory';
   const getFilteredPortfolios = (serviceName: string) => {
     let matchedIds: string[] = [];
     if (serviceName.includes('화재')) {
@@ -66,6 +56,20 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   const [cardWidth, setCardWidth] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(true);
   const viewportRef = useRef<HTMLDivElement>(null);
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const handleMobileCheck = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    handleMobileCheck();
+    window.addEventListener('resize', handleMobileCheck);
+    return () => window.removeEventListener('resize', handleMobileCheck);
+  }, []);
+
+  const heroStyle = isFactory ? {
+    background: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)), url('${factoryUiConfig.heroImage}') no-repeat ${isMobile ? factoryUiConfig.backgroundPositionMO : factoryUiConfig.backgroundPositionPC}/cover`
+  } : undefined;
 
   const slides = [
     ...displayItems.slice(-cloneCount),
@@ -499,7 +503,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   return (
     <div className={styles.container}>
       {/* 1. Hero Section (Dynamic) */}
-      <section className={styles.hero}>
+      <section className={styles.hero} style={heroStyle}>
         <div className={styles.heroOverlay}></div>
         <div className={styles.inner}>
           <div className="animate-fade-up">
