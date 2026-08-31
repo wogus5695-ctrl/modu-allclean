@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import { services, seoServiceKeywords } from '@/data/services';
 import { regions } from '@/data/regions';
 import { ALL_SEO_SERVICES } from '@/data/seo/services';
-import { isFactoryComboEnabled } from '@/data/seo/factoryActiveCombinations';
+import { isFactoryComboEnabled, factoryTargetRegions } from '@/data/seo/factoryActiveCombinations';
 import { factoryServices } from '@/data/seo/factoryServices';
 
 // 초기 인덱싱 권장 동 단위 조합 (구Slug-동Slug-서비스Id)
@@ -209,7 +209,7 @@ export const HOOK_PHRASES: Record<string, string> = {
   'warehouse-cleaning': '적재 공간 먼지 및 바닥 오염 정리',
   'hospital-cleaning': '진료실·대기실 위생 및 바닥 오염 정리',
   'food-factory-cleaning': '식품공장 고온 스팀 위생 세척',
-  'haccp-factory-cleaning': 'HACCP 지정 규격 위생 살균 청소',
+  'haccp-factory-cleaning': 'HACCP 심사 대비 위생 청소',
   'factory-hygiene-cleaning': '제조 현장 분진 및 고착 먼지 제거',
   'factory-mold-removal': '공장 벽면 및 구조물 곰팡이 박멸',
   'warehouse-mold-cleaning': '물류창고 랙 및 벽체 곰팡이 살균',
@@ -236,7 +236,7 @@ export const DESC_TEMPLATES: Record<string, string> = {
   'warehouse-cleaning': '물류 창고 적재 공간의 묵은 먼지, 분진, 바닥 오염을 정리하고 장기 보관 공간의 환경을 쾌적하게 개선합니다.',
   'hospital-cleaning': '병원 진료실, 대기실, 복도 등 공용부의 위생 상태를 점검하고 멸균 및 바닥 오염 정밀 세정을 실시합니다.',
   'food-factory-cleaning': '식품 가공실 및 육가공 생산 라인의 잔여 부산물, 찌든 기름 슬러지, 트렌치 악취 요소를 고온 온수 스팀 공정으로 세척합니다.',
-  'haccp-factory-cleaning': 'HACCP 위생 인증 기준에 부합하도록 교차 오염 요소를 사전 차단하고, 천장 빔 구조체 먼지 진공 포집 및 린스를 진행합니다.',
+  'haccp-factory-cleaning': 'HACCP 위생 관리 가이드에 따라 교차 오염 요소를 차단하고, 천장 빔 구조체 먼지 진공 흡입 및 세정 린스를 진행합니다.',
   'factory-hygiene-cleaning': '부품 제조 및 사출 가공 구역에 누적되는 정밀 유해 철가루와 원료 분말을 특수 필터 집진기로 남김없이 소인합니다.',
   'factory-mold-removal': '다습한 공장 벽체와 철골조 틈새에 고착된 검은 곰팡이를 침투형 약품으로 사멸시키고 방균 코팅으로 예방합니다.',
   'warehouse-mold-cleaning': '의류 및 자재 창고 결로 지역 벽면의 곰팡이를 정밀 소독 닦기하고, 공간 전체 오존 살포로 묵은 악취를 제거합니다.',
@@ -279,7 +279,12 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
 
   let finalIndexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && serviceIndexed) ? 'index' : 'noindex';
 
-  if (!isIncheon && isDistrictLevel) {
+  const factoryRegion = isFactory ? factoryTargetRegions.find(r => r.regionSlug === region.regionSlug && r.districtSlug === region.districtSlug) : null;
+
+  if (isFactory && factoryRegion) {
+    canonicalPath = `/${region.regionSlug}/${factoryRegion.urlSlug}/${service.serviceSlug}`;
+    finalIndexStatus = isFactoryComboEnabled(region.regionSlug, region.districtSlug, service.serviceSlug) ? 'index' : 'noindex';
+  } else if (!isIncheon && isDistrictLevel) {
     const suffix = region.district.endsWith('시') ? '-si' : '-gu';
     const suffixPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;
     if (!requestedWithSuffix) {
@@ -289,11 +294,7 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
     } else {
       // 구/시 포함 버전: index
       canonicalPath = path;
-      if (isFactory) {
-        finalIndexStatus = isFactoryComboEnabled(region.regionSlug, region.districtSlug, service.serviceSlug) ? 'index' : 'noindex';
-      } else {
-        finalIndexStatus = 'index';
-      }
+      finalIndexStatus = 'index';
     }
   }
 
@@ -301,7 +302,9 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   
   // 동 단위 및 구/시 단위 대표지역명(representativeArea) 추출 로직 통합
   let representativeArea = '';
-  if (!isDistrictLevel) {
+  if (isFactory && factoryRegion) {
+    representativeArea = factoryRegion.seoKeywordName;
+  } else if (!isDistrictLevel) {
     const neighborhoodName = region.subDistrict;
     const districtName = region.district;
 

@@ -9,7 +9,8 @@ export async function GET() {
     `${DOMAIN}/sitemaps/static.xml`,
     `${DOMAIN}/sitemaps/seoul.xml`,
     `${DOMAIN}/sitemaps/incheon.xml`,
-    `${DOMAIN}/sitemaps/gyeonggi.xml`
+    `${DOMAIN}/sitemaps/gyeonggi.xml`,
+    `${DOMAIN}/sitemaps/factory-cleaning.xml`
   ];
 
   const xml = generateSitemapIndexXml(sitemaps);

@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import MobileFloatingCTA from "@/components/MobileFloatingCTA";
 import FooterDescription from "@/components/FooterDescription";
+import FooterWorkArea from "@/components/FooterWorkArea";
 import { Suspense } from "react";
 import { getMainMetadata, getJsonLd, BRAND_NAME, BUSINESS_NAME, CONTACT_PHONE, NAVER_VERIFICATION, GOOGLE_VERIFICATION, OWNER_NAME, BUSINESS_NUMBER } from "@/lib/seo";
 
@@ -50,8 +51,7 @@ export default function RootLayout({
                 <h3 style={{ fontSize: '20px', marginBottom: '20px', color: '#003366' }}>{BRAND_NAME}</h3>
                 <Suspense fallback={
                   <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
-                    {BRAND_NAME}는 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />
-                    다양한 공간의 청소 상담을 안내합니다.<br />
+                    {BRAND_NAME}는 각 공간의 특성과 현장 상태에 맞춘 전문 청소 상담을 제공합니다.<br />
                   </p>
                 }>
                   <FooterDescription />
@@ -69,10 +69,7 @@ export default function RootLayout({
               </div>
               <div>
                 <h4 style={{ fontSize: '16px', marginBottom: '15px' }}>작업 지역</h4>
-                <p style={{ fontSize: '14px', color: '#666', lineHeight: '1.6' }}>
-                  서울 주요 지역 상담 가능<br />
-                  지역별 작업 가능 여부는 상담 시 확인해 드립니다.
-                </p>
+                <FooterWorkArea />
               </div>
             </div>
             <div style={{ marginTop: '50px', paddingTop: '30px', borderTop: '1px solid #ddd', textAlign: 'center', fontSize: '13px', color: '#999' }}>

@@ -47,6 +47,18 @@ export default function FooterDescription() {
   const displayRegion = currentRegion || '서울·경기';
   const displayService = currentService || '종합청소';
 
+  const isFactoryPath = pathname.includes('/factory-cleaning') || 
+                        ['food-factory-cleaning', 'haccp-factory-cleaning', 'factory-hygiene-cleaning', 'factory-mold-removal', 'warehouse-mold-cleaning', 'factory-diffuser-cleaning', 'vent-cleaning', 'factory-floor-cleaning', 'factory-move-cleaning', 'factory-exterior-panel-cleaning']
+                        .some(slug => pathname.includes(slug));
+
+  if (isFactoryPath) {
+    return (
+      <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
+        {BRAND_NAME}은 공장·물류창고·식품 제조시설 등 산업시설의 현장 상태와 작업 범위를 확인해 청소 상담을 안내합니다.
+      </p>
+    );
+  }
+
   return (
     <p style={{ lineHeight: '1.6', fontSize: '14px', color: '#666' }}>
       {BRAND_NAME}는 서울 주요 지역의 상가, 매장, 사무실, 음식점, 준공 현장 등<br />

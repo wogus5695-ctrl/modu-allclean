@@ -66,7 +66,9 @@ function runFinalAudit() {
     }
 
     // Run getLandingMetadata
-    const metadata = getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.serviceSlug, districtWithSuffix);
+    const factReg = factoryTargetRegions.find(r => r.regionSlug === city && r.districtSlug === district);
+    const requestedDistrict = factReg ? factReg.urlSlug : districtWithSuffix;
+    const metadata = getLandingMetadata(region.districtSlug, region.subDistrictSlug, service.serviceSlug, requestedDistrict);
 
     // Robots Check
     if (metadata.robots !== 'index, follow') {
@@ -74,10 +76,11 @@ function runFinalAudit() {
     }
 
     // Canonical Check
-    const expectedCanonical = `https://www.moduclean.co.kr/${city}/${districtWithSuffix}/${serviceSlug}`;
+    const expectedCanonical = `https://www.moduclean.co.kr/${city}/${requestedDistrict}/${serviceSlug}`;
     const actualCanonical = (metadata.alternates as any)?.canonical;
     if (expectedCanonical !== actualCanonical) {
       canonicalErrors++;
+      console.error(`❌ Canonical error: expected ${expectedCanonical}, got ${actualCanonical}`);
     }
 
     // Title / Description existence and uniqueness

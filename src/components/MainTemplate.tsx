@@ -188,6 +188,7 @@ export default function MainTemplate({
   };
  
   const highlightedServiceId = getHighlightedServiceId(service);
+  const isFactory = service.includes('공장') || service.includes('창고');
  
   // 2. Related services mapping
   const relatedServiceMap: Record<string, string[]> = {
@@ -270,7 +271,7 @@ export default function MainTemplate({
         <div className={styles.heroOverlay}></div>
         <div className={styles.inner}>
           <div className="animate-fade-up">
-            <span className={styles.badge}>서울 주요 지역 청소 상담</span>
+            <span className={styles.badge}>{isFactory ? '공장·산업시설 청소 상담' : '서울 주요 지역 청소 상담'}</span>
             <h1 className={styles.heroTitle}>
               {region} <span className={styles.highlight}>{service}</span> 전문<br />
               압도적인 청결 솔루션

@@ -85,14 +85,13 @@ export default async function FactorySubHub({ params }: Props) {
       <div key={groupKey} className={styles.regionGroup}>
         <div className={styles.regionTitle}>
           <span>{group.name}</span>
-          <span className={styles.regionCount}>{group.combos.length}개 지역 서비스 활성화됨</span>
+          <span className={styles.regionCount}>{group.combos.length}개 지역 서비스 상담 가능</span>
         </div>
         <div className={styles.linkList}>
           {group.combos.map(({ region, combo }) => {
             const [city, district] = combo.split('/');
             
-            // 경기도 광주시 지명 충돌 예외 회피 및 출력 처리
-            const displayRegion = region.district === '광주시' && region.regionSlug === 'gyeonggi' ? '경기 광주' : `${region.city} ${region.district}`;
+            const displayRegion = region.hubDisplayName;
             const suffix = region.district.endsWith('시') ? '-si' : '-gu';
             const longUrl = city === 'incheon' 
               ? `/${city}/${district}/${serviceSlug}`
@@ -120,7 +119,7 @@ export default async function FactorySubHub({ params }: Props) {
           </div>
           <h1 className={styles.subHubTitle}>{service.serviceNameKo} 전문 지역별 서비스</h1>
           <p className={styles.subtitle}>
-            {service.mainProblem}을 정교하게 제어하기 위한 전문 클리닝 매뉴얼과 정식 활성화되어 즉각 세정 조치가 제공되는 지자체 목록입니다.
+            {service.mainProblem}을 정교하게 제어하기 위한 전문 클리닝 매뉴얼과 상세 상담 및 시공 서비스가 즉시 연동되는 지역 목록입니다.
           </p>
         </div>
       </header>
@@ -129,8 +128,8 @@ export default async function FactorySubHub({ params }: Props) {
         <div className={styles.container}>
           {hasAnyActiveCombo ? (
             <>
-              <h2 className={styles.sectionTitle}>지자체별 시공 예약 채널</h2>
-              <p className={styles.sectionDesc}>원하시는 지역을 선택하여 상세 견적 요인 및 맞춤형 FAQ를 실시간으로 확인하실 수 있습니다.</p>
+              <h2 className={styles.sectionTitle}>지역별 상세 상담 채널</h2>
+              <p className={styles.sectionDesc}>원하시는 지역을 선택하여 상세 견적 요인 및 맞춤형 FAQ를 바로 확인하실 수 있습니다.</p>
               
               {renderGroup('gyeonggi', regionGroups.gyeonggi)}
               {renderGroup('incheon', regionGroups.incheon)}
@@ -139,8 +138,8 @@ export default async function FactorySubHub({ params }: Props) {
           ) : (
             <div style={{ padding: '60px 20px', textAlign: 'center', backgroundColor: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '16px', color: '#64748b' }}>
               <span style={{ fontSize: '3rem', marginBottom: '20px', display: 'block' }}>⚙️</span>
-              <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#0f172a', marginBottom: '10px' }}>시범 운영 조합 준비 중</h2>
-              <p style={{ fontSize: '0.95rem' }}>해당 작업에 대해 즉시 매핑이 제공되는 파일럿 지역 조합을 준비하고 있습니다. 빠른 시일 내에 활성화하도록 하겠습니다.</p>
+              <h2 style={{ fontSize: '1.25rem', fontWeight: '700', color: '#0f172a', marginBottom: '10px' }}>서비스 상담 준비 중</h2>
+              <p style={{ fontSize: '0.95rem' }}>해당 지역의 공장청소 서비스와 상담 채널을 준비하고 있습니다. 빠른 시일 내에 제공하도록 하겠습니다.</p>
             </div>
           )}
         </div>

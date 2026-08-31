@@ -1,10 +1,10 @@
 import { Metadata } from 'next';
-import { notFound } from 'next/navigation';
+import { notFound, permanentRedirect } from 'next/navigation';
 import { regions } from '@/data/regions';
 import { services, seoServiceKeywords } from '@/data/services';
 import { seoRegions, SeoRegion } from '@/data/seo/regions';
 import { seoServices, ALL_SEO_SERVICES, SeoService } from '@/data/seo/services';
-import { isFactoryComboEnabled } from '@/data/seo/factoryActiveCombinations';
+import { isFactoryComboEnabled, factoryTargetRegions } from '@/data/seo/factoryActiveCombinations';
 import { factoryServices } from '@/data/seo/factoryServices';
 import { generateLandingPageData } from '@/lib/seo-builder';
 import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS, CONTACT_PHONE, DEFAULT_OG_IMAGE } from '@/lib/seo';
@@ -61,14 +61,22 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     }
     if (!service) return { region: null, service: null, seoRegion: null, seoService: null };
     
-    region = regions.find(r => {
-      if (r.regionSlug !== city || r.subDistrictSlug !== 'all' || r.indexStatus !== 'index') return false;
-      const suffix = r.district.endsWith('시') ? '-si' : '-gu';
-      return (
-        r.districtSlug === decodedDistrict ||
-        (city !== 'incheon' && `${r.districtSlug}${suffix}` === decodedDistrict)
-      );
-    });
+    const isFactoryService = factoryServices.some(fs => fs.serviceSlug === serviceSlug);
+    if (isFactoryService) {
+      const factReg = factoryTargetRegions.find(fr => fr.regionSlug === city && fr.urlSlug === decodedDistrict);
+      if (factReg) {
+        region = regions.find(r => r.regionSlug === city && r.districtSlug === factReg.districtSlug && r.subDistrictSlug === 'all');
+      }
+    } else {
+      region = regions.find(r => {
+        if (r.regionSlug !== city || r.subDistrictSlug !== 'all' || r.indexStatus !== 'index') return false;
+        const suffix = r.district.endsWith('시') ? '-si' : '-gu';
+        return (
+          r.districtSlug === decodedDistrict ||
+          (city !== 'incheon' && `${r.districtSlug}${suffix}` === decodedDistrict)
+        );
+      });
+    }
     if (!region) return { region: null, service: null, seoRegion: null, seoService: null };
   } else {
     const subDistrictSlug = decodedSlug[0];
@@ -202,7 +210,14 @@ export default async function LandingPage({ params }: Props) {
     notFound();
   }
 
-  const regionName = region.subDistrict === '전지역' ? region.district : region.subDistrict;
+  const isFactory = factoryServices.some(fs => fs.serviceSlug === service.serviceSlug);
+  const factoryRegion = isFactory ? factoryTargetRegions.find(r => r.regionSlug === region.regionSlug && r.districtSlug === region.districtSlug) : null;
+
+  if (isFactory && factoryRegion && decodeURIComponent(district) !== factoryRegion.urlSlug) {
+    permanentRedirect(`/${city}/${factoryRegion.urlSlug}/${slug.join('/')}`);
+  }
+
+  const regionName = factoryRegion ? factoryRegion.seoKeywordName : (region.subDistrict === '전지역' ? region.district : region.subDistrict);
 
   // 신규 랜딩 페이지 데이터 생성
   const landingData = (seoRegion && seoService) ? generateLandingPageData(seoRegion, seoService) : null;
@@ -302,7 +317,9 @@ export default async function LandingPage({ params }: Props) {
   const isIncheon = region.regionSlug === 'incheon';
   const requestedWithSuffix = district.endsWith('-gu') || district.endsWith('-si');
   let representativeArea = '';
-  if (!isDistrictLevel) {
+  if (factoryRegion) {
+    representativeArea = factoryRegion.seoKeywordName;
+  } else if (!isDistrictLevel) {
     // 동/읍/면 단위 페이지
     const neighborhoodName = region.subDistrict;
     const districtName = region.district;
@@ -358,7 +375,9 @@ export default async function LandingPage({ params }: Props) {
     : `/${region.regionSlug}/${region.districtSlug}/${region.subDistrictSlug}/${service.serviceSlug}`;
   
   let canonicalPath = path;
-  if (region.regionSlug !== 'incheon' && isDistrictLevel) {
+  if (factoryRegion) {
+    canonicalPath = `/${region.regionSlug}/${factoryRegion.urlSlug}/${service.serviceSlug}`;
+  } else if (region.regionSlug !== 'incheon' && isDistrictLevel) {
     if (!requestedWithSuffix) {
       const suffix = region.district.endsWith('시') ? '-si' : '-gu';
       canonicalPath = `/${region.regionSlug}/${region.districtSlug}${suffix}/${service.serviceSlug}`;

@@ -18,6 +18,18 @@ interface LandingTemplateProps {
 }
 
 export default function LandingTemplate({ data, regionObj, currentService }: LandingTemplateProps) {
+  const isFactory = currentService && [
+    'food-factory-cleaning',
+    'haccp-factory-cleaning',
+    'factory-hygiene-cleaning',
+    'factory-mold-removal',
+    'warehouse-mold-cleaning',
+    'factory-diffuser-cleaning',
+    'vent-cleaning',
+    'factory-floor-cleaning',
+    'factory-move-cleaning',
+    'factory-exterior-panel-cleaning'
+  ].includes(currentService.serviceSlug);
   const getFilteredPortfolios = (serviceName: string) => {
     let matchedIds: string[] = [];
     if (serviceName.includes('화재')) {
@@ -491,7 +503,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.heroOverlay}></div>
         <div className={styles.inner}>
           <div className="animate-fade-up">
-            <span className={styles.badge}>서울 주요 지역 청소 상담</span>
+            <span className={styles.badge}>{isFactory ? '공장·산업시설 청소 상담' : '서울 주요 지역 청소 상담'}</span>
             <h1 className={styles.heroTitle} style={{ lineHeight: '1.4' }}>
               {(regionObj?.displayNameKo) || '서울·인천'} {(currentService?.serviceNameKo) || '청소'} 전문
               <br />
@@ -572,7 +584,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         <div className={styles.inner}>
           <div className={styles.sectionHeader}>
             <h2 className={styles.sectionTitle}><span style={{ color: 'var(--accent)' }}>{BRAND_NAME}</span>의 청소 서비스 안내</h2>
-            <p className={styles.sectionDesc}>{BRAND_NAME}는 서울 주요 지역의 다양한 청소 현장에 맞춰 상담을 안내합니다.</p>
+            <p className={styles.sectionDesc}>{isFactory ? '다양한 청소 현장에 맞는 전문 서비스를 확인하세요.' : `${BRAND_NAME}는 서울 주요 지역의 다양한 청소 현장에 맞춰 상담을 안내합니다.`}</p>
           </div>
 
           {/* Desktop & Mobile Responsive view (HTML 중복 제거 및 단일 카드 리스트 적용) */}
