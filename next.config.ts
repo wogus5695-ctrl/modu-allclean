@@ -44,6 +44,30 @@ const nextConfig: NextConfig = {
         destination: '/incheon/:district/:service',
         permanent: true,
       },
+      {
+        // 5-1. 공장청소 광주시 이중 suffix (gwangju-si-si) -> 정규화 URL (gwangju-si) 301 리디렉션
+        source: '/gyeonggi/gwangju-si-si/:path*',
+        destination: '/gyeonggi/gwangju-si/:path*',
+        permanent: true,
+      },
+      {
+        // 5-2. 공장청소 음성군 잘못된 suffix (eumseong-gu) -> 정규화 URL (eumseong-gun) 301 리디렉션
+        source: '/chungbuk/eumseong-gu/:path*',
+        destination: '/chungbuk/eumseong-gun/:path*',
+        permanent: true,
+      },
+      {
+        // 5-3. 공장청소 진천군 잘못된 suffix (jincheon-gu) -> 정규화 URL (jincheon-gun) 301 리디렉션
+        source: '/chungbuk/jincheon-gu/:path*',
+        destination: '/chungbuk/jincheon-gun/:path*',
+        permanent: true,
+      },
+      {
+        // 5-4. 공장청소 남동구 누락된 suffix (namdong) -> 정규화 URL (namdong-gu) 301 리디렉션
+        source: '/incheon/namdong/:path*',
+        destination: '/incheon/namdong-gu/:path*',
+        permanent: true,
+      },
     ];
   },
 };
