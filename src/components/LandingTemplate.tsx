@@ -130,7 +130,7 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
   }, [isTransitioning]);
 
   const getDisplayServices = () => {
-    return [
+    const baseServices = [
       {
         id: 'outer-wall',
         name: '외벽청소',
@@ -180,6 +180,27 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
         image: '/images/services/special-cleaning.jpg'
       }
     ];
+
+    if (!isFactory) {
+      return baseServices;
+    }
+
+    return baseServices.map(item => {
+      if (item.id === 'window') {
+        return {
+          id: 'window',
+          name: '식품/대형 공장청소',
+          desc: '식품공장과 대형 제조시설의 바닥·벽면·설비 주변 오염을 청소하고, HACCP(해썹) 심사 준비와 위생관리에 필요한 작업 범위를 현장에 맞춰 안내합니다.',
+          image: '/images/services/food-factory.jpg',
+          checkItems: [
+            '현장 오염 상태 확인',
+            '시설별 작업 범위 안내',
+            '위생관리·HACCP 준비 청소'
+          ]
+        };
+      }
+      return item;
+    });
   };
 
   const getHeroDescription = () => {
@@ -619,9 +640,17 @@ export default function LandingTemplate({ data, regionObj, currentService }: Lan
                     <h3>{item.name}</h3>
                     <p>{item.desc}</p>
                     <ul className={styles.serviceList}>
-                      <li>✔ 현장 상태 확인</li>
-                      <li>✔ 작업 범위에 맞춘 인력 배치</li>
-                      <li>✔ 작업 후 상태 확인</li>
+                      {(item as any).checkItems ? (
+                        (item as any).checkItems.map((chk: string, i: number) => (
+                          <li key={i}>✔ {chk}</li>
+                        ))
+                      ) : (
+                        <>
+                          <li>✔ 현장 상태 확인</li>
+                          <li>✔ 작업 범위에 맞춘 인력 배치</li>
+                          <li>✔ 작업 후 상태 확인</li>
+                        </>
+                      )}
                     </ul>
                   </div>
                   {item.image && (
