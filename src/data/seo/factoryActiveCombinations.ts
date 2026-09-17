@@ -344,6 +344,40 @@ export const factoryTargetRegions: FactoryRegion[] = [
     urlSlug: 'bupyeong-gu',
     adminType: '구',
     parentRegion: '인천'
+  },
+  {
+    city: '충남',
+    district: '당진시',
+    subDistrict: '전지역',
+    regionSlug: 'chungnam',
+    districtSlug: 'dangjin',
+    subDistrictSlug: 'all',
+    localDescription: '당진시 전역의 공장, 창고 및 주요 비즈니스 시설 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '제조 공장, 산업단지 창고, 상업 시설',
+    priority: 1,
+    indexStatus: 'index',
+    seoKeywordName: '당진시',
+    hubDisplayName: '충남 당진시',
+    urlSlug: 'dangjin-si',
+    adminType: '시',
+    parentRegion: '충남'
+  },
+  {
+    city: '충북',
+    district: '충주시',
+    subDistrict: '전지역',
+    regionSlug: 'chungbuk',
+    districtSlug: 'chungju',
+    subDistrictSlug: 'all',
+    localDescription: '충주시 전역의 공장, 창고 및 주요 비즈니스 시설 클리닝을 책임지고 진행합니다.',
+    buildingCharacteristics: '제조 공장, 산업단지 창고, 상업 시설',
+    priority: 1,
+    indexStatus: 'index',
+    seoKeywordName: '충주시',
+    hubDisplayName: '충북 충주시',
+    urlSlug: 'chungju-si',
+    adminType: '시',
+    parentRegion: '충북'
   }
 ];
 
