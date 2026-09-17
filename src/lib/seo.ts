@@ -249,16 +249,21 @@ export const DESC_TEMPLATES: Record<string, string> = {
 
 // 4. 지역+작업명 통합 랜딩 페이지 (구/동 공통)
 export function getLandingMetadata(districtSlug: string, subDistrictSlug: string, serviceId: string, requestedDistrictParam?: string): Metadata {
-  const region = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
   const service = seoServiceKeywords.find((s) => s.id === serviceId) || 
                   ALL_SEO_SERVICES.find((s) => s.serviceSlug === serviceId);
+
+  const isFactory = service ? factoryServices.some(fs => fs.serviceSlug === service.serviceSlug) : false;
+  const factoryRegion = isFactory 
+    ? factoryTargetRegions.find(r => r.districtSlug === districtSlug || r.urlSlug === districtSlug || (requestedDistrictParam && r.urlSlug === requestedDistrictParam))
+    : null;
+  const region = factoryRegion || regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === subDistrictSlug);
 
   if (!region || !service) return { title: BRAND_NAME };
 
   // 인덱싱 로직 (구 및 동 단위 모든 유효 페이지는 index 상태로 지정)
-  const parentRegion = regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
+  const parentRegion = factoryRegion || regions.find((r) => r.districtSlug === districtSlug && r.subDistrictSlug === 'all');
   const isParentIndexed = parentRegion ? parentRegion.indexStatus === 'index' : true;
-  const requestedDistrict = requestedDistrictParam || region.districtSlug;
+  const requestedDistrict = requestedDistrictParam || (factoryRegion ? factoryRegion.urlSlug : region.districtSlug);
   const requestedWithSuffix = requestedDistrictParam ? (requestedDistrictParam.endsWith('-gu') || requestedDistrictParam.endsWith('-si')) : false;
 
   const isIncheon = region.regionSlug === 'incheon';
@@ -272,14 +277,11 @@ export function getLandingMetadata(districtSlug: string, subDistrictSlug: string
   let canonicalPath = path;
   
   let serviceIndexed = ('indexStatus' in service) ? (service as any).indexStatus === 'index' : false;
-  const isFactory = factoryServices.some(fs => fs.serviceSlug === service.serviceSlug);
   if (isFactory) {
     serviceIndexed = isFactoryComboEnabled(region.regionSlug, region.districtSlug, service.serviceSlug);
   }
 
   let finalIndexStatus: 'index' | 'noindex' = (region.indexStatus === 'index' && isParentIndexed && serviceIndexed) ? 'index' : 'noindex';
-
-  const factoryRegion = isFactory ? factoryTargetRegions.find(r => r.regionSlug === region.regionSlug && r.districtSlug === region.districtSlug) : null;
 
   if (isFactory && factoryRegion) {
     canonicalPath = `/${region.regionSlug}/${factoryRegion.urlSlug}/${service.serviceSlug}`;
@@ -504,6 +506,90 @@ export function getBreadcrumbJsonLd(regionName: string, serviceName: string, url
         'name': serviceName,
         'item': url
       }
+    ]
+  };
+}
+
+// 9. Factory 전용 이동경로(Breadcrumb) 스키마 생성기 (4단계 정규화 계층)
+export function getFactoryBreadcrumbJsonLd(
+  regionName: string,
+  serviceName: string,
+  serviceSlug: string,
+  regionSlug: string,
+  urlSlug: string
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    'itemListElement': [
+      {
+        '@type': 'ListItem',
+        'position': 1,
+        'name': '모두종합환경',
+        'item': `${DOMAIN}/`
+      },
+      {
+        '@type': 'ListItem',
+        'position': 2,
+        'name': '공장청소',
+        'item': `${DOMAIN}/factory-cleaning`
+      },
+      {
+        '@type': 'ListItem',
+        'position': 3,
+        'name': serviceName,
+        'item': `${DOMAIN}/factory-cleaning/${serviceSlug}`
+      },
+      {
+        '@type': 'ListItem',
+        'position': 4,
+        'name': `${regionName} ${serviceName}`,
+        'item': `${DOMAIN}/${regionSlug}/${urlSlug}/${serviceSlug}`
+      }
+    ]
+  };
+}
+
+// 10. Factory 전용 LocalBusiness/Service 스키마 생성기 (areaServed 4대 권역 반영)
+export function getFactoryLocalBusinessJsonLd() {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CleaningService',
+    'name': BRAND_NAME,
+    'legalName': BUSINESS_NAME,
+    'alternateName': `${BRAND_NAME} 공장청소`,
+    'description': '산업시설 및 공장청소 전문. 식품공장, 해썹(HACCP), 분진 및 기름때 제거, 곰팡이 박멸, 에폭시 바닥 세척, 외벽 판넬 고압 세정 등 전문 시공.',
+    'url': `${DOMAIN}/factory-cleaning`,
+    'logo': `${DOMAIN}/logo.png`,
+    'image': DEFAULT_OG_IMAGE,
+    'telephone': CONTACT_PHONE,
+    'priceRange': '₩₩',
+    'address': {
+      '@type': 'PostalAddress',
+      'streetAddress': BUSINESS_ADDRESS,
+      'addressLocality': 'Seoul',
+      'addressRegion': 'KR',
+      'postalCode': '06000',
+      'addressCountry': 'KR'
+    },
+    'geo': {
+      '@type': 'GeoCoordinates',
+      'latitude': 37.4979,
+      'longitude': 127.0276
+    },
+    'openingHoursSpecification': {
+      '@type': 'OpeningHoursSpecification',
+      'dayOfWeek': [
+        'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'
+      ],
+      'opens': '00:00',
+      'closes': '23:59'
+    },
+    'areaServed': [
+      { '@type': 'AdministrativeArea', 'name': 'Gyeonggi-do' },
+      { '@type': 'AdministrativeArea', 'name': 'Incheon' },
+      { '@type': 'AdministrativeArea', 'name': 'Chungcheongbuk-do' },
+      { '@type': 'AdministrativeArea', 'name': 'Chungcheongnam-do' }
     ]
   };
 }

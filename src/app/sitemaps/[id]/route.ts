@@ -104,10 +104,7 @@ export async function GET(request: Request, { params }: Props) {
       const service = factoryServices.find(s => s.serviceSlug === serviceSlug);
 
       if (region && service) {
-        const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-        const urlPath = city === 'incheon'
-          ? `${DOMAIN}/${city}/${district}/${serviceSlug}`
-          : `${DOMAIN}/${city}/${district}${suffix}/${serviceSlug}`;
+        const urlPath = `${DOMAIN}/${region.regionSlug}/${region.urlSlug}/${serviceSlug}`;
 
         urls.push({
           url: urlPath,

@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { factoryServices } from '@/data/seo/factoryServices';
 import { factoryEnabledCombinations, factoryTargetRegions } from '@/data/seo/factoryActiveCombinations';
 import styles from './page.module.css';
-import { BRAND_NAME, DOMAIN } from '@/lib/seo';
+import { BRAND_NAME, DOMAIN, getFactoryLocalBusinessJsonLd } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: `산업용 공장청소 전문 서비스 허브 | ${BRAND_NAME}`,
@@ -12,12 +12,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${DOMAIN}/factory-cleaning`,
   },
-  robots: 'noindex, nofollow', // 아직 공식 검색 노출 전이므로 noindex 설정
+  robots: 'index, follow',
 };
 
 export default function FactoryParentHub() {
+  const jsonLd = getFactoryLocalBusinessJsonLd();
+
   return (
     <div className={styles.wrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className={styles.header}>
         <div className={styles.container}>
           <h1 className={styles.title}>산업시설 및 공장청소 전문 서비스 허브</h1>

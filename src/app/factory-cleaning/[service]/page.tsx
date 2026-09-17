@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { factoryServices } from '@/data/seo/factoryServices';
 import { factoryEnabledCombinations, factoryTargetRegions } from '@/data/seo/factoryActiveCombinations';
 import styles from '../page.module.css';
-import { BRAND_NAME, DOMAIN } from '@/lib/seo';
+import { BRAND_NAME, DOMAIN, getFactoryLocalBusinessJsonLd } from '@/lib/seo';
 
 type Props = {
   params: Promise<{ service: string }>;
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     alternates: {
       canonical: `${DOMAIN}/factory-cleaning/${serviceSlug}`,
     },
-    robots: 'noindex, nofollow',
+    robots: 'index, follow',
   };
 }
 
@@ -89,13 +89,8 @@ export default async function FactorySubHub({ params }: Props) {
         </div>
         <div className={styles.linkList}>
           {group.combos.map(({ region, combo }) => {
-            const [city, district] = combo.split('/');
-            
             const displayRegion = region.hubDisplayName;
-            const suffix = region.district.endsWith('시') ? '-si' : '-gu';
-            const longUrl = city === 'incheon' 
-              ? `/${city}/${district}/${serviceSlug}`
-              : `/${city}/${district}${suffix}/${serviceSlug}`;
+            const longUrl = `/${region.regionSlug}/${region.urlSlug}/${serviceSlug}`;
 
             return (
               <Link key={combo} href={longUrl} className={styles.regularLink}>
@@ -109,9 +104,14 @@ export default async function FactorySubHub({ params }: Props) {
   };
 
   const hasAnyActiveCombo = enabledCombos.length > 0;
+  const jsonLd = getFactoryLocalBusinessJsonLd();
 
   return (
     <div className={styles.wrapper}>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <header className={styles.subHubHeader}>
         <div className={styles.container}>
           <div className={styles.subHubBreadcrumb}>

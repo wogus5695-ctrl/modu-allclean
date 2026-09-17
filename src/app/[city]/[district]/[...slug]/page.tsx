@@ -7,7 +7,7 @@ import { seoServices, ALL_SEO_SERVICES, SeoService } from '@/data/seo/services';
 import { isFactoryComboEnabled, factoryTargetRegions } from '@/data/seo/factoryActiveCombinations';
 import { factoryServices } from '@/data/seo/factoryServices';
 import { generateLandingPageData } from '@/lib/seo-builder';
-import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS, CONTACT_PHONE, DEFAULT_OG_IMAGE } from '@/lib/seo';
+import { getLandingMetadata, getArticleJsonLd, getBreadcrumbJsonLd, getFactoryBreadcrumbJsonLd, DOMAIN, BRAND_NAME, INDEXED_DONG_COMBINATIONS, CONTACT_PHONE, DEFAULT_OG_IMAGE } from '@/lib/seo';
 import LandingTemplate from '@/components/LandingTemplate';
 import MainTemplate from '@/components/MainTemplate';
 import MoveInCleaningTemplate from '@/components/MoveInCleaningTemplate';
@@ -63,9 +63,9 @@ function getRegionAndService(city: string, district: string, slug: string[]) {
     
     const isFactoryService = factoryServices.some(fs => fs.serviceSlug === serviceSlug);
     if (isFactoryService) {
-      const factReg = factoryTargetRegions.find(fr => fr.regionSlug === city && fr.urlSlug === decodedDistrict);
+      const factReg = factoryTargetRegions.find(fr => fr.regionSlug === city && (fr.urlSlug === decodedDistrict || fr.districtSlug === decodedDistrict));
       if (factReg) {
-        region = regions.find(r => r.regionSlug === city && r.districtSlug === factReg.districtSlug && r.subDistrictSlug === 'all');
+        region = factReg;
       }
     } else {
       region = regions.find(r => {
@@ -456,11 +456,19 @@ export default async function LandingPage({ params }: Props) {
         }
       ]
     };
+  } else if (isFactory && factoryRegion) {
+    breadcrumbJsonLd = getFactoryBreadcrumbJsonLd(
+      factoryRegion.seoKeywordName,
+      service.serviceNameKo,
+      service.serviceSlug,
+      factoryRegion.regionSlug,
+      factoryRegion.urlSlug
+    );
   } else {
     breadcrumbJsonLd = getBreadcrumbJsonLd(regionName, service.serviceNameKo, url);
   }
 
-  // 입주청소/이사청소 전용 Service & Organization 통합 구조화 데이터 정의
+  // 입주청소/이사청소 및 Factory 전용 Service & Organization 통합 구조화 데이터 정의
   const serviceJsonLd = isMoveOrMoving ? {
     '@context': 'https://schema.org',
     '@type': 'Service',
@@ -507,6 +515,30 @@ export default async function LandingPage({ params }: Props) {
       '@type': 'AdministrativeArea',
       'name': region.district === regionName ? region.district : `${region.district} ${regionName}`
     }
+  } : (isFactory && factoryRegion) ? {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    'serviceType': 'CleaningService',
+    'name': `${factoryRegion.seoKeywordName} ${service.serviceNameKo}`,
+    'description': description,
+    'provider': {
+      '@type': 'LocalBusiness',
+      'name': BRAND_NAME,
+      'telephone': CONTACT_PHONE,
+      'priceRange': '₩₩',
+      'image': DEFAULT_OG_IMAGE,
+      'address': {
+        '@type': 'PostalAddress',
+        'addressLocality': 'Seoul',
+        'addressCountry': 'KR'
+      }
+    },
+    'areaServed': [
+      { '@type': 'AdministrativeArea', 'name': 'Gyeonggi-do' },
+      { '@type': 'AdministrativeArea', 'name': 'Incheon' },
+      { '@type': 'AdministrativeArea', 'name': 'Chungcheongbuk-do' },
+      { '@type': 'AdministrativeArea', 'name': 'Chungcheongnam-do' }
+    ]
   } : null;
 
   // 입주청소/이사청소 서비스인 경우 전용 템플릿 반환
@@ -552,6 +584,12 @@ export default async function LandingPage({ params }: Props) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {serviceJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd) }}
+        />
+      )}
       {landingData ? (
         <LandingTemplate 
           data={{
